@@ -2,6 +2,22 @@ import './Header.scss';
 import {useContext, useState} from "react";
 import { checkObjectIsEmpty } from '../../utils/checkObjectIsEmpty';
 export default function Header(){
+    
+    const [searchText, setSearchText] = useState("");
+    const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
+
+    const toggleSearchTextOnFocus = e => {
+        setSearchTextOnFocus(!searchTextOnFocus)
+    }
+
+    const writeSearchText = e => {
+        setSearchText(e.target.value)
+    }
+
+    const resetSearchText = e => {
+        setSearchText("");
+    }
+    
     return(
         <body>
         <header>
@@ -55,9 +71,15 @@ export default function Header(){
                         } */}
                     </div>
                 </div>
-                <div className='header_search'>
-                        
-                </div>
+                
+                <div className="search">
+                        <input type="text" placeholder="검색어를 입력해주세요." value={searchText} onChange={writeSearchText}
+                               onFocus={toggleSearchTextOnFocus} onBlur={toggleSearchTextOnFocus}/>
+                        <button
+                            className={"search-delete " + (searchText.length > 0 && searchTextOnFocus ? "search-delete-show" : "search-delete-no")}
+                            onClick={resetSearchText}/>
+                        <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
+                    </div>
                 <div className='header_login_button'>
                     <span  className='header_login_span'>로그인</span>
                 </div>
