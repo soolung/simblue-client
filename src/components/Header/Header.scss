@@ -1,0 +1,81 @@
+@import '../../style/common.scss';
+body{
+    display: flex;
+    justify-content: center;
+}
+header{
+    width: 75vw;
+}
+.header-total-total{
+}
+.header_total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px;
+    .header_logo{
+        .header_logo--div{
+            display: flex;
+            padding-left: 0;
+            img{
+                height: 50%;
+                position: relative;
+                top: 20px;
+            }
+            .logo-font{
+                position: relative;
+                right: 30px;
+                .logo-simchung{
+                }
+                .logo-bssm{
+                    position: relative;
+                    bottom: 18px;
+                }
+            }
+        }
+    }
+    .header_list{
+        
+        .header_list--list{
+            ul{
+                display: flex;
+                list-style: none;
+                padding-left: 0;
+                li{
+                    padding: 8px 12px;
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .header_login_button{
+        span{
+            display: flex;
+            padding-left: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (max-width:700px) {
+    .header_total{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-nav{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .header-nav-li{
+        width: 100%;
+        text-align: center;
+    }
+    .header_login_button{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
