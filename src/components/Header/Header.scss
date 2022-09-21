@@ -4,7 +4,7 @@ body{
     justify-content: center;
 }
 header{
-    width: 70vw;
+    width: 75vw;
 }
 .header-total-total{
 }
@@ -20,7 +20,7 @@ header{
             img{
                 height: 50%;
                 position: relative;
-                top: 20px;
+                top: 17px;
             }
             .logo-font{
                 position: relative;
@@ -45,6 +45,11 @@ header{
                     padding: 8px 20px;
                     font-size: 18px;
                     font-weight: 500;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: $light-grey;
+                        border-radius: 12px;
+                    }
                 }
             }
         }
@@ -111,11 +116,25 @@ header{
             padding-left: 0;
             font-size: 18px;
             font-weight: 500;
+            padding: 8px 20px;
+            &:hover{
+                background-color: $light-grey;
+                border-radius: 12px;
+                cursor: pointer;
+            }
         }
     }
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:1185px){
+    .search{
+        input{
+            display: none;
+        }
+    }
+    
+}
+@media screen and (max-width:793px) {
     .header_total{
         flex-direction: column;
         align-items: flex-start;

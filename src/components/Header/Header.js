@@ -73,12 +73,12 @@ export default function Header(){
                 </div>
                 
                 <div className="search">
-                        <input type="text" placeholder="검색어를 입력해주세요." value={searchText} onChange={writeSearchText}
-                               onFocus={toggleSearchTextOnFocus} onBlur={toggleSearchTextOnFocus}/>
-                        <button
-                            className={"search-delete " + (searchText.length > 0 && searchTextOnFocus ? "search-delete-show" : "search-delete-no")}
-                            onClick={resetSearchText}/>
-                        <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
+                    <input type="text" placeholder="검색어를 입력해주세요." value={searchText} onChange={writeSearchText}
+                           onFocus={toggleSearchTextOnFocus} onBlur={toggleSearchTextOnFocus}/>
+                    <button
+                        className={"search-delete " + (searchText.length > 0 && searchTextOnFocus ? "search-delete-show" : "search-delete-no")}
+                        onClick={resetSearchText}/>
+                    <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
                     </div>
                 <div className='header_login_button'>
                     <span  className='header_login_span'>로그인</span>
