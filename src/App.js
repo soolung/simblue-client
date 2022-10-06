@@ -1,7 +1,9 @@
+import ReactModal from 'react-modal';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,4 +16,7 @@ function App() {
   );
 }
 
+
 export default App;
+
+ReactModal.setAppElement('#root')

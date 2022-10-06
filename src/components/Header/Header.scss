@@ -4,7 +4,7 @@ body{
     justify-content: center;
 }
 header{
-    width: 75vw;
+    width: 70vw;
 }
 .header-total-total{
 }
@@ -112,16 +112,6 @@ header{
   }
     .header_login_button{
         span{
-            display: flex;
-            padding-left: 0;
-            font-size: 18px;
-            font-weight: 500;
-            padding: 8px 20px;
-            &:hover{
-                background-color: $light-grey;
-                border-radius: 12px;
-                cursor: pointer;
-            }
         }
     }
 }
@@ -134,7 +124,16 @@ header{
     }
     
 }
-@media screen and (max-width:793px) {
+
+@media screen and (max-width:890px) {
+    .header-nav-li-2{
+        display: none;
+    }
+}
+@media screen and (max-width:783px) {
+    .header-nav-li-2{
+        display: block;
+    }
     .header_total{
         flex-direction: column;
         align-items: flex-start;

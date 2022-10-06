@@ -1,8 +1,13 @@
 import './Header.scss';
+import Login from '../../components/Modal/Login/Login';
 import {useContext, useState} from "react";
 import { checkObjectIsEmpty } from '../../utils/checkObjectIsEmpty';
 export default function Header(){
     
+    
+    const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
+
+
     const [searchText, setSearchText] = useState("");
     const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
@@ -18,6 +23,8 @@ export default function Header(){
         setSearchText("");
     }
     
+    
+
     return(
         <body>
         <header>
@@ -57,7 +64,7 @@ export default function Header(){
                             <> */}
                                 <ul className='header-nav'>
                                     <li className='header-nav-li'>둘러보기</li>
-                                    <li>기록보기</li>
+                                    <li className='header-nav-li-2'>기록보기</li>
                                 </ul>
                             {/* </>
                             :
@@ -79,9 +86,9 @@ export default function Header(){
                         className={"search-delete " + (searchText.length > 0 && searchTextOnFocus ? "search-delete-show" : "search-delete-no")}
                         onClick={resetSearchText}/>
                     <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
-                    </div>
+                </div>
                 <div className='header_login_button'>
-                    <span  className='header_login_span'>로그인</span>
+                    <span  className='header_login_span'><Login /></span>
                 </div>
             </nav>
         </div>
