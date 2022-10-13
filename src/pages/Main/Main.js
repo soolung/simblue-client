@@ -1,4 +1,5 @@
-import './Main.scss';
+
+    import './Main.scss';
 import BannerData from "./banner.json";
 import Banner from "../../components/Banner/Banner";
 import ListData from "./list.json";

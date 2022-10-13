@@ -58,7 +58,7 @@
       float: left;
       .login-left-tit{
         position: relative;
-        top: 30%;
+        top: 17vh;
         text-align: center;
         .login-img{
           img{
@@ -66,10 +66,8 @@
           }
         }
         .login-insa{
-          span{
-            font-weight: 600;
-            font-size: 1.8em;
-          }
+          font-weight: 600;
+          font-size: 1.8em;
         }
       }
     }   
@@ -178,5 +176,28 @@
     
       }
     }
+  }
+}
+
+@media screen and (max-width:830px) {
+  .login-insa{
+    display: none;
+  }
+  .login-right-loginbutton-googlelogin{
+    button{
+      span{
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width:1200px) {
+  .login-insa{
+    display: none;
+  }
+  .login-under-que{
+    display: none;
   }
 }

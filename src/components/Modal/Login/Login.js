@@ -4,6 +4,7 @@ import {useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from "react";
+import Signup from "../Signup/Signup";
 export default function Login(){
 
     
@@ -95,7 +96,7 @@ export default function Login(){
                                 </div>
                                 <div className="login-right-under">
                                     <span className="login-under-que">아직 회원이 아니신가요?</span>
-                                    <span className="login-under-dap">구글 계정으로 회원가입</span>
+                                    <span className="login-under-dap"><Signup /></span>
                                 </div>
                             </div>
                         </div>
