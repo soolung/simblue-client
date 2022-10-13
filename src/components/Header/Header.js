@@ -1,12 +1,8 @@
 import './Header.scss';
 import Login from '../../components/Modal/Login/Login';
-import {useContext, useState} from "react";
-import { checkObjectIsEmpty } from '../../utils/checkObjectIsEmpty';
-export default function Header(){
-    
-    
-    const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
+import {useState} from "react";
 
+export default function Header() {
 
     const [searchText, setSearchText] = useState("");
     const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
@@ -22,30 +18,20 @@ export default function Header(){
     const resetSearchText = e => {
         setSearchText("");
     }
-    
-    
 
-    return(
-        <body>
+
+    return (
         <header>
-        <div className='header-total-total'>
-            <nav className='header_total'>
+            <div className='header-inner'>
                 <div className='header_logo'>
-                    <div className='header_logo--div'>
-                        <img src='https://ifh.cc/g/cs0mAl.png'/>
-                        {/* {checkObjectIsEmpty(user) ? */}
-                            {/* <> */}
-                            <div className='logo-font'>
-                                <h3>
-                                    <dd className='logo-simchung'>
-                                        심청이
-                                    </dd>
-                                </h3>
-                                <dd className='logo-bssm'>
-                                    부산소프트웨어마이스터고등학교
-                                </dd>
-                            </div>
-                            {/* </>
+                    <img src='https://ifh.cc/g/cs0mAl.png' alt='logo'/>
+                    {/* {checkObjectIsEmpty(user) ? */}
+                    {/* <> */}
+                    <div className='logo-font'>
+                        <p className='logo-simblue'>심청이</p>
+                        <p className='logo-bssm'>부산소프트웨어마이스터고등학교</p>
+                    </div>
+                    {/* </>
                             :
                             <>
                                 <dd className='logo-simchung'>
@@ -56,17 +42,16 @@ export default function Header(){
                                 </dt>
                             </>
                         } */}
-                    </div>
                 </div>
                 <div className='header_list'>
                     <div className='header_list--list'>
                         {/* {checkObjectIsEmpty(user) ?
                             <> */}
-                                <ul className='header-nav'>
-                                    <li className='header-nav-li'>둘러보기</li>
-                                    <li className='header-nav-li-2'>기록보기</li>
-                                </ul>
-                            {/* </>
+                        <ul className='header-nav'>
+                            <li className='header-nav-li'>둘러보기</li>
+                            <li className='header-nav-li-2'>기록보기</li>
+                        </ul>
+                        {/* </>
                             :
                             <>
                                 <ul>
@@ -78,7 +63,7 @@ export default function Header(){
                         } */}
                     </div>
                 </div>
-                
+
                 <div className="search">
                     <input type="text" placeholder="검색어를 입력해주세요." value={searchText} onChange={writeSearchText}
                            onFocus={toggleSearchTextOnFocus} onBlur={toggleSearchTextOnFocus}/>
@@ -88,11 +73,9 @@ export default function Header(){
                     <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
                 </div>
                 <div className='header_login_button'>
-                    <span  className='header_login_span'><Login /></span>
+                    <span className='header_login_span'><Login/></span>
                 </div>
-            </nav>
-        </div>
+            </div>
         </header>
-        </body>
     )
 }
