@@ -7,9 +7,10 @@
 }
 
 body {
-    background-color: white;
+    background-color: #FAFAFA;
     margin: 0;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    color: black;
 }
 
 ul {
@@ -23,6 +24,7 @@ li {
 a {
     cursor: pointer;
     text-decoration: none;
+    color: black;
 }
 
 button {

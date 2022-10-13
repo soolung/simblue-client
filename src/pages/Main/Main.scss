@@ -1,10 +1,9 @@
 @import '../../style/common.scss';
-.applist-swiperslide{
+
+.latest-application-list {
+    display: flex;
     width: 70vw;
+    justify-content: space-between;
     padding-top: 25px;
     margin: 0 auto;
-}
-section{
-    width: 100vw;
-    background-color: $background-color;
 }
