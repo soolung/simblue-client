@@ -1,0 +1,20 @@
+@import "../../../style/common";
+
+.application-modal {
+  border-radius: 15px;
+  width: 70vw;
+  height: 80vh;
+
+  .application-modal-notice {
+    width: 30%;
+    height: 100%;
+    padding: 5% 3%;
+    background-color: $light-grey;
+  }
+
+  .application-modal-application {
+    width: 70%;
+    height: 100%;
+    background-color: $background-color;
+  }
+}
