@@ -39,8 +39,8 @@ export default function LoginModal({isOpen, closeModal}) {
         <>
             <React.Fragment>
                 <Modal isOpen={isOpen} onRequestClose={closeModal}
-                       className="login-modal"
-                       overlayClassName="login-modal-main-overlay"
+                       className="modal login-modal"
+                       overlayClassName="modal-overlay"
                 >
                     <div className="login-left">
                         <div className="login-left-tit">
