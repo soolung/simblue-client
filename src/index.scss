@@ -10,7 +10,7 @@
 body {
   background-color: #FAFAFA;
   margin: 0;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-family: Spoqa Han Sans Neo, sans-serif;
   color: black;
 }
 
@@ -58,4 +58,8 @@ button {
 
 .ReactModal__Body--open {
   overflow: hidden;
+}
+
+.emoji {
+  font-family: Tossface, sans-serif;
 }

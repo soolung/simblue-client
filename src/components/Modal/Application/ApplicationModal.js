@@ -2,7 +2,9 @@ import "./ApplicationModal.scss";
 import Modal from "react-modal";
 import {useEffect, useState} from "react";
 import noticeData from "./noticeData.json";
+import a from "./application.json";
 import Notice from "../../Notice/Notice";
+import Button from "../../Button/Button";
 
 export default function ApplicationModal({isOpen, closeModal, id}) {
 
@@ -37,7 +39,23 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                     }
                 </div>
                 <div className="application-modal-application">
+                    <div className="application-modal-application-header">
+                        <p className="application-modal-application-header-title">
+                            <span className="emoji">{a.emoji}</span>
+                            {a.title}
+                        </p>
+                        <p className="application-modal-application-header-description">{a.description}</p>
+                        <p className="application-modal-application-header-time">- {a.isAlways ? '상시' : a.endDate}</p>
+                    </div>
+                    <div className="application-modal-application-section">
 
+                    </div>
+                    <Button
+                        text={"제출하기"}
+                        action={() => {
+                        }}
+                        className="application-modal-application-submit"
+                    />
                 </div>
             </Modal>
         </>

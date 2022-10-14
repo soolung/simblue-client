@@ -1,0 +1,22 @@
+{
+  "applicationQuestions": [
+    {
+      "question": "희망하는 학과를 선택해 주세요",
+      "type": "RADIO",
+      "applicationAnswers": [
+        {
+          "answer": "소프트웨어개발과"
+        },
+        {
+          "answer": "임베디드소프트웨어과"
+        }
+      ]
+    }
+  ],
+  "description": "소개과 vs 임베과",
+  "emoji": "🥹",
+  "endDate": "2022-12-31",
+  "isAlways": false,
+  "startDate": "2022-09-29",
+  "title": "1학년 학과 신청"
+}
