@@ -3,6 +3,11 @@
 header {
   width: 100vw;
   border-bottom: 1px solid $grey;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
   .header-inner {
     width: 70vw;
