@@ -10,7 +10,7 @@ export default function Application(props) {
                         {props.title}
                     </span>
                     <span className="application-title-icon">
-                        {props.icon}
+                        {props.emoji}
                     </span>
 
                 </div>
@@ -18,7 +18,7 @@ export default function Application(props) {
                     {props.message}
                 </p>
                 <p className="application-end-date">
-                    - {props.endDate}
+                    - {props.isAlways ? "상시" : props.endDate}
                 </p>
             </div>
         </Link>

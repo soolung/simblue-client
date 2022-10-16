@@ -4,18 +4,18 @@
       "id": 1,
       "description": "2학기 신청도서를  신청하세요!",
       "emoji": "📚",
-      "endDate": "2022-10-31",
+      "endDate": "2022.10.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "2학기 도서신청"
     },
     {
       "id": 2,
       "description": "소개과 vs 임베과",
       "emoji": "🥹",
-      "endDate": "2022-12-31",
+      "endDate": "2022.12.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "1학년 학과 신청"
     },
     {
@@ -36,18 +36,18 @@
       "id": 1,
       "description": "2학기 신청도서를  신청하세요!",
       "emoji": "📚",
-      "endDate": "2022-10-31",
+      "endDate": "2022.10.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "2학기 도서신청"
     },
     {
       "id": 2,
       "description": "소개과 vs 임베과",
       "emoji": "🥹",
-      "endDate": "2022-12-31",
+      "endDate": "2022.12.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "1학년 학과 신청"
     },
     {
@@ -68,18 +68,18 @@
       "id": 1,
       "description": "2학기 신청도서를  신청하세요!",
       "emoji": "📚",
-      "endDate": "2022-10-31",
+      "endDate": "2022.10.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "2학기 도서신청"
     },
     {
       "id": 2,
       "description": "소개과 vs 임베과",
       "emoji": "🥹",
-      "endDate": "2022-12-31",
+      "endDate": "2022.12.31",
       "isAlways": false,
-      "startDate": "2022-09-29",
+      "startDate": "2022.09.29",
       "title": "1학년 학과 신청"
     },
     {

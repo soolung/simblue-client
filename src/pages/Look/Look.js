@@ -42,9 +42,10 @@ export default function Look() {
                         applications.map(a => (
                             <Application
                                 title={a.title}
-                                icon={a.emoji}
+                                emoji={a.emoji}
                                 message={a.description}
                                 endDate={a.endDate}
+                                isAlways={a.isAlways}
                             />
                         ))
                     }
