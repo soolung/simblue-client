@@ -15,7 +15,7 @@ export default function Application(props) {
 
                 </div>
                 <p className="application-comment">
-                    {props.message}
+                    {props.description}
                 </p>
                 <p className="application-end-date">
                     - {props.isAlways ? "상시" : props.endDate}

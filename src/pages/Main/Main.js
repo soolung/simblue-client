@@ -18,7 +18,7 @@ export default function Main(){
                                     id={a.id}
                                     emoji={a.emoji}
                                     title={a.title}
-                                    message={a.message}
+                                    description={a.description}
                                     startDate={a.startDate}
                                     endDate={a.endDate}
                                     isAlways={a.isAlways}

@@ -43,7 +43,7 @@ export default function Look() {
                             <Application
                                 title={a.title}
                                 emoji={a.emoji}
-                                message={a.description}
+                                description={a.description}
                                 endDate={a.endDate}
                                 isAlways={a.isAlways}
                             />
