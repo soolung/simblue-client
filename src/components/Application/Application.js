@@ -13,16 +13,16 @@ export default function Application(props) {
                     <span className="application-title-title">
                         {props.title}
                     </span>
-                    <span className="emoji application-title-icon">
-                        {props.icon}
+                    <span className="application-title-icon">
+                        {props.emoji}
                     </span>
 
                 </div>
                 <p className="application-comment">
-                    {props.message}
+                    {props.description}
                 </p>
                 <p className="application-end-date">
-                    - {props.endDate}
+                    - {props.isAlways ? "상시" : props.endDate}
                 </p>
             </div>
             <ApplicationModal

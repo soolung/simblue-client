@@ -16,11 +16,12 @@ export default function Main(){
                         ListData.list.map(a => (
                                 <Application
                                     id={a.id}
-                                    icon={a.icon}
+                                    emoji={a.emoji}
                                     title={a.title}
-                                    message={a.message}
-                                    start_period={a.start_period}
+                                    description={a.description}
+                                    startDate={a.startDate}
                                     endDate={a.endDate}
+                                    isAlways={a.isAlways}
                                 />
                         ))
                     }

@@ -2,39 +2,39 @@
   "list": [
     {
       "id": 1,
-      "icon":"📚",
+      "emoji":"📚",
       "title": "2학기 도서 신청",
-      "message": "2학기 신청도서를 신청하세요!",
-      "start_period":"22.01.05",
+      "description": "2학기 신청도서를 신청하세요!",
+      "startDate":"22.01.05",
       "endDate":"22.03.05",
-      "link": ""
+      "isAlways": false
     },
     {
       "id": 2,
-      "icon":"😳",
+      "emoji":"😳",
       "title": "1학년 학과 신청",
-      "message": "소개과 vs 임베과",
-      "start_period":"22.01.05",
+      "description": "소개과 vs 임베과",
+      "startDate":"22.01.05",
       "endDate":"22.03.05",
-      "link": ""
+      "isAlways": false
     },
     {
       "id": 3,
-      "icon":"🌝",
+      "emoji":"🌝",
       "title": "기숙사 지각 신청",
-      "message": "쌤 저 오늘... 늦을 거 같아요",
-      "start_period":"22.01.05",
-      "endDate":"상시",
-      "link": ""
+      "description": "쌤 저 오늘... 늦을 거 같아요",
+      "startDate":"22.01.05",
+      "endDate": null,
+      "isAlways": true
     },
     {
       "id": 4,
-      "icon":"🌞",
+      "emoji":"🌞",
       "title": "기숙사 조기 입실 신청",
-      "message": "이것은 찐이노..",
-      "start_period":"22.01.05",
-      "endDate":"상시",
-      "link": ""
+      "description": "이것은 찐이노..",
+      "startDate":"22.01.05",
+      "endDate": null,
+      "isAlways": true
     }
   ]
 }
