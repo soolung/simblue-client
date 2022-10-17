@@ -13,7 +13,7 @@ export default function Application(props) {
                     <span className="application-title-title">
                         {props.title}
                     </span>
-                    <span className="application-title-icon">
+                    <span className="emoji application-title-icon">
                         {props.emoji}
                     </span>
 
