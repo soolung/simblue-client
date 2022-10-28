@@ -1,0 +1,16 @@
+@import "../../../style/common";
+
+.textarea {
+  width: 100%;
+  height: 70px;
+  padding: 11px;
+  font-size: 18px;
+  color: $input-text;
+  border: 1px solid $grey;
+  border-radius: 15px;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+}
