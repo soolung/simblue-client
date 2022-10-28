@@ -1,0 +1,35 @@
+@import "../../../style/common";
+
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid $grey;
+  cursor: pointer;
+  outline: 0;
+  transition: background 0.2s;
+
+  &::after {
+    background-color: $main-red;
+    border-radius: 50%;
+    width: 86%;
+    height: 86%;
+    content: '';
+    display: none;
+    left: 7%;
+    position: relative;
+    top: 7%;
+  }
+
+  &:checked {
+    border-color: $main-red;
+  }
+
+  &:checked::after {
+    display: block;
+  }
+}
