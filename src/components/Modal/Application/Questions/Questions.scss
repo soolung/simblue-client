@@ -1,0 +1,25 @@
+@import "../../../../style/common";
+
+.application-questions {
+  .application-item {
+    display: flex;
+    align-items: start;
+    padding-bottom: 35px;
+
+    .application-questions-question {
+      display: inline-block;
+      width: 20%;
+
+      font-size: 18px;
+      font-weight: 500;
+      word-break: keep-all;
+    }
+
+    .application-questions-answer {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 11px 25px;
+      width: 80%;
+    }
+  }
+}
