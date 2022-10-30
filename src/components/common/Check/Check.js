@@ -3,7 +3,7 @@ import './Check.scss';
 export default function Check(props) {
 
     return (
-        <div className="check-wrapper">
+        <label className="check-label">
             <input
                 className={`check ${props.className}`}
                 type="checkbox"
@@ -14,6 +14,6 @@ export default function Check(props) {
                 id={props.id}
             />
             <span>{props.label}</span>
-        </div>
+        </label>
     )
 }

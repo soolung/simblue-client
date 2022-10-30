@@ -5,11 +5,6 @@ import noticeData from "./noticeData.json";
 import a from "./application.json";
 import Notice from "../../Notice/Notice";
 import Button from "../../Button/Button";
-import Check from "../../common/Check/Check";
-import Radio from "../../common/Radio/Radio";
-import Text from "../../common/Text/Text";
-import TextArea from "../../common/TextArea/TextArea";
-import Question from "./Questions/Question";
 import Questions from "./Questions/Questions";
 
 export default function ApplicationModal({isOpen, closeModal, id}) {

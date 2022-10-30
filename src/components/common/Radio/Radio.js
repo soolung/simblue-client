@@ -3,7 +3,7 @@ import './Radio.scss';
 export default function Radio(props) {
 
     return (
-        <div className="radio-wrapper">
+        <label className="radio-label">
             <input
                 className={`radio ${props.className}`}
                 type="radio"
@@ -14,6 +14,6 @@ export default function Radio(props) {
                 id={props.id}
             />
             <span>{props.label}</span>
-        </div>
+        </label>
     )
 }
