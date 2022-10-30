@@ -1,0 +1,28 @@
+@import "../../style/common";
+
+.notice {
+  width: 100%;
+  position: relative;
+  background-color: white;
+  border-radius: 15px;
+  padding: 9% 7%;
+  margin-bottom: 20px;
+
+  .notice-text {
+    font-size: 24px;
+    margin-bottom: 4px;
+    word-break: keep-all;
+  }
+
+  .notice-info {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .pin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+  }
+}

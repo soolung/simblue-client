@@ -1,37 +1,9 @@
 @import '../../../style/common.scss';
 
-.ReactModalPortal {
-  position: relative;
-  z-index: 9999;
-
-  .login-modal-main-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    .login-modal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgb(204, 204, 204);
-      background: white;
-      opacity: 1;
-      overflow: auto;
-      border-radius: 3px;
-      outline: none;
-    }
-  }
-}
-
-.ReactModal__Body--open {
-  overflow: hidden;
-}
-
-
 .login-modal {
   width: 40vw;
   height: 70vh;
+  border-radius: 3px;
 
   .login-left {
     width: 35%;
@@ -92,6 +64,7 @@
           font-size: 14px;
           font-weight: 400;
           padding-top: 16px;
+          word-break: keep-all;
         }
       }
 

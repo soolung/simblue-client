@@ -1,0 +1,66 @@
+{
+  "id": 2,
+  "title": "1학년 학과 신청",
+  "description": "소개과 vs 임베과",
+  "startDate": "2022-09-29",
+  "endDate": "2022-12-31",
+  "emoji": "🥹",
+  "isAlways": false,
+  "applicationQuestions": [
+    {
+      "id": 1,
+      "question": "책 제목",
+      "type": "TEXT"
+    },
+    {
+      "id": 6,
+      "question": "학과 선택",
+      "type": "RADIO",
+      "applicationAnswers": [
+        {
+          "answer": "소프트웨어개발과"
+        },
+        {
+          "answer": "임베디드소프트웨어과"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "저메추",
+      "type": "CHECKBOX",
+      "applicationAnswers": [
+        {
+          "answer": "돈까스"
+        },
+        {
+          "answer": "피자"
+        },
+        {
+          "answer": "라면"
+        },
+        {
+          "answer": "된장찌개"
+        },
+        {
+          "answer": "돈까스"
+        },
+        {
+          "answer": "피자"
+        },
+        {
+          "answer": "라면"
+        },
+        {
+          "answer": "된장찌개"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "편지",
+      "type": "TEXTAREA"
+    }
+  ],
+  "applicationNotices": []
+}
