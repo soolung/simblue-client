@@ -3,19 +3,22 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import Look from './pages/Look/Look';
+import Record from "./pages/Record/Record";
+
 function App() {
 
-  return (
-    <div className="App">
-      <BrowserRouter>
-      <Header />
-        <Routes>
-          <Route path='/' element={<Main />} />
-            <Route path='/look' element={<Look />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Header/>
+                <Routes>
+                    <Route path='/' element={<Main/>}/>
+                    <Route path='/look' element={<Look/>}/>
+                    <Route path='/record' element={<Record/>}/>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 
