@@ -2,6 +2,9 @@
 
 
 .application {
+  &:hover{
+    cursor: pointer;
+  }
   display: flex;
   flex-direction: column;
   border: 1px solid $grey;

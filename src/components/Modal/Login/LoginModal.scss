@@ -63,12 +63,13 @@
           color: $dark-grey;
           font-size: 14px;
           font-weight: 400;
-          padding-top: 16px;
+          padding-top: 5px;
           word-break: keep-all;
         }
       }
 
       .login-right-input-idpw {
+        padding-top: 10px;
         text-align: center;
 
         input {
