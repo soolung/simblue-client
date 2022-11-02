@@ -1,29 +1,23 @@
 import Modal from "react-modal";
-import './Signup.scss';
+import './StudentSignup.scss';
 import {useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from "react";
 export default function Signup(){
 
-    
-    const realId = "gimhanul";
-    const realPw = "baby";
-    
-    const nav = useNavigate();
+    const [request, setRequest] = useState({
+        emailAddress: ""
+    });
 
-    const [inputId, setInputId] = useState('')
-    const [inputPw, setInputPw] = useState('')
+    const handleChange = e => {
+        setRequest({
+            ...request, [e.target.name]: e.target.value
+        })
+    }
 
     const [modalOpen, setModalOpen] = useState(false);
     
-
-    const handleInputId = (e) => {
-        setInputId(e.target.value);
-    }
-    const handleInputPw = (e) => {
-        setInputPw(e.target.value);
-    }
 
     const openModal = () => {
         setModalOpen(true);
@@ -32,6 +26,9 @@ export default function Signup(){
         setModalOpen(false);
     };
 
+    
+
+    
     
 
     return(
@@ -67,16 +64,16 @@ export default function Signup(){
                                     </div>
                                     <div className="sign-right-input-idpw">
                                         <div className="sign-right-ment-email">                                        
-                                            <input type='text' placeholder='이메일을 입력하세요.' />
+                                            <input type='text' placeholder='이메일을 입력하세요.' onChange={handleChange} name="emailAddress" value={request.emailAddress}/>
                                         </div>
                                         <div className="sign-right-ment-password">
-                                            <input type='password' placeholder='비밀번호를 입력하세요'/>
+                                            <input type='password' placeholder='비밀번호를 입력하세요' onChange={handleChange}/>
                                         </div>
                                         <div className="sign-right-ment-morepassword">
-                                            <input type='password' placeholder='비밀번호를 재입력 입력하세요'/>
+                                            <input type='password' placeholder='비밀번호를 재입력 입력하세요' onChange={handleChange}/>
                                         </div>
                                         <div className="sign-right-ment-name">
-                                            <input type='password' placeholder='이름을 입력하세요'/>
+                                            <input type='password' placeholder='이름을 입력하세요' onChange={handleChange}/>
                                         </div>
                                     </div>
                                     <div className="sign-right-loginbutton-tit">
