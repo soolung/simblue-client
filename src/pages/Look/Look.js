@@ -21,9 +21,9 @@ export default function Look() {
     return (
         <>
             <section className="look">
-                <div className="look-header">
-                    <p className="look-header-title">둘러보기</p>
-                    <p className="look-header-description">{selectedCategory.description}</p>
+                <div className="section-header">
+                    <p className="section-header-title">둘러보기</p>
+                    <p className="section-header-description">{selectedCategory.description}</p>
                 </div>
                 <div className="look-category-section">
                     {

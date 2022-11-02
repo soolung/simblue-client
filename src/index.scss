@@ -1,5 +1,6 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 @import url('https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css');
+@import "./style/common";
 
 * {
   margin: 0;
@@ -63,4 +64,19 @@ button {
 
 .emoji {
   font-family: Tossface, sans-serif;
+}
+
+.section-header {
+  margin-bottom: 30px;
+
+  .section-header-title {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .section-header-description {
+    font-size: 20px;
+    font-weight: 400;
+    color: $dark-grey;
+  }
 }

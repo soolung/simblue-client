@@ -1,0 +1,13 @@
+@import "../../style/common";
+
+.record {
+  width: 70vw;
+  margin: 0 auto;
+  padding: 50px 10px;
+
+  .record-application-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
