@@ -64,7 +64,7 @@ export default function Signup(){
                                     </div>
                                     <div className="sign-right-input-idpw">
                                         <div className="sign-right-ment-email">                                        
-                                            <input type='text' placeholder='이메일을 입력하세요.' onChange={handleChange} name="emailAddress" value={request.emailAddress}/>
+                                            <input type='text' placeholder='이메일을 입력하세요.' onChange={handleChange} name="emailAddress" value={request.emailAddress} readOnly/>
                                         </div>
                                         <div className="sign-right-ment-password">
                                             <input type='password' placeholder='비밀번호를 입력하세요' onChange={handleChange}/>
