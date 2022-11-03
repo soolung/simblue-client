@@ -1,4 +1,4 @@
-@import '../../../../style/common.scss';
+@import '../../../style/common.scss';
 .signup-button-modal{
     color:$main-red;
     background-color: transparent;
@@ -96,7 +96,8 @@
             }
           }
         }
-        .sign-right-input-idpw{ text-align: center;
+        .sign-right-input-idpw{ 
+          text-align: center;
           input{
             border:0.5px solid $medium-grey;
             width: 90%;
@@ -117,8 +118,20 @@
             padding-bottom: 6px;
           }
           .sign-right-ment-name{
-            padding-bottom: 15px;
           }
+
+          .temp {
+            width: 100%; 
+          .sign-right-ment-num-student{
+            padding-bottom: 15px;
+            width: 49%;
+            float: left;
+          }
+          .sign-right-ment-name-student{
+            float: right;
+            width: 49%;
+          }
+        }
         }
         .sign-right-loginbutton-tit{
           .sign-right-loginbutton-login{

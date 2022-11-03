@@ -4,7 +4,7 @@ import {useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from "react";
-import Signup from "../Signup/Student/StudentSignup";
+import Signup from "../Signup/Signup";
 export default function Login(){
 
     
