@@ -6,14 +6,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   font-family: Spoqa Han Sans Neo, sans-serif;
 }
 
 body {
   background-color: #FAFAFA;
-  margin: 0;
-  padding: 76px 0 0 0;
+  padding-top: 76px;
   color: black;
+  height: 100vh;
+  width: 100vw;
 }
 
 ul {

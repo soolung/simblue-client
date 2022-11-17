@@ -8,6 +8,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 
   .header-inner {
     width: 70vw;
@@ -173,7 +174,7 @@ header {
     text-align: center;
   }
   .header_login_button {
-    padding: 15px 0px;
+    padding: 15px 0;
     display: flex;
     justify-content: center;
     width: 100%;
