@@ -41,6 +41,7 @@ export const createQuestionByType = q => {
         return (
             <TextArea
                 name={q.id}
+                autoSizing={true}
             />
         )
     }
