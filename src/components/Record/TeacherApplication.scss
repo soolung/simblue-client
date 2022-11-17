@@ -1,0 +1,45 @@
+@import "../../style/common";
+
+.teacher-application {
+  display: flex;
+  align-items: center;
+  border: 1px solid $grey;
+  background-color: white;
+  border-radius: 18px;
+  padding: 20px 30px;
+
+  .application-title {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .application-title-icon {
+      display: inline-block;
+      font-size: 40px;
+      text-align: right;
+    }
+
+    .application-title-title {
+      display: inline-block;
+      word-break: keep-all;
+      font-weight: 700;
+      font-size: 30px;
+    }
+  }
+
+  .application-comment {
+    width: 35%;
+    font-weight: 300;
+  }
+
+  .application-end-date {
+    width: 20%;
+    font-weight: 300;
+    text-align: right;
+  }
+
+  &:hover {
+    background-color: $light-grey;
+  }
+}

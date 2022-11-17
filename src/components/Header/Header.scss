@@ -1,157 +1,182 @@
 @import '../../style/common.scss';
-body{
-    display: flex;
-    justify-content: center;
-}
-header{
+
+header {
+  width: 100vw;
+  border-bottom: 1px solid $grey;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  .header-inner {
     width: 70vw;
-}
-.header-total-total{
-}
-.header_total{
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 12px;
-    .header_logo{
-        .header_logo--div{
-            display: flex;
-            padding-left: 0;
-            img{
-                height: 50%;
-                position: relative;
-                top: 17px;
-            }
-            .logo-font{
-                color: black;
-                position: relative;
-                right: 30px;
-                .logo-simchung{
-                }
-                .logo-bssm{
-                    position: relative;
-                    bottom: 18px;
-                }
-            }
-        }
-    }
-    .header_list{
-        
-        .header_list--list{
-            ul{
-                display: flex;
-                list-style: none;
-                padding-left: 0;
-                li{
-                    padding: 8px 20px;
-                    font-size: 18px;
-                    font-weight: 500;
-                    cursor: pointer;
-                    &:hover{
-                        background-color: $light-grey;
-                        border-radius: 12px;
-                    }
-                }
-            }
-        }
-    }
-    
-  .search {
-    position: relative;
-    display: inline-block;
-    padding-left: 6px;
+    padding: 15px 12px;
 
-    input[type="text"] {
-      width: 220px;
-      height: 34px;
-      padding: 0 60px 0 14px;
-      border: 1px solid $light-grey;
-      border-radius: 6px;
-      background-color: $light-grey;
-      font-weight: 400;
-      font-size: 12px;
-      color: #666;
-      line-height: 16px;
-      outline: none;
+    .header_logo {
+      display: flex;
+      height: 45px;
+      padding-left: 0;
 
-      &::placeholder {
-        color: #cccccc;
+      img {
+        height: 100%;
+        margin-right: 6px;
       }
 
-      &:focus {
-        background-color: white;
-        color: #333;
+      .logo-font {
+        height: 100%;
+
+        .logo-simblue {
+          font-weight: 500;
+          height: 60%;
+          font-size: 20px;
+        }
+
+        .logo-bssm {
+          font-weight: 300;
+          height: 40%;
+          font-size: 14px;
+        }
       }
     }
 
-    .search-delete {
-      position: absolute;
-      top: 0;
-      right: 30px;
-      width: 36px;
-      height: 36px;
-      border: 0;
-      background: url(https://res.kurly.com/pc/ico/2010/ico_search_del.svg) no-repeat 50% 50%;
-      background-size: 12px 12px;
+    .header_list {
+
+      .header_list--list {
+        ul {
+          display: flex;
+          list-style: none;
+          padding-left: 0;
+
+          li {
+            padding: 8px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $light-grey;
+              border-radius: 12px;
+            }
+          }
+        }
+      }
     }
 
-    .search-delete-show {
-      opacity: 1;
+    .search {
+      position: relative;
+      display: inline-block;
+      padding-left: 6px;
+
+      input[type="text"] {
+        width: 220px;
+        height: 34px;
+        padding: 0 60px 0 14px;
+        border: 1px solid $light-grey;
+        border-radius: 6px;
+        background-color: $light-grey;
+        font-weight: 400;
+        font-size: 12px;
+        color: #666;
+        line-height: 16px;
+        outline: none;
+
+        &::placeholder {
+          color: #cccccc;
+        }
+
+        &:focus {
+          background-color: white;
+          color: #333;
+        }
+      }
+
+      .search-delete {
+        position: absolute;
+        top: 0;
+        right: 30px;
+        width: 36px;
+        height: 36px;
+        border: 0;
+        background: url(https://res.kurly.com/pc/ico/2010/ico_search_del.svg) no-repeat 50% 50%;
+        background-size: 12px 12px;
+      }
+
+      .search-delete-show {
+        opacity: 1;
+      }
+
+      .search-delete-no {
+        opacity: 0;
+      }
+
+      .search-go {
+        position: absolute;
+        right: 5px;
+        top: 3px;
+        width: 30px;
+        height: 30px;
+      }
     }
 
-    .search-delete-no {
-      opacity: 0;
-    }
+    .login-button {
+      display: flex;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 5px 18px;
+      border-radius: 12px;
+      border-color: transparent;
+      background-color: transparent;
 
-    .search-go {
-      position: absolute;
-      right: 5px;
-      top: 3px;
-      width: 30px;
-      height: 30px;
+      &:hover {
+        background-color: $light-grey;
+        cursor: pointer;
+      }
     }
   }
-    .header_login_button{
-        span{
-        }
-    }
 }
 
-@media screen and (max-width:1185px){
-    .search{
-        input{
-            display: none;
-        }
+@media screen and (max-width: 1185px) {
+  .search {
+    input {
+      display: none;
     }
-    
+  }
+
 }
 
-@media screen and (max-width:890px) {
-    .header-nav-li-2{
-        display: none;
-    }
+@media screen and (max-width: 890px) {
+  .header-nav-li-2 {
+    display: none;
+  }
 }
-@media screen and (max-width:783px) {
-    .header-nav-li-2{
-        display: block;
-    }
-    .header_total{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .header-nav{
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-    .header-nav-li{
-        width: 100%;
-        text-align: center;
-    }
-    .header_login_button{
-        padding: 15px 0px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+
+@media screen and (max-width: 783px) {
+  .header-nav-li-2 {
+    display: block;
+  }
+  .header-inner{
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+  .header-nav {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .header-nav-li {
+    width: 100%;
+    text-align: center;
+  }
+  .header_login_button {
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }

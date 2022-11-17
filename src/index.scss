@@ -1,0 +1,82 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css');
+@import "./style/common";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Spoqa Han Sans Neo, sans-serif;
+}
+
+body {
+  background-color: #FAFAFA;
+  margin: 0;
+  padding: 76px 0 0 0;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: inline-block;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.ReactModalPortal {
+  position: relative;
+  z-index: 9999;
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgb(204, 204, 204);
+      background: white;
+      opacity: 1;
+      overflow: auto;
+      outline: none;
+    }
+  }
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.emoji {
+  font-family: Tossface, sans-serif;
+}
+
+.section-header {
+  margin-bottom: 30px;
+
+  .section-header-title {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .section-header-description {
+    font-size: 20px;
+    font-weight: 400;
+    color: $dark-grey;
+  }
+}
