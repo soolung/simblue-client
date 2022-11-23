@@ -12,23 +12,20 @@
     position: relative;
     left: 0;
     float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .login-left-tit {
-      position: relative;
-      top: 30%;
       text-align: center;
 
       .login-img {
-        img {
           width: 80%;
-        }
       }
 
       .login-insa {
-        span {
           font-weight: 600;
           font-size: 1.8em;
-        }
       }
     }
   }

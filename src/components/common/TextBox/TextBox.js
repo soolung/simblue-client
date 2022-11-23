@@ -1,7 +1,7 @@
 import "./TextBox.scss";
 import React from "react";
 
-export default function TextBox({type, placeholder, name, className, onChange}) {
+export default function TextBox({type, placeholder, name, className, onChange, value, readOnly}) {
     return (
         <input
             className={`text-box ${className}`}
@@ -9,6 +9,8 @@ export default function TextBox({type, placeholder, name, className, onChange}) 
             placeholder={placeholder}
             onChange={onChange}
             name={name}
+            value={value}
+            readOnly={readOnly}
         />
     )
 }

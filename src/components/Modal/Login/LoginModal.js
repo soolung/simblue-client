@@ -43,12 +43,8 @@ export default function LoginModal({isOpen, closeModal, checkout}) {
                 >
                     <div className="login-left">
                         <div className="login-left-tit">
-                            <div className="login-img">
-                                <img src="https://ifh.cc/g/H0wG7w.png"/>
-                            </div>
-                            <div className="login-insa">
-                                <span>환영합니다!</span>
-                            </div>
+                            <img className="login-img" alt="simblue" src="https://ifh.cc/g/H0wG7w.png"/>
+                                <p className="login-insa">환영합니다!</p>
                         </div>
                     </div>
                     <div className="login-right">
