@@ -72,23 +72,6 @@
         padding-top: 10px;
         text-align: center;
 
-        input {
-          border: 0.5px solid $medium-grey;
-          width: 100%;
-          height: 6vh;
-          padding: 0 15px;
-
-          &:focus {
-            border: 1px solid $medium-grey;
-            outline: none;
-          }
-        }
-
-        ::placeholder {
-          color: $medium-grey;
-          font-weight: 300;
-        }
-
         .login-right-ment-email {
           padding-bottom: 6px;
         }

@@ -1,10 +1,8 @@
 import Modal from "react-modal";
-import './Signup.scss';
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import React from "react";
-export default function Signup() {
+import './SignUpModal.scss';
+import React, {useState} from "react";
+
+export default function SignUpModal({isOpen, closeModal}) {
 
     const [request, setRequest] = useState({
         emailAddress: ""
@@ -16,26 +14,10 @@ export default function Signup() {
         })
     }
 
-    const [modalOpen, setModalOpen] = useState(false);
-
-
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-
-
-
-
-
     return (
         <>
             <React.Fragment>
-                <button onClick={() => setModalOpen(true)} className='signup-button-modal'>구글계정으로 회원가입</button>
-                <Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}
+                <Modal isOpen={isOpen} onRequestClose={closeModal}
                     className="sign-modal-main"
                     overlayClassName="sign-modal-main-overlay"
                 >
@@ -92,7 +74,7 @@ export default function Signup() {
                                     </div>
                                 </div>
                             </div>
-                            {/* 
+                            {/*
                                     :
 
 
