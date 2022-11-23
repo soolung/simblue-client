@@ -1,11 +1,10 @@
 import Modal from "react-modal";
 import './LoginModal.scss';
-import {useState, useEffect} from "react";
-import {Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
-import React from "react";
+import React, {useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import TextBox from "../../common/TextBox/TextBox";
 
-export default function LoginModal({isOpen, closeModal}) {
+export default function LoginModal({isOpen, closeModal, checkout}) {
 
 
     const realId = "gimhanul";
@@ -44,12 +43,8 @@ export default function LoginModal({isOpen, closeModal}) {
                 >
                     <div className="login-left">
                         <div className="login-left-tit">
-                            <div className="login-img">
-                                <img src="https://ifh.cc/g/H0wG7w.png"/>
-                            </div>
-                            <div className="login-insa">
-                                <span>환영합니다!</span>
-                            </div>
+                            <img className="login-img" alt="simblue" src="https://ifh.cc/g/H0wG7w.png"/>
+                                <p className="login-insa">환영합니다!</p>
                         </div>
                     </div>
                     <div className="login-right">
@@ -63,10 +58,10 @@ export default function LoginModal({isOpen, closeModal}) {
                             </div>
                             <div className="login-right-input-idpw">
                                 <div className="login-right-ment-email">
-                                    <input type='text' placeholder='이메일을 입력하세요' onChange={handleInputId}/>
+                                    <TextBox type='text' placeholder='이메일을 입력하세요' onChange={handleInputId}/>
                                 </div>
                                 <div className="login-right-ment-password">
-                                    <input type='password' placeholder='비밀번호를 입력하세요' onChange={handleInputPw}/>
+                                    <TextBox type='password' placeholder='비밀번호를 입력하세요' onChange={handleInputPw}/>
                                 </div>
                             </div>
                             <div className="login-right-login-button-area">
@@ -83,7 +78,7 @@ export default function LoginModal({isOpen, closeModal}) {
                         </div>
                         <div className="login-right-under">
                             아직 회원이 아니신가요?
-                            <span className="login-under-dap"> 구글 계정으로 회원가입</span>
+                            <span className="login-under-dap" onClick={checkout}> 구글 계정으로 회원가입</span>
                         </div>
                     </div>
                 </Modal>

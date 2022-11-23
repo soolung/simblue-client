@@ -1,0 +1,142 @@
+@import '../../../style/common.scss';
+
+.sign-up-modal {
+  width: 40vw;
+  height: 70vh;
+  border-radius: 3px;
+
+  .sign-left {
+    background-color: $light-grey;
+    height: 100%;
+    position: relative;
+    left: 0;
+    width: 35%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .sign-up-character {
+      text-align: center;
+
+      .sign-img {
+        width: 80%;
+      }
+
+      .sign-insa {
+        font-weight: 600;
+        font-size: 1.8em;
+      }
+    }
+  }
+
+  .sign-right {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100%;
+    float: right;
+    padding: 100px 30px 30px 50px;
+
+    .sign-right-tit {
+      .sign-right-ment {
+        display: inline-block;
+
+        .sign-right-ment-login {
+
+          span {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 25px;
+          }
+
+          img {
+            position: relative;
+            top: 3px;
+            padding-left: 6px;
+            width: 30px;
+          }
+        }
+
+        .sign-right-ment-schoollogin {
+
+          span {
+            color: $dark-grey;
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .sign-right-input-idpw {
+        text-align: center;
+        margin-top: 10px;
+
+        .input-element {
+          margin-bottom: 6px;
+        }
+
+        .inline-input {
+          width: 100%;
+
+          .sign-right-ment-num-student {
+            width: 49%;
+            float: left;
+          }
+
+          .sign-right-ment-name-student {
+            float: right;
+            width: 49%;
+          }
+        }
+      }
+
+      .sign-right-loginbutton-tit {
+        .sign-right-loginbutton-login {
+          text-align: center;
+
+          button {
+            height: 6vh;
+            border: none;
+            background-color: $main-red;
+            color: white;
+            width: 100%;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 20px;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          padding-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .sign-insa {
+    display: none;
+  }
+  .sign-right-loginbutton-googlelogin {
+    button {
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .login-insa {
+    display: none;
+  }
+  .login-under-que {
+    display: none;
+  }
+}
