@@ -64,6 +64,7 @@
                             }
 
                             select {
+                                height: 3vh;
                                 border: 1px solid $medium-grey;
                                 width: 5vw;
                                 padding: 0px 3px;
@@ -84,6 +85,7 @@
                         }
 
                         select {
+                            height: 3vh;
                             border: 1px solid $medium-grey;
                             width: 5vw;
                             padding: 0px 3px;
@@ -124,7 +126,10 @@
             }
         }
         .create-question-section{
-            
+            position: relative;
+            top: 40px;
+            display: flex;
+            justify-content: center;
         }
     }
 }

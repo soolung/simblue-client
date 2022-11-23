@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputEmoji from 'react-input-emoji';
 import './Create.scss';
+import QuestionDiv from '../../components/QuestionDiv/QuestionDiv';
 function Create() {
     const [text, setText] = useState('');
 
@@ -59,7 +60,7 @@ function Create() {
                     </div>
                 </div>
                 <div className='create-question-section'>
-                    
+                    <QuestionDiv/>
                 </div>
             </div>
         </section>
