@@ -1,0 +1,121 @@
+@import "../../style/common";
+
+.notice-aside {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+
+  &.active {
+    opacity: 1;
+    left: 0;
+  }
+
+  width: 25%;
+  height: 100vh;
+  display: inline-flex;
+  flex-direction: column;
+  background-color: $light-grey;
+  border-right: 1px solid $grey;
+  padding: 86px 30px 20px 30px;
+
+  .notice-aside--close-button-wrapper {
+    text-align: right;
+    margin-bottom: 10px;
+
+    .notice-aside--close-button {
+      background-color: transparent;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .notice-aside--notice-area {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: 20px;
+
+    .notice-aside--notice-area-textarea {
+      width: 73%;
+      height: 100%;
+    }
+
+    .notice-aside--notice-area-button {
+      width: 23%;
+      height: 100%;
+
+      span {
+        font-size: 25px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .notice-aside--notice {
+    width: 100%;
+    flex: 1;
+
+    overflow: scroll;
+  }
+}
+
+.notice-aside-open {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0%, -50%);
+  padding: 50px 2.5px;
+  background-color: $light-grey;
+  border: 1px solid $grey;
+  border-radius: 0 30px 30px 0;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+  &.active {
+    display: block;
+  }
+}
+
+.application-management {
+  width: 75%;
+  margin: 0 auto;
+  padding: 50px 10px;
+  transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+
+  &.half {
+    display: inline-block;
+    float: right;
+    width: 75%;
+    padding: 50px 40px;
+  }
+
+  .application-management-application-header {
+    font-size: 40px;
+    font-weight: 600;
+
+    .application-management-application-header-title {
+      .emoji {
+        margin-right: 6px;
+      }
+    }
+
+    .application-management-application-header-description {
+      font-weight: 300;
+      font-size: 19px;
+    }
+
+    .application-management-application-header-time {
+      font-weight: 300;
+      font-size: 20px;
+    }
+  }
+}

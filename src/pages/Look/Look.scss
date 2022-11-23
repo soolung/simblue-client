@@ -1,0 +1,38 @@
+@import "../../style/common";
+
+.look {
+  width: 70vw;
+  margin: 0 auto;
+  padding: 50px 10px;
+
+  .look-category-section {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+
+    .look-category-section-category {
+      display: inline-block;
+      font-size: 20px;
+      cursor: pointer;
+
+      &.selected {
+        font-weight: 600;
+        color: $main-red;
+        border-bottom: 2px solid $main-red;
+      }
+    }
+  }
+
+  .look-application-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px 0;
+    width: 100%;
+
+    .application {
+      width: 16.5vw;
+      height: 30vh;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "../../../style/common";
+
+.check-label {
+  display: flex;
+  align-items: center;
+
+  .check {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 24px;
+    height: 24px;
+    appearance: none;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid $grey;
+    cursor: pointer;
+    outline: 0;
+    transition: background 0.2s;
+    margin-right: 7px;
+
+    &::after {
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: none;
+      height: 40%;
+      left: 40%;
+      position: relative;
+      top: 21%;
+      transform: rotate(45deg);
+      width: 15%;
+    }
+
+    &:checked {
+      background: $main-red;
+      border: none;
+    }
+
+    &:checked::after {
+      display: block;
+    }
+  }
+
+  span {
+    font-size: 18px;
+    color: $input-text;
+  }
+}
