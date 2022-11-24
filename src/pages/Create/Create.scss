@@ -3,7 +3,6 @@
 .Create-section {
     width: 100%;
     height: 100vh;
-
     .create-tit {
         width: 70vw;
         margin: 0 auto;
@@ -93,6 +92,7 @@
                     }
                 }
                 .sangsi-button{
+                    display: inline-block;
                     position: relative;
                     left: 215px;
                     bottom: 48px;
@@ -130,6 +130,30 @@
             top: 40px;
             display: flex;
             justify-content: center;
+            .create-question-section-div-plus{
+            }
+        }
+    }
+}
+
+
+.question-plus{
+    display: flex;
+    justify-content: center; 
+    position: relative;
+    top: 60px; 
+    .question-plus-button{
+        border: none;
+        background-color: transparent;
+        padding: 5px 10px;
+        border-radius: 10px;
+        span{
+            font-size: 18px;
+            font-weight: 500;
+            color: $medium-grey;
+        }
+        &:hover{
+            background-color: #e9e9e9;
         }
     }
 }
