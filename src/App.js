@@ -4,7 +4,10 @@ import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import Look from './pages/Look/Look';
 import Record from "./pages/Record/Record";
-import Create from './pages/Create/Creat';
+
+import ApplicationManagement from "./pages/Application/ApplicationManagement";
+import Create from "./pages/Create/Creat";
+
 function App() {
 
     return (
@@ -16,6 +19,7 @@ function App() {
                     <Route path='/look' element={<Look/>}/>
                     <Route path='/record' element={<Record/>}/>
                     <Route path='/create' element={<Create/>}/>
+                    <Route path='/application/:id' element={<ApplicationManagement/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

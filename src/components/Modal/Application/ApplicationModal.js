@@ -28,16 +28,18 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                    overlayClassName="modal-overlay"
             >
                 <div className="application-modal-notice">
-                    {
-                        notices.map(n => (
-                            <Notice
-                                text={n.notice}
-                                author={n.author}
-                                time={n.createdAt}
-                                isPinned={n.isPinned}
-                            />
-                        ))
-                    }
+                    <div className="application-modal-notice-inner">
+                        {
+                            notices.map(n => (
+                                <Notice
+                                    text={n.notice}
+                                    author={n.author}
+                                    time={n.createdAt}
+                                    isPinned={n.isPinned}
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className="application-modal-application">
                     <div className="application-modal-application-header">

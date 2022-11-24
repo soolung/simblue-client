@@ -12,23 +12,20 @@
     position: relative;
     left: 0;
     float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .login-left-tit {
-      position: relative;
-      top: 30%;
       text-align: center;
 
       .login-img {
-        img {
           width: 80%;
-        }
       }
 
       .login-insa {
-        span {
           font-weight: 600;
           font-size: 1.8em;
-        }
       }
     }
   }
@@ -71,23 +68,6 @@
       .login-right-input-idpw {
         padding-top: 10px;
         text-align: center;
-
-        input {
-          border: 0.5px solid $medium-grey;
-          width: 100%;
-          height: 6vh;
-          padding: 0 15px;
-
-          &:focus {
-            border: 1px solid $medium-grey;
-            outline: none;
-          }
-        }
-
-        ::placeholder {
-          color: $medium-grey;
-          font-weight: 300;
-        }
 
         .login-right-ment-email {
           padding-bottom: 6px;
