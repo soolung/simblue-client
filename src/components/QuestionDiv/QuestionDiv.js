@@ -30,6 +30,7 @@ const QuestionDiv = (props) => {
                                 <a className='question'><input type='text' placeholder='질문' /></a>
                                 <a className='select'>
                                     <select className='question-type' onChange={handleSelect} value={selected}>
+                                        <option value='0'>질문 선택</option>
                                         <option value='TEXT'>주관식 (단답)</option>
                                         <option value='TEXTAREA'>주관식 (장문)</option>
                                         <option value='LINK'>링크</option>
@@ -60,13 +61,19 @@ const QuestionDiv = (props) => {
                                                             selected === "RADIO" ?
                                                                 <div className='question-radio'>
                                                                     <span><input type='radio' className='radio' /> <input type='text' placeholder='객관식 질문 입력' className='answertext' /></span>
-                                                                    <span><button>질문 추가</button></span>
+                                                                    <span><button>+ 질문 추가</button></span>
                                                                 </div>
                                                                 :
-                                                                <div className='question-check'>
-                                                                    <span><input type='checkbox' className='check' /> <input type='text' placeholder='체크박스 질문 입력' /></span>
-                                                                    <span><button>질문 추가</button></span>
-                                                                </div>
+                                                                (
+                                                                    selected === "CHECKBOX" ?
+
+                                                                        <div className='question-check'>
+                                                                            <span><input type='checkbox' className='check' /> <input type='text' placeholder='체크박스 질문 입력' /></span>
+                                                                            <span><button>+ 질문 추가</button></span>
+                                                                        </div>
+                                                                        :
+                                                                        <></>
+                                                                )
                                                         )
                                                 )
                                         )

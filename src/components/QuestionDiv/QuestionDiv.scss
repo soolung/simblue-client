@@ -100,13 +100,15 @@
             .question-radio{
                 span{
                     .radio{
-
                     }
                     .text{
-
                     }
                     button{
-                        
+                        padding: 3px;
+                        background-color: white;
+                        &:hover{
+                            background-color: $medium-grey;
+                        }
                     }
                 }
             }
