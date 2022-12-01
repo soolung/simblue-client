@@ -6,6 +6,7 @@ import Notice from "../../components/Notice/Notice";
 import {useEffect} from "react";
 import noticeData from "../../components/Modal/Application/noticeData.json";
 import a from "../../components/Modal/Application/application.json";
+import data from "./data.json";
 
 export default function ApplicationManagement() {
     const [noticeIsOpened, setNoticeIsOpened] = useState(true);
@@ -65,6 +66,40 @@ export default function ApplicationManagement() {
                     <p className="application-management-application-header-description">{a.description}</p>
                     <p className="application-management-application-header-time">- {a.isAlways ? '상시' : a.endDate}</p>
                 </div>
+                <table className="application-management--result-table">
+                    <thead>
+                    <tr className="application-management--result-table--field">
+                        <td>학번</td>
+                        <td>이름</td>
+                        {data?.questionList.map(q => (
+                            <td>
+                                {q}
+                            </td>
+                        ))
+                        }
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {data?.userResponseList.map(r => (
+                        <tr className="application-management--result-table--content">
+                            <td>
+                                {r.name}
+                            </td>
+                            <td>
+                                {r.studentNumber}
+                            </td>
+                            {r.answerList.map(a => (
+                                <td>
+                                    {a}
+                                </td>
+                            ))
+
+                            }
+                        </tr>
+                    ))
+                    }
+                    </tbody>
+                </table>
             </section>
         </>
     )
