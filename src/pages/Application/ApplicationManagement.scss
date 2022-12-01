@@ -10,6 +10,7 @@
   -webkit-transition: all 0.5s;
 
   &.active {
+    position: fixed;
     opacity: 1;
     left: 0;
   }
@@ -101,6 +102,7 @@
   .application-management-application-header {
     font-size: 40px;
     font-weight: 600;
+    position: relative;
 
     .application-management-application-header-title {
       .emoji {
@@ -117,6 +119,14 @@
       font-weight: 300;
       font-size: 20px;
     }
+
+    .application-management--export {
+      width: 30px;
+      height: 33px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   .application-management--result-table {
@@ -127,6 +137,8 @@
     border-spacing: 0;
 
     thead {
+      font-weight: 500;
+
       td {
         border-top: 1px solid $grey;
         border-bottom: 1px solid $grey;
@@ -144,6 +156,8 @@
     }
 
     tbody {
+      font-weight: 400;
+
       tr:first-child {
         td {
           border-top: 1px solid $grey;

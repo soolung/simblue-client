@@ -65,6 +65,7 @@ export default function ApplicationManagement() {
                     </p>
                     <p className="application-management-application-header-description">{a.description}</p>
                     <p className="application-management-application-header-time">- {a.isAlways ? '상시' : a.endDate}</p>
+                    <img className="application-management--export" src="/images/export.svg" alt="export"/>
                 </div>
                 <table className="application-management--result-table">
                     <thead>
