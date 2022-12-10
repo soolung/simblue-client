@@ -4,10 +4,10 @@ const QuestionDiv = (props) => {
 
     const [countList, setCountList] = useState([0])
 
-    const onDeleteDetailDiv = () => {
+    const onPlusDetailDiv = () => {
         let countArr = [...countList]
         let counter = countArr.slice(-1)[0]
-        counter -= 1
+        counter += 1
         countArr.push(counter)	// index 사용 X
         // countArr[counter] = counter	// index 사용 시 윗줄 대신 사용	
         setCountList(countArr)
@@ -19,7 +19,7 @@ const QuestionDiv = (props) => {
         setSelected(e.target.value);
     };
 
-
+    console.log(countList);
     return (
         <div className='question-div-one-pad'>
             {props.countList && props.countList.map((item, i) => (
@@ -60,16 +60,16 @@ const QuestionDiv = (props) => {
                                                         : (
                                                             selected === "RADIO" ?
                                                                 <div className='question-radio'>
-                                                                    <span><input type='radio' className='radio' /> <input type='text' placeholder='객관식 질문 입력' className='answertext' /></span>
-                                                                    <span><button>+ 질문 추가</button></span>
+                                                                    <div countList={countList}><span><input type='radio' className='radio' /> <input type='text' placeholder='객관식 질문 입력' className='answertext' /></span></div>
+                                                                    <span><button onClick={onPlusDetailDiv}>+ 질문 추가</button></span>
                                                                 </div>
                                                                 :
                                                                 (
                                                                     selected === "CHECKBOX" ?
 
                                                                         <div className='question-check'>
-                                                                            <span><input type='checkbox' className='check' /> <input type='text' placeholder='체크박스 질문 입력' /></span>
-                                                                            <span><button>+ 질문 추가</button></span>
+                                                                            <div countList={countList}><span><input type='checkbox' className='check' /> <input type='text' placeholder='체크박스 질문 입력' /></span></div>
+                                                                            <span><button onClick={onPlusDetailDiv}>+ 질문 추가</button></span>
                                                                         </div>
                                                                         :
                                                                         <></>
@@ -80,7 +80,7 @@ const QuestionDiv = (props) => {
                                 }
                             </div>
                             <div className='delete-div'>
-                                <button className='delete-button' onClick={onDeleteDetailDiv}>
+                                <button className='delete-button'>
                                     <img src='/images/delete.svg' />
                                 </button>
                             </div>

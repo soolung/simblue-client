@@ -10,7 +10,7 @@ export default function Check(props) {
                 checked={props.isChecked}
                 onChange={props.onChange}
                 value={props.value}
-                name={props.name}
+      z          name={props.name}
                 id={props.id}
             />
             <span>{props.label}</span>
