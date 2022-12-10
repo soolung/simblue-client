@@ -7,7 +7,6 @@ import Record from "./pages/Record/Record";
 import ApplicationManagement from "./pages/Application/ApplicationManagement";
 
 function App() {
-
     return (
         <div className="App">
             <BrowserRouter>
@@ -22,7 +21,6 @@ function App() {
         </div>
     );
 }
-
 
 export default App;
 
