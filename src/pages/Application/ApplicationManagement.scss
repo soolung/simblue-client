@@ -136,6 +136,11 @@
     border-collapse: separate;
     border-spacing: 0;
 
+    .application-management--result-table--content-empty {
+      padding: 50px 0;
+      color: $medium-grey;
+    }
+
     thead {
       font-weight: 500;
 

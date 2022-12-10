@@ -3,19 +3,15 @@ import {useState} from "react";
 import Button from "../../components/Button/Button";
 import TextArea from "../../components/common/TextArea/TextArea";
 import Notice from "../../components/Notice/Notice";
-import {useEffect} from "react";
-import noticeData from "../../components/Modal/Application/noticeData.json";
-import a from "../../components/Modal/Application/application.json";
-import data from "./data.json";
+import {useQuery} from "react-query";
+import {getApplicationDetail, getApplicationResult} from "../../utils/api/application";
+import {useParams} from "react-router-dom";
+import Loading from "../../components/common/Loading/Loading";
 
-export default function ApplicationManagement() {
+export default function ApplicationManagement({}) {
+    const {id} = useParams();
     const [noticeIsOpened, setNoticeIsOpened] = useState(true);
-    const [notices, setNotices] = useState([]);
-
-    useEffect(() => {
-        // get notices by id
-        setNotices(noticeData.notices)
-    }, [])
+    const {data, isLoading} = useQuery('getApplicationRequest', () => getApplicationResult(id))
 
     return (
         <>
@@ -40,7 +36,7 @@ export default function ApplicationManagement() {
                 </div>
                 <div className="notice-aside--notice">
                     {
-                        notices.map(n => (
+                        data?.noticeList?.map(n => (
                             <Notice
                                 text={n.notice}
                                 author={n.author}
@@ -60,11 +56,11 @@ export default function ApplicationManagement() {
             <section className={`application-management ${noticeIsOpened ? 'half' : ''}`}>
                 <div className="application-management-application-header">
                     <p className="application-management-application-header-title">
-                        <span className="emoji">{a.emoji}</span>
-                        {a.title}
+                        <span className="emoji">{data?.application?.emoji}</span>
+                        {data?.application?.title}
                     </p>
-                    <p className="application-management-application-header-description">{a.description}</p>
-                    <p className="application-management-application-header-time">- {a.isAlways ? '상시' : a.endDate}</p>
+                    <p className="application-management-application-header-description">{data?.application?.description}</p>
+                    <p className="application-management-application-header-time">- {data?.application?.isAlways ? '상시' : data?.application?.endDate}</p>
                     <img className="application-management--export" src="/images/export.svg" alt="export"/>
                 </div>
                 <table className="application-management--result-table">
@@ -72,7 +68,7 @@ export default function ApplicationManagement() {
                     <tr className="application-management--result-table--field">
                         <td>학번</td>
                         <td>이름</td>
-                        {data?.questionList.map(q => (
+                        {data?.questionList?.map(q => (
                             <td>
                                 {q}
                             </td>
@@ -81,23 +77,37 @@ export default function ApplicationManagement() {
                     </tr>
                     </thead>
                     <tbody>
-                    {data?.userResponseList.map(r => (
-                        <tr className="application-management--result-table--content">
-                            <td>
-                                {r.name}
-                            </td>
-                            <td>
-                                {r.studentNumber}
-                            </td>
-                            {r.answerList.map(a => (
-                                <td>
-                                    {a}
-                                </td>
-                            ))
+                    {data?.userResponseList?.length > 0
+                        ?
+                        <>
+                            {
+                                data?.userResponseList?.map(r => (
+                                    <tr className="application-management--result-table--content">
+                                        <td>
+                                            {r.name}
+                                        </td>
+                                        <td>
+                                            {r.studentNumber}
+                                        </td>
+                                        {r.answerList?.map(a => (
+                                            <td>
+                                                {a}
+                                            </td>
+                                        ))
 
+                                        }
+                                    </tr>
+                                ))
                             }
-                        </tr>
-                    ))
+                        </>
+                        :
+                        <>
+                            <tr>
+                                <td className="application-management--result-table--content-empty" colSpan={1000}>
+                                    응답이 없습니다.
+                                </td>
+                            </tr>
+                        </>
                     }
                     </tbody>
                 </table>
