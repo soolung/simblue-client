@@ -1,0 +1,193 @@
+@import '../../style/common.scss';
+
+.Create-section {
+    width: 100%;
+    height: 100vh;
+
+    .create-tit {
+        width: 70vw;
+        margin: 0 auto;
+        padding: 15px 12px;
+
+        .create-top {
+            width: 100%;
+
+            .create-top-title-img {
+                width: 50%;
+                float: left;
+
+                .create-top-title-input {
+                    padding-left: 20px;
+
+                    input {
+                        width: 25vw;
+                        height: 10vh;
+                        font-size: 25px;
+                        font-weight: 700;
+                        border: none;
+                        border-bottom: 1px solid $medium-grey;
+                        padding: 0 15px;
+                    }
+
+                    ::placeholder {
+                        color: $medium-grey;
+                    }
+
+                    :focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            .create-top-title-time {
+                width: 50%;
+                float: right;
+
+                .create-time-end-time-gigan {
+                    float: right;
+
+                    .time-span {
+                        color: $medium-grey;
+                        font-size: 18px;
+                        padding-right: 4px;
+                    }
+
+                    .create-time-start-time {
+                        position: relative;
+                        right: 80px;
+
+                        span {
+                            a {
+                                padding: 0px 2px;
+                            }
+
+                            input {
+                                border: 1px solid $medium-grey;
+                                width: 5vw;
+                                height: 3vh;
+                                padding: 0px 3px;
+                            }
+
+                            select {
+                                height: 3vh;
+                                border: 1px solid $medium-grey;
+                                width: 5vw;
+                                padding: 0px 3px;
+                            }
+                        }
+                    }
+                }
+
+                .create-time-end-time {
+                    span {
+                        a {
+                            padding: 0px 2px;
+                        }
+
+                        input {
+                            border: 1px solid $medium-grey;
+                            height: 3vh;
+                            width: 5vw;
+                            padding: 0px 3px;
+                        }
+
+                        select {
+                            height: 3vh;
+                            border: 1px solid $medium-grey;
+                            width: 5vw;
+                            padding: 0px 3px;
+                        }
+                    }
+                }
+
+                .sangsi-button {
+                    display: inline-block;
+                    position: relative;
+                    left: 215px;
+                    bottom: 48px;
+
+                    input {}
+
+                    span {
+                        position: relative;
+                        left: 3px;
+                        bottom: 3px;
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            .small-title {
+                input {
+                    width: 100%;
+                    border: none;
+                    border-bottom: 1px solid $medium-grey;
+                    padding: 8px 3px;
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+
+                ::placeholder {
+                    color: $medium-grey;
+                }
+            }
+
+        }
+
+        .create-question-section {
+            position: relative;
+            top: 40px;
+            display: flex;
+            justify-content: center;
+            .create-question-section-div-plus {}
+        }
+        padding-bottom: 130px;
+    }
+}
+
+
+.question-plus {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 10px;  
+    width: 45vw;
+    margin: 0 auto;
+    .question-plus-button {
+        position: absolute;
+        left: 0px;
+        border: none;
+        background-color: transparent;
+        padding: 5px 10px;
+        border-radius: 10px;
+
+        span {
+            font-size: 18px;
+            font-weight: 500;
+            color: $medium-grey;
+        }
+
+        &:hover {
+            background-color: #e9e9e9;
+        }
+    }
+}
+
+.createbutton{
+    position: fixed;
+    bottom: 3px;
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button{
+        width: 70vw;
+        background-color: $main-red;
+        color: white;
+        font-size: 20px;
+        font-weight: 500;
+        border-radius: 5px;
+        padding: 10px 0px;
+    }
+    
+}

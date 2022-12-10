@@ -1,0 +1,128 @@
+@import '../../style/common.scss';
+
+.al {
+    padding-bottom: 50px;
+}
+
+.QuestionDiv-tit {
+    box-shadow: 5px 5px 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 45vw;
+
+    .QuestionDiv-question {
+        padding: 20px;
+
+        .QuestionDiv-top {
+            width: 100%;
+
+            .select {
+                float: right;
+
+                .question-type {
+                    border: 1px solid $medium-grey;
+                    padding: 10px 20px;
+                    font-size: 20px;
+                    color: $medium-grey;
+                    border-radius: 4px;
+
+                }
+
+                .question-type:focus {
+                    border: 1px solid $main-red;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    outline: 3px solid #F8E4FF;
+                    border-radius: 4px;
+                }
+            }
+
+
+            .question {
+                input {
+                    font-size: 20px;
+                    width: 28vw;
+                    padding: 10px 20px;
+                    background-color: #FCF9F2;
+                    border: none;
+                    border-bottom: 1px solid $medium-grey;
+                }
+
+                ::placeholder {
+                    color: $medium-grey;
+                }
+            }
+
+        }
+
+        .QuestionDiv-answer {
+            .question-text {
+                input {
+                    padding: 10px 10px;
+                    border: none;
+                    border-bottom: 1px solid $medium-grey;
+                    color: $medium-grey;
+                    font-size: 14px;
+                    width: 100%;
+                }
+
+                ::placeholder {
+                    color: $medium-grey;
+                }
+            }
+
+            .question-textarea {
+                textarea{
+                color: $medium-grey;
+                font-size: 14px;
+                width: 100%;
+                border: 1px solid $medium-grey;
+                padding: 10px 10px;
+                }
+            }
+
+            ::placeholder {
+                color: $medium-grey;
+            }
+            
+            .question-link{
+                input{
+                    padding: 10px 10px;
+                    border: none;
+                    border-bottom: 1px solid $medium-grey;
+                    color: $medium-grey;
+                    font-size: 14px;
+                    width: 100%;
+                }
+            }
+            ::placeholder {
+                color: $medium-grey;
+            }
+            .question-radio{
+                span{
+                    .radio{
+                    }
+                    .text{
+                    }
+                    button{
+                        padding: 3px;
+                        background-color: white;
+                        &:hover{
+                            background-color: $medium-grey;
+                        }
+                    }
+                }
+            }
+        }
+
+        .delete-div {
+            .delete-button {
+                img {
+                    float: right;
+                    width: 25px;
+                }
+            }
+        }
+    }
+}
+
+.question-div-one-pad {}

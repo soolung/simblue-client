@@ -1,11 +1,11 @@
 import Modal from "react-modal";
 import './LoginModal.scss';
+
 import React, {useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import TextBox from "../../common/TextBox/TextBox";
 
 export default function LoginModal({isOpen, closeModal, checkout}) {
-
 
     const realId = "gimhanul";
     const realPw = "baby";
