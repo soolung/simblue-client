@@ -29,6 +29,7 @@ export default function Application(props) {
                 isOpen={applicationModalIsOpen}
                 closeModal={() => setApplicationModalOpen(false)}
                 id={props.id}
+                key={props.id}
             />
         </>
     )

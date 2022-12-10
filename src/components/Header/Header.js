@@ -3,14 +3,11 @@ import './Header.scss';
 import LoginModal from '../Modal/Login/LoginModal';
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import SignUpModal from "../Modal/Signup/SignUpModal";
 
 export default function Header() {
-
     const [searchText, setSearchText] = useState("");
     const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
     const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-    const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
 
     const toggleSearchTextOnFocus = e => {
         setSearchTextOnFocus(!searchTextOnFocus)
@@ -22,11 +19,6 @@ export default function Header() {
 
     const resetSearchText = e => {
         setSearchText("");
-    }
-
-    const checkoutSignUpModal = () => {
-        setLoginModalOpen(false);
-        setSignUpModalOpen(true)
     }
 
     return (
@@ -92,11 +84,6 @@ export default function Header() {
             <LoginModal
                 isOpen={isLoginModalOpen}
                 closeModal={() => setLoginModalOpen(false)}
-                checkout={checkoutSignUpModal}
-            />
-            <SignUpModal
-                isOpen={isSignUpModalOpen}
-                closeModal={() => setSignUpModalOpen(false)}
             />
         </>
     )

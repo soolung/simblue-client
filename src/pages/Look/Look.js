@@ -1,22 +1,21 @@
 import "./Look.scss";
 import {useEffect, useState} from "react";
 import Categories from "./CategoryConstant";
-import data from "./data.json";
 import Application from "../../components/Application/Application";
+import {useQuery, useQueryClient} from "react-query";
+import {getApplications} from "../../utils/api/application";
 
 export default function Look() {
-    const [applications, setApplications] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(Categories.deadline);
     const categories = [Categories.deadline, Categories.latest, Categories.always];
+    const {data, refetch} = useQuery('getApplications', () => getApplications(selectedCategory.uri), {
+        onSuccess: () => {
+        }
+    })
 
     useEffect(() => {
-        // reset data by selected category
+        refetch();
     }, [selectedCategory])
-
-    useEffect(() => {
-        // set data first
-        setApplications(data.applications);
-    }, [])
 
     return (
         <>
@@ -39,13 +38,14 @@ export default function Look() {
                 </div>
                 <div className="look-application-section">
                     {
-                        applications.map(a => (
+                        data?.map((a, index) => (
                             <Application
                                 title={a.title}
                                 emoji={a.emoji}
                                 description={a.description}
                                 endDate={a.endDate}
                                 isAlways={a.isAlways}
+                                key={index}
                             />
                         ))
                     }

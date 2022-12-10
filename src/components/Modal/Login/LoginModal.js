@@ -3,9 +3,11 @@ import './LoginModal.scss';
 import React, {useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import TextBox from "../../common/TextBox/TextBox";
+import {useQuery} from "react-query";
+import {getGoogleAuthLink} from "../../../utils/api/auth";
 
-export default function LoginModal({isOpen, closeModal, checkout}) {
-
+export default function LoginModal({isOpen, closeModal}) {
+    const {data} = useQuery('getGoogleAuthLink', getGoogleAuthLink);
 
     const realId = "gimhanul";
     const realPw = "baby";
@@ -78,7 +80,7 @@ export default function LoginModal({isOpen, closeModal, checkout}) {
                         </div>
                         <div className="login-right-under">
                             아직 회원이 아니신가요?
-                            <span className="login-under-dap" onClick={checkout}> 구글 계정으로 회원가입</span>
+                            <span className="login-under-dap" onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span>
                         </div>
                     </div>
                 </Modal>

@@ -1,15 +1,10 @@
 import "./Record.scss";
-import {useEffect, useState} from "react";
-import data from "../Look/data.json";
 import TeacherApplication from "../../components/Record/TeacherApplication";
+import {useQuery} from "react-query";
+import {getMyApplications} from "../../utils/api/application";
 
 export default function Record() {
-    const [applications, setApplications] = useState([]);
-
-    useEffect(() => {
-        // set data first
-        setApplications(data.applications);
-    }, [])
+    const {data} = useQuery('getMyApplications', getMyApplications);
 
     return (
         <>
@@ -20,7 +15,7 @@ export default function Record() {
                 </div>
                 <div className="record-application-section">
                     {
-                        applications.map(a => (
+                        data?.map(a => (
                             <TeacherApplication
                                 id={a.id}
                                 title={a.title}
