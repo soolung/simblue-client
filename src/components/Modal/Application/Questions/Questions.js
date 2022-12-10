@@ -6,7 +6,7 @@ export default function Questions({items}) {
     return (
         <dl className="application-questions">
             {
-                items.map(i => (
+                items?.map(i => (
                     <Question
                         question={i.question}
                         answer={createQuestionByType(i)}

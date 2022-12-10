@@ -1,25 +1,20 @@
 import "./ApplicationModal.scss";
 import Modal from "react-modal";
-import {useEffect, useState} from "react";
-import noticeData from "./noticeData.json";
-import a from "./application.json";
 import Notice from "../../Notice/Notice";
 import Button from "../../Button/Button";
 import Questions from "./Questions/Questions";
+import {useQuery} from "react-query";
+import {getApplicationDetail} from "../../../utils/api/application";
+import {useEffect} from "react";
 
 export default function ApplicationModal({isOpen, closeModal, id}) {
+    const {data, refetch} = useQuery('getApplicationDetail', () => getApplicationDetail(id));
 
     useEffect(() => {
-        // get notices by id
-        setNotices(noticeData.notices)
-    }, [])
-
-    useEffect(() => {
-        // get application fields by id
-    }, [])
-
-    const [notices, setNotices] = useState([]);
-    const [fields, setFields] = useState([]);
+        if (isOpen) {
+            refetch();
+        }
+    }, [isOpen])
 
     return (
         <>
@@ -29,8 +24,8 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
             >
                 <div className="application-modal-notice">
                     <div className="application-modal-notice-inner">
-                        {
-                            notices.map(n => (
+                        { data?.applicationNotices?.length > 0 ?
+                            data?.applicationNotices.map(n => (
                                 <Notice
                                     text={n.notice}
                                     author={n.author}
@@ -38,21 +33,23 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                                     isPinned={n.isPinned}
                                 />
                             ))
+                            :
+                            <p className="application-modal-notice-no">공지사항이 없습니다.</p>
                         }
                     </div>
                 </div>
                 <div className="application-modal-application">
                     <div className="application-modal-application-header">
                         <p className="application-modal-application-header-title">
-                            <span className="emoji">{a.emoji}</span>
-                            {a.title}
+                            <span className="emoji">{data?.emoji}</span>
+                            {data?.title}
                         </p>
-                        <p className="application-modal-application-header-description">{a.description}</p>
-                        <p className="application-modal-application-header-time">- {a.isAlways ? '상시' : a.endDate}</p>
+                        <p className="application-modal-application-header-description">{data?.description}</p>
+                        <p className="application-modal-application-header-time">- {data?.isAlways ? '상시' : data?.endDate}</p>
                     </div>
                     <div className="application-modal-application-section">
                         <Questions
-                            items={a.applicationQuestions}
+                            items={data?.applicationQuestions}
                         />
                     </div>
                     <Button

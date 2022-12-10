@@ -2,40 +2,36 @@ import Modal from "react-modal";
 import './LoginModal.scss';
 
 import React, {useState} from "react";
-import {useNavigate} from 'react-router-dom';
 import TextBox from "../../common/TextBox/TextBox";
-import {useQuery} from "react-query";
-import {getGoogleAuthLink} from "../../../utils/api/auth";
+import {useMutation, useQuery} from "react-query";
+import {getGoogleAuthLink, loginUser} from "../../../utils/api/auth";
+import {useSetRecoilState} from "recoil";
+import {userState} from "../../../utils/atom/user";
 
 export default function LoginModal({isOpen, closeModal}) {
+    const setUser = useSetRecoilState(userState);
     const {data} = useQuery('getGoogleAuthLink', getGoogleAuthLink);
-
-    const realId = "gimhanul";
-    const realPw = "baby";
-
-    const nav = useNavigate();
-
-    const [inputId, setInputId] = useState('')
-    const [inputPw, setInputPw] = useState('')
-
-    const handleInputId = (e) => {
-        setInputId(e.target.value);
-    }
-    const handleInputPw = (e) => {
-        setInputPw(e.target.value);
-    }
-
-    const Login = () => {
-        if (inputId === "" && inputPw === "") {
-            alert("아이디와 비밀번호를 입력해주세요.")
-        } else if (inputId === realId && inputPw === realPw/* realId, realPw*/) {
+    const {mutate} = useMutation(loginUser, {
+        onSuccess: (data) => {
+            localStorage.setItem("token", data.accessToken);
+            localStorage.setItem("authority", data.authority);
+            setUser({
+                token: data.accessToken,
+                authority: data.authority
+            })
             closeModal();
-            nav('/');
-        } else {
-            alert("비밀번호를 다시 확인해주세요!");
         }
-    }
+    })
 
+
+    const [request, setRequest] = useState({})
+
+    const handleChange = (e) => {
+        setRequest({
+            ...request,
+            [e.target.name]: e.target.value
+        });
+    }
 
     return (
         <>
@@ -61,15 +57,18 @@ export default function LoginModal({isOpen, closeModal}) {
                             </div>
                             <div className="login-right-input-idpw">
                                 <div className="login-right-ment-email">
-                                    <TextBox type='text' placeholder='이메일을 입력하세요' onChange={handleInputId}/>
+                                    <TextBox type='text' placeholder='이메일을 입력하세요' onChange={handleChange} name={"email"}/>
                                 </div>
                                 <div className="login-right-ment-password">
-                                    <TextBox type='password' placeholder='비밀번호를 입력하세요' onChange={handleInputPw}/>
+                                    <TextBox type='password' placeholder='비밀번호를 입력하세요' onChange={handleChange} name="password"/>
                                 </div>
                             </div>
                             <div className="login-right-login-button-area">
                                 <div className="login-right-login-button--basic">
-                                    <button onClick={() => Login()}>로그인</button>
+                                    <button onClick={() => mutate({
+                                        email: request.email,
+                                        password: request.password
+                                    })}>로그인</button>
                                 </div>
                                 <div className="login-right-login-button--google">
                                     <button>

@@ -15,7 +15,7 @@ export default function Record() {
                 </div>
                 <div className="record-application-section">
                     {
-                        data?.map(a => (
+                        data?.applicationList.map(a => (
                             <TeacherApplication
                                 id={a.id}
                                 title={a.title}

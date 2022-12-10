@@ -26,10 +26,11 @@ export default function Look() {
                 </div>
                 <div className="look-category-section">
                     {
-                        categories.map(c => (
+                        categories.map((c, index) => (
                             <p
                                 className={`look-category-section-category ${selectedCategory === c ? 'selected' : ''}`}
                                 onClick={() => setSelectedCategory(c)}
+                                key={index}
                             >
                                 {c.text}
                             </p>
@@ -40,6 +41,7 @@ export default function Look() {
                     {
                         data?.map((a, index) => (
                             <Application
+                                id={a.id}
                                 title={a.title}
                                 emoji={a.emoji}
                                 description={a.description}

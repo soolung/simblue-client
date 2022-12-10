@@ -18,6 +18,14 @@
       height: 100%;
       overflow: scroll;
     }
+
+    .application-modal-notice-no {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      color: $medium-grey;
+    }
   }
 
   .application-modal-application {

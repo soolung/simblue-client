@@ -8,3 +8,6 @@ export const getMyApplications = async () => {
     return (await server.get(`/application/my`, authorization())).data
 }
 
+export const getApplicationDetail = async (id) => {
+    return (await server.get(`/application/${id}`, authorization())).data;
+}

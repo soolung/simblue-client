@@ -26,7 +26,6 @@ export default function SignUpModal({isOpen, closeModal}) {
     })
 
     useEffect(() => {
-        console.log(user)
         setAuthority(user?.authority);
         setRequest({
             ...request, email: user.token ? jwtDecode(user.token).email : null
