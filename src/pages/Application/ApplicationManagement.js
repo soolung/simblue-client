@@ -3,15 +3,25 @@ import {useState} from "react";
 import Button from "../../components/Button/Button";
 import TextArea from "../../components/common/TextArea/TextArea";
 import Notice from "../../components/Notice/Notice";
-import {useQuery} from "react-query";
-import {getApplicationDetail, getApplicationResult} from "../../utils/api/application";
+import {useMutation, useQuery} from "react-query";
+import {getApplicationResult} from "../../utils/api/application";
 import {useParams} from "react-router-dom";
 import Loading from "../../components/common/Loading/Loading";
+import {createNotice} from "../../utils/api/notice";
 
-export default function ApplicationManagement({}) {
+export default function ApplicationManagement() {
     const {id} = useParams();
     const [noticeIsOpened, setNoticeIsOpened] = useState(true);
-    const {data, isLoading} = useQuery('getApplicationRequest', () => getApplicationResult(id))
+    const [notice, setNotice] = useState("");
+    const {data, isLoading, isFetching, refetch} = useQuery('getApplicationRequest', () => getApplicationResult(id))
+    const {mutate} = useMutation(createNotice, {
+        onSuccess: () => {
+            setNotice("");
+            refetch();
+        }
+    })
+
+    if (isLoading || isFetching) return <Loading/>
 
     return (
         <>
@@ -28,10 +38,16 @@ export default function ApplicationManagement({}) {
                     <TextArea
                         className="notice-aside--notice-area-textarea"
                         autoSizing={false}
+                        value={notice}
+                        onChange={(e) => setNotice(e.target.value)}
                     />
                     <Button
                         className="notice-aside--notice-area-button"
                         text="공지 하기"
+                        action={() => mutate({
+                            notice: notice,
+                            applicationId: id,
+                        })}
                     />
                 </div>
                 <div className="notice-aside--notice">
