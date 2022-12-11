@@ -4,17 +4,19 @@ import Banner from "../../components/Banner/Banner";
 import ListData from "./list.json";
 import Application from "../../components/Application/Application";
 import "swiper/scss";
-import {useMutation} from "react-query";
+import {useMutation, useQuery} from "react-query";
 import {getAccessTokenByGoogle} from "../../utils/api/auth";
 import {useEffect, useState} from "react";
 import queryString from "query-string";
 import SignUpModal from "../../components/Modal/Signup/SignUpModal";
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {userState} from "../../utils/atom/user";
+import {getFourLatestApplications} from "../../utils/api/application";
 
 export default function Main() {
     const setUser = useSetRecoilState(userState);
     const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+    const {data} = useQuery('getFourLatestApplication', getFourLatestApplications);
     const {mutate} = useMutation(getAccessTokenByGoogle, {
         onSuccess: (data) => {
             localStorage.setItem("token", data.accessToken);
@@ -45,7 +47,7 @@ export default function Main() {
                 />
                 <div className='latest-application-list'>
                     {
-                        ListData.list.map(a => (
+                        data?.applicationList?.map(a => (
                             <Application
                                 id={a.id}
                                 emoji={a.emoji}

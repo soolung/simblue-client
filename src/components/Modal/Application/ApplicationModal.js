@@ -30,8 +30,8 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                         <>
                             <div className="application-modal-notice">
                                 <div className="application-modal-notice-inner">
-                                    {data?.applicationNotices?.length > 0 ?
-                                        data?.applicationNotices.map(n => (
+                                    {data?.noticeList?.length > 0 ?
+                                        data?.noticeList?.map(n => (
                                             <Notice
                                                 text={n.notice}
                                                 author={n.author}
@@ -55,7 +55,7 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                                 </div>
                                 <div className="application-modal-application-section">
                                     <Questions
-                                        items={data?.applicationQuestions}
+                                        items={data?.questionList}
                                     />
                                 </div>
                                 <Button

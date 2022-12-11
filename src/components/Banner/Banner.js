@@ -18,8 +18,10 @@ function Banner(props){
                 effect={"fade"}
                 spaceBetween={50}
                 slidesPerView={1}
-                pagination={{clickable: true}}
-                autoplay={{delay: 2000}}
+                pagination={{
+                    type : 'none'
+                }}
+                autoplay={{delay: 5000}}
                 watchOverflow={true}
             >
                 {props.banner.map(b => (
