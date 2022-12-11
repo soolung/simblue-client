@@ -1,8 +1,7 @@
 import './Question.scss';
 import Answer from "../Answer/Answer";
 
-const Question = ({question, setQuestion, setType, index, deleteQuestion}) => {
-
+const Question = ({question, setQuestion, setType, index, deleteQuestion, addAnswer, handleAnswer, deleteAnswer}) => {
 
     return (
         <div className='question-div-one-pad'>
@@ -32,6 +31,11 @@ const Question = ({question, setQuestion, setType, index, deleteQuestion}) => {
                     <div className='QuestionDiv-answer'>
                         <Answer
                             type={question?.type}
+                            answers={question?.applicationAnswers}
+                            addAnswer={() => addAnswer(index)}
+                            handleAnswer={handleAnswer}
+                            deleteAnswer={deleteAnswer}
+                            questionIndex={index}
                         />
                     </div>
                     <div className='delete-question'

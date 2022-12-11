@@ -3,25 +3,30 @@
 .answer {
 
   .answer-box {
-    display: flex;
-    align-items: center;
-    width: 70%;
+    width: 100%;
 
-    .answer-radio, .answer-check {
-      display: inline-flex;
-    }
+    .answer-box-answer {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 10px;
 
-    .answer-text {
-      display: inline-block;
-      font-size: 14px;
-      width: 60%;
-      padding: 0;
-    }
+      .answer-radio, .answer-check {
+        display: inline-flex;
+      }
 
-    .cancel {
-      width: 14px;
-      height: 14px;
-      margin-left: 10px;
+      .answer-text {
+        display: inline-block;
+        font-size: 14px;
+        width: 60%;
+        padding: 0;
+      }
+
+      .cancel {
+        width: 14px;
+        height: 14px;
+        margin-left: 10px;
+      }
     }
   }
 
