@@ -11,9 +11,9 @@ export default function Answer(props) {
             <div className='answer'>
                 <div className='answer-box'>
                     {props.type === "RADIO" ?
-                        <Radio isChecked={false} labelClassName='answer-radio'/>
+                        <Radio isChecked={false} labelClassName='answer-radio' readOnly/>
                         :
-                        <Check isChecked={false} className='answer-check'/>
+                        <Check isChecked={false} className='answer-check' readOnly/>
                     }
                     <Text placeholder='옵션' className='answer-text'/>
                     <img src='/images/cancel.svg' className='cancel' alt='cancel'/>

@@ -74,7 +74,7 @@ export default function SignUpModal({isOpen, closeModal}) {
                             <div className="sign-right-ment">
                                 <div className="sign-right-ment-login">
                                     <span>회원가입</span>
-                                    <img src="https://ifh.cc/g/VBj8B5.png"/>
+                                    <img alt="signup" src="https://ifh.cc/g/VBj8B5.png"/>
                                 </div>
                                 <div className="sign-right-ment-schoollogin">
                                     <span>{authority === "ROLE_STUDENT" ? "학생" : "선생님"}으로 회원가입</span>

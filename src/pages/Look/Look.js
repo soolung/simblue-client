@@ -2,7 +2,7 @@ import "./Look.scss";
 import {useEffect, useState} from "react";
 import Categories from "./CategoryConstant";
 import Application from "../../components/Application/Application";
-import {useQuery, useQueryClient} from "react-query";
+import {useQuery} from "react-query";
 import {getApplications} from "../../utils/api/application";
 
 export default function Look() {

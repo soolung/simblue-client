@@ -12,6 +12,7 @@ export default function Check(props) {
                 value={props.value}
                 name={props.name}
                 id={props.id}
+                readOnly={props.readOnly}
             />
             <span>{props.label}</span>
         </label>

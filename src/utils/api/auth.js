@@ -1,5 +1,4 @@
 import server from "../axios/server";
-import {authorization} from "../config/authorization";
 
 export const getGoogleAuthLink = async () => {
     return (await server.get('/auth/google')).data

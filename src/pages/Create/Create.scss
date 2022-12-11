@@ -1,7 +1,6 @@
 @import '../../style/common.scss';
 
-.Create-section {
-  width: 100%;
+.create-section {
   height: 100vh;
 
   .create-header {
@@ -90,31 +89,13 @@
         border-bottom-color: $medium-grey;
       }
     }
-
-    .create-question-section {
-      position: relative;
-      top: 70px;
-      display: flex;
-      justify-content: center;
-
-      .create-question-section-div-plus {
-      }
-    }
   }
-}
 
+  .create-question-section {
+    margin: 0 auto;
+  }
 
-.question-plus {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  top: 30px;
-  width: 45vw;
-  margin: 0 auto;
-
-  .question-plus-button {
-    position: absolute;
-    left: 0px;
+  .add-question-button {
     border: none;
     background-color: transparent;
     padding: 5px 10px;
@@ -130,24 +111,24 @@
       background-color: #e9e9e9;
     }
   }
-}
 
-.createbutton {
-  position: fixed;
-  bottom: 3px;
+  .create-button {
+    position: fixed;
+    bottom: 3px;
 
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-  button {
-    width: 70vw;
-    background-color: $main-red;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    border-radius: 5px;
-    padding: 10px 0px;
+    button {
+      width: 70vw;
+      background-color: $main-red;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      border-radius: 5px;
+      padding: 10px 0px;
+    }
+
   }
-
 }

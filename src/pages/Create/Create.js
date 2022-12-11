@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Create.scss';
 import Question from '../../components/Create/Question/Question';
 import Text from "../../components/common/Text/Text";
@@ -8,18 +8,15 @@ import Check from "../../components/common/Check/Check";
 
 const Create = () => {
     const [request, setRequest] = useState({
-        emoji: "😎"
+        emoji: "😎",
     })
-    const [countList, setCountList] = useState([0])
-
-    const onAddDetailDiv = () => {
-        let countArr = [...countList]
-        let counter = countArr.slice(-1)[0]
-        counter += 1
-        countArr.push(counter)	// index 사용 X
-        // countArr[counter] = counter	// index 사용 시 윗줄 대신 사용
-        setCountList(countArr)
-    }
+    const [applicationQuestions, setApplicationQuestions] = useState([{
+        type: "TEXT",
+        question: "",
+        applicationAnswers: [{
+            answer: "",
+        }],
+    }])
 
     const handleChange = e => {
         setRequest({
@@ -28,9 +25,53 @@ const Create = () => {
         })
     }
 
+    const handleQuestion = (q, index) => {
+        setApplicationQuestions(
+            [...applicationQuestions],
+            applicationQuestions[index].question = q
+        )
+    }
+
+    const handleType = (t, index) => {
+        setApplicationQuestions(
+            [...applicationQuestions],
+            applicationQuestions[index].type = t
+        )
+    }
+
+    const addQuestion = () => {
+        setApplicationQuestions(
+            [...applicationQuestions,
+                {
+                    type: "TEXT",
+                    question: "",
+                    applicationAnswers: [{
+                        answer: "",
+                    }],
+                }
+            ],
+        )
+    }
+
+    const handleAnswer = (a, index) => {
+
+    }
+
+    const addAnswer = (index) => {
+
+    }
+
+    const deleteQuestion = target => {
+        setApplicationQuestions(applicationQuestions.filter((q, index) => target !== index));
+    }
+
+    useEffect(() => {
+        console.log(applicationQuestions)
+    }, [applicationQuestions])
+
     return (
 
-        <section className='Create-section'>
+        <section className='create-section'>
             <div className='create-header'>
                 <div className='create-header-top'>
                     <div className='create-header-left'>
@@ -57,21 +98,28 @@ const Create = () => {
                     </div>
                     <Text className='create-header-description' placeholder='설명' name='description'
                           onChange={handleChange}/>
-
                 </div>
                 <div className='create-question-section'>
-                    <div className='create-question-section-div-plus'>
-                        <div><Question countList={countList}/></div>
-                    </div>
+                    {applicationQuestions?.map((q, index) => (
+                        <Question
+                            question={q}
+                            setQuestion={handleQuestion}
+                            setType={handleType}
+                            deleteQuestion={deleteQuestion}
+                            key={index}
+                            index={index}
+                        />
+                    ))
+                    }
                 </div>
-                <div className='question-plus'>
-                    <button className='question-plus-button' onClick={onAddDetailDiv}>
-                        <span>+ 질문 추가</span>
-                    </button>
-                </div>
+                <button className='add-question-button' onClick={addQuestion}>
+                    <span>+ 질문 추가</span>
+                </button>
             </div>
-            <div className='createbutton'>
-                <button>만들기</button>
+            <div className='create-button'>
+                <button onClick={() => {
+                }}>만들기
+                </button>
             </div>
         </section>
     )
