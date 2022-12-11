@@ -9,6 +9,8 @@ export default function Text(props) {
             value={props.value}
             name={props.name}
             id={props.id}
+            placeholder={props.placeholder}
+            readOnly={props.readOnly}
         />
     )
 }

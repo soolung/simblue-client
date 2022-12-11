@@ -1,0 +1,52 @@
+@import "../../../style/common";
+
+.answer {
+
+  .answer-box {
+    display: flex;
+    align-items: center;
+    width: 70%;
+
+    .answer-radio, .answer-check {
+      display: inline-flex;
+    }
+
+    .answer-text {
+      display: inline-block;
+      font-size: 14px;
+      width: 60%;
+      padding: 0;
+    }
+
+    .cancel {
+      width: 14px;
+      height: 14px;
+      margin-left: 10px;
+    }
+  }
+
+  .add-answer {
+    padding: 7px;
+    margin: 10px 0 0 10px;
+    font-size: 12px;
+    background-color: white;
+    color: $medium-grey;
+    border-radius: 8px;
+
+
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+}
+
+.question-text {
+  padding: 10px 10px;
+  font-size: 14px;
+  color: $medium-grey;
+  border-bottom: 1px solid $medium-grey;
+
+  ::placeholder {
+    color: $medium-grey;
+  }
+}

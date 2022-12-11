@@ -13,4 +13,8 @@
   &:focus {
     outline: none;
   }
+
+  ::placeholder {
+    color: $medium-grey;
+  }
 }
