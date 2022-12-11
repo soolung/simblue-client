@@ -1,16 +1,13 @@
 @import '../../../style/common';
 
-.al {
-  padding-bottom: 50px;
-}
-
-.QuestionDiv-tit {
+.question{
   box-shadow: 0 16px 40px rgba(173, 173, 173, 0.2);
   width: 45vw;
 
   background-color: white;
   border-radius: 20px;
   padding: 20px;
+  margin-bottom: 30px;
 
   .question-header {
     width: 100%;
@@ -62,7 +59,4 @@
       cursor: pointer;
     }
   }
-}
-
-.question-div-one-pad {
 }

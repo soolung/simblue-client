@@ -92,17 +92,26 @@
   }
 
   .create-question-section {
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
   }
 
   .add-question-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    background-color: transparent;
-    padding: 5px 10px;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 100px;
+    background-color: $light-grey;
 
     span {
-      font-size: 18px;
+      font-size: 50px;
+      line-height: 50px;
       font-weight: 500;
       color: $medium-grey;
     }
@@ -114,21 +123,11 @@
 
   .create-button {
     position: fixed;
-    bottom: 3px;
-
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    button {
-      width: 70vw;
-      background-color: $main-red;
-      color: white;
-      font-size: 20px;
-      font-weight: 500;
-      border-radius: 5px;
-      padding: 10px 0px;
-    }
-
+    bottom: 15px;
+    width: 70vw;
+    padding: 10px 0;
+    font-size: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 }

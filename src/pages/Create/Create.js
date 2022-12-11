@@ -1,12 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './Create.scss';
 import Question from '../../components/Create/Question/Question';
 import Text from "../../components/common/Text/Text";
 import Date from "../../components/common/Date/Date";
 import Check from "../../components/common/Check/Check";
+import Button from "../../components/Button/Button";
+import {useMutation} from "react-query";
+import {createApplication} from "../../utils/api/application";
+import {useNavigate} from "react-router-dom";
 
 
 const Create = () => {
+    const navigate = useNavigate()
+    const {mutate} = useMutation(createApplication, {
+        onSuccess: () => {
+            navigate('/')
+        }
+    })
+
     const [request, setRequest] = useState({
         emoji: "😎",
         isAlways: false,
@@ -84,10 +95,6 @@ const Create = () => {
         setApplicationQuestions(applicationQuestions.filter((q, index) => target !== index));
     }
 
-    useEffect(() => {
-        console.log(request)
-    }, [request])
-
     return (
 
         <section className='create-section'>
@@ -113,7 +120,10 @@ const Create = () => {
                         <div className='create-header-right-date'>
                             <div className='create-header-right-date-top'>
                                 <span>기간</span>
-                                <Date/>
+                                <Date
+                                    isAlways={request?.isAlways}
+                                    handleDate={(d) => setRequest({...request, startDate: d})}
+                                />
                                 <Check
                                     labelClassName='always-label'
                                     className='always-button'
@@ -124,7 +134,10 @@ const Create = () => {
                             </div>
                             <div className='create-header-right-date-bottom'>
                                 <span>~</span>
-                                <Date/>
+                                <Date
+                                    isAlways={request?.isAlways}
+                                    handleDate={(d) => setRequest({...request, endDate: d})}
+                                />
                             </div>
                         </div>
                     </div>
@@ -136,31 +149,36 @@ const Create = () => {
                         value={request?.description}
                     />
                 </div>
-                <div className='create-question-section'>
-                    {applicationQuestions?.map((q, index) => (
-                        <Question
-                            question={q}
-                            setQuestion={handleQuestion}
-                            setType={handleType}
-                            deleteQuestion={deleteQuestion}
-                            key={index}
-                            index={index}
-                            addAnswer={addAnswer}
-                            handleAnswer={handleAnswer}
-                            deleteAnswer={deleteAnswer}
-                        />
-                    ))
-                    }
-                </div>
+            </div>
+            <div className='create-question-section'>
+                {applicationQuestions?.map((q, index) => (
+                    <Question
+                        question={q}
+                        setQuestion={handleQuestion}
+                        setType={handleType}
+                        deleteQuestion={deleteQuestion}
+                        key={index}
+                        index={index}
+                        addAnswer={addAnswer}
+                        handleAnswer={handleAnswer}
+                        deleteAnswer={deleteAnswer}
+                    />
+                ))
+                }
                 <button className='add-question-button' onClick={addQuestion}>
-                    <span>+ 질문 추가</span>
+                    <span>+</span>
                 </button>
             </div>
-            <div className='create-button'>
-                <button onClick={() => {
-                }}>만들기
-                </button>
-            </div>
+            <Button
+                className="create-button"
+                text="만들기"
+                action={() => mutate({
+                    request: {
+                        ...request,
+                        applicationQuestions: [...applicationQuestions]
+                    }
+                })}
+            />
         </section>
     )
 }

@@ -20,4 +20,10 @@
     width: 30px;
     margin-left: 5px;
   }
+
+  &.disabled {
+    .text-box {
+      background-color: $light-grey;
+    }
+  }
 }
