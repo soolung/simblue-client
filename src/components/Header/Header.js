@@ -3,8 +3,12 @@ import './Header.scss';
 import LoginModal from '../Modal/Login/LoginModal';
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useRecoilValue, useResetRecoilState} from "recoil";
+import {userState} from "../../utils/atom/user";
 
 export default function Header() {
+    const user = useRecoilValue(userState);
+    const resetUser = useResetRecoilState(userState);
     const [searchText, setSearchText] = useState("");
     const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
     const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -19,6 +23,11 @@ export default function Header() {
 
     const resetSearchText = e => {
         setSearchText("");
+    }
+
+    const logout = () => {
+        localStorage.clear();
+        resetUser();
     }
 
     return (
@@ -77,7 +86,12 @@ export default function Header() {
                         <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
                     </div>
                     <div className='header_login_button'>
-                        <button onClick={() => setLoginModalOpen(true)} className='login-button'>로그인</button>
+                        {
+                            user?.authority ?
+                                <button onClick={logout} className='login-button'>로그아웃</button>
+                                :
+                                <button onClick={() => setLoginModalOpen(true)} className='login-button'>로그인</button>
+                        }
                     </div>
                 </div>
             </header>

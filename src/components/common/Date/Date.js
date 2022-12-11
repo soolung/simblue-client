@@ -3,7 +3,6 @@ import TextBox from "../TextBox/TextBox";
 import {useEffect, useState} from "react";
 
 export default function Date({className, isAlways, handleDate}) {
-
     const [date, setDate] = useState({})
 
     const handleDateInput = (e) => {
@@ -11,7 +10,9 @@ export default function Date({className, isAlways, handleDate}) {
     }
 
     useEffect(() => {
-        handleDate(date?.year + '-' + date?.month + '-' + date?.day)
+        if (date.year?.length === 4 && date.month?.length === 2 && date.day?.length === 2) {
+            handleDate(date?.year + '-' + date?.month + '-' + date?.day)
+        }
     }, [date])
 
     return (
