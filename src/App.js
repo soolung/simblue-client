@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import Look from './pages/Look/Look';
 import Record from "./pages/Record/Record";
-import Create from "./pages/Create/Creat";
+import Create from "./pages/Create/Create";
 import ApplicationManagement from "./pages/Application/ApplicationManagement";
 import {RecoilRoot} from "recoil";
 

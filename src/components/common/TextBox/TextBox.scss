@@ -11,7 +11,7 @@
     outline: none;
   }
 
-  ::placeholder {
+  &::placeholder {
     color: $medium-grey;
     font-weight: 300;
   }

@@ -83,3 +83,9 @@ button {
     color: $dark-grey;
   }
 }
+
+input[type="text"] {
+  &:focus {
+    outline: none;
+  }
+}

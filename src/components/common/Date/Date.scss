@@ -1,0 +1,23 @@
+@import "../../../style/common";
+
+.date {
+  display: inline-flex;
+  align-items: center;
+  color: $medium-grey;
+
+  input {
+    display: inline-block;
+    height: auto;
+    padding: 3px 5px;
+    margin-right: 4px;
+  }
+
+  .year {
+    width: 50px;
+  }
+
+  .month, .day {
+    width: 30px;
+    margin-left: 5px;
+  }
+}

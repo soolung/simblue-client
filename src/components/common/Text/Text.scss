@@ -10,11 +10,7 @@
   font-size: 18px;
   color: $input-text;
 
-  &:focus {
-    outline: none;
-  }
-
-  ::placeholder {
+  &::placeholder {
     color: $medium-grey;
   }
 }
