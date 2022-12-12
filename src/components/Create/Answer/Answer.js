@@ -11,7 +11,7 @@ export default function Answer({type, answers, addAnswer, handleAnswer, deleteAn
             <div className='answer'>
                 <div className='answer-box'>
                     {answers?.map((a, index) => (
-                        <div className='answer-box-answer'>
+                        <div className='answer-box-answer' key={index}>
                             {
                                 type === "RADIO" ?
                                     <Radio isChecked={false} labelClassName='answer-radio' readOnly/>

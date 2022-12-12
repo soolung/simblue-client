@@ -3,23 +3,43 @@ import Modal from "react-modal";
 import Notice from "../../Notice/Notice";
 import Button from "../../Button/Button";
 import Questions from "./Questions/Questions";
-import {useQuery} from "react-query";
-import {getApplicationDetail} from "../../../utils/api/application";
-import {useEffect} from "react";
+import {useMutation, useQuery} from "react-query";
+import {getApplicationDetail, respondApplication} from "../../../utils/api/application";
+import {useEffect, useState} from "react";
 import Loading from "../../common/Loading/Loading";
 
-export default function ApplicationModal({isOpen, closeModal, id}) {
-    const {data, refetch, isLoading, isFetching} = useQuery('getApplicationDetail', () => getApplicationDetail(id));
+export default function ApplicationModal({closeModal, id}) {
+    const {mutate} = useMutation(respondApplication, {
+        onSuccess: () => {
+            alert('성공!')
+            closeModal();
+        }
+    })
+
+    const [request, setRequest] = useState([{}])
+    const {data, refetch, isLoading, isFetching} = useQuery('getApplicationDetail', () => getApplicationDetail(id), {
+        enabled: false,
+        onSuccess: (data) => {
+            setRequest([...data.questionList])
+        }
+    });
+
+    const handleResponse = (a, index) => {
+        if (request[index]) {
+            setRequest(
+                [...request],
+                request[index].userResponseList = [...a]
+            )
+        }
+    }
 
     useEffect(() => {
-        if (isOpen) {
-            refetch();
-        }
-    }, [isOpen])
+        refetch();
+    }, [])
 
     return (
         <>
-            <Modal isOpen={isOpen} onRequestClose={closeModal}
+            <Modal isOpen={true} onRequestClose={closeModal}
                    className="modal application-modal"
                    overlayClassName="modal-overlay"
             >
@@ -31,12 +51,13 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                             <div className="application-modal-notice">
                                 <div className="application-modal-notice-inner">
                                     {data?.noticeList?.length > 0 ?
-                                        data?.noticeList?.map(n => (
+                                        data?.noticeList?.map((n, index) => (
                                             <Notice
                                                 text={n.notice}
                                                 author={n.author}
                                                 time={n.createdAt}
                                                 isPinned={n.isPinned}
+                                                key={index}
                                             />
                                         ))
                                         :
@@ -56,12 +77,15 @@ export default function ApplicationModal({isOpen, closeModal, id}) {
                                 <div className="application-modal-application-section">
                                     <Questions
                                         items={data?.questionList}
+                                        handleResponse={handleResponse}
                                     />
                                 </div>
                                 <Button
                                     text={"제출하기"}
-                                    action={() => {
-                                    }}
+                                    action={() => mutate({
+                                        id: id,
+                                        request: {requestRequestList: [...request]}
+                                    })}
                                     className="application-modal-application-submit"
                                 />
                             </div>

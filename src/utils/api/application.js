@@ -24,3 +24,7 @@ export const getApplicationResult = async (id) => {
 export const createApplication = async ({request}) => {
     return (await server.post('/application', request, authorization())).data
 }
+
+export const respondApplication = async ({id, request}) => {
+    return (await server.post(`/application/${id}/request`, request, authorization())).data
+}

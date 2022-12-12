@@ -21,11 +21,14 @@ const Create = () => {
     const [request, setRequest] = useState({
         emoji: "😎",
         isAlways: false,
+        title: '',
+        description: '',
+
     })
-    const [applicationQuestions, setApplicationQuestions] = useState([{
+    const [questionList, setQuestionList] = useState([{
         type: "TEXT",
         question: "",
-        applicationAnswers: [{
+        answerList: [{
             answer: "",
         }],
     }])
@@ -38,43 +41,43 @@ const Create = () => {
     }
 
     const handleQuestion = (q, index) => {
-        setApplicationQuestions(
-            [...applicationQuestions],
-            applicationQuestions[index].question = q
+        setQuestionList(
+            [...questionList],
+            questionList[index].question = q
         )
     }
 
     const handleType = (t, index) => {
-        setApplicationQuestions(
-            [...applicationQuestions],
-            applicationQuestions[index].type = t
+        setQuestionList(
+            [...questionList],
+            questionList[index].type = t
         )
     }
 
     const addAnswer = (index) => {
-        setApplicationQuestions(
-            [...applicationQuestions],
-            applicationQuestions[index].applicationAnswers =
-                [...applicationQuestions[index].applicationAnswers, {
+        setQuestionList(
+            [...questionList],
+            questionList[index].answerList =
+                [...questionList[index].answerList, {
                     answer: ""
                 }],
         )
     }
 
     const handleAnswer = (a, questionIndex, answerIndex) => {
-        setApplicationQuestions(
-            [...applicationQuestions],
-            applicationQuestions[questionIndex].applicationAnswers[answerIndex].answer = a
+        setQuestionList(
+            [...questionList],
+            questionList[questionIndex].answerList[answerIndex].answer = a
         )
     }
 
     const addQuestion = () => {
-        setApplicationQuestions(
-            [...applicationQuestions,
+        setQuestionList(
+            [...questionList,
                 {
                     type: "TEXT",
                     question: "",
-                    applicationAnswers: [{
+                    answerList: [{
                         answer: "",
                     }],
                 }
@@ -83,16 +86,16 @@ const Create = () => {
     }
 
     const deleteAnswer = (target, questionIndex) => {
-        setApplicationQuestions([
-                ...applicationQuestions],
-            applicationQuestions[questionIndex].applicationAnswers =
-                applicationQuestions[questionIndex].applicationAnswers.filter(
+        setQuestionList([
+                ...questionList],
+            questionList[questionIndex].answerList =
+                questionList[questionIndex].answerList.filter(
                     (a, index) => target !== index)
         );
     }
 
     const deleteQuestion = target => {
-        setApplicationQuestions(applicationQuestions.filter((q, index) => target !== index));
+        setQuestionList(questionList.filter((q, index) => target !== index));
     }
 
     return (
@@ -151,7 +154,7 @@ const Create = () => {
                 </div>
             </div>
             <div className='create-question-section'>
-                {applicationQuestions?.map((q, index) => (
+                {questionList?.map((q, index) => (
                     <Question
                         question={q}
                         setQuestion={handleQuestion}
@@ -175,7 +178,7 @@ const Create = () => {
                 action={() => mutate({
                     request: {
                         ...request,
-                        applicationQuestions: [...applicationQuestions]
+                        questionList: [...questionList]
                     }
                 })}
             />

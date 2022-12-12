@@ -17,7 +17,7 @@ export default function TextArea(props) {
             name={props.name}
             id={props.id}
             ref={textRef}
-            onInput={props.autoSizing && handleResizeHeight}
+            onInput={props.autoSizing ? handleResizeHeight : undefined}
         />
     )
 }

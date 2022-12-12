@@ -1,14 +1,23 @@
 import './Application.scss';
 import {useState} from "react";
 import ApplicationModal from "../Modal/Application/ApplicationModal";
+import useModal from "../../hooks/useModal";
 
 export default function Application(props) {
+    const {openModal, closeModal} = useModal();
 
-    const [applicationModalIsOpen, setApplicationModalOpen] = useState(false);
-
+    const openApplicationModal = () => {
+        openModal(
+            <ApplicationModal
+                closeModal={closeModal}
+                id={props.id}
+                key={props.id}
+            />
+        )
+    }
     return (
         <>
-            <div className="application" onClick={() => setApplicationModalOpen(true)}>
+            <div className="application" onClick={openApplicationModal}>
                 <div className="application-title">
                     <span className="application-title-title">
                         {props.title}
@@ -25,12 +34,6 @@ export default function Application(props) {
                     - {props.isAlways ? "상시" : props.endDate}
                 </p>
             </div>
-            <ApplicationModal
-                isOpen={applicationModalIsOpen}
-                closeModal={() => setApplicationModalOpen(false)}
-                id={props.id}
-                key={props.id}
-            />
         </>
     )
 }

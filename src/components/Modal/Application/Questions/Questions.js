@@ -1,15 +1,22 @@
 import "./Questions.scss";
-import {createQuestionByType} from "./questionUtil";
+import AnswerField from "./AnswerField";
 import Question from "./Question";
 
-export default function Questions({items}) {
+export default function Questions({items, handleResponse}) {
     return (
         <dl className="application-questions">
             {
-                items?.map(i => (
+                items?.map((i, index) => (
                     <Question
                         question={i.question}
-                        answer={createQuestionByType(i)}
+                        answer={
+                            <AnswerField
+                                q={i}
+                                questionIndex={index}
+                                handleResponse={handleResponse}
+                            />
+                        }
+                        key={index}
                     />
                 ))
             }

@@ -29,7 +29,7 @@ const Question = ({question, setQuestion, setType, index, deleteQuestion, addAns
             <div className='QuestionDiv-answer'>
                 <Answer
                     type={question?.type}
-                    answers={question?.applicationAnswers}
+                    answers={question?.answerList}
                     addAnswer={() => addAnswer(index)}
                     handleAnswer={handleAnswer}
                     deleteAnswer={deleteAnswer}
