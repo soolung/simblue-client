@@ -6,24 +6,21 @@ import Look from './pages/Look/Look';
 import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
 import ApplicationManagement from "./pages/Application/ApplicationManagement";
-import {RecoilRoot} from "recoil";
 
 function App() {
     return (
-        <RecoilRoot>
-            <div className="App">
-                <BrowserRouter>
-                    <Header/>
-                    <Routes>
-                        <Route path='/' element={<Main/>}/>
-                        <Route path='/look' element={<Look/>}/>
-                        <Route path='/record' element={<Record/>}/>
-                        <Route path='/create' element={<Create/>}/>
-                        <Route path='/application/:id' element={<ApplicationManagement/>}/>
-                    </Routes>
-                </BrowserRouter>
-            </div>
-        </RecoilRoot>
+        <div className="App">
+            <BrowserRouter>
+                <Header/>
+                <Routes>
+                    <Route path='/' element={<Main/>}/>
+                    <Route path='/look' element={<Look/>}/>
+                    <Route path='/record' element={<Record/>}/>
+                    <Route path='/create' element={<Create/>}/>
+                    <Route path='/application/:id' element={<ApplicationManagement/>}/>
+                </Routes>
+            </BrowserRouter>
+        </div>
     );
 }
 
