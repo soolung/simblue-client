@@ -1,5 +1,5 @@
 import "./ApplicationManagement.scss";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Button from "../../components/Button/Button";
 import TextArea from "../../components/common/TextArea/TextArea";
 import Notice from "../../components/Notice/Notice";
@@ -8,6 +8,7 @@ import {getApplicationResult} from "../../utils/api/application";
 import {useParams} from "react-router-dom";
 import Loading from "../../components/common/Loading/Loading";
 import {createNotice} from "../../utils/api/notice";
+import {DownloadTableExcel, useDownloadExcel} from "react-export-table-to-excel";
 
 export default function ApplicationManagement() {
     const {id} = useParams();
@@ -20,6 +21,13 @@ export default function ApplicationManagement() {
             refetch();
         }
     })
+
+    const tableRef = useRef(null);
+    const {onDownload} = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: data?.application?.title,
+        sheet: data?.application?.title
+    });
 
     if (isLoading || isFetching) return <Loading/>
 
@@ -77,9 +85,11 @@ export default function ApplicationManagement() {
                     </p>
                     <p className="application-management-application-header-description">{data?.application?.description}</p>
                     <p className="application-management-application-header-time">- {data?.application?.isAlways ? '상시' : data?.application?.endDate}</p>
-                    <img className="application-management--export" src="/images/export.svg" alt="export"/>
+                    <img className="application-management--export" src="/images/export.svg" alt="export" onClick={onDownload}/>
                 </div>
-                <table className="application-management--result-table">
+                <table className="application-management--result-table"
+                       ref={tableRef}
+                >
                     <thead>
                     <tr className="application-management--result-table--field">
                         <td>학번</td>
