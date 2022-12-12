@@ -2,9 +2,19 @@ import "./Record.scss";
 import TeacherApplication from "../../components/Record/TeacherApplication";
 import {useQuery} from "react-query";
 import {getMyApplications} from "../../utils/api/application";
+import {useNavigate} from "react-router-dom";
+import {useRecoilValue} from "recoil";
+import {userState} from "../../utils/atom/user";
 
 export default function Record() {
     const {data} = useQuery('getMyApplications', getMyApplications);
+    const user = useRecoilValue(userState)
+    const navigate = useNavigate()
+    const navigateManagement = (id) => {
+        if (user?.authority === "ROLE_TEACHER") {
+            navigate(`/application/${id}`)
+        }
+    }
 
     return (
         <>
@@ -23,6 +33,7 @@ export default function Record() {
                                 description={a.description}
                                 endDate={a.endDate}
                                 isAlways={a.isAlways}
+                                navigateManagement={() => navigateManagement(a.id)}
                             />
                         ))
                     }

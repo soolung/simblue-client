@@ -10,7 +10,7 @@ server.interceptors.request.use(
         return config;
     },
     function (error) {
-        console.log(error.response.data)
+        alert(error.response?.data?.message)
         return Promise.reject(error);
     }
 );
@@ -21,7 +21,7 @@ server.interceptors.response.use(
     },
 
     function (error) {
-        alert(error.response.data.message)
+        alert(error.response?.data?.message)
         return Promise.reject(error);
     }
 );

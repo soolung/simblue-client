@@ -71,7 +71,9 @@ export default function LoginModal({closeModal}) {
                                     })}>로그인</button>
                                 </div>
                                 <div className="login-right-login-button--google">
-                                    <button>
+                                    <button
+                                        onClick={() => window.location.replace(data)}
+                                    >
                                         <img src="https://ifh.cc/g/nNDjB0.png" alt="google"/>
                                         <span>구글 계정으로 로그인</span>
                                     </button>

@@ -72,7 +72,12 @@ export default function Header() {
                             <> */}
                             <ul className='header-nav'>
                                 <li className='header-nav-li'><Link to="/look">둘러보기</Link></li>
-                                <li className='header-nav-li-2'><Link to="/record">기록보기</Link></li>
+                                <li className='header-nav-li'><Link to="/record">기록보기</Link></li>
+                                {user?.authority === "ROLE_TEACHER" ?
+                                    <li className='header-nav-li'><Link to="/create">만들기</Link></li>
+                                    :
+                                    <></>
+                                }
                             </ul>
                             {/* </>
                             :

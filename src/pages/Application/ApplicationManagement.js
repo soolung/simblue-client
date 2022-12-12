@@ -100,10 +100,10 @@ export default function ApplicationManagement() {
                                 data?.userResponseList?.map(r => (
                                     <tr className="application-management--result-table--content">
                                         <td>
-                                            {r.name}
+                                            {r.studentNumber}
                                         </td>
                                         <td>
-                                            {r.studentNumber}
+                                            {r.name}
                                         </td>
                                         {r.answerList?.map(a => (
                                             <td>

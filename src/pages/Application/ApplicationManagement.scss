@@ -202,9 +202,10 @@
     }
 
     td {
-      padding: 15px 0;
+      padding: 15px 2px;
       background-color: #fff;
       border: 1px solid #fff;
+      word-break: keep-all;
     }
   }
 }

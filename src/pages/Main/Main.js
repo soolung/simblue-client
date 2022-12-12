@@ -25,7 +25,10 @@ export default function Main() {
                 token: data.accessToken,
                 authority: data.authority
             })
-            openSignUpModal()
+
+            if (!data?.login) {
+                openSignUpModal()
+            }
         },
         onError: () => {
             alert('error')
