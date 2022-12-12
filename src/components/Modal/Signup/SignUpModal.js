@@ -8,7 +8,7 @@ import {joinStudent, joinTeacher} from "../../../utils/api/user";
 import {useRecoilValue} from "recoil";
 import {userState} from "../../../utils/atom/user";
 
-export default function SignUpModal({isOpen, closeModal}) {
+export default function SignUpModal({closeModal}) {
     const user = useRecoilValue(userState);
     const [authority, setAuthority] = useState("");
     const [request, setRequest] = useState({});
@@ -58,7 +58,7 @@ export default function SignUpModal({isOpen, closeModal}) {
     return (
         <>
             <React.Fragment>
-                <Modal isOpen={isOpen} onRequestClose={closeModal}
+                <Modal isOpen={true} onRequestClose={closeModal}
                        className="modal sign-up-modal"
                        overlayClassName="modal-overlay"
                        shouldCloseOnOverlayClick={false}

@@ -11,10 +11,11 @@ import SignUpModal from "../../components/Modal/Signup/SignUpModal";
 import {useSetRecoilState} from "recoil";
 import {userState} from "../../utils/atom/user";
 import {getFourLatestApplications} from "../../utils/api/application";
+import useModal from "../../hooks/useModal";
 
 export default function Main() {
+    const {openModal, closeModal} = useModal()
     const setUser = useSetRecoilState(userState);
-    const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
     const {data} = useQuery('getFourLatestApplication', getFourLatestApplications);
     const {mutate} = useMutation(getAccessTokenByGoogle, {
         onSuccess: (data) => {
@@ -24,12 +25,20 @@ export default function Main() {
                 token: data.accessToken,
                 authority: data.authority
             })
-            setSignUpModalOpen(true)
+            openSignUpModal()
         },
         onError: () => {
             alert('error')
         }
     });
+
+    const openSignUpModal = () => {
+        openModal(
+            <SignUpModal
+                closeModal={closeModal}
+            />
+        )
+    }
 
     useEffect(() => {
         const q = queryString.parse(window.location.search);
@@ -46,7 +55,7 @@ export default function Main() {
                 />
                 <div className='latest-application-list'>
                     {
-                        data?.applicationList?.map(a => (
+                        data?.applicationList?.map((a, index) => (
                             <Application
                                 id={a.id}
                                 emoji={a.emoji}
@@ -55,15 +64,12 @@ export default function Main() {
                                 startDate={a.startDate}
                                 endDate={a.endDate}
                                 isAlways={a.isAlways}
+                                key={index}
                             />
                         ))
                     }
                 </div>
             </section>
-            <SignUpModal
-                isOpen={isSignUpModalOpen}
-                closeModal={() => setSignUpModalOpen(false)}
-            />
         </>
     )
 }

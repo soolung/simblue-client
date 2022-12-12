@@ -1,17 +1,16 @@
 import './Header.scss';
-
 import LoginModal from '../Modal/Login/LoginModal';
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {useRecoilValue, useResetRecoilState} from "recoil";
+import {useRecoilState} from "recoil";
 import {userState} from "../../utils/atom/user";
+import useModal from "../../hooks/useModal";
 
 export default function Header() {
-    const user = useRecoilValue(userState);
-    const resetUser = useResetRecoilState(userState);
+    const {openModal, closeModal} = useModal();
+    const [user, setUser] = useRecoilState(userState);
     const [searchText, setSearchText] = useState("");
     const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
-    const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
     const toggleSearchTextOnFocus = e => {
         setSearchTextOnFocus(!searchTextOnFocus)
@@ -27,7 +26,18 @@ export default function Header() {
 
     const logout = () => {
         localStorage.clear();
-        resetUser();
+        setUser({
+            token: null,
+            authority: null,
+        })
+    }
+
+    const openLoginModal = () => {
+        openModal(
+            <LoginModal
+                closeModal={closeModal}
+            />
+        )
     }
 
     return (
@@ -90,15 +100,11 @@ export default function Header() {
                             user?.authority ?
                                 <button onClick={logout} className='login-button'>로그아웃</button>
                                 :
-                                <button onClick={() => setLoginModalOpen(true)} className='login-button'>로그인</button>
+                                <button onClick={openLoginModal} className='login-button'>로그인</button>
                         }
                     </div>
                 </div>
             </header>
-            <LoginModal
-                isOpen={isLoginModalOpen}
-                closeModal={() => setLoginModalOpen(false)}
-            />
         </>
     )
 }

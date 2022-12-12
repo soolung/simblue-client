@@ -8,7 +8,7 @@ import {getGoogleAuthLink, loginUser} from "../../../utils/api/auth";
 import {useSetRecoilState} from "recoil";
 import {userState} from "../../../utils/atom/user";
 
-export default function LoginModal({isOpen, closeModal}) {
+export default function LoginModal({closeModal}) {
     const setUser = useSetRecoilState(userState);
     const {data} = useQuery('getGoogleAuthLink', getGoogleAuthLink);
     const {mutate} = useMutation(loginUser, {
@@ -36,7 +36,7 @@ export default function LoginModal({isOpen, closeModal}) {
     return (
         <>
             <React.Fragment>
-                <Modal isOpen={isOpen} onRequestClose={closeModal}
+                <Modal isOpen={true} onRequestClose={closeModal}
                        className="modal login-modal"
                        overlayClassName="modal-overlay"
                 >
@@ -51,7 +51,7 @@ export default function LoginModal({isOpen, closeModal}) {
                             <div className="login-right-ment">
                                 <div className="login-right-ment-login">
                                     <span>로그인</span>
-                                    <img src="https://ifh.cc/g/VBj8B5.png"/>
+                                    <img alt='welcome' src="https://ifh.cc/g/VBj8B5.png"/>
                                 </div>
                                 <p className="login-right-ment-login-ment">학교 계정으로 로그인</p>
                             </div>
