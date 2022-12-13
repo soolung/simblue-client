@@ -5,7 +5,7 @@ export default function Button({text, action, className, disabled = false}) {
         <>
             <button
                 className={`button ${disabled ? "disabled" : ""} ${className}`}
-                onClick={() => !disabled && action}
+                onClick={() => !disabled && action()}
             >
                 <span>{text}</span>
             </button>

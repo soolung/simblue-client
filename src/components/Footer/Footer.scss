@@ -1,0 +1,28 @@
+@import "../../style/common";
+
+footer {
+  width: 100%;
+  color: $medium-grey;
+  font-size: 15px;
+  padding: 15px 0;
+
+  p {
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      margin-left: 5px;
+      display: inline-block;
+      font-size: 0;
+      letter-spacing: 0;
+      word-spacing: 0;
+
+      img {
+        width: 19px;
+        height: 19px;
+      }
+    }
+  }
+}

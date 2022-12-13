@@ -6,6 +6,7 @@ import Look from './pages/Look/Look';
 import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
 import ApplicationManagement from "./pages/Application/ApplicationManagement";
+import Footer from "./components/Footer/Footer";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path='/create' element={<Create/>}/>
                     <Route path='/application/:id' element={<ApplicationManagement/>}/>
                 </Routes>
+                <Footer/>
             </BrowserRouter>
         </div>
     );
