@@ -94,10 +94,12 @@
   -webkit-transition: all 0.6s;
 
   &.half {
-    display: inline-block;
-    float: right;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
     width: 75%;
     padding: 50px 40px;
+    margin: 0;
   }
 
   .application-management-application-header {
