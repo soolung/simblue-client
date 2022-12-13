@@ -5,7 +5,7 @@ import Application from "../../components/Application/Application";
 import "swiper/scss";
 import {useMutation, useQuery} from "react-query";
 import {getAccessTokenByGoogle} from "../../utils/api/auth";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import queryString from "query-string";
 import SignUpModal from "../../components/Modal/Signup/SignUpModal";
 import {useSetRecoilState} from "recoil";

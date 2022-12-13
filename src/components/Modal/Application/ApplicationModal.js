@@ -7,8 +7,11 @@ import {useMutation, useQuery} from "react-query";
 import {getApplicationDetail, respondApplication} from "../../../utils/api/application";
 import {useEffect, useState} from "react";
 import Loading from "../../common/Loading/Loading";
+import {useRecoilValue} from "recoil";
+import {userState} from "../../../utils/atom/user";
 
 export default function ApplicationModal({closeModal, id}) {
+    const user = useRecoilValue(userState)
     const {mutate} = useMutation(respondApplication, {
         onSuccess: () => {
             alert('성공!')
@@ -81,12 +84,13 @@ export default function ApplicationModal({closeModal, id}) {
                                     />
                                 </div>
                                 <Button
-                                    text={"제출하기"}
+                                    text={user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요"}
                                     action={() => mutate({
                                         id: id,
                                         request: {requestRequestList: [...request]}
                                     })}
                                     className="application-modal-application-submit"
+                                    disabled={!user?.authority}
                                 />
                             </div>
                         </>

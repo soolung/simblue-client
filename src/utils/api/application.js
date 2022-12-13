@@ -14,7 +14,7 @@ export const getMyApplications = async () => {
 }
 
 export const getApplicationDetail = async (id) => {
-    return (await server.get(`/application/${id}`, authorization())).data
+    return (await server.get(`/application/${id}`)).data
 }
 
 export const getApplicationResult = async (id) => {

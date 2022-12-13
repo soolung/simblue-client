@@ -1,5 +1,4 @@
 import './Application.scss';
-import {useState} from "react";
 import ApplicationModal from "../Modal/Application/ApplicationModal";
 import useModal from "../../hooks/useModal";
 
