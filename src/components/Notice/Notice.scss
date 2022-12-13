@@ -7,6 +7,8 @@
   border-radius: 15px;
   padding: 9% 7%;
   margin-bottom: 20px;
+  border: 1px solid $grey;
+  z-index: 2;
 
   .notice-text {
     font-size: 24px;
@@ -24,5 +26,18 @@
     top: 0;
     right: 0;
     width: 24px;
+    opacity: 1;
+
+    &.not-pinned {
+      opacity: 0;
+    }
+  }
+
+  .edit {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }

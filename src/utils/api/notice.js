@@ -7,3 +7,7 @@ export const createNotice = async ({applicationId, notice}) => {
         notice: notice
     }, authorization()));
 }
+
+export const pinNotice = async (id) => {
+    return (await server.put(`/application/notice/${id}/pinned`, {}, authorization())).data
+}

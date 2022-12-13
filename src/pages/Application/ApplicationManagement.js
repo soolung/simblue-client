@@ -7,7 +7,7 @@ import {useMutation, useQuery} from "react-query";
 import {getApplicationResult} from "../../utils/api/application";
 import {useParams} from "react-router-dom";
 import Loading from "../../components/common/Loading/Loading";
-import {createNotice} from "../../utils/api/notice";
+import {createNotice, pinNotice} from "../../utils/api/notice";
 import {useDownloadExcel} from "react-export-table-to-excel";
 import {checkUrlForm} from "../../utils/etc/LinkChecker";
 
@@ -15,13 +15,21 @@ export default function ApplicationManagement() {
     const {id} = useParams();
     const [noticeIsOpened, setNoticeIsOpened] = useState(true);
     const [notice, setNotice] = useState("");
-    const {data, isLoading, isFetching, refetch} = useQuery('getApplicationRequest', () => getApplicationResult(id))
-    const {mutate} = useMutation(createNotice, {
+    const {data, isLoading, isFetching, refetch} = useQuery('getApplicationRequest', () => getApplicationResult(id), {})
+
+    const create = useMutation(createNotice, {
         onSuccess: () => {
             setNotice("");
             refetch();
         }
     })
+
+    const pin = useMutation(pinNotice, {
+        onSuccess: () => {
+            refetch();
+        }
+    })
+
 
     const tableRef = useRef(null);
     const {onDownload} = useDownloadExcel({
@@ -53,7 +61,7 @@ export default function ApplicationManagement() {
                     <Button
                         className="notice-aside--notice-area-button"
                         text={`공지\n하기`}
-                        action={() => mutate({
+                        action={() => create.mutate({
                             notice: notice,
                             applicationId: id,
                         })}
@@ -61,12 +69,15 @@ export default function ApplicationManagement() {
                 </div>
                 <div className="notice-aside--notice">
                     {
-                        data?.noticeList?.map(n => (
+                        data?.noticeList?.map((n, index) => (
                             <Notice
                                 text={n.notice}
                                 author={n.author}
                                 time={n.createdAt}
                                 isPinned={n.isPinned}
+                                pin={() => pin.mutate(n.id)}
+                                readOnly={false}
+                                key={index}
                             />
                         ))
                     }
@@ -119,17 +130,18 @@ export default function ApplicationManagement() {
                                         </td>
                                         {r.answerList?.map((a, index) => (
                                             <td key={index}>
-                                                    {
-                                                        checkUrlForm(a) ?
-                                                            <a href={a} target="_blank">
-                                                                <span className="application-management--result-table--link"/>
-                                                                <span className="hidden">{a}</span>
-                                                            </a>
-                                                            :
-                                                            <span>
+                                                {
+                                                    checkUrlForm(a) ?
+                                                        <a href={a} target="_blank">
+                                                            <span
+                                                                className="application-management--result-table--link"/>
+                                                            <span className="hidden">{a}</span>
+                                                        </a>
+                                                        :
+                                                        <span>
                                                                 {a}
                                                             </span>
-                                                    }
+                                                }
                                             </td>
                                         ))
 
