@@ -29,6 +29,7 @@ export default function Header() {
         setUser({
             token: null,
             authority: null,
+            name: null,
         })
     }
 
@@ -103,7 +104,7 @@ export default function Header() {
                     <div className='header_login_button'>
                         {
                             user?.authority ?
-                                <button onClick={logout} className='login-button'>로그아웃</button>
+                                <button onClick={logout} className='login-button'>{user.name}</button>
                                 :
                                 <button onClick={openLoginModal} className='login-button'>로그인</button>
                         }

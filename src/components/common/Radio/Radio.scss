@@ -25,9 +25,10 @@
       height: 86%;
       content: '';
       display: none;
-      left: 7%;
       position: relative;
-      top: 7%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     &:checked {

@@ -15,9 +15,11 @@ export default function LoginModal({closeModal}) {
         onSuccess: (data) => {
             localStorage.setItem("token", data.accessToken);
             localStorage.setItem("authority", data.authority);
+            localStorage.setItem("name", data.name);
             setUser({
                 token: data.accessToken,
-                authority: data.authority
+                authority: data.authority,
+                name: data.name,
             })
             closeModal();
         }
@@ -65,10 +67,16 @@ export default function LoginModal({closeModal}) {
                             </div>
                             <div className="login-right-login-button-area">
                                 <div className="login-right-login-button--basic">
-                                    <button onClick={() => mutate({
-                                        email: request.email,
-                                        password: request.password
-                                    })}>로그인</button>
+                                    <button onClick={() => {
+                                        if (!request.email.endsWith("@bssm.hs.kr")) {
+                                            request.email += "@bssm.hs.kr";
+                                        }
+
+                                        mutate({
+                                            email: request.email,
+                                            password: request.password
+                                        })
+                                    }}>로그인</button>
                                 </div>
                                 <div className="login-right-login-button--google">
                                     <button

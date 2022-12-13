@@ -5,11 +5,11 @@ import TextBox from "../../common/TextBox/TextBox";
 import jwtDecode from "jwt-decode";
 import {useMutation} from "react-query";
 import {joinStudent, joinTeacher} from "../../../utils/api/user";
-import {useRecoilValue} from "recoil";
+import {useRecoilState} from "recoil";
 import {userState} from "../../../utils/atom/user";
 
 export default function SignUpModal({closeModal}) {
-    const user = useRecoilValue(userState);
+    const [user, setUser] = useRecoilState(userState);
     const [authority, setAuthority] = useState("");
     const [request, setRequest] = useState({});
 
@@ -40,6 +40,10 @@ export default function SignUpModal({closeModal}) {
 
     const submit = () => {
         if (request.password !== request.passwordCheck) alert('비밀번호가 다름ㅂ니다')
+        setUser({
+            ...user,
+            name: request.name
+        })
         if (authority === "ROLE_STUDENT") {
             student.mutate({
                 admissionYear: parseInt(request.email.substring(0, 4)),

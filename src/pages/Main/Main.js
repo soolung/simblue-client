@@ -21,9 +21,12 @@ export default function Main() {
         onSuccess: (data) => {
             localStorage.setItem("token", data.accessToken);
             localStorage.setItem("authority", data.authority);
+            localStorage.setItem("name", data.name);
+
             setUser({
                 token: data.accessToken,
-                authority: data.authority
+                authority: data.authority,
+                name: data.name
             })
 
             if (!data?.login) {
