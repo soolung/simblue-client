@@ -154,7 +154,7 @@
       display: inline-block;
     }
 
-    thead {
+    .application-management--result-table--field {
       font-weight: 500;
 
       td {
@@ -162,12 +162,12 @@
         border-bottom: 1px solid $grey;
       }
 
-      tr:first-child td:first-child {
+      td:first-child {
         border-top-left-radius: 10px;
         border-left: 1px solid $grey;
       }
 
-      tr:first-child td:last-child {
+      td:last-child {
         border-top-right-radius: 10px;
         border-right: 1px solid $grey;
       }

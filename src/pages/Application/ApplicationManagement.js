@@ -103,7 +103,6 @@ export default function ApplicationManagement() {
                 <table className="application-management--result-table"
                        ref={tableRef}
                 >
-                    <thead>
                     <tr className="application-management--result-table--field">
                         <td>학번</td>
                         <td>이름</td>
@@ -114,7 +113,6 @@ export default function ApplicationManagement() {
                         ))
                         }
                     </tr>
-                    </thead>
                     <tbody>
                     {data?.userResponseList?.length > 0
                         ?
