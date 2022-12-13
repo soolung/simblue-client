@@ -48,6 +48,7 @@
     .notice-aside--notice-area-button {
       width: 23%;
       height: 100%;
+      padding: 0 5%;
 
       span {
         font-size: 25px;
@@ -142,6 +143,15 @@
       color: $medium-grey;
     }
 
+    .application-management--result-table--link {
+      background: url("http://localhost:3000/images/link.svg") no-repeat 0 0;
+      background-size: 20px 20px;
+      width: 20px;
+      height: 20px;
+      content: '';
+      display: inline-block;
+    }
+
     thead {
       font-weight: 500;
 
@@ -203,7 +213,7 @@
     }
 
     td {
-      padding: 15px 2px;
+      padding: 15px 15px;
       background-color: #fff;
       border: 1px solid #fff;
       word-break: keep-all;

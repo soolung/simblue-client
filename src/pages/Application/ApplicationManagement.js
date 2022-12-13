@@ -8,7 +8,8 @@ import {getApplicationResult} from "../../utils/api/application";
 import {useParams} from "react-router-dom";
 import Loading from "../../components/common/Loading/Loading";
 import {createNotice} from "../../utils/api/notice";
-import {DownloadTableExcel, useDownloadExcel} from "react-export-table-to-excel";
+import {useDownloadExcel} from "react-export-table-to-excel";
+import {checkUrlForm} from "../../utils/etc/LinkChecker";
 
 export default function ApplicationManagement() {
     const {id} = useParams();
@@ -51,7 +52,7 @@ export default function ApplicationManagement() {
                     />
                     <Button
                         className="notice-aside--notice-area-button"
-                        text="공지 하기"
+                        text={`공지\n하기`}
                         action={() => mutate({
                             notice: notice,
                             applicationId: id,
@@ -85,7 +86,8 @@ export default function ApplicationManagement() {
                     </p>
                     <p className="application-management-application-header-description">{data?.application?.description}</p>
                     <p className="application-management-application-header-time">- {data?.application?.isAlways ? '상시' : data?.application?.endDate}</p>
-                    <img className="application-management--export" src="/images/export.svg" alt="export" onClick={onDownload}/>
+                    <img className="application-management--export" src="/images/export.svg" alt="export"
+                         onClick={onDownload}/>
                 </div>
                 <table className="application-management--result-table"
                        ref={tableRef}
@@ -94,8 +96,8 @@ export default function ApplicationManagement() {
                     <tr className="application-management--result-table--field">
                         <td>학번</td>
                         <td>이름</td>
-                        {data?.questionList?.map(q => (
-                            <td>
+                        {data?.questionList?.map((q, index) => (
+                            <td key={index}>
                                 {q}
                             </td>
                         ))
@@ -107,17 +109,27 @@ export default function ApplicationManagement() {
                         ?
                         <>
                             {
-                                data?.userResponseList?.map(r => (
-                                    <tr className="application-management--result-table--content">
+                                data?.userResponseList?.map((r, index) => (
+                                    <tr className="application-management--result-table--content" key={index}>
                                         <td>
                                             {r.studentNumber}
                                         </td>
                                         <td>
                                             {r.name}
                                         </td>
-                                        {r.answerList?.map(a => (
-                                            <td>
-                                                {a}
+                                        {r.answerList?.map((a, index) => (
+                                            <td key={index}>
+                                                    {
+                                                        checkUrlForm(a) ?
+                                                            <a href={a} target="_blank">
+                                                                <span className="application-management--result-table--link"/>
+                                                                <span className="hidden">{a}</span>
+                                                            </a>
+                                                            :
+                                                            <span>
+                                                                {a}
+                                                            </span>
+                                                    }
                                             </td>
                                         ))
 
