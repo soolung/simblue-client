@@ -14,6 +14,7 @@ export default function Application(props) {
             />
         )
     }
+
     return (
         <>
             <div className="application" onClick={openApplicationModal}>
