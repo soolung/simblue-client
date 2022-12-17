@@ -20,14 +20,17 @@
         float: left;
 
         .create-header-left-emoji {
-          background-color: $grey;
-          font-size: 50px;
-          width: 80px;
-          padding: 10px;
-          border-radius: 10px;
-          display: inline-block;
-          height: 100%;
-          border: none;
+
+          .create-header-left-emoji-input {
+            background-color: $grey;
+            font-size: 50px;
+            width: 80px;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            height: 100%;
+            border: none;
+          }
         }
 
         .create-header-left-title {

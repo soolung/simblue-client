@@ -1,0 +1,11 @@
+@import "../../../styles/common";
+
+.emoji-modal {
+  display: none;
+
+  &.show {
+    display: block;
+    position: absolute;
+    bottom: 0;
+  }
+}
