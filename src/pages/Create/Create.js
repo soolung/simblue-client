@@ -8,12 +8,12 @@ import Button from "../../components/Button/Button";
 import {useMutation} from "react-query";
 import {createApplication} from "../../utils/api/application";
 import {useNavigate} from "react-router-dom";
-import EmojiModal from "../../components/Create/EmojiModal/EmojiModal";
+import EmojiPicker, {EmojiStyle} from "emoji-picker-react";
 
 
 const Create = () => {
     const navigate = useNavigate()
-    const [emojiModalIsOpen, setEmojiModalIsOpen] = useState(false)
+    const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
     const {mutate} = useMutation(createApplication, {
         onSuccess: () => {
             navigate('/')
@@ -42,11 +42,13 @@ const Create = () => {
         })
     }
 
-    const emojiChange = emoji => {
+    const emojiChange = e => {
         setRequest({
             ...request,
-            emoji: emoji
+            emoji: e.emoji
         })
+
+        setEmojiPickerIsOpen(false)
     }
 
     const handleQuestion = (q, index) => {
@@ -119,14 +121,18 @@ const Create = () => {
                                 type="text"
                                 name="emoji"
                                 value={request?.emoji}
-                                onClick={() => setEmojiModalIsOpen(true)}
+                                onClick={() => setEmojiPickerIsOpen(true)}
                                 readOnly={true}
                             />
-                            <EmojiModal
-                                isOpen={emojiModalIsOpen}
-                                close={() => setEmojiModalIsOpen(false)}
-                                chooseEmoji={emojiChange}
-                            />
+                            {emojiPickerIsOpen ?
+                                <EmojiPicker
+                                    onEmojiClick={emojiChange}
+                                    emojiStyle={EmojiStyle.NATIVE}
+                                    width="30vw"
+                                />
+                                :
+                                <></>
+                            }
                         </div>
                         <Text
                             className='create-header-left-title'

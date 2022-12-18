@@ -12,6 +12,7 @@ import {useSetRecoilState} from "recoil";
 import {userState} from "../../utils/atom/user";
 import {getFourLatestApplications} from "../../utils/api/application";
 import useModal from "../../hooks/useModal";
+import EmojiPicker from "emoji-picker-react";
 
 export default function Main() {
     const {openModal, closeModal} = useModal()

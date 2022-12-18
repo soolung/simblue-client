@@ -20,6 +20,7 @@
         float: left;
 
         .create-header-left-emoji {
+          position: relative;
 
           .create-header-left-emoji-input {
             background-color: $grey;
@@ -133,4 +134,19 @@
     left: 50%;
     transform: translate(-50%, 0);
   }
+}
+
+.__EmojiPicker__.epr-emoji-native {
+  font-family: Tossface, sans-serif !important;
+}
+
+.EmojiPickerReact {
+  position: absolute !important;
+  top: 82.5px;
+
+  --epr-bg-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.epr-emoji-list li {
+  display: block !important;
 }
