@@ -20,14 +20,18 @@
         float: left;
 
         .create-header-left-emoji {
-          background-color: $grey;
-          font-size: 50px;
-          width: 80px;
-          padding: 10px;
-          border-radius: 10px;
-          display: inline-block;
-          height: 100%;
-          border: none;
+          position: relative;
+
+          .create-header-left-emoji-input {
+            background-color: $grey;
+            font-size: 50px;
+            width: 80px;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            height: 100%;
+            border: none;
+          }
         }
 
         .create-header-left-title {
@@ -130,4 +134,19 @@
     left: 50%;
     transform: translate(-50%, 0);
   }
+}
+
+.__EmojiPicker__.epr-emoji-native {
+  font-family: Tossface, sans-serif !important;
+}
+
+.EmojiPickerReact {
+  position: absolute !important;
+  top: 82.5px;
+
+  --epr-bg-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.epr-emoji-list li {
+  display: block !important;
 }

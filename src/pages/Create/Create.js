@@ -8,10 +8,12 @@ import Button from "../../components/Button/Button";
 import {useMutation} from "react-query";
 import {createApplication} from "../../utils/api/application";
 import {useNavigate} from "react-router-dom";
+import EmojiPicker, {EmojiStyle} from "emoji-picker-react";
 
 
 const Create = () => {
     const navigate = useNavigate()
+    const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
     const {mutate} = useMutation(createApplication, {
         onSuccess: () => {
             navigate('/')
@@ -38,6 +40,15 @@ const Create = () => {
             ...request,
             [e.target.name]: e.target.value
         })
+    }
+
+    const emojiChange = e => {
+        setRequest({
+            ...request,
+            emoji: e.emoji
+        })
+
+        setEmojiPickerIsOpen(false)
     }
 
     const handleQuestion = (q, index) => {
@@ -104,13 +115,25 @@ const Create = () => {
             <div className='create-header'>
                 <div className='create-header-top'>
                     <div className='create-header-left'>
-                        <input
-                            className="create-header-left-emoji emoji"
-                            type="text"
-                            name="emoji"
-                            value={request?.emoji}
-                            onChange={handleChange}
-                        />
+                        <div className="create-header-left-emoji">
+                            <input
+                                className="create-header-left-emoji-input emoji"
+                                type="text"
+                                name="emoji"
+                                value={request?.emoji}
+                                onClick={() => setEmojiPickerIsOpen(true)}
+                                readOnly={true}
+                            />
+                            {emojiPickerIsOpen ?
+                                <EmojiPicker
+                                    onEmojiClick={emojiChange}
+                                    emojiStyle={EmojiStyle.NATIVE}
+                                    width="30vw"
+                                />
+                                :
+                                <></>
+                            }
+                        </div>
                         <Text
                             className='create-header-left-title'
                             placeholder='제목'
