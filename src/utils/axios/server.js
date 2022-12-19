@@ -10,8 +10,6 @@ server.interceptors.request.use(
         return config;
     },
     function (error) {
-        console.error('-------- request error!!!!')
-        console.error(error.data)
         return Promise.reject(error);
     }
 );
@@ -22,8 +20,16 @@ server.interceptors.response.use(
     },
 
     function (error) {
-        console.error('-------- response error!!!!')
-        console.error(error.data)
+        if (error.response && error.response.status) {
+            console.error(error.response.data)
+            // switch (error.response.status) {
+            //     case 401:
+            //         break;
+            //     default:
+            //         return Promise.reject(error);
+            // }
+        }
+
         return Promise.reject(error);
     }
 );
