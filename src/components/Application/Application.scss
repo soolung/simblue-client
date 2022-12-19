@@ -34,6 +34,16 @@
   .application-comment {
     padding-top: 10px;
     font-weight: 300;
+    max-height: 50%;
+    width: 100%;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    -webkit-line-clamp: 3;
   }
 
   .application-end-date {
