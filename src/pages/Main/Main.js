@@ -12,7 +12,6 @@ import {useSetRecoilState} from "recoil";
 import {userState} from "../../utils/atom/user";
 import {getFourLatestApplications} from "../../utils/api/application";
 import useModal from "../../hooks/useModal";
-import EmojiPicker from "emoji-picker-react";
 
 export default function Main() {
     const {openModal, closeModal} = useModal()
@@ -49,7 +48,7 @@ export default function Main() {
 
     useEffect(() => {
         const q = queryString.parse(window.location.search);
-        if (q.code !== undefined) {
+        if (q.code !== undefined && !localStorage.name) {
             mutate(q.code)
         }
     }, [])
