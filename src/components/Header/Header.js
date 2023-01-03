@@ -81,6 +81,7 @@ export default function Header() {
                                     :
                                     <></>
                                 }
+                                <li className='header-nav-li'><a href="https://soolung.notion.site/c351137b354147d6b54b9beabc745caa" target="_blank">도움말</a></li>
                             </ul>
                             {/* </>
                             :
