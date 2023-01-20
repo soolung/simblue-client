@@ -1,15 +1,21 @@
 import "./Header.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { userState } from "../../utils/atom/user";
+import { useLocation } from "react-router";
+import { userState, } from "../../utils/atom/user";
 import { AiOutlineBars } from "react-icons/ai";
 export default function Header() {
-  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isNavVisible, setIsNavVisible] = useState(false);
+  const { pathname } = useLocation();
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
   };
+
+  useEffect(() => {
+    setIsNavVisible(false);
+}, [pathname]);  // pathname이 변화하면 메뉴를 닫을 수 잇도록
 
   const [user, setUser] = useRecoilState(userState);
   const [searchText, setSearchText] = useState("");
@@ -29,7 +35,7 @@ export default function Header() {
   
   return (
     <>
-      <header>
+      <header  isNavVisible={isNavVisible}> {/*메뉴 클릭시 초기화 될 구역 */}
         <div className="header-header">
           <div className="header-inner">
             <div className="resheader-top">
