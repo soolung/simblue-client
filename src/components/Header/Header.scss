@@ -24,7 +24,8 @@ header {
       }
     }
     .header-category-ul {
-      li {
+      .header-nav-li {
+        padding: 0px 20px;
         a {
           padding: 5px 5px;
           font-size: 18px;
@@ -53,8 +54,6 @@ header {
     }
   }
 }
-
-
 
 .search {
   position: relative;
@@ -116,17 +115,17 @@ header {
 .hamburger {
   display: none;
   font-size: 20px;
-  padding-left: 130px;
+  padding-left: 50px;
   background-color: transparent;
 }
 @media screen and (max-width: 600px) {
-  .header-header{
+  .header-header {
     width: 100vw;
   }
-  .search{
+  .search {
     display: none;
   }
-  .resheader-top{
+  .resheader-top {
     display: flex;
     justify-content: space-between;
   }
@@ -141,7 +140,13 @@ header {
   .header-nav-li {
     text-align: center;
     width: 100%;
-    padding: 10px 0px;
+    a{
+      line-height: 40px;
+    }
+  }
+  .login-button{
+    margin: 10px 0px;
+
   }
   .hamburger {
     display: block;

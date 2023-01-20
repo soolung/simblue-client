@@ -77,6 +77,16 @@ export default function Header() {
                         <a>둘러보기</a>
                       </Link>
                     </li>
+                    <li className="header-nav-li">
+                      <Link to="/look">
+                        <a>둘러보기</a>
+                      </Link>
+                    </li>
+                    <li className="header-nav-li">
+                      <Link to="/look">
+                        <a>만들기</a>
+                      </Link>
+                    </li>
                     {user?.authority && (
                       <li className="header-nav-li">
                         <Link to="/record">
