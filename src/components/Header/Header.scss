@@ -1,154 +1,41 @@
 @import '../../styles/common.scss';
-header{
+header {
   position: fixed;
   top: 0px;
   width: 100vw;
-  display: flex;
-  justify-content: center;
   z-index: 100;
   background-color: white;
   padding: 10px 0px;
 }
-.header-inner{
-  align-items: center;
-  width: 70vw;
-  display: flex;
-  justify-content: space-between;
-  .header-logo{
-    .header_logo{
-      .logo-font{
+.header-header {
+  margin: 0 auto;
+  width: 80vw;
+  .header-inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    .header-logo {
+      .header_logo {
+        .logo-font {
           position: relative;
           bottom: 7px;
           left: 5px;
-      }
-    }
-  }
-  .header-category-ul{
-    li {
-      a{
-        padding: 5px 5px;
-        font-size: 18px;
-        font-weight: 500;
-        border-radius: 12px;
-        &:hover {
-          cursor: pointer;
-          background-color: $light-grey;
         }
       }
     }
-  }
-  .search {
-    position: relative;
-    display: inline-block;
-    padding-left: 6px;
-
-    input[type="text"] {
-      width: 220px;
-      height: 34px;
-      padding: 0 60px 0 14px;
-      border: 1px solid $light-grey;
-      border-radius: 6px;
-      background-color: $light-grey;
-      font-weight: 400;
-      font-size: 12px;
-      color: #666;
-      line-height: 16px;
-      outline: none;
-
-      &::placeholder {
-        color: #cccccc;
-      }
-
-      &:focus {
-        background-color: white;
-        color: #333;
+    .header-category-ul {
+      li {
+        a {
+          padding: 5px 5px;
+          font-size: 18px;
+          font-weight: 500;
+          border-radius: 12px;
+          &:hover {
+            cursor: pointer;
+            background-color: $light-grey;
+          }
+        }
       }
     }
-
-    .search-delete {
-      position: absolute;
-      top: 0;
-      right: 30px;
-      width: 36px;
-      height: 36px;
-      border: 0;
-      background: url(https://res.kurly.com/pc/ico/2010/ico_search_del.svg) no-repeat 50% 50%;
-      background-size: 12px 12px;
-    }
-
-    .search-delete-show {
-      opacity: 1;
-    }
-
-    .search-delete-no {
-      opacity: 0;
-    }
-
-    .search-go {
-      position: absolute;
-      right: 5px;
-      top: 3px;
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  .login-button {
-    font-size: 18px;
-    font-weight: 500;
-    padding: 5px 18px;
-    border-radius: 12px;
-    border-color: transparent;
-    background-color: transparent;
-
-    &:hover {
-      background-color: $light-grey;
-      cursor: pointer;
-    }
-  }
-}
-
-@media screen and (max-width: 820px){
-
-  .header-inner{
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .header-category-ul{
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .header-category-ul li{
-    width: 100%;
-    text-align: center;
-  }
-  .header_login_button{
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 1185px) {
-  .search {
-    input {
-      display: none;
-    }
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-  .navigation-menu ul {
-    /* previous styles */
-    display: none;
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-  .navigation-menu.expanded ul {
-    display: block;
   }
 }
