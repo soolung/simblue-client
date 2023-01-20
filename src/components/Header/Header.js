@@ -1,10 +1,8 @@
 import "./Header.scss";
-import LoginModal from "../Modal/Login/LoginModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
-import useModal from "../../hooks/useModal";
 import { AiOutlineBars } from "react-icons/ai";
 export default function Header() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -13,7 +11,6 @@ export default function Header() {
     setIsNavVisible(!isNavVisible);
   };
 
-  const { openModal, closeModal } = useModal();
   const [user, setUser] = useRecoilState(userState);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
@@ -29,20 +26,7 @@ export default function Header() {
   const resetSearchText = (e) => {
     setSearchText("");
   };
-
-  const logout = () => {
-    localStorage.clear();
-    setUser({
-      token: null,
-      authority: null,
-      name: null,
-    });
-  };
-
-  const openLoginModal = () => {
-    openModal(<LoginModal closeModal={closeModal} />);
-  };
-
+  
   return (
     <>
       <header>
@@ -124,15 +108,12 @@ export default function Header() {
                   />
                 </div>
                 <div className="header_login_button">
-                  {user?.authority ? (
-                    <button onClick={logout} className="login-button">
-                      {user.name}
-                    </button>
-                  ) : (
-                    <button onClick={openLoginModal} className="login-button">
+                    <Link to ="/login">
+                    <a className="login-button">
                       로그인
-                    </button>
-                  )}
+                    </a>
+                  
+                    </Link>
                 </div>
               </>
             )}
