@@ -115,6 +115,9 @@ header {
 
 .hamburger {
   display: none;
+  font-size: 20px;
+  padding-left: 130px;
+  background-color: transparent;
 }
 @media screen and (max-width: 600px) {
   .header-header{
@@ -138,6 +141,7 @@ header {
   .header-nav-li {
     text-align: center;
     width: 100%;
+    padding: 10px 0px;
   }
   .hamburger {
     display: block;
