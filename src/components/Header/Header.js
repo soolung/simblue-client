@@ -124,15 +124,12 @@ export default function Header() {
                   />
                 </div>
                 <div className="header_login_button">
-                  {user?.authority ? (
-                    <button onClick={logout} className="login-button">
-                      {user.name}
-                    </button>
-                  ) : (
-                    <button onClick={openLoginModal} className="login-button">
+                    <Link to ="/login">
+                    <a className="login-button">
                       로그인
-                    </button>
-                  )}
+                    </a>
+                  
+                    </Link>
                 </div>
               </>
             )}
