@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
 import useModal from "../../hooks/useModal";
-import styled, { css } from "styled-components";
 import { AiOutlineBars } from "react-icons/ai";
-import useMedia from "../../hooks/useMedia";
 export default function Header() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
+  const toggleNav = () => {
+    setIsNavVisible(!isNavVisible);
+  };
 
   const { openModal, closeModal } = useModal();
   const [user, setUser] = useRecoilState(userState);
@@ -46,6 +48,7 @@ export default function Header() {
       <header>
         <div className="header-header">
           <div className="header-inner">
+            <div className="resheader-top">
             <div className="header-logo">
               <Link to="/">
                 <ul className="header_logo">
@@ -60,77 +63,77 @@ export default function Header() {
                 </ul>
               </Link>
             </div>
-            {/* 
-                    <button
-                        className="hamburger"
-                        onClick={() => {
-                            setIsNavExpanded(!isNavExpanded)
-                        }}
-                    >
-                        </button> */}
 
-            <div className="header-category-total">
-              <ul className="header-category-ul">
-                <li className="header-nav-li">
-                  <Link to="/look">
-                    <a>둘러보기</a>
-                  </Link>
-                </li>
-                {user?.authority && (
-                  <li className="header-nav-li">
-                    <Link to="/record">
-                      <a>기록보기</a>
-                    </Link>
-                  </li>
-                )}
-                {user?.authority === "ROLE_TEACHER" ? (
-                  <li className="header-nav-li">
-                    <Link to="/create">
-                      <a>만들기</a>
-                    </Link>
-                  </li>
-                ) : (
-                  <></>
-                )}
-              </ul>
+            <button onClick={toggleNav} className="hamburger">
+              <AiOutlineBars />
+            </button>
             </div>
+            {isNavVisible && (
+              <>
+                <div className="header-category-total">
+                  <ul className="header-category-ul">
+                    <li className="header-nav-li">
+                      <Link to="/look">
+                        <a>둘러보기</a>
+                      </Link>
+                    </li>
+                    {user?.authority && (
+                      <li className="header-nav-li">
+                        <Link to="/record">
+                          <a>기록보기</a>
+                        </Link>
+                      </li>
+                    )}
+                    {user?.authority === "ROLE_TEACHER" ? (
+                      <li className="header-nav-li">
+                        <Link to="/create">
+                          <a>만들기</a>
+                        </Link>
+                      </li>
+                    ) : (
+                      <></>
+                    )}
+                  </ul>
+                </div>
 
-            <div className="search">
-              <input
-                type="text"
-                placeholder="검색어를 입력해주세요."
-                value={searchText}
-                onChange={writeSearchText}
-                onFocus={toggleSearchTextOnFocus}
-                onBlur={toggleSearchTextOnFocus}
-              />
-              <button
-                className={
-                  "search-delete " +
-                  (searchText.length > 0 && searchTextOnFocus
-                    ? "search-delete-show"
-                    : "search-delete-no")
-                }
-                onClick={resetSearchText}
-              />
-              <input
-                type="image"
-                className="search-go"
-                src={"https://ifh.cc/g/nXpwoz.png"}
-                alt="search-go"
-              />
-            </div>
-            <div className="header_login_button">
-              {user?.authority ? (
-                <button onClick={logout} className="login-button">
-                  {user.name}
-                </button>
-              ) : (
-                <button onClick={openLoginModal} className="login-button">
-                  로그인
-                </button>
-              )}
-            </div>
+                <div className="search">
+                  <input
+                    type="text"
+                    placeholder="검색어를 입력해주세요."
+                    value={searchText}
+                    onChange={writeSearchText}
+                    onFocus={toggleSearchTextOnFocus}
+                    onBlur={toggleSearchTextOnFocus}
+                  />
+                  <button
+                    className={
+                      "search-delete " +
+                      (searchText.length > 0 && searchTextOnFocus
+                        ? "search-delete-show"
+                        : "search-delete-no")
+                    }
+                    onClick={resetSearchText}
+                  />
+                  <input
+                    type="image"
+                    className="search-go"
+                    src={"https://ifh.cc/g/nXpwoz.png"}
+                    alt="search-go"
+                  />
+                </div>
+                <div className="header_login_button">
+                  {user?.authority ? (
+                    <button onClick={logout} className="login-button">
+                      {user.name}
+                    </button>
+                  ) : (
+                    <button onClick={openLoginModal} className="login-button">
+                      로그인
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </header>
