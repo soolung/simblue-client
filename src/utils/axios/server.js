@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const server = axios.create({
-    baseURL: "http://10.150.150.191:9090",
+    baseURL: process.env.REACT_APP_BASE_URL,
     timeout: 10000
 });
 

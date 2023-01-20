@@ -49,24 +49,26 @@ export default function Header() {
         <div className="header-header">
           <div className="header-inner">
             <div className="resheader-top">
-            <div className="header-logo">
-              <Link to="/">
-                <ul className="header_logo">
-                  <li>
-                    <img src="https://ifh.cc/g/cs0mAl.png" alt="logo" />
-                  </li>
-                  {/*a 태그로 하고 싶은데 외안대*/}
-                  <li className="logo-font">
-                    <p className="logo-simblue">심청이</p>
-                    <p className="logo-bssm">부산소프트웨어마이스터고등학교</p>
-                  </li>
-                </ul>
-              </Link>
-            </div>
+              <div className="header-logo">
+                <Link to="/">
+                  <ul className="header_logo">
+                    <li>
+                      <img src="https://ifh.cc/g/cs0mAl.png" alt="logo" />
+                    </li>
+                    {/*a 태그로 하고 싶은데 외안대*/}
+                    <li className="logo-font">
+                      <p className="logo-simblue">심청이</p>
+                      <p className="logo-bssm">
+                        부산소프트웨어마이스터고등학교
+                      </p>
+                    </li>
+                  </ul>
+                </Link>
+              </div>
 
-            <button onClick={toggleNav} className="hamburger">
-              <AiOutlineBars />
-            </button>
+              <button onClick={toggleNav} className="hamburger">
+                <AiOutlineBars />
+              </button>
             </div>
             {isNavVisible && (
               <>
@@ -75,16 +77,6 @@ export default function Header() {
                     <li className="header-nav-li">
                       <Link to="/look">
                         <a>둘러보기</a>
-                      </Link>
-                    </li>
-                    <li className="header-nav-li">
-                      <Link to="/look">
-                        <a>둘러보기</a>
-                      </Link>
-                    </li>
-                    <li className="header-nav-li">
-                      <Link to="/look">
-                        <a>만들기</a>
                       </Link>
                     </li>
                     {user?.authority && (
