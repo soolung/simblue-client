@@ -15,6 +15,7 @@ header {
     display: flex;
     justify-content: space-between;
     .header-logo {
+      -webkit-tap-highlight-color: transparent;
       .header_logo {
         .logo-font {
           position: relative;
@@ -27,6 +28,7 @@ header {
       .header-nav-li {
         padding: 0px 20px;
         a {
+          -webkit-tap-highlight-color: transparent;
           padding: 5px 5px;
           font-size: 18px;
           font-weight: 500;
@@ -143,13 +145,12 @@ header {
   .header-nav-li {
     text-align: center;
     width: 100%;
-    a{
+    a {
       line-height: 40px;
     }
   }
-  .login-button{
+  .login-button {
     margin: 10px 0px;
-
   }
   .hamburger {
     display: block;
