@@ -7,18 +7,26 @@ import { userState } from "../../utils/atom/user";
 import { AiOutlineBars } from "react-icons/ai";
 import useMedia from "../../hooks/useMedia";
 export default function Header() {
-  const isMobile = useMedia("(max-width: 600px)");
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  console.log(isNavVisible);
-  const { pathname } = useLocation();
+  const isMobile = useMedia("(max-width: 600px)"); // 반응형
+  const [isNavVisible, setIsNavVisible] = useState(true); // 헤더 기본값 true로 열려있게
+//   if (isMobile == 1) {
+//     console.log("모바일");
+//     console.log(isMobile);
+//     console.log(isNavVisible);
+//   } else {
+//     console.log("컴퓨터");
+//     console.log(isMobile);
+//   }
+
+  const { pathname } = useLocation(); // 경로
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
     console.log(isNavVisible);
-  };
+  }; // 버튼 누르면 닫히고 열리게
 
   useEffect(() => {
-    if (isMobile == 1) setIsNavVisible(false);
+    if (isMobile == 1) setIsNavVisible(false); // 모바일이면 경로 바뀔 때마다 헤더가 false로 닫힘
   }, [pathname]); // pathname이 변화하면 메뉴를 닫을 수 잇도록
 
   const [user, setUser] = useRecoilState(userState);
