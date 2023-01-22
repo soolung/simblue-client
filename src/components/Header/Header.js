@@ -61,7 +61,7 @@ export default function Header() {
                 <AiOutlineBars />
               </button>
             </div>
-            {isNavVisible && (
+            {isNavVisible || (
               <>
                 <div className="header-category-total">
                   <ul className="header-category-ul">
