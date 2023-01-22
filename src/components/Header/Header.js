@@ -5,16 +5,20 @@ import { useRecoilState } from "recoil";
 import { useLocation } from "react-router";
 import { userState } from "../../utils/atom/user";
 import { AiOutlineBars } from "react-icons/ai";
+import useMedia from "../../hooks/useMedia";
 export default function Header() {
-  const [isNavVisible, setIsNavVisible] = useState(false);
+  const isMobile = useMedia("(max-width: 600px)");
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  console.log(isNavVisible);
   const { pathname } = useLocation();
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
+    console.log(isNavVisible);
   };
 
   useEffect(() => {
-    setIsNavVisible(false);
+    if (isMobile == 1) setIsNavVisible(false);
   }, [pathname]); // pathname이 변화하면 메뉴를 닫을 수 잇도록
 
   const [user, setUser] = useRecoilState(userState);
@@ -36,6 +40,7 @@ export default function Header() {
   return (
     <>
       <header isNavVisible={isNavVisible}>
+        {" "}
         {/*메뉴 클릭시 초기화 될 구역 */}
         <div className="header-header">
           <div className="header-inner">
@@ -56,12 +61,15 @@ export default function Header() {
                   </ul>
                 </Link>
               </div>
-
-              <button onClick={toggleNav} className="hamburger">
-                <AiOutlineBars />
-              </button>
+              {isMobile === 1 ? (
+                <button onClick={toggleNav} className="hamburger">
+                  <AiOutlineBars />
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
-            {isNavVisible || (
+            {isNavVisible && (
               <>
                 <div className="header-category-total">
                   <ul className="header-category-ul">
