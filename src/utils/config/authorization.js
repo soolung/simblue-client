@@ -1,7 +1,7 @@
 export const authorization = () => {
-    return {
-        headers: {
-            Authorization: `Bearer ${localStorage.token}`
-        }
-    }
-}
+  return {
+    headers: {
+      Authorization: `Bearer ${localStorage.accessToken}`,
+    },
+  };
+};
