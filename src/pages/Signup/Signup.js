@@ -60,7 +60,7 @@ export const Signup = () => {
 
     return (
         <>
-            <div className="signup">
+            <section className="signup">
                 <div className="img-box">
                     <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png" />
                     <p className="login-insa">환영합니다!</p>
@@ -129,7 +129,7 @@ export const Signup = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };
