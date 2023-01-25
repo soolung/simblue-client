@@ -6,29 +6,31 @@ import { useMutation } from "react-query";
 import { joinStudent, joinTeacher } from "../../utils/api/user";
 import { useRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
-
-
+import { useNavigate } from 'react-router-dom';
 
 export const Signup = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useRecoilState(userState);
     const [authority, setAuthority] = useState("");
     const [request, setRequest] = useState({});
 
     const student = useMutation(joinStudent, {
         onSuccess: () => {
+            navigate('/')
         }
     })
 
     const teacher = useMutation(joinTeacher, {
         onSuccess: () => {
+            navigate('/')
         }
     })
 
     useEffect(() => {
         setAuthority(user?.authority);
         setRequest({
-            ...request, email: user.token ? jwtDecode(user.token).email : null
-        })
+            ...request, email: user.accessToken ? jwtDecode(user.accessToken).email : null
+        });
     }, [user])
 
     const handleChange = e => {
@@ -93,7 +95,7 @@ export const Signup = () => {
                             name='passwordCheck'
                         />
                         {authority === "ROLE_STUDENT" ?
-                            <div className="inline-input">
+                            <>
                                 <TextBox
                                     className="sign-right-ment-num-student"
                                     type='text'
@@ -108,7 +110,7 @@ export const Signup = () => {
                                     onChange={handleChange}
                                     name='name'
                                 />
-                            </div>
+                            </>
                             :
                             <TextBox
                                 className="sign-right-ment-name-student"

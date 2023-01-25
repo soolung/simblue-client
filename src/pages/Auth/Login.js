@@ -1,25 +1,14 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import TextBox from "../../components/common/TextBox/TextBox";
-
-<
-<
-<
-<
-<
-<< HEAD
-  import {Link} from "react-router-dom";
-======
-=
 import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
-
->>>>>>>
-feat / refresh - token
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
   const { data } = useQuery("getGoogleAuthLink", getGoogleAuthLink);
   const [request, setRequest] = useState({});
@@ -36,6 +25,12 @@ export const Login = () => {
         authority: data.authority,
         name: data.name,
       });
+
+      if (!data?.login) {
+        navigate('/signup')
+      } else {
+        navigate('/')
+      }
     },
   });
 
