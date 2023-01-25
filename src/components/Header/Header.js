@@ -1,6 +1,6 @@
 import "./Header.scss";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useLocation } from "react-router";
 import { userState } from "../../utils/atom/user";
@@ -9,14 +9,7 @@ import useMedia from "../../hooks/useMedia";
 export default function Header() {
   const isMobile = useMedia("(max-width: 600px)"); // 반응형
   const [isNavVisible, setIsNavVisible] = useState(true); // 헤더 기본값 true로 열려있게
-//   if (isMobile == 1) {
-//     console.log("모바일");
-//     console.log(isMobile);
-//     console.log(isNavVisible);
-//   } else {
-//     console.log("컴퓨터");
-//     console.log(isMobile);
-//   }
+  const navigate = useNavigate();
 
   const { pathname } = useLocation(); // 경로
 
@@ -24,6 +17,16 @@ export default function Header() {
     setIsNavVisible(!isNavVisible);
     console.log(isNavVisible);
   }; // 버튼 누르면 닫히고 열리게
+
+  const logout = () => {
+    localStorage.clear();
+    setUser({
+      accessToken: null,
+      refreshToken: null,
+      authority: null,
+      name: null,
+    })
+  }
 
   useEffect(() => {
     if (isMobile == 1) setIsNavVisible(false); // 모바일이면 경로 바뀔 때마다 헤더가 false로 닫힘
@@ -130,10 +133,13 @@ export default function Header() {
                     alt="search-go"
                   />
                 </div>
-                <div className="header_login_button">
-                  <Link to="/login">
-                    <a className="login-button">로그인</a>
-                  </Link>
+                <div className='header_login_button'>
+                  {
+                    user?.authority ?
+                      <button onClick={logout} className='login-button'>{user.name}</button>
+                      :
+                      <button onClick={() => navigate('/login')} className='login-button'>로그인</button>
+                  }
                 </div>
               </>
             )}
