@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.scss";
 import TextBox from "../../components/common/TextBox/TextBox";
-
+import { Link } from "react-router-dom";
 export const Login = () => {
   return (
     <div className="login">
@@ -28,7 +28,9 @@ export const Login = () => {
         </div>
         <div className="to-signup">
           아직 회원이 아니신가요?
+          <Link to = "/signup">
           <span> 구글 계정으로 회원가입</span>
+          </Link>
         </div>
       </div>
     </div>
