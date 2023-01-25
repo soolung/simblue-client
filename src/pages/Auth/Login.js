@@ -23,6 +23,7 @@ export const Login = () => {
         authority: data.authority,
         name: data.name,
       });
+      window.location.href = "/";
     },
   });
 
