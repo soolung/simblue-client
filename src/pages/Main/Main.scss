@@ -1,14 +1,25 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
 .latest-application-list {
-    display: flex;
-    width: 70vw;
-    justify-content: space-between;
-    padding-top: 25px;
-    margin: 0 auto;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 85vw;
+  padding-top: 25px;
+  margin: 0 auto;
+  .application {
+    min-height: 20vh;
+    width: 16.5vw;
+    height: 35vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .latest-application-list {
+   
     .application {
-        width: 16.5vw;
-        height: 35vh;
+        margin-top: 10px;
+        height: auto;
     }
+  }
 }
