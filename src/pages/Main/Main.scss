@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 85vw;
+  width: 70vw;
   padding-top: 25px;
   margin: 0 auto;
   .application {
@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 600px) {
   .latest-application-list {
-   
+    width: 85vw;
     .application {
         margin-top: 10px;
         height: auto;
