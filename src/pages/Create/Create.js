@@ -33,6 +33,7 @@ const Create = () => {
         answerList: [{
             answer: "",
         }],
+        isRequired: true,
     }])
 
     const handleChange = e => {
@@ -65,6 +66,13 @@ const Create = () => {
         )
     }
 
+    const toggleIsRequired = (index) => {
+        setQuestionList(
+          [...questionList],
+          questionList[index].isRequired = !questionList[index].isRequired
+        )
+    }
+
     const addAnswer = (index) => {
         setQuestionList(
             [...questionList],
@@ -91,6 +99,7 @@ const Create = () => {
                     answerList: [{
                         answer: "",
                     }],
+                    isRequired: true,
                 }
             ],
         )
@@ -188,6 +197,7 @@ const Create = () => {
                         addAnswer={addAnswer}
                         handleAnswer={handleAnswer}
                         deleteAnswer={deleteAnswer}
+                        toggleIsRequired={toggleIsRequired}
                     />
                 ))
                 }
