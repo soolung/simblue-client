@@ -9,6 +9,7 @@ import ApplicationManagement from "./pages/Application/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
+import { Signup } from "./pages/Signup/Signup";
 
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
           <Route path="/create" element={<WithLogin authority="ROLE_TEACHER" children={<Create />} />} />

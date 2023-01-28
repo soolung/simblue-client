@@ -1,6 +1,6 @@
 @import '../../../styles/common';
 
-.question{
+.question {
   box-shadow: 0 16px 40px rgba(173, 173, 173, 0.2);
   width: 45vw;
 
@@ -50,13 +50,20 @@
     margin-top: 20px;
   }
 
-  .delete-question {
-    text-align: right;
-    margin-top: 20px;
+  .question-footer {
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
 
-    img {
-      width: 20px;
-      cursor: pointer;
+    .action-question-container {
+      display: flex;
+      gap: 5px;
+
+      .action-question {
+        display: inline-block;
+        width: 30px;
+        cursor: pointer;
+      }
     }
   }
 }

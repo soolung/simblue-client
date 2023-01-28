@@ -5,8 +5,10 @@ import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
   const { data } = useQuery("getGoogleAuthLink", getGoogleAuthLink);
   const [request, setRequest] = useState({});
@@ -23,7 +25,12 @@ export const Login = () => {
         authority: data.authority,
         name: data.name,
       });
-      window.location.href = "/";
+
+      if (!data?.login) {
+        navigate('/signup')
+      } else {
+        navigate('/')
+      }
     },
   });
 
@@ -44,15 +51,15 @@ export const Login = () => {
     });
   };
   return (
-    <div className="login">
+    <section className="login">
       <div className="img-box">
-        <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png" />
+        <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png"/>
         <p className="login-insa">환영합니다!</p>
       </div>
       <div className="login-form">
         <div className="login-title">
           <span>로그인</span>
-          <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png" />
+          <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png"/>
         </div>
         <p className="login-subtitle">학교 계정으로 로그인</p>
         <div className="input-box">
@@ -64,7 +71,7 @@ export const Login = () => {
             로그인
           </button>
           <button className="login-google-btn" onClick={() => window.location.replace(data)}>
-            <img src="https://ifh.cc/g/nNDjB0.png" alt="google" />
+            <img src="https://ifh.cc/g/nNDjB0.png" alt="google"/>
             <span>구글 계정으로 로그인</span>
           </button>
         </div>
@@ -73,6 +80,6 @@ export const Login = () => {
           <span onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

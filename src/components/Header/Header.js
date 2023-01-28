@@ -1,21 +1,36 @@
 import "./Header.scss";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useLocation } from "react-router";
-import { userState, } from "../../utils/atom/user";
+import { userState } from "../../utils/atom/user";
 import { AiOutlineBars } from "react-icons/ai";
+import useMedia from "../../hooks/useMedia";
 export default function Header() {
-  const [isNavVisible, setIsNavVisible] = useState(false);
-  const { pathname } = useLocation();
+  const isMobile = useMedia("(max-width: 600px)"); // 반응형
+  const [isNavVisible, setIsNavVisible] = useState(true); // 헤더 기본값 true로 열려있게
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation(); // 경로
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
-  };
+    console.log(isNavVisible);
+  }; // 버튼 누르면 닫히고 열리게
+
+  const logout = () => {
+    localStorage.clear();
+    setUser({
+      accessToken: null,
+      refreshToken: null,
+      authority: null,
+      name: null,
+    })
+  }
 
   useEffect(() => {
-    setIsNavVisible(false);
-}, [pathname]);  // pathname이 변화하면 메뉴를 닫을 수 잇도록
+    if (isMobile == 1) setIsNavVisible(false); // 모바일이면 경로 바뀔 때마다 헤더가 false로 닫힘
+  }, [pathname]); // pathname이 변화하면 메뉴를 닫을 수 잇도록
 
   const [user, setUser] = useRecoilState(userState);
   const [searchText, setSearchText] = useState("");
@@ -32,10 +47,12 @@ export default function Header() {
   const resetSearchText = (e) => {
     setSearchText("");
   };
-  
+
   return (
     <>
-      <header  isNavVisible={isNavVisible}> {/*메뉴 클릭시 초기화 될 구역 */}
+      <header isNavVisible={isNavVisible}>
+        {" "}
+        {/*메뉴 클릭시 초기화 될 구역 */}
         <div className="header-header">
           <div className="header-inner">
             <div className="resheader-top">
@@ -55,10 +72,13 @@ export default function Header() {
                   </ul>
                 </Link>
               </div>
-
-              <button onClick={toggleNav} className="hamburger">
-                <AiOutlineBars />
-              </button>
+              {isMobile === 1 ? (
+                <button onClick={toggleNav} className="hamburger">
+                  <AiOutlineBars />
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
             {isNavVisible && (
               <>
@@ -113,13 +133,13 @@ export default function Header() {
                     alt="search-go"
                   />
                 </div>
-                <div className="header_login_button">
-                    <Link to ="/login">
-                    <a className="login-button">
-                      로그인
-                    </a>
-                  
-                    </Link>
+                <div className='header_login_button'>
+                  {
+                    user?.authority ?
+                      <button onClick={logout} className='login-button'>{user.name}</button>
+                      :
+                      <button onClick={() => navigate('/login')} className='login-button'>로그인</button>
+                  }
                 </div>
               </>
             )}
