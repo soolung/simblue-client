@@ -82,3 +82,14 @@
     }
   }
 }
+
+@media screen and (max-width: 680px) {
+  .login {
+    .img-box {
+      display: none;
+    }
+    .login-form {
+      width: 75%;
+    }
+  }
+}
