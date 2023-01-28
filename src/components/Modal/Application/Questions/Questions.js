@@ -9,6 +9,7 @@ export default function Questions({items, handleResponse}) {
                 items?.map((i, index) => (
                     <Question
                         question={i.question}
+                        isRequired={i.isRequired}
                         answer={
                             <AnswerField
                                 q={i}
