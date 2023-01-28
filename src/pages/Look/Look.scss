@@ -25,14 +25,34 @@
 
   .look-application-section {
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 22px 2%;
+    gap: 1.3vw 1.3%;
     width: 100%;
 
     .application {
-      width: 23.5%;
-      height: 30vh;
+      width: 24.025%;
+      aspect-ratio: 1 / 1;
+      .application-title,
+      .application-end-date {
+        white-space: nowrap;
+      }
+      .application-comment {
+        padding: 0;
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .look {
+    width: 80vw;
+    .look-application-section > .application {
+      width: 48.7%;
+
+      .application-end-date {
+        font-size: 12px;
+      }
     }
   }
 }
