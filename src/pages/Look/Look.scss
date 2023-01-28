@@ -44,6 +44,20 @@
   }
 }
 
+@media screen and (max-width: 1160px) {
+  .look > .look-application-section > .application {
+    width: 32.4%;
+    .application-title {
+      .application-title-title {
+        font-size: 2.4vh;
+      }
+      .emoji {
+        display: none;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 590px) {
   .look {
     width: 80vw;
