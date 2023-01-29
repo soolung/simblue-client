@@ -53,7 +53,7 @@ export default function ApplicationModal() {
   const [notice, setNotice] = useState("");
 
   return (
-    <div className="application-page">
+    <>
       {isLoading || isFetching ? (
         <Loading />
       ) : (
@@ -67,7 +67,11 @@ export default function ApplicationModal() {
             data={data}
             id={id}
           />
-          <section className="application-page-application">
+          <section
+            className={`application-page-application ${
+              noticeIsOpened ? "half" : ""
+            }`}
+          >
             <div className="application-page-application-header">
               <p className="application-page-application-header-title">
                 <span className="emoji">{data?.emoji}</span>
@@ -100,6 +104,6 @@ export default function ApplicationModal() {
           </section>
         </>
       )}
-    </div>
+    </>
   );
 }
