@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Create.scss';
 import Question from '../../components/Create/Question/Question';
 import Text from "../../components/common/Text/Text";
@@ -137,16 +137,6 @@ const Create = () => {
   return (
     <>
       <section className='create-section'>
-        <Toggle
-          value={request.allowsDuplication}
-          onClick={() => {
-            setRequest((state) => ({
-              ...state,
-              allowsDuplication: !state.allowsDuplication,
-            }))
-            // console.log(request)
-          }}
-        />
         <div className='create-header'>
           <div className='create-header-top'>
             <div className='create-header-left'>
