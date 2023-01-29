@@ -1,4 +1,4 @@
-@import "../../../styles/common";
+@import "../../../styles/common.scss";
 
 .application-page {
   width: 100vw;
@@ -58,7 +58,7 @@
     }
 
     .application-page-application-submit {
-      width: 100%;
+      width: 80%;
       height: 40px;
 
       span {

@@ -1,7 +1,6 @@
-import "./ApplicationModal.scss";
-import Modal from "react-modal";
-import Notice from "../../Notice/Notice";
-import Button from "../../Button/Button";
+import "./ApplicationPage.scss";
+import Notice from "../../../components/Notice/Notice";
+import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
 import {
@@ -9,7 +8,7 @@ import {
   respondApplication,
 } from "../../../utils/api/application";
 import { useEffect, useState } from "react";
-import Loading from "../../common/Loading/Loading";
+import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { Navigate, useParams } from "react-router-dom";

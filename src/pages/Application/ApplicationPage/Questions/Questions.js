@@ -9,7 +9,7 @@ export default function Questions({ items, handleResponse }) {
         <Question // 이게 그 질문 텍스트
           question={i.question}
           isRequired={i.isRequired}
-          description="테스트"
+          description={i.description}
           answer={
             <AnswerField // 이게 input 들 선택해서 쓸수있는듯
               q={i}

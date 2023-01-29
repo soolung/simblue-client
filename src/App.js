@@ -5,9 +5,9 @@ import Main from "./pages/Main/Main";
 import Look from "./pages/Look/Look";
 import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
-import ApplicationManagement from "./pages/Application/ApplicationManagement";
+import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
-import ApplicationModal from "./components/Modal/Application/ApplicationModal";
+import ApplicationPage from "./pages/Application/ApplicationPage/ApplicationPage";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
@@ -45,7 +45,7 @@ function App() {
             }
           />
           {/* Application 페이지 */}
-          <Route path="/application/:id" element={<ApplicationModal />} />
+          <Route path="/application/:id" element={<ApplicationPage />} />
           {/* Application 관리 페이지 */}
           <Route
             path="/application/:id/manage"
