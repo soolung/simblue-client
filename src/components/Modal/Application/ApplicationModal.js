@@ -56,23 +56,21 @@ export default function ApplicationModal() {
       ) : (
         <>
           <div className="application-modal-notice">
-            <div className="application-modal-notice-inner">
-              {data?.noticeList?.length > 0 ? (
-                data?.noticeList?.map((n, index) => (
-                  <Notice
-                    text={n.notice}
-                    author={n.author}
-                    time={n.createdAt}
-                    isPinned={n.isPinned}
-                    key={index}
-                  />
-                ))
-              ) : (
-                <p className="application-modal-notice-no">
-                  공지사항이 없습니다.
-                </p>
-              )}
-            </div>
+            {data?.noticeList?.length > 0 ? (
+              data?.noticeList?.map((n, index) => (
+                <Notice
+                  text={n.notice}
+                  author={n.author}
+                  time={n.createdAt}
+                  isPinned={n.isPinned}
+                  key={index}
+                />
+              ))
+            ) : (
+              <p className="application-modal-notice-no">
+                공지사항이 없습니다.
+              </p>
+            )}
           </div>
           <div className="application-modal-application">
             <div className="application-modal-application-header">
@@ -88,7 +86,7 @@ export default function ApplicationModal() {
               </p>
             </div>
             <div className="application-modal-application-section">
-              <Questions
+              <Questions // 질문들의 데이터를 나열해줌
                 items={data?.questionList}
                 handleResponse={handleResponse}
               />

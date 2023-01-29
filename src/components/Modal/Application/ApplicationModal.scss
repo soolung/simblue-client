@@ -12,15 +12,9 @@
     width: 25%;
     height: 100vh;
     padding: 86px 30px 20px 30px;
-    background-color: $light-grey;
     float: left;
-    z-index: 1;
-
-    .application-modal-notice-inner {
-      width: 100%;
-      height: 100%;
-      overflow: scroll;
-    }
+    background-color: $light-grey;
+    overflow: scroll;
 
     .application-modal-notice-no {
       display: flex;
