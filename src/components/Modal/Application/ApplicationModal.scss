@@ -1,18 +1,20 @@
 @import "../../../styles/common";
 
 .application-modal {
-  // application
   width: 100vw;
   height: 100vh;
   display: inline-block;
   border-radius: 15px;
 
   .application-modal-notice {
-    width: 30%;
-    height: 100%;
-    padding: 5% 3%;
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100vh;
+    padding: 86px 30px 20px 30px;
     background-color: $light-grey;
     float: left;
+    z-index: 1;
 
     .application-modal-notice-inner {
       width: 100%;
