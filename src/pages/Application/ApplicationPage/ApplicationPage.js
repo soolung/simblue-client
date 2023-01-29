@@ -37,6 +37,9 @@ export default function ApplicationModal() {
       onSuccess: (data) => {
         setRequest([...data.questionList]); // setRequest 선생님들이 create한 질문 리스트를 말함
       },
+      onError: (err) => {
+        console.log(err);
+      },
     }
   );
 
