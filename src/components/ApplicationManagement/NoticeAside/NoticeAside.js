@@ -48,17 +48,21 @@ export default function NoticeAside({
           ""
         )}
         <div className="notice-aside--notice">
-          {data?.noticeList?.map((n, index) => (
-            <Notice
-              text={n.notice}
-              author={n.author}
-              time={n.createdAt}
-              isPinned={n.isPinned}
-              pin={() => pin.mutate(n.id)}
-              readOnly={false}
-              key={index}
-            />
-          ))}
+          {data?.noticeList > 0 ? (
+            data?.noticeList?.map((n, index) => (
+              <Notice
+                text={n.notice}
+                author={n.author}
+                time={n.createdAt}
+                isPinned={n.isPinned}
+                pin={() => pin.mutate(n.id)}
+                readOnly={false}
+                key={index}
+              />
+            ))
+          ) : (
+            <p className="notice-aside--notice-no">공지사항이 없습니다.</p>
+          )}
         </div>
       </aside>
       <button

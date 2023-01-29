@@ -11,10 +11,11 @@ import { useEffect, useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
 
 export default function ApplicationModal() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const user = useRecoilValue(userState);
 
@@ -22,8 +23,8 @@ export default function ApplicationModal() {
   const { mutate } = useMutation(respondApplication, {
     onSuccess: () => {
       alert("성공!");
-      Navigate("/");
-      // navigate로 main 으로 가줘여함
+      navigate("/");
+      // navigate로 main 으로 감
     },
   });
 
