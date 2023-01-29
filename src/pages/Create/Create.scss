@@ -143,6 +143,7 @@
 .EmojiPickerReact {
   position: absolute !important;
   top: 82.5px;
+  z-index: 2;
 
   --epr-bg-color: rgba(255, 255, 255, 0.7) !important;
 }
