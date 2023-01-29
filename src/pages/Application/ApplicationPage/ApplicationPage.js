@@ -26,6 +26,10 @@ export default function ApplicationModal() {
       navigate("/");
       // navigate로 main 으로 감
     },
+    onError: (err) => {
+      const errMessage = err.response.data.message;
+      alert(errMessage); // 에러 처리
+    },
   });
 
   const [request, setRequest] = useState([{}]);
