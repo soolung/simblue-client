@@ -1,11 +1,11 @@
 import './Question.scss';
 import Answer from "../Answer/Answer";
 import Toggle from '../../common/Toggle/Toggle';
+import Text from '../../common/Text/Text';
 
 const Question = ({
                     question,
-                    setQuestion,
-                    setType,
+                    handleQuestionChange,
                     index,
                     deleteQuestion,
                     addAnswer,
@@ -22,11 +22,13 @@ const Question = ({
           type='text'
           placeholder='질문'
           value={question?.question}
-          onChange={(e) => setQuestion(e.target.value, index)}
+          name='question'
+          onChange={(e) => handleQuestionChange(e, index)}
         />
         <select
           className='question-header-question-type'
-          onChange={e => setType(e.target.value, index)}
+          name='type'
+          onChange={e => handleQuestionChange(e, index)}
           value={question?.type}
         >
           <option value='TEXT'>주관식 (단답)</option>
@@ -35,6 +37,12 @@ const Question = ({
           <option value='RADIO'>객관식 질문</option>
           <option value='CHECKBOX'>체크 박스</option>
         </select>
+        <Text
+          className='question-header-description'
+          placeholder='설명'
+          name="description"
+          onChange={(e) => handleQuestionChange(e, index)}
+        />
       </div>
       {/* 답안 */}
       <div className='QuestionDiv-answer'>

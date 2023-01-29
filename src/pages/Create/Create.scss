@@ -2,10 +2,10 @@
 
 .create-section {
   height: 100vh;
+  width: 70vw;
+  margin: 0 auto;
 
   .create-header {
-    width: 70vw;
-    margin: 0 auto;
     padding: 15px 12px;
 
     .create-header-top {
@@ -87,11 +87,12 @@
           }
         }
       }
+    }
 
-      .create-header-description {
-        margin-top: 15px;
-        border-bottom-color: $medium-grey;
-      }
+    .create-header-description {
+      margin-top: 15px;
+      border-bottom-color: $medium-grey;
+
     }
   }
 
@@ -99,7 +100,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 100px 0;
+    padding: 50px 0;
   }
 
   .add-question-button {
