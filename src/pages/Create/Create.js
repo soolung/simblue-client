@@ -9,11 +9,14 @@ import { useMutation } from "react-query";
 import { createApplication } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
+import AdvancedSettingModal from '../../components/Modal/AdvancedSetting/AdvancedSettingModal';
+import Toggle from '../../components/common/Toggle/Toggle';
 
 
 const Create = () => {
   const navigate = useNavigate()
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
+  const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] = useState(false);
   const { mutate } = useMutation(createApplication, {
     onSuccess: () => {
       navigate('/')
@@ -25,8 +28,26 @@ const Create = () => {
     isAlways: false,
     title: '',
     description: '',
-
+    allowsDuplication: false,
   })
+
+  const advancedSettingModalData = [
+    {
+      name: "중복 허용",
+      setting: (
+        <Toggle
+          value={request.allowsDuplication}
+          onClick={() => {
+            setRequest({
+              ...request,
+              allowsDuplication: !request.allowsDuplication,
+            })
+          }}
+        />
+      )
+    }
+  ]
+
   const [questionList, setQuestionList] = useState([{
     type: "TEXT",
     question: "",
@@ -58,7 +79,6 @@ const Create = () => {
       [...questionList],
       questionList[index][e.target.name] = e.target.value
     )
-    console.log(questionList)
   }
 
   const toggleIsRequired = (index) => {
@@ -115,102 +135,116 @@ const Create = () => {
   }
 
   return (
-
-    <section className='create-section'>
-      <div className='create-header'>
-        <div className='create-header-top'>
-          <div className='create-header-left'>
-            <div className="create-header-left-emoji">
-              <input
-                className="create-header-left-emoji-input emoji"
-                type="text"
-                name="emoji"
-                value={request?.emoji}
-                onClick={() => setEmojiPickerIsOpen(true)}
-                readOnly={true}
+    <>
+      <section className='create-section'>
+        <div className='create-header'>
+          <div className='create-header-top'>
+            <div className='create-header-left'>
+              <div className="create-header-left-emoji">
+                <input
+                  className="create-header-left-emoji-input emoji"
+                  type="text"
+                  name="emoji"
+                  value={request?.emoji}
+                  onClick={() => setEmojiPickerIsOpen(true)}
+                  readOnly={true}
+                />
+                {emojiPickerIsOpen ?
+                  <EmojiPicker
+                    onEmojiClick={emojiChange}
+                    emojiStyle={EmojiStyle.NATIVE}
+                    width="30vw"
+                  />
+                  :
+                  <></>
+                }
+              </div>
+              <Text
+                className='create-header-left-title'
+                placeholder='제목'
+                name="title"
+                value={request?.title}
+                onChange={handleChange}
               />
-              {emojiPickerIsOpen ?
-                <EmojiPicker
-                  onEmojiClick={emojiChange}
-                  emojiStyle={EmojiStyle.NATIVE}
-                  width="30vw"
-                />
-                :
-                <></>
-              }
             </div>
-            <Text
-              className='create-header-left-title'
-              placeholder='제목'
-              name="title"
-              value={request?.title}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='create-header-right-date-wrapper'>
-            <div className='create-header-right-date'>
-              <div className='create-header-right-date-top'>
-                <span>기간</span>
-                <Date
-                  isAlways={request?.isAlways}
-                  handleDate={(d) => setRequest({ ...request, startDate: d })}
-                />
-                <Check
-                  labelClassName='always-label'
-                  className='always-button'
-                  label='상시'
-                  isChecked={request?.isAlways}
-                  onChange={() => setRequest({ ...request, isAlways: !request?.isAlways })}
-                />
-              </div>
-              <div className='create-header-right-date-bottom'>
-                <span>~</span>
-                <Date
-                  isAlways={request?.isAlways}
-                  handleDate={(d) => setRequest({ ...request, endDate: d })}
-                />
+            <div className='create-header-right-date-wrapper'>
+              <div className='create-header-right-date'>
+                <div className='create-header-right-date-top'>
+                  <span>기간</span>
+                  <Date
+                    isAlways={request?.isAlways}
+                    handleDate={(d) => setRequest({ ...request, startDate: d })}
+                  />
+                  <Check
+                    labelClassName='always-label'
+                    className='always-button'
+                    label='상시'
+                    isChecked={request?.isAlways}
+                    onChange={() => setRequest({ ...request, isAlways: !request?.isAlways })}
+                  />
+                </div>
+                <div className='create-header-right-date-bottom'>
+                  <span>~</span>
+                  <Date
+                    isAlways={request?.isAlways}
+                    handleDate={(d) => setRequest({ ...request, endDate: d })}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <Text
-          className='create-header-description'
-          placeholder='설명'
-          name='description'
-          onChange={handleChange}
-          value={request?.description}
-        />
-      </div>
-      <div className='create-question-section'>
-        {questionList?.map((q, index) => (
-          <Question
-            question={q}
-            handleQuestionChange={handleQuestionChange}
-            deleteQuestion={deleteQuestion}
-            key={index}
-            index={index}
-            addAnswer={addAnswer}
-            handleAnswer={handleAnswer}
-            deleteAnswer={deleteAnswer}
-            toggleIsRequired={toggleIsRequired}
+          <Text
+            className='create-header-description'
+            placeholder='설명'
+            name='description'
+            onChange={handleChange}
+            value={request?.description}
           />
-        ))
-        }
-        <button className='add-question-button' onClick={addQuestion}>
-          <span>+</span>
-        </button>
-      </div>
-      <Button
-        className="create-button"
-        text="만들기"
-        action={() => mutate({
-          request: {
-            ...request,
-            questionList: [...questionList]
+        </div>
+        <div className='create-question-section'>
+          {questionList?.map((q, index) => (
+            <Question
+              question={q}
+              handleQuestionChange={handleQuestionChange}
+              deleteQuestion={deleteQuestion}
+              key={index}
+              index={index}
+              addAnswer={addAnswer}
+              handleAnswer={handleAnswer}
+              deleteAnswer={deleteAnswer}
+              toggleIsRequired={toggleIsRequired}
+            />
+          ))
           }
-        })}
+          <button className='add-question-button' onClick={addQuestion}>
+            <span>+</span>
+          </button>
+        </div>
+        <div className="button-area">
+          <Button
+            className="advanced-setting-button"
+            text="고급 설정"
+            action={() => setAdvancedSettingModalOpen(true)}
+          />
+          <Button
+            className="create-button"
+            text="만들기"
+            action={() => mutate({
+              request: {
+                ...request,
+                questionList: [...questionList]
+              }
+            })}
+          />
+        </div>
+      </section>
+      <AdvancedSettingModal
+        isOpen={advancedSettingModalIsOpen}
+        data={advancedSettingModalData}
+        closeModal={() => setAdvancedSettingModalOpen(false)}
+        request={request}
       />
-    </section>
+    </>
   )
 }
 
