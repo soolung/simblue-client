@@ -48,7 +48,7 @@ export default function NoticeAside({
           ""
         )}
         <div className="notice-aside--notice">
-          {data?.noticeList > 0 ? (
+          {data.noticeList.length > 0 ? (
             data?.noticeList?.map((n, index) => (
               <Notice
                 text={n.notice}
