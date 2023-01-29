@@ -12,6 +12,7 @@ import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { Navigate, useParams } from "react-router-dom";
+import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
 
 export default function ApplicationModal() {
   const { id } = useParams();
@@ -48,27 +49,24 @@ export default function ApplicationModal() {
     refetch();
   }, []);
 
+  const [noticeIsOpened, setNoticeIsOpened] = useState(true);
+  const [notice, setNotice] = useState("");
+
   return (
     <div className="application-page">
       {isLoading || isFetching ? (
         <Loading />
       ) : (
         <>
-          <aside className="application-page-notice">
-            {data?.noticeList?.length > 0 ? (
-              data?.noticeList?.map((n, index) => (
-                <Notice
-                  text={n.notice}
-                  author={n.author}
-                  time={n.createdAt}
-                  isPinned={n.isPinned}
-                  key={index}
-                />
-              ))
-            ) : (
-              <p className="application-page-notice-no">공지사항이 없습니다.</p>
-            )}
-          </aside>
+          <NoticeAside
+            option="NOT MANAGE"
+            noticeIsOpened={noticeIsOpened}
+            setNoticeIsOpened={setNoticeIsOpened}
+            notice={notice}
+            setNotice={setNotice}
+            data={data}
+            id={id}
+          />
           <section className="application-page-application">
             <div className="application-page-application-header">
               <p className="application-page-application-header-title">

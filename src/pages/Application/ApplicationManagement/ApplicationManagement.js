@@ -44,6 +44,7 @@ export default function ApplicationManagement() {
   return (
     <>
       <NoticeAside
+        option="MANAGE"
         noticeIsOpened={noticeIsOpened}
         setNoticeIsOpened={setNoticeIsOpened}
         notice={notice}
