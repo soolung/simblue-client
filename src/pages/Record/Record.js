@@ -22,7 +22,11 @@ export default function Record() {
         <div className="section-header">
           <p className="section-header-title">기록보기</p>
           <p className="section-header-description">
-            내가 만든 신청~ 너를 위해 구웠지
+            {user?.authority === "ROLE_TEACHER" ? (
+              <p>니가 만들 신청~ 너를 위해 구웠지</p>
+            ) : (
+              <p>내가 만든 신청~ 너를 위해 구웠지</p>
+            )}
           </p>
         </div>
         <div className="record-application-section">
