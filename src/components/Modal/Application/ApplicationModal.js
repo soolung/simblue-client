@@ -50,7 +50,7 @@ export default function ApplicationModal() {
   }, []);
 
   return (
-    <>
+    <div className="application-modal">
       {isLoading || isFetching ? (
         <Loading />
       ) : (
@@ -107,6 +107,6 @@ export default function ApplicationModal() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
