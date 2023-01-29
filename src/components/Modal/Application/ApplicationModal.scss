@@ -1,22 +1,19 @@
 @import "../../../styles/common";
 
-.application-modal {
+.application-page {
   width: 100vw;
   height: 100vh;
-  display: inline-block;
-  border-radius: 15px;
-
-  .application-modal-notice {
-    position: absolute;
-    top: 0;
+  .application-page-notice {
+    position: fixed;
+    left: 0;
     width: 25%;
     height: 100vh;
-    padding: 86px 30px 20px 30px;
-    float: left;
+    display: inline-flex;
+    flex-direction: column;
     background-color: $light-grey;
-    overflow: scroll;
+    padding: 50px 30px 20px 30px;
 
-    .application-modal-notice-no {
+    .application-page-notice-no {
       display: flex;
       height: 100%;
       justify-content: center;
@@ -25,43 +22,42 @@
     }
   }
 
-  .application-modal-application {
-    width: 70%;
+  .application-page-application {
+    width: 75%;
     height: 100%;
-    padding: 5% 4%;
+    padding: 50px 40px;
     background-color: $background-color;
     display: flex;
     flex-direction: column;
     float: right;
-
-    .application-modal-application-header {
+    .application-page-application-header {
       font-size: 40px;
       font-weight: 600;
 
-      .application-modal-application-header-title {
+      .application-page-application-header-title {
         .emoji {
           margin-right: 6px;
         }
       }
 
-      .application-modal-application-header-description {
+      .application-page-application-header-description {
         font-weight: 300;
         font-size: 19px;
       }
 
-      .application-modal-application-header-time {
+      .application-page-application-header-time {
         font-weight: 300;
         font-size: 20px;
       }
     }
 
-    .application-modal-application-section {
+    .application-page-application-section {
       margin: 30px 0;
       flex: 1;
       overflow-y: scroll;
     }
 
-    .application-modal-application-submit {
+    .application-page-application-submit {
       width: 100%;
       height: 40px;
 

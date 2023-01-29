@@ -50,12 +50,12 @@ export default function ApplicationModal() {
   }, []);
 
   return (
-    <div className="application-modal">
+    <div className="application-page">
       {isLoading || isFetching ? (
         <Loading />
       ) : (
         <>
-          <div className="application-modal-notice">
+          <aside className="application-page-notice">
             {data?.noticeList?.length > 0 ? (
               data?.noticeList?.map((n, index) => (
                 <Notice
@@ -67,25 +67,23 @@ export default function ApplicationModal() {
                 />
               ))
             ) : (
-              <p className="application-modal-notice-no">
-                공지사항이 없습니다.
-              </p>
+              <p className="application-page-notice-no">공지사항이 없습니다.</p>
             )}
-          </div>
-          <div className="application-modal-application">
-            <div className="application-modal-application-header">
-              <p className="application-modal-application-header-title">
+          </aside>
+          <section className="application-page-application">
+            <div className="application-page-application-header">
+              <p className="application-page-application-header-title">
                 <span className="emoji">{data?.emoji}</span>
                 {data?.title}
               </p>
-              <p className="application-modal-application-header-description">
+              <p className="application-page-application-header-description">
                 {data?.description}
               </p>
-              <p className="application-modal-application-header-time">
+              <p className="application-page-application-header-time">
                 - {data?.isAlways ? "상시" : data?.endDate}
               </p>
             </div>
-            <div className="application-modal-application-section">
+            <div className="application-page-application-section">
               <Questions // 질문들의 데이터를 나열해줌
                 items={data?.questionList}
                 handleResponse={handleResponse}
@@ -99,10 +97,10 @@ export default function ApplicationModal() {
                   request: { requestRequestList: [...request] },
                 })
               }
-              className="application-modal-application-submit"
+              className="application-page-application-submit"
               disabled={!user?.authority}
             />
-          </div>
+          </section>
         </>
       )}
     </div>
