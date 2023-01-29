@@ -93,3 +93,9 @@
     display: block;
   }
 }
+
+@media screen and (max-width: 590px) {
+  .notice-aside {
+    width: 100%;
+  }
+}

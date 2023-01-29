@@ -23,3 +23,13 @@
     }
   }
 }
+
+@media screen and (max-width: 590px) {
+  .application-questions {
+    .application-item {
+      .application-questions-answer {
+        width: 100%;
+      }
+    }
+  }
+}
