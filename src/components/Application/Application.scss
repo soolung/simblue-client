@@ -11,6 +11,7 @@
   background-color: white;
   border-radius: 18px;
   padding: 20px 25px 10px 28px;
+
   .application-title {
     .application-title-title {
       display: inline-block;
@@ -58,25 +59,50 @@
 }
 
 @media screen and (max-width: 600px) {
-  .application{ 
-    min-width: 40vw;
-    padding: 15px 15px 8px 18px;
-    .application-title{
-      .application-title-title{
-        font-size: 20px;
-      }
-      .emoji{
-        display: none;
-      }
 
-    }
-    .application-comment{
-      font-size: 11px;
-      font-weight: 400;
-    }
-    .application-end-date{
-      font-family: serif;
-      font-size: 10px;
-    }
+  .list-swiper-div-day-time {
+    display: none;
+  }
+  .application-comment {
+    display: none;
+  }
+  .application-title-title {
+    display: none;
+  }
+}
+
+.swiper-button-next {
+  background-size: 100% auto;
+  background-position: center;
+  border-radius: 100%;
+
+}
+
+.swiper-button-prev {
+
+  background: url(https://ifh.cc/g/l92jTO.png) no-repeat;
+  background-size: 40% auto;
+  background-position: center;
+}
+
+.swiper-button-next {
+
+  background: url(https://ifh.cc/g/68aj1v.png) no-repeat;
+  background-size: 40% auto;
+  background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  width: 35px;
+  height: 50px;
+
+  &:hover {
+    background-color: white;
+    border-color: 1px solid $main-beige;
   }
 }
