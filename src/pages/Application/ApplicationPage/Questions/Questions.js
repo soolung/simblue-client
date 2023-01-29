@@ -6,12 +6,12 @@ export default function Questions({ items, handleResponse }) {
   return (
     <dl className="application-questions">
       {items?.map((i, index) => (
-        <Question // 이게 그 질문 텍스트
+        <Question
           question={i.question}
           isRequired={i.isRequired}
           description={i.description}
           answer={
-            <AnswerField // 이게 input 들 선택해서 쓸수있는듯
+            <AnswerField
               q={i}
               questionIndex={index}
               handleResponse={handleResponse}

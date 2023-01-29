@@ -7,7 +7,7 @@ import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
 import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
-import ApplicationPage from "./pages/Application/ApplicationPage/ApplicationPage";
+import ApplicationDetail from "./pages/Application/ApplicationPage/ApplicationDetail";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
@@ -44,9 +44,7 @@ function App() {
               <WithLogin authority="ROLE_TEACHER" children={<Create />} />
             }
           />
-          {/* Application 페이지 */}
-          <Route path="/application/:id" element={<ApplicationPage />} />
-          {/* Application 관리 페이지 */}
+          <Route path="/application/:id" element={<ApplicationDetail />} />
           <Route
             path="/application/:id/manage"
             element={

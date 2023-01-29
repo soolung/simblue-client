@@ -1,5 +1,4 @@
-import "./ApplicationPage.scss";
-import Notice from "../../../components/Notice/Notice";
+import "./ApplicationDetail.scss";
 import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
@@ -11,35 +10,33 @@ import { useEffect, useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
 
-export default function ApplicationModal() {
+export default function ApplicationDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const user = useRecoilValue(userState);
 
-  // 신청폼을 제출하기 눌렸을때를 말하는거임
   const { mutate } = useMutation(respondApplication, {
     onSuccess: () => {
       alert("성공!");
       navigate("/");
-      // navigate로 main 으로 감
     },
     onError: (err) => {
       const errMessage = err.response.data.message;
-      alert(errMessage); // 에러 처리
+      alert(errMessage);
     },
   });
 
   const [request, setRequest] = useState([{}]);
   const { data, refetch, isLoading, isFetching } = useQuery(
     "getApplicationDetail",
-    () => getApplicationDetail(id), // getApplication 은 id를 넘겨주면 우리에게 상세페이지 데이터를 넘겨줌
+    () => getApplicationDetail(id),
     {
       enabled: false,
       onSuccess: (data) => {
-        setRequest([...data.questionList]); // setRequest 선생님들이 create한 질문 리스트를 말함
+        setRequest([...data.questionList]);
       },
       onError: (err) => {
         console.log(err);
@@ -93,7 +90,7 @@ export default function ApplicationModal() {
               </p>
             </div>
             <div className="application-page-application-section">
-              <Questions // 질문들의 데이터를 나열해줌
+              <Questions
                 items={data?.questionList}
                 handleResponse={handleResponse}
               />
