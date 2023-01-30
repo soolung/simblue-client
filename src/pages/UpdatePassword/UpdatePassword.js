@@ -20,7 +20,6 @@ export const UpdatePassword = () => {
     },
     onError: (err) => {
       console.log("에러다");
-      alert(err.response.data.message);
     },
   });
 
