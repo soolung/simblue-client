@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 
 export const UpdatePassword = () => {
   const navigate = useNavigate();
-  const [updatePwdata, setUpdatePwData] = useState({
+  const [updatePasswordData, setUpdatePasswordData] = useState({
     newPassword: "",
     oldPassword: "",
     reNewPassword: "",
@@ -25,12 +25,13 @@ export const UpdatePassword = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setUpdatePwData({ ...updatePwdata, [name]: value });
+    setUpdatePasswordData({ ...updatePasswordData, [name]: value });
   };
 
   const Submit = (e) => {
-    const { newPassword, oldPassword, reNewPassword } = updatePwdata;
+    const { newPassword, oldPassword, reNewPassword } = updatePasswordData;
     if (newPassword == reNewPassword) {
+      alert("비밀번호 같지 않습니다 !!");
       mutate({
         newPassword: newPassword,
         oldPassword: oldPassword,
@@ -40,21 +41,21 @@ export const UpdatePassword = () => {
 
   return (
     <>
-      <section className="pw-change">
+      <section className="pw-update">
         <div className="img-box">
           <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png" />
         </div>
-        <div className="pw-change-right">
-          <div className="pw-change-header">
-            <div className="pw-change-title">
+        <div className="pw-update-right">
+          <div className="pw-update-header">
+            <div className="pw-update-title">
               <span>비밀번호 변경</span>
               <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png" />
             </div>
-            <div className="pw-change-subtitle">
+            <div className="pw-update-subtitle">
               <span>저런... 까먹으셨군요... ㅜ</span>
             </div>
           </div>
-          <div className="pw-change-form">
+          <div className="pw-update-form">
             <div className="input-box">
               <TextBox
                 type="password"
@@ -79,7 +80,7 @@ export const UpdatePassword = () => {
               />
             </div>
           </div>
-          <button onClick={Submit} className="pw-change-btn">
+          <button onClick={Submit} className="pw-update-btn">
             변경
           </button>
         </div>
