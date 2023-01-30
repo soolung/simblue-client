@@ -30,9 +30,9 @@
       .application-questions-answer {
         width: 100%;
       }
-      .application-questions-grid {
-        display: grid;
-        grid-template-columns: 130px 400px;
+      .application-questions-column {
+        display: flex;
+        flex-direction: column;
         overflow-x: hidden;
       }
     }

@@ -12,7 +12,7 @@ export default function Question(props) {
       <dd
         className={`application-questions-answer ${
           props.q.type === "CHECKBOX" || props.q.type === "RADIO"
-            ? "application-questions-grid"
+            ? "application-questions-column"
             : ""
         }`}
       >
