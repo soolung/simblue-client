@@ -11,6 +11,7 @@ import ApplicationDetail from "./pages/Application/ApplicationDetail/Application
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
+import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
@@ -38,6 +39,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
+          <Route
+            path="/user/update/password"
+            element={<WithLogin children={<UpdatePassword />} />}
+          />
           <Route
             path="/create"
             element={
