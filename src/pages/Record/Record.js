@@ -23,9 +23,9 @@ export default function Record() {
           <p className="section-header-title">기록보기</p>
           <p className="section-header-description">
             {user?.authority === "ROLE_TEACHER" ? (
-              <p>니가 만들 신청~ 너를 위해 구웠지</p>
-            ) : (
               <p>내가 만든 신청~ 너를 위해 구웠지</p>
+            ) : (
+              <p>본인이 신청한 심청</p>
             )}
           </p>
         </div>

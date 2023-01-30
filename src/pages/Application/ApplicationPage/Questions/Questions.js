@@ -7,6 +7,7 @@ export default function Questions({ items, handleResponse }) {
     <dl className="application-questions">
       {items?.map((i, index) => (
         <Question
+          q={i}
           question={i.question}
           isRequired={i.isRequired}
           description={i.description}
