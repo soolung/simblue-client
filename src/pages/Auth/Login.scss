@@ -72,13 +72,30 @@
     .to-signup {
       text-align: center;
       color: $medium-grey;
-      font-size: 13px;
+      font-size: 11px;
       span {
         word-break: keep-all;
         color: $main-red;
         font-weight: 600;
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .login > .login-form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .login {
+    .img-box {
+      display: none;
+    }
+    .login-form {
+      width: 75%;
     }
   }
 }

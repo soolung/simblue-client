@@ -1,4 +1,5 @@
 import axios from "axios";
+import { accessTokenExpired } from "../api/token";
 
 const server = axios.create({
   baseURL: "http://15.164.60.153:8080",
@@ -6,30 +7,23 @@ const server = axios.create({
 });
 
 server.interceptors.request.use(
-  function (config) {
+  (config) => {
     return config;
   },
-  function (error) {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
 server.interceptors.response.use(
-  function (response) {
+  (response) => {
     return response;
   },
-
-  function (error) {
-    if (error.response && error.response.status) {
-      console.error(error.response.data);
-      // switch (error.response.status) {
-      //     case 401:
-      //         break;
-      //     default:
-      //         return Promise.reject(error);
-      // }
+  (error) => {
+    console.log(error.response.data.message);
+    if (error.response.status === 401) {
+      accessTokenExpired();
     }
-
     return Promise.reject(error);
   }
 );
