@@ -94,6 +94,12 @@
   }
 }
 
+@media screen and (max-width: 1160px) {
+  .notice-aside {
+    width: 40%;
+  }
+}
+
 @media screen and (max-width: 590px) {
   .notice-aside {
     width: 100%;

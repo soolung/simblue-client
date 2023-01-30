@@ -45,6 +45,7 @@
   }
 }
 
+
 @media screen and (min-width: 590px) {
   .half {
     display: flex;
@@ -56,6 +57,11 @@
   }
 }
 
+@media screen and (max-width: 1160px) {
+  .application-page-application {
+    width: 60%;
+  }
+}
 
 @media screen and (max-width: 590px) {
   .application-page-application {
