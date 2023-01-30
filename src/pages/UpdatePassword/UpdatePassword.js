@@ -1,8 +1,7 @@
 import "./UpdatePassword.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import { updatePassword } from "../../utils/api/auth";
 import { useMutation } from "react-query";
 
@@ -17,6 +16,7 @@ export const UpdatePassword = () => {
   const { mutate } = useMutation(updatePassword, {
     onSuccess: (data) => {
       alert("비밀번호 변경 완료 !!");
+      navigate('/')
     },
     onError: (err) => {
       console.log("에러다");
@@ -30,13 +30,13 @@ export const UpdatePassword = () => {
 
   const Submit = (e) => {
     const { newPassword, oldPassword, reNewPassword } = updatePasswordData;
-    if (newPassword == reNewPassword) {
+    if (newPassword === reNewPassword) {
       mutate({
         newPassword: newPassword,
         oldPassword: oldPassword,
       });
     } else {
-      alert("비밀번호 같지 않습니다 !!");
+      alert("비밀번호 다릅니다!!");
     }
   };
 

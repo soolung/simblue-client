@@ -1,15 +1,17 @@
 import "./Header.scss";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import { AiOutlineBars } from "react-icons/ai";
 import useMedia from "../../hooks/useMedia";
+import ProfilePopover from './ProfilePopover/ProfilePopover';
+
 export default function Header() {
   const isMobile = useMedia("(max-width: 600px)"); // 반응형
   const [isNavVisible, setIsNavVisible] = useState(true); // 헤더 기본값 true로 열려있게
   const navigate = useNavigate();
+  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
 
   const { pathname } = useLocation(); // 경로
 
@@ -18,21 +20,11 @@ export default function Header() {
     console.log(isNavVisible);
   }; // 버튼 누르면 닫히고 열리게
 
-  const logout = () => {
-    localStorage.clear();
-    setUser({
-      accessToken: null,
-      refreshToken: null,
-      authority: null,
-      name: null,
-    })
-  }
-
   useEffect(() => {
     if (isMobile == 1) setIsNavVisible(false); // 모바일이면 경로 바뀔 때마다 헤더가 false로 닫힘
   }, [pathname]); // pathname이 변화하면 메뉴를 닫을 수 잇도록
 
-  const [user, setUser] = useRecoilState(userState);
+  const user = useRecoilValue(userState);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
@@ -60,7 +52,7 @@ export default function Header() {
                 <Link to="/">
                   <ul className="header_logo">
                     <li>
-                      <img src="https://ifh.cc/g/cs0mAl.png" alt="logo" />
+                      <img src="https://ifh.cc/g/cs0mAl.png" alt="logo"/>
                     </li>
                     {/*a 태그로 하고 싶은데 외안대*/}
                     <li className="logo-font">
@@ -74,13 +66,13 @@ export default function Header() {
               </div>
               {isMobile === 1 ? (
                 <button onClick={toggleNav} className="hamburger">
-                  <AiOutlineBars />
+                  <AiOutlineBars/>
                 </button>
               ) : (
                 <></>
               )}
             </div>
-            {isNavVisible && (
+            {isNavVisible&&(
               <>
                 <div className="header-category-total">
                   <ul className="header-category-ul">
@@ -89,7 +81,7 @@ export default function Header() {
                         <a>둘러보기</a>
                       </Link>
                     </li>
-                    {user?.authority && (
+                    {user?.authority&&(
                       <li className="header-nav-li">
                         <Link to="/record">
                           <a>기록보기</a>
@@ -120,7 +112,7 @@ export default function Header() {
                   <button
                     className={
                       "search-delete " +
-                      (searchText.length > 0 && searchTextOnFocus
+                      (searchText.length > 0&&searchTextOnFocus
                         ? "search-delete-show"
                         : "search-delete-no")
                     }
@@ -136,7 +128,15 @@ export default function Header() {
                 <div className='header_login_button'>
                   {
                     user?.authority ?
-                      <button onClick={logout} className='login-button'>{user.name}</button>
+                      <>
+                        <button onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)} className='login-button'>
+                          {user.name}
+                        </button>
+                        <ProfilePopover
+                          isOpen={profilePopoverIsOpen}
+                          close={() => setProfilePopoverOpen(false)}
+                        />
+                      </>
                       :
                       <button onClick={() => navigate('/login')} className='login-button'>로그인</button>
                   }

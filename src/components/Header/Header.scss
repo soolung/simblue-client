@@ -42,6 +42,7 @@ header {
     }
     .header_login_button {
       -webkit-tap-highlight-color: transparent;
+      position: relative;
 
       .login-button {
         color: black;

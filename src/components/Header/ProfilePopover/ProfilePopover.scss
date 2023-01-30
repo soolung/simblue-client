@@ -1,0 +1,31 @@
+@import "../../../styles/common";
+
+.profile-popover {
+  position: absolute;
+  top: 76.5px;
+  right: 0;
+  width: 20vw;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 16px 20px rgba(173, 173, 173, 0.2);
+
+  &.disabled {
+    display: none;
+  }
+
+  .profile-popover-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 10px;
+    color: $black;
+
+    &:hover {
+      background-color: $light-grey;
+      cursor: pointer;
+    }
+  }
+}
