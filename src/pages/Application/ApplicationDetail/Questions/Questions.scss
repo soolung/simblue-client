@@ -8,7 +8,7 @@
 
     .application-questions-question {
       display: inline-block;
-      width: 20%;
+      width: 100%;
 
       font-size: 18px;
       font-weight: 500;
@@ -19,7 +19,22 @@
       display: inline-flex;
       flex-wrap: wrap;
       gap: 11px 25px;
-      width: 80%;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .application-questions {
+    .application-item {
+      .application-questions-answer {
+        width: 100%;
+      }
+      .application-questions-column {
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
     }
   }
 }

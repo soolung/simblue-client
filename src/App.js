@@ -5,8 +5,9 @@ import Main from "./pages/Main/Main";
 import Look from "./pages/Look/Look";
 import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
-import ApplicationManagement from "./pages/Application/ApplicationManagement";
+import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
+import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
@@ -15,7 +16,10 @@ const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
   const actualAuthority = localStorage.getItem("authority");
   useEffect(() => {
-    if (!actualAuthority || (authority != null && authority !== actualAuthority)) {
+    if (
+      !actualAuthority ||
+      (authority != null && authority !== actualAuthority)
+    ) {
       navigate("/");
     }
   }, []);
@@ -34,8 +38,22 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
-          <Route path="/create" element={<WithLogin authority="ROLE_TEACHER" children={<Create />} />} />
-          <Route path="/application/:id" element={<WithLogin authority="ROLE_TEACHER" children={<ApplicationManagement />} />} />
+          <Route
+            path="/create"
+            element={
+              <WithLogin authority="ROLE_TEACHER" children={<Create />} />
+            }
+          />
+          <Route path="/application/:id" element={<ApplicationDetail />} />
+          <Route
+            path="/application/:id/manage"
+            element={
+              <WithLogin
+                authority="ROLE_TEACHER"
+                children={<ApplicationManagement />}
+              />
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
