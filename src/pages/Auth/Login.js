@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
-import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const navigate = useNavigate();
