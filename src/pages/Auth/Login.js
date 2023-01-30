@@ -78,7 +78,7 @@ export const Login = () => {
         </div>
         <div className="to-signup">
           아직 회원이 아니신가요?
-          <Link to="/signup"><span onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span></Link>
+          <span onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span>
         </div>
       </div>
     </section>

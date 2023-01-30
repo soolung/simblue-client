@@ -14,30 +14,36 @@
     justify-content: center;
     align-items: center;
     row-gap: 20px;
+
     img {
       width: 70%;
     }
+
     p {
       font-weight: 600;
       font-size: 1.8em;
     }
   }
+
   .sign-form {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
     padding: 4%;
     width: 35%;
+
     .sign-title {
       display: flex;
       font-weight: 600;
       font-size: 25px;
+
       img {
         width: 7%;
         object-fit: contain;
         margin-left: 4px;
       }
     }
+
     .sign-subtitle {
       color: $dark-grey;
       font-size: 14px;
@@ -45,16 +51,16 @@
       padding-top: 5px;
       word-break: keep-all;
     }
+
     .input-box {
       display: flex;
       flex-direction: column;
       row-gap: 4px;
+
       .text {
         font-size: 49%;
       }
-      .input-element {
-        font-size: 49%;
-      }
+
       .sign-btn {
         background-color: $main-red;
         height: 45px;
@@ -62,6 +68,23 @@
         font-weight: 600;
       }
     }
+
+    .input-box {
+      .information {
+        display: flex;
+        justify-content: space-between;
+
+        .sign-right-ment-num-student {
+          width: 49%;
+        }
+
+        .sign-right-ment-name-student {
+          width: 49%;
+          //font-size: 49%;
+        }
+      }
+    }
+
   }
 }
 
@@ -76,22 +99,9 @@
     .img-box {
       display: none;
     }
+
     .sign-form {
       width: 75%;
-    }
-    .input-box {
-      .information {
-        display: flex;
-        justify-content: space-between;
-        .sign-right-ment-num-student {
-          width: 49%;
-          font-size: 49%;
-        }
-        .sign-right-ment-name-student {
-          width: 49%;
-          font-size: 49%;
-        }
-      }
     }
   }
 }
