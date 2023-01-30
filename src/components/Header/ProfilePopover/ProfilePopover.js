@@ -35,8 +35,8 @@ export default function ProfilePopover({ isOpen, close }) {
   }
 
   return (
-    <>
-      <ul className={`profile-popover ${isOpen ? '' : 'disabled'}`}>
+    <div className={`profile-popover-container ${isOpen ? '' : 'disabled'}`}>
+      <ul className="profile-popover">
         {data.map((d, index) => (
           <li
             className="profile-popover-list"
@@ -48,6 +48,7 @@ export default function ProfilePopover({ isOpen, close }) {
         ))
         }
       </ul>
-    </>
+      <div className="profile-popover-ggoranji"/>
+    </div>
   )
 }
