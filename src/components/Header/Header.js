@@ -72,7 +72,7 @@ export default function Header() {
                 <></>
               )}
             </div>
-            {isNavVisible&&(
+            {isNavVisible && (
               <>
                 <div className="header-category-total">
                   <ul className="header-category-ul">
@@ -81,7 +81,7 @@ export default function Header() {
                         <a>둘러보기</a>
                       </Link>
                     </li>
-                    {user?.authority&&(
+                    {user?.authority && (
                       <li className="header-nav-li">
                         <Link to="/record">
                           <a>기록보기</a>
@@ -112,7 +112,7 @@ export default function Header() {
                   <button
                     className={
                       "search-delete " +
-                      (searchText.length > 0&&searchTextOnFocus
+                      (searchText.length > 0 && searchTextOnFocus
                         ? "search-delete-show"
                         : "search-delete-no")
                     }
@@ -129,7 +129,10 @@ export default function Header() {
                   {
                     user?.authority ?
                       <>
-                        <button onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)} className='login-button'>
+                        <button
+                          onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
+                          className='login-button'
+                        >
                           {user.name}
                         </button>
                         <ProfilePopover
