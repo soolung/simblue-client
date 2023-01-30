@@ -35,8 +35,9 @@ export const UpdatePassword = () => {
         newPassword: newPassword,
         oldPassword: oldPassword,
       });
+    } else {
+      alert("비밀번호 같지 않습니다 !!");
     }
-    alert("비밀번호 같지 않습니다 !!");
   };
 
   return (
