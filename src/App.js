@@ -33,11 +33,15 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<UpdatePassword />} />
+          <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
+          <Route
+            path="/updataPassword"
+            element={<WithLogin children={<UpdatePassword />} />}
+          />
           <Route
             path="/create"
             element={

@@ -3,9 +3,44 @@ import React, { useEffect, useState } from "react";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { updatePassword } from "../../utils/api/auth";
+import { useMutation } from "react-query";
 
 export const UpdatePassword = () => {
   const navigate = useNavigate();
+  const [updatePwdata, setUpdatePwData] = useState({
+    newPassword: "",
+    oldPassword: "",
+    reNewPassword: "",
+  });
+
+  const { mutate } = useMutation(updatePassword, {
+    onSuccess: (data) => {
+      alert("비밀번호 변경 완료 !!");
+      console.log(data);
+    },
+    onError: (err) => {
+      console.log("에러다");
+      console.log(err);
+    },
+  });
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatePwData({ ...updatePwdata, [name]: value });
+    console.log(updatePwdata);
+  };
+
+  const Submit = (e) => {
+    const { newPassword, oldPassword, reNewPassword } = updatePwdata;
+    console.log(newPassword, oldPassword, reNewPassword);
+    if (newPassword == reNewPassword) {
+      mutate({
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+      });
+    }
+  };
 
   return (
     <>
@@ -28,25 +63,29 @@ export const UpdatePassword = () => {
               <TextBox
                 type="text"
                 placeholder="현재 비밀번호를 입력하세요"
+                onChange={onChange}
                 className="input-element"
-                name="currentPassword"
-                readOnly
+                name="oldPassword"
               />
               <TextBox
                 className="input-element"
                 type="password"
                 placeholder="새로운 비밀번호를 입력하세요"
+                onChange={onChange}
                 name="newPassword"
               />
               <TextBox
                 className="input-element"
                 type="password"
                 placeholder="새로운 비밀번호를 한 번 더 입력하세요"
+                onChange={onChange}
                 name="reNewPassword"
               />
             </div>
           </div>
-          <Button className="pw-change-btn" text="회원가입" />
+          <button onClick={Submit} className="pw-change-btn">
+            변경
+          </button>
         </div>
       </section>
     </>
