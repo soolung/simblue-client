@@ -2,13 +2,24 @@
 
 .latest-application-list {
   display: flex;
-  width: 70vw;
+  flex-wrap: wrap;
   justify-content: space-between;
+  width: 70vw;
   padding-top: 25px;
   margin: 0 auto;
-
   .application {
+    min-height: 20vh;
     width: 16.5vw;
     height: 35vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .latest-application-list {
+    width: 85vw;
+    .application {
+        margin-top: 10px;
+        height: auto;
+    }
   }
 }

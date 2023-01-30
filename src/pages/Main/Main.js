@@ -47,7 +47,7 @@ export default function Main() {
 
     return (
         <>
-            <section>
+            <section className='Main-section'>
                 <Banner
                     banner={BannerData.banners}
                 />
