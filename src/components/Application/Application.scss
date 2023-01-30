@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@import "../../styles/common";
 
 .application {
   &:hover {
@@ -6,7 +6,6 @@
   }
 
   display: flex;
-  width: 24.025%;
   flex-direction: column;
   border: 1px solid $grey;
   background-color: white;
