@@ -53,10 +53,3 @@
     background-color: $light-grey;
   }
 }
-
-@media screen and (max-width: 600px) {
-  .application {
-    .application-comment {
-      display: none;
-    }
-}
