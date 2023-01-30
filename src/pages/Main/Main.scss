@@ -1,5 +1,8 @@
 @import "../../styles/common";
 
+.main{
+  overflow-x: hidden;
+}
 .latest-application-list {
   display: flex;
   width: 70vw;

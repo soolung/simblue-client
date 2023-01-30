@@ -1,18 +1,17 @@
-
-.banner_tit{
+.banner_tit {
+  width: 100vw;
+  .banner--image {
+    min-height: 100px;
+    display: flex;
+    height: 50vh;
     width: 100vw;
-    .banner--image {
-      min-height: 100px;
-        display: flex;
-        height: 23vw;
-        width: 100vw;
-        object-fit: cover;
-      }
+    object-fit: cover;
+  }
 }
 .banner .swiper-pagination-bullet {
   width: 6.5px;
   height: 6.5px;
-  background-color: hsla(0,0%,100%,.7);
+  background-color: hsla(0, 0%, 100%, 0.7);
   box-shadow: 0 1px 6px 0 black;
   margin: 0 2px !important;
 }
