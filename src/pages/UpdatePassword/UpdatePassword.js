@@ -31,12 +31,12 @@ export const UpdatePassword = () => {
   const Submit = (e) => {
     const { newPassword, oldPassword, reNewPassword } = updatePasswordData;
     if (newPassword == reNewPassword) {
-      alert("비밀번호 같지 않습니다 !!");
       mutate({
         newPassword: newPassword,
         oldPassword: oldPassword,
       });
     }
+    alert("비밀번호 같지 않습니다 !!");
   };
 
   return (
