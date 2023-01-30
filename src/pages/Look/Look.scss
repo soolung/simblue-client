@@ -30,9 +30,14 @@
     gap: 22px 2%;
     width: 100%;
 
-    .application {
+    a {
       width: 23.5%;
       height: 30vh;
+
+      .application {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
