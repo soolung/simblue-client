@@ -1,5 +1,5 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-@import url('https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css');
+@import url("https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css");
 @import "styles/common";
 
 * {
@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   padding-top: 76px;
   color: black;
   height: 100vh;
@@ -64,7 +64,6 @@ button {
 .ReactModal__Body--open {
   overflow: hidden;
 }
-
 
 .section-header {
   margin-bottom: 30px;

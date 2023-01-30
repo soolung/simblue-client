@@ -1,6 +1,6 @@
-name: "🐞 Bug"
-description: "버그가 발생했나요?"
-labels: "🐞 Bug"
+name: '🐞 Bug'
+description: '버그가 발생했나요?'
+labels: '🐞 Bug'
 body:
   - type: textarea
     attributes:

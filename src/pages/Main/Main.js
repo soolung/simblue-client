@@ -50,7 +50,7 @@ export default function Main() {
 
   return (
     <>
-      <section>
+      <section className="main">
         <Banner banner={BannerData.banners} />
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
