@@ -52,7 +52,6 @@ export default function Main() {
     <>
       <section>
         <Banner banner={BannerData.banners} />
-        <div onClick={() => navigate("/updataPassword")}>비밀번호 변경</div>
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
             <Application

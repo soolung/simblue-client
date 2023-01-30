@@ -19,7 +19,6 @@ export const loginUser = async ({ email, password }) => {
 };
 
 export const updatePassword = async ({ newPassword, oldPassword }) => {
-  console.log(newPassword, oldPassword);
   return await server.patch(
     "/user/password",
     {

@@ -21,19 +21,17 @@ export const UpdatePassword = () => {
     },
     onError: (err) => {
       console.log("에러다");
-      console.log(err);
+      alert(err.response.data.message);
     },
   });
 
   const onChange = (e) => {
     const { name, value } = e.target;
     setUpdatePwData({ ...updatePwdata, [name]: value });
-    console.log(updatePwdata);
   };
 
   const Submit = (e) => {
     const { newPassword, oldPassword, reNewPassword } = updatePwdata;
-    console.log(newPassword, oldPassword, reNewPassword);
     if (newPassword == reNewPassword) {
       mutate({
         newPassword: newPassword,
@@ -61,7 +59,7 @@ export const UpdatePassword = () => {
           <div className="pw-change-form">
             <div className="input-box">
               <TextBox
-                type="text"
+                type="password"
                 placeholder="현재 비밀번호를 입력하세요"
                 onChange={onChange}
                 className="input-element"
