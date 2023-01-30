@@ -5,8 +5,9 @@ import Main from "./pages/Main/Main";
 import Look from "./pages/Look/Look";
 import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
-import ApplicationManagement from "./pages/Application/ApplicationManagement";
+import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
+import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
@@ -48,8 +49,9 @@ function App() {
               <WithLogin authority="ROLE_TEACHER" children={<Create />} />
             }
           />
+          <Route path="/application/:id" element={<ApplicationDetail />} />
           <Route
-            path="/application/:id"
+            path="/application/:id/manage"
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
