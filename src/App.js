@@ -11,7 +11,7 @@ import ApplicationDetail from "./pages/Application/ApplicationDetail/Application
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
-import { UpdatePassword } from "./pages//UpdatePassword/UpdatePassword";
+import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
