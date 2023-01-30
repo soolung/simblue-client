@@ -2,7 +2,7 @@ import axios from "axios";
 import { accessTokenExpired } from "../api/token";
 
 const server = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: "http://15.164.60.153:8080",
   timeout: 10000,
 });
 

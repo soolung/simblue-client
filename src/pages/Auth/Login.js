@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.scss";
+import { Link } from "react-router-dom";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
@@ -77,7 +78,7 @@ export const Login = () => {
         </div>
         <div className="to-signup">
           아직 회원이 아니신가요?
-          <span onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span>
+          <Link to="/signup"><span onClick={() => window.location.replace(data)}> 구글 계정으로 회원가입</span></Link>
         </div>
       </div>
     </section>

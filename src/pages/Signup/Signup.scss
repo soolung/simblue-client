@@ -58,3 +58,34 @@
     }
   }
 }
+
+@media screen and (max-width: 965px) {
+  .signup > .sign-form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .signup {
+    .img-box {
+      display: none;
+    }
+    .sign-form {
+      width: 75%;
+    }
+    .input-box {
+      .information {
+        display: flex;
+        justify-content: space-between;
+      }
+      .sign-right-ment-num-student {
+        width: 49%;
+        font-size: 49%;
+      }
+      .sign-right-ment-name-student {
+        width: 49%;
+        font-size: 49%;
+      }
+    }
+  }
+}

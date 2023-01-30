@@ -96,6 +96,7 @@ export const Signup = () => {
                         />
                         {authority === "ROLE_STUDENT" ?
                             <>
+                            <div className="information">
                                 <TextBox
                                     className="sign-right-ment-num-student"
                                     type='text'
@@ -110,6 +111,7 @@ export const Signup = () => {
                                     onChange={handleChange}
                                     name='name'
                                 />
+                            </div>
                             </>
                             :
                             <TextBox
