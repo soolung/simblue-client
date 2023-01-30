@@ -3,7 +3,7 @@
   .banner--image {
     min-height: 100px;
     display: flex;
-    height: 50vh;
+    height: 40vh;
     width: 100vw;
     object-fit: cover;
   }
@@ -14,4 +14,20 @@
   background-color: hsla(0, 0%, 100%, 0.7);
   box-shadow: 0 1px 6px 0 black;
   margin: 0 2px !important;
+}
+
+@media screen and (max-width: 1020px) {
+  .banner_tit {
+    .banner--image {
+      height: 30vh;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .banner_tit {
+    .banner--image {
+      height: 20vh;
+    }
+  }
 }
