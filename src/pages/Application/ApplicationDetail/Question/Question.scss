@@ -1,0 +1,14 @@
+@import "../../../../styles/common";
+
+
+.application-item {
+    display: flex;
+    flex-direction: column;
+    .application-questions-description {
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 24px;
+        padding-bottom: 14px;
+        color: $dark-grey;
+    }
+}

@@ -1,9 +1,10 @@
-@import "../../styles/common.scss";
+@import '../../styles/common';
 
 .application {
   &:hover {
     cursor: pointer;
   }
+
   display: flex;
   width: 24.025%;
   flex-direction: column;
@@ -54,44 +55,8 @@
 }
 
 @media screen and (max-width: 600px) {
-  .list-swiper-div-day-time {
-    display: none;
-  }
-  .application-comment {
-    display: none;
-  }
-}
-
-.swiper-button-next {
-  background-size: 100% auto;
-  background-position: center;
-  border-radius: 100%;
-}
-
-.swiper-button-prev {
-  background: url(https://ifh.cc/g/l92jTO.png) no-repeat;
-  background-size: 40% auto;
-  background-position: center;
-}
-
-.swiper-button-next {
-  background: url(https://ifh.cc/g/68aj1v.png) no-repeat;
-  background-size: 40% auto;
-  background-position: center;
-}
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  display: none;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  width: 35px;
-  height: 50px;
-
-  &:hover {
-    background-color: white;
-    border-color: 1px solid $main-beige;
-  }
+  .application {
+    .application-comment {
+      display: none;
+    }
 }

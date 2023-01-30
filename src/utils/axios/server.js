@@ -20,10 +20,10 @@ server.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 0) {
+    console.log(error.response.data.message);
+    if (error.response.status === 401) {
       accessTokenExpired();
     }
-
     return Promise.reject(error);
   }
 );
