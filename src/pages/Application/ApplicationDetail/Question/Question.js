@@ -1,7 +1,6 @@
 import "./Question.scss";
 
 export default function Question(props) {
-  console.log(props.q);
   return (
     <div className="application-item">
       <dt className="application-questions-question">

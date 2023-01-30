@@ -16,7 +16,7 @@ export default function NoticeAside({
 }) {
   return (
     <>
-      <aside className={`notice-aside ${noticeIsOpened ? "active" : ""}`}>
+      <aside className={`notice-aside ${noticeIsOpened ? "active" : ""} ${option === "MANAGE" ? "" : "responsive"}`}>
         <div className="notice-aside--close-button-wrapper">
           <button
             className="notice-aside--close-button"
@@ -25,7 +25,7 @@ export default function NoticeAside({
             <img src="/images/left-double-arrow.svg" alt="close" />
           </button>
         </div>
-        {option == "MANAGE" ? (
+        {option === "MANAGE" ? (
           <div className="notice-aside--notice-area">
             <TextArea
               className="notice-aside--notice-area-textarea"

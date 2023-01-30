@@ -15,7 +15,7 @@
     left: 0;
   }
 
-  width: 25%;
+  width: 25vw;
   height: 100vh;
   display: inline-flex;
   flex-direction: column;
@@ -75,7 +75,7 @@
 
 .notice-aside-open {
   display: none;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 50%;
   transform: translate(0%, -50%);
@@ -83,6 +83,7 @@
   background-color: $light-grey;
   border: 1px solid $grey;
   border-radius: 0 30px 30px 0;
+  z-index: 2;
 
   img {
     width: 25px;
@@ -95,16 +96,13 @@
 }
 
 @media screen and (max-width: 1160px) {
-  .notice-aside {
-    width: 40%;
+  .notice-aside.responsive {
+    width: 35vw;
   }
 }
 
 @media screen and (max-width: 590px) {
-  .notice-aside {
-    width: 100%;
-  }
-  .notice-aside-open {
-    padding: 50px 0px;
+  .notice-aside.responsive {
+    width: 100vw;
   }
 }

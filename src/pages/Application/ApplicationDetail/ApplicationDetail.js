@@ -73,23 +73,21 @@ export default function ApplicationDetail() {
             id={id}
           />
           <section
-            className={`application-page-application ${
-              noticeIsOpened ? "half" : ""
-            }`}
+            className={`application-detail-application ${noticeIsOpened ? "half" : ""}`}
           >
-            <div className="application-page-application-header">
-              <p className="application-page-application-header-title">
+            <div className="application-detail-application-header">
+              <p className="application-detail-application-header-title">
                 <span className="emoji">{data?.emoji}</span>
                 {data?.title}
               </p>
-              <p className="application-page-application-header-description">
+              <p className="application-detail-application-header-description">
                 {data?.description}
               </p>
-              <p className="application-page-application-header-time">
+              <p className="application-detail-application-header-time">
                 - {data?.isAlways ? "상시" : data?.endDate}
               </p>
             </div>
-            <div className="application-page-application-section">
+            <div className="application-detail-application-section">
               <Questions
                 items={data?.questionList}
                 handleResponse={handleResponse}
@@ -103,7 +101,7 @@ export default function ApplicationDetail() {
                   request: { requestRequestList: [...request] },
                 })
               }
-              className="application-page-application-submit"
+              className="application-detail-application-submit"
               disabled={!user?.authority}
             />
           </section>

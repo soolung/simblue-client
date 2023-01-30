@@ -7,7 +7,7 @@ import Record from "./pages/Record/Record";
 import Create from "./pages/Create/Create";
 import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
-import ApplicationDetail from "./pages/Application/ApplicationPage/ApplicationDetail";
+import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
