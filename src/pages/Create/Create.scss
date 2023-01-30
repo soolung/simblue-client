@@ -126,14 +126,32 @@
     }
   }
 
-  .create-button {
-    position: fixed;
-    bottom: 15px;
+  .button-area {
     width: 70vw;
-    padding: 10px 0;
-    font-size: 20px;
+    position: fixed;
     left: 50%;
+    bottom: 15px;
     transform: translate(-50%, 0);
+
+    .button {
+      font-size: 16px;
+      padding: 13px 0;
+    }
+
+    .advanced-setting-button {
+      width: 19%;
+      margin-right: 2%;
+      background-color: white;
+      border: 1px solid $medium-grey;
+
+      span {
+        color: $medium-grey;
+      }
+    }
+
+    .create-button {
+      width: 79%;
+    }
   }
 }
 
