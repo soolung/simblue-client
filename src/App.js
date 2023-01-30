@@ -40,7 +40,7 @@ function App() {
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
           <Route
-            path="/updataPassword"
+            path="/user/update/password"
             element={<WithLogin children={<UpdatePassword />} />}
           />
           <Route
