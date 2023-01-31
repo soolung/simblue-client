@@ -1,16 +1,21 @@
 import "./Header.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
-import ProfilePopover from './ProfilePopover/ProfilePopover';
-import HeaderWing from './HeaderWing/HeaderWing';
+import ProfilePopover from "./ProfilePopover/ProfilePopover";
+import HeaderWing from "./HeaderWing/HeaderWing";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
   const [wingIsOpen, setWingOpen] = useState(false);
+  useEffect(() => {
+    setWingOpen(false);
+  }, [pathname]);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
@@ -31,7 +36,7 @@ export default function Header() {
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
@@ -84,48 +89,51 @@ export default function Header() {
               alt="search-go"
             />
           </div>
-          <div className='header_login_button'>
-            {
-              user?.authority ?
-                <>
-                  <button
-                    onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
-                    className='login-button'
-                  >
-                    {user.name}
-                  </button>
-                  <ProfilePopover
-                    isOpen={profilePopoverIsOpen}
-                    close={() => setProfilePopoverOpen(false)}
-                  />
-                </>
-                :
-                <button onClick={() => navigate('/login')} className='login-button'>로그인</button>
-            }
+          <div className="header_login_button">
+            {user?.authority ? (
+              <>
+                <button
+                  onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
+                  className="login-button"
+                >
+                  {user.name}
+                </button>
+                <ProfilePopover
+                  isOpen={profilePopoverIsOpen}
+                  close={() => setProfilePopoverOpen(false)}
+                />
+              </>
+            ) : (
+              <button
+                onClick={() => navigate("/login")}
+                className="login-button"
+              >
+                로그인
+              </button>
+            )}
           </div>
         </div>
         <div className="header-inner mobile">
           <button onClick={() => setWingOpen(true)}>
-            <img src="/images/hamburger.svg"
-                 className="button-image"
-                 alt="menu"
+            <img
+              src="/images/hamburger.svg"
+              className="button-image"
+              alt="menu"
             />
           </button>
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
           </Link>
-          <button onClick={() => console.log('search')}>
-            <img src="/images/search.svg"
-                 className="button-image"
-                 alt="search"
+          <button onClick={() => console.log("search")}>
+            <img
+              src="/images/search.svg"
+              className="button-image"
+              alt="search"
             />
           </button>
         </div>
       </header>
-      <HeaderWing
-        isOpen={wingIsOpen}
-        closeModal={() => setWingOpen(false)}
-      />
+      <HeaderWing isOpen={wingIsOpen} closeModal={() => setWingOpen(false)} />
     </>
   );
 }
