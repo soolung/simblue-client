@@ -30,7 +30,7 @@ export default function Record() {
           </p>
         </div>
         <div className="record-application-section">
-          {data?.applicationList.map((a) => (
+          {data?.applicationList.map((a, index) => (
             <TeacherApplication
               id={a.id}
               title={a.title}
@@ -39,6 +39,7 @@ export default function Record() {
               endDate={a.endDate}
               isAlways={a.isAlways}
               navigateManagement={() => navigateManagement(a.id)}
+              key={index}
             />
           ))}
         </div>
