@@ -53,15 +53,16 @@
   bottom: 0px;
   width: 100%;
   background-color: $background-color;
-  padding: 20px 10px 20px 30px;
+  padding: 20px 30px 20px 30px;
   .res-login-button {
+    width: 100%;
     font-size: 15px;
     font-weight: 500;
     color: $dark-grey;
+    display: flex;
+    justify-content: space-between;
     .res-login-button-arrow {
-      position: relative;
       top: 2px;
-      left: 70%;
     }
   }
 }

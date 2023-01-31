@@ -87,10 +87,14 @@ export default function HeaderWing({ isOpen, closeModal }) {
             onClick={() => navigate("/login")}
             className="res-login-button"
           >
-            <span className="res-login-button-span">로그인하세요</span>
-            <span className="res-login-button-arrow">
-              <IoIosArrowForward />
-            </span>
+            <div>
+              <span className="res-login-button-span">로그인하세요</span>
+            </div>
+            <div>
+              <span className="res-login-button-arrow">
+                <IoIosArrowForward />
+              </span>
+            </div>
           </button>
         )}
       </div>
