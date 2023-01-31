@@ -31,11 +31,13 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: black;
+  display: inline-block;
 }
 
 button {
   cursor: pointer;
   border: none;
+  background-color: transparent;
 }
 
 .ReactModalPortal {
