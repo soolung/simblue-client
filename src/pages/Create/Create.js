@@ -134,6 +134,12 @@ const Create = () => {
     setQuestionList(questionList.filter((q, index) => target !== index));
   }
 
+  const copyQuestion = (index) => {
+    const newQuestionList = [...questionList]
+    newQuestionList.splice(index, 0, JSON.parse(JSON.stringify(questionList[index])))
+    setQuestionList(newQuestionList)
+  }
+
   return (
     <>
       <section className='create-section'>
@@ -213,6 +219,7 @@ const Create = () => {
               handleAnswer={handleAnswer}
               deleteAnswer={deleteAnswer}
               toggleIsRequired={toggleIsRequired}
+              copyQuestion={copyQuestion}
             />
           ))
           }
