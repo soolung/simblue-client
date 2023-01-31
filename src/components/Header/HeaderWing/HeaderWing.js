@@ -61,10 +61,14 @@ export default function HeaderWing({ isOpen, closeModal }) {
         </div>
         <div className="res-header-third">
           <div className="res-header-question">
-            <span>자주묻는 질문</span>
+            <Link to="https://www.notion.so/soolung/c351137b354147d6b54b9beabc745caa">
+              <span>자주 묻는 질문</span>
+            </Link>
           </div>
           <div className="res-header-note">
-            <span>릴리즈노트</span>
+            <Link to="https://www.notion.so/soolung/Release-Note-add7c6c9f0b945308319402caf24f2ae">
+              <span>릴리즈 노트</span>
+            </Link>
           </div>
         </div>
       </div>
