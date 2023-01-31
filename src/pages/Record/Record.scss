@@ -16,24 +16,14 @@
 @media screen and (max-width: 700px) {
   .record {
     .teacher-application {
-
       .application-title {
         width: 60%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-left: -10px;
 
         .application-title-icon {
-          display: inline-block;
           font-size: 25px;
-          text-align: right;
         }
 
         .application-title-title {
-          display: inline-block;
-          word-break: keep-all;
-          font-weight: 700;
           font-size: 20px;
         }
       }
@@ -44,14 +34,7 @@
 
       .application-end-date {
         width: 40%;
-        font-weight: 300;
-        text-align: right;
-        white-space: nowrap;
         font-size: 15px;
-      }
-
-      &:hover {
-        background-color: $light-grey;
       }
     }
   }
