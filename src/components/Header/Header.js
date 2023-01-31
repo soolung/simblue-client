@@ -1,23 +1,24 @@
 import "./Header.scss";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
-import HeaderWing from "./HeaderWing/HeaderWing";
-import { useLocation } from "react-router-dom";
+import SideBar from "./SideBar/SideBar";
+import { Transition } from 'react-transition-group';
 
 export default function Header() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
-  const [wingIsOpen, setWingOpen] = useState(false);
-  useEffect(() => {
-    setWingOpen(false);
-  }, [pathname]);
+  const [sideBarIsOpen, setSideBarOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
+
+  useEffect(() => {
+    setSideBarOpen(false);
+  }, [pathname]);
 
   const toggleSearchTextOnFocus = (e) => {
     setSearchTextOnFocus(!searchTextOnFocus);
@@ -36,7 +37,7 @@ export default function Header() {
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
@@ -114,7 +115,7 @@ export default function Header() {
           </div>
         </div>
         <div className="header-inner mobile">
-          <button onClick={() => setWingOpen(true)}>
+          <button onClick={() => setSideBarOpen(true)}>
             <img
               src="/images/hamburger.svg"
               className="button-image"
@@ -122,7 +123,7 @@ export default function Header() {
             />
           </button>
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
           </Link>
           <button onClick={() => console.log("search")}>
             <img
@@ -133,7 +134,11 @@ export default function Header() {
           </button>
         </div>
       </header>
-      <HeaderWing isOpen={wingIsOpen} closeModal={() => setWingOpen(false)} />
+      <Transition unmountOnExit in={sideBarIsOpen} timeout={245}>
+        {(sideBarIsOpen) =>
+          <SideBar state={sideBarIsOpen} closeModal={() => setSideBarOpen(false)}/>
+        }
+      </Transition>
     </>
   );
 }

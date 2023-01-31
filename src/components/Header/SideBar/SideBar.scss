@@ -1,12 +1,12 @@
 @import "../../../styles/common";
 
-.header-wing {
+.side-bar {
   width: 60vw;
   height: 100vh;
+
   position: absolute;
   top: 0;
   left: 0;
-  transform: none;
   z-index: 102;
   background-color: white;
   animation: slide 250ms ease-in-out;
@@ -19,57 +19,58 @@
     animation: slide-out 250ms ease-out;
   }
 
-  .responsive-header-top {
-    padding: 60px 0 0 30px;
-
-    .header-first-school {
-      span {
-        font-size: 11px;
-        color: $dark-grey;
-      }
-    }
+  .division-line {
+    background-color: $light-grey;
+    height: 1.5px;
+    border: none;
+    margin: 16px 0;
   }
 
-  .res-header-second {
-    .res-header-category-ul {
-      .res-header-nav-li {
-        padding: 8px 0px;
+  .side-bar-content {
+    padding: 60px 30px;
 
-        a {
-          font-size: 17px;
+    .side-bar-logo-container {
+      padding-bottom: 5px;
+
+      .side-bar-logo {
+        width: 90px;
+      }
+
+      .side-bar-school {
+        font-size: 12px;
+        color: $dark-grey;
+        margin-top: 2px;
+      }
+    }
+
+    .side-bar-nav {
+      .side-bar-category-ul {
+        .side-bar-nav-li {
+          padding: 8px 0px;
+
+          a {
+            font-size: 17px;
+          }
         }
       }
     }
-  }
 
-  .res-header-third {
-    padding-top: 20px;
-
-    .res-header-question {
-      padding: 5px 0px;
-
-      span {
-        font-size: 15px;
-      }
-    }
-
-    .res-header-note {
-      padding: 5px 0px;
-
-      span {
+    .side-bar-more {
+      .side-bar-more-content {
+        padding: 5px 0;
         font-size: 15px;
       }
     }
   }
 
-  .responsive-header-bottom {
+  .side-bar-bottom {
     position: absolute;
     bottom: 0px;
     width: 100%;
     background-color: $background-color;
     padding: 20px 30px 20px 30px;
 
-    .res-login-button {
+    .side-bar-login-button {
       width: 100%;
       font-size: 15px;
       font-weight: 500;
@@ -77,14 +78,14 @@
       display: flex;
       justify-content: space-between;
 
-      .res-login-button-arrow {
+      .side-bar-login-button-arrow {
         top: 2px;
       }
     }
   }
 }
 
-.modal-overlay-custom {
+.side-bar-overlay {
   width: 100vw;
   height: 100vh;
   position: fixed;
