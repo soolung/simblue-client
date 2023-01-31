@@ -2,6 +2,7 @@
 
 .record {
   width: 80vw;
+  min-width: 350px;
   margin: 0 auto;
   padding: 80px 10px;
 
@@ -12,45 +13,12 @@
   }
 }
 
-@media screen and (max-width: 1020px) {
-  .record {
-    .record-application-section>a {
-      margin-top: 10px;
-      width: 49%;
-      height: 20vh;
-
-      .application {
-        width: 100%;
-        height: 100%;
-
-        .application-title {
-          font-size: 25px;
-          font-weight: 800;
-        }
-
-        .application-end-date {
-          font-size: 17px;
-        }
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 700px) {
   .record {
-    &:hover {
-      cursor: pointer;
-    }
-
-    display: flex;
-    flex-direction: column;
-    border-radius: 18px;
-    padding: 10px;
-
-    .record-application-section {
+    .teacher-application {
 
       .application-title {
-        width: 45%;
+        width: 60%;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -71,11 +39,10 @@
       }
 
       .application-comment {
-        visibility: hidden;
+        display: none;
       }
 
       .application-end-date {
-        margin: 0 auto;
         width: 40%;
         font-weight: 300;
         text-align: right;
@@ -87,6 +54,6 @@
         background-color: $light-grey;
       }
     }
-
   }
 }
+
