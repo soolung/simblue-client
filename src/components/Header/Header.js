@@ -4,12 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import ProfilePopover from './ProfilePopover/ProfilePopover';
+import HeaderWing from './HeaderWing/HeaderWing';
 
 export default function Header() {
   const navigate = useNavigate();
-  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
-
   const user = useRecoilValue(userState);
+  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
+  const [wingIsOpen, setWingOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
@@ -104,7 +105,7 @@ export default function Header() {
           </div>
         </div>
         <div className="header-inner mobile">
-          <button onClick={() => console.log('good')}>
+          <button onClick={() => setWingOpen(true)}>
             <img src="/images/hamburger.svg"
                  className="button-image"
                  alt="menu"
@@ -121,6 +122,10 @@ export default function Header() {
           </button>
         </div>
       </header>
+      <HeaderWing
+        isOpen={wingIsOpen}
+        closeModal={() => setWingOpen(false)}
+      />
     </>
   );
 }
