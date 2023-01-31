@@ -1,30 +1,21 @@
 import "./Header.scss";
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
-import { AiOutlineBars } from "react-icons/ai";
-import useMedia from "../../hooks/useMedia";
-import ProfilePopover from './ProfilePopover/ProfilePopover';
+import ProfilePopover from "./ProfilePopover/ProfilePopover";
+import HeaderWing from "./HeaderWing/HeaderWing";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
-  const isMobile = useMedia("(max-width: 600px)"); // 반응형
-  const [isNavVisible, setIsNavVisible] = useState(true); // 헤더 기본값 true로 열려있게
+  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
-
-  const { pathname } = useLocation(); // 경로
-
-  const toggleNav = () => {
-    setIsNavVisible(!isNavVisible);
-    console.log(isNavVisible);
-  }; // 버튼 누르면 닫히고 열리게
-
-  useEffect(() => {
-    if (isMobile == 1) setIsNavVisible(false); // 모바일이면 경로 바뀔 때마다 헤더가 false로 닫힘
-  }, [pathname]); // pathname이 변화하면 메뉴를 닫을 수 잇도록
-
   const user = useRecoilValue(userState);
+  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
+  const [wingIsOpen, setWingOpen] = useState(false);
+  useEffect(() => {
+    setWingOpen(false);
+  }, [pathname]);
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
@@ -42,113 +33,107 @@ export default function Header() {
 
   return (
     <>
-      <header isNavVisible={isNavVisible}>
-        {" "}
-        {/*메뉴 클릭시 초기화 될 구역 */}
-        <div className="header-header">
-          <div className="header-inner">
-            <div className="resheader-top">
-              <div className="header-logo">
-                <Link to="/">
-                  <ul className="header_logo">
-                    <li>
-                      <img src="https://ifh.cc/g/cs0mAl.png" alt="logo"/>
-                    </li>
-                    {/*a 태그로 하고 싶은데 외안대*/}
-                    <li className="logo-font">
-                      <p className="logo-simblue">심청이</p>
-                      <p className="logo-bssm">
-                        부산소프트웨어마이스터고등학교
-                      </p>
-                    </li>
-                  </ul>
+      <header>
+        <div className="header-inner desktop">
+          <Link to="/">
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+          </Link>
+          <div className="header-category-total">
+            <ul className="header-category-ul">
+              <li className="header-nav-li">
+                <Link to="/look">
+                  <a>둘러보기</a>
                 </Link>
-              </div>
-              {isMobile === 1 ? (
-                <button onClick={toggleNav} className="hamburger">
-                  <AiOutlineBars/>
-                </button>
+              </li>
+              {user?.authority && (
+                <li className="header-nav-li">
+                  <Link to="/record">
+                    <a>기록보기</a>
+                  </Link>
+                </li>
+              )}
+              {user?.authority === "ROLE_TEACHER" ? (
+                <li className="header-nav-li">
+                  <Link to="/create">
+                    <a>만들기</a>
+                  </Link>
+                </li>
               ) : (
                 <></>
               )}
-            </div>
-            {isNavVisible && (
-              <>
-                <div className="header-category-total">
-                  <ul className="header-category-ul">
-                    <li className="header-nav-li">
-                      <Link to="/look">
-                        <a>둘러보기</a>
-                      </Link>
-                    </li>
-                    {user?.authority && (
-                      <li className="header-nav-li">
-                        <Link to="/record">
-                          <a>기록보기</a>
-                        </Link>
-                      </li>
-                    )}
-                    {user?.authority === "ROLE_TEACHER" ? (
-                      <li className="header-nav-li">
-                        <Link to="/create">
-                          <a>만들기</a>
-                        </Link>
-                      </li>
-                    ) : (
-                      <></>
-                    )}
-                  </ul>
-                </div>
+            </ul>
+          </div>
 
-                <div className="search">
-                  <input
-                    type="text"
-                    placeholder="검색어를 입력해주세요."
-                    value={searchText}
-                    onChange={writeSearchText}
-                    onFocus={toggleSearchTextOnFocus}
-                    onBlur={toggleSearchTextOnFocus}
-                  />
-                  <button
-                    className={
-                      "search-delete " +
-                      (searchText.length > 0 && searchTextOnFocus
-                        ? "search-delete-show"
-                        : "search-delete-no")
-                    }
-                    onClick={resetSearchText}
-                  />
-                  <input
-                    type="image"
-                    className="search-go"
-                    src={"https://ifh.cc/g/nXpwoz.png"}
-                    alt="search-go"
-                  />
-                </div>
-                <div className='header_login_button'>
-                  {
-                    user?.authority ?
-                      <>
-                        <button
-                          onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
-                          className='login-button'
-                        >
-                          {user.name}
-                        </button>
-                        <ProfilePopover
-                          isOpen={profilePopoverIsOpen}
-                          close={() => setProfilePopoverOpen(false)}
-                        />
-                      </>
-                      :
-                      <button onClick={() => navigate('/login')} className='login-button'>로그인</button>
-                  }
-                </div>
+          <div className="search-area">
+            <input
+              type="text"
+              placeholder="검색어를 입력해주세요."
+              value={searchText}
+              onChange={writeSearchText}
+              onFocus={toggleSearchTextOnFocus}
+              onBlur={toggleSearchTextOnFocus}
+            />
+            <button
+              className={
+                "search-delete " +
+                (searchText.length > 0 && searchTextOnFocus
+                  ? "search-delete-show"
+                  : "search-delete-no")
+              }
+              onClick={resetSearchText}
+            />
+            <input
+              type="image"
+              className="search-go"
+              src="/images/search.svg"
+              alt="search-go"
+            />
+          </div>
+          <div className="header_login_button">
+            {user?.authority ? (
+              <>
+                <button
+                  onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
+                  className="login-button"
+                >
+                  {user.name}
+                </button>
+                <ProfilePopover
+                  isOpen={profilePopoverIsOpen}
+                  close={() => setProfilePopoverOpen(false)}
+                />
               </>
+            ) : (
+              <button
+                onClick={() => navigate("/login")}
+                className="login-button"
+              >
+                로그인
+              </button>
             )}
           </div>
         </div>
+        <div className="header-inner mobile">
+          <button onClick={() => setWingOpen(true)}>
+            <img
+              src="/images/hamburger.svg"
+              className="button-image"
+              alt="menu"
+            />
+          </button>
+          <Link to="/">
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+          </Link>
+          <button onClick={() => console.log("search")}>
+            <img
+              src="/images/search.svg"
+              className="button-image"
+              alt="search"
+            />
+          </button>
+        </div>
       </header>
+      <HeaderWing isOpen={wingIsOpen} closeModal={() => setWingOpen(false)} />
     </>
   );
 }

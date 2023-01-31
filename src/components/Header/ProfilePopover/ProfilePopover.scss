@@ -16,7 +16,6 @@
   }
 
   .profile-popover {
-
     .profile-popover-list {
       width: 100%;
       display: flex;
@@ -52,6 +51,21 @@
       border-top-right-radius: 30%;
       -webkit-transform: rotate(-55deg) skewX(-20deg);
       transform: rotate(-55deg) skewX(-20deg);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-popover-container {
+    border: 1px solid $grey;
+    position: absolute;
+    top: -25px;
+    right: 10px;
+    width: 25vw;
+    .profile-popover {
+      .profile-popover-list {
+        font-size: 10px;
+      }
     }
   }
 }

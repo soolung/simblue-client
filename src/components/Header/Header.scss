@@ -1,38 +1,42 @@
 @import "../../styles/common";
+
 header {
   position: fixed;
-  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
   width: 100vw;
+  height: 76px;
   z-index: 100;
   background-color: white;
-  padding: 10px 0px;
-}
-.header-header {
-  margin: 0 auto;
-  width: 80vw;
+
   .header-inner {
-    align-items: center;
+    width: 80vw;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+
+    &.mobile {
+      display: none;
+    }
+
     .header-logo {
       -webkit-tap-highlight-color: transparent;
-      .header_logo {
-        .logo-font {
-          position: relative;
-          bottom: 7px;
-          left: 5px;
-        }
-      }
+      width: 85px;
     }
+
     .header-category-ul {
       .header-nav-li {
         padding: 0px 20px;
+
         a {
           -webkit-tap-highlight-color: transparent;
           padding: 5px 5px;
           font-size: 18px;
           font-weight: 500;
           border-radius: 12px;
+
           &:hover {
             cursor: pointer;
             background-color: $light-grey;
@@ -40,6 +44,7 @@ header {
         }
       }
     }
+
     .header_login_button {
       -webkit-tap-highlight-color: transparent;
       position: relative;
@@ -62,13 +67,13 @@ header {
   }
 }
 
-.search {
+.search-area {
   position: relative;
   display: inline-block;
   padding-left: 6px;
 
   input[type="text"] {
-    width: 220px;
+    width: 20vw;
     height: 34px;
     padding: 0 60px 0 14px;
     border: 1px solid $light-grey;
@@ -97,8 +102,7 @@ header {
     width: 36px;
     height: 36px;
     border: 0;
-    background: url(https://res.kurly.com/pc/ico/2010/ico_search_del.svg)
-      no-repeat 50% 50%;
+    background: url(https://res.kurly.com/pc/ico/2010/ico_search_del.svg) no-repeat 50% 50%;
     background-size: 12px 12px;
   }
 
@@ -119,40 +123,42 @@ header {
   }
 }
 
-.hamburger {
-  color: black;
-  font-size: 20px;
-  padding-left: 50px;
-  background-color: transparent;
-  -webkit-tap-highlight-color: transparent;
-}
-@media screen and (max-width: 600px) {
-  .header-header {
-    width: 100vw;
-  }
-  .search {
+@media screen and (max-width: 1020px) {
+  .search-area {
     display: none;
   }
-  .resheader-top {
-    display: flex;
-    justify-content: space-between;
+}
+
+@media screen and (max-width: 700px) {
+  .search-area {
+    display: none;
   }
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+
+  body {
+    padding-top: 65px;
   }
-  .header-category-ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  .header-nav-li {
-    text-align: center;
-    width: 100%;
-    a {
-      line-height: 40px;
+
+  header {
+    height: 65px;
+
+    .header-inner {
+      &.desktop {
+        display: none;
+      }
+
+      &.mobile {
+        display: flex !important;
+      }
+
+      button {
+        width: 40px;
+        height: 40px;
+
+        .button-image {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
-  }
-  .login-button {
-    margin: 10px 0px;
   }
 }

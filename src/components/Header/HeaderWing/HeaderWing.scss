@@ -1,0 +1,68 @@
+@import "../../../styles/common";
+
+.header-wing {
+  width: 60vw;
+  height: 100vh;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+.responsive-header-top {
+  padding: 60px 0px 10px 30px;
+  .res-header-first {
+    .header-first-img {
+      img {
+      }
+    }
+    .header-first-school {
+      span {
+        font-size: 11px;
+        color: $dark-grey;
+      }
+    }
+    padding-bottom: 25px;
+  }
+  .res-header-second {
+    .res-header-category-ul {
+      .res-header-nav-li {
+        padding: 8px 0px;
+        a {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+  .res-header-third {
+    padding-top: 20px;
+    .res-header-question {
+      padding: 5px 0px;
+      span {
+        font-size: 15px;
+      }
+    }
+    .res-header-note {
+      padding: 5px 0px;
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+}
+.responsive-header-bottom {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: $background-color;
+  padding: 20px 30px 20px 30px;
+  .res-login-button {
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    color: $dark-grey;
+    display: flex;
+    justify-content: space-between;
+    .res-login-button-arrow {
+      top: 2px;
+    }
+  }
+}
