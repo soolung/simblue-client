@@ -1,0 +1,143 @@
+@import "../../../styles/common";
+
+.header-wing {
+  width: 60vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: none;
+  z-index: 102;
+  background-color: white;
+  animation: slide 250ms ease-in-out;
+
+  &.entering {
+    animation: slide-in 250ms ease-in;
+  }
+
+  &.exiting {
+    animation: slide-out 250ms ease-out;
+  }
+
+  .responsive-header-top {
+    padding: 60px 0 0 30px;
+
+    .header-first-school {
+      span {
+        font-size: 11px;
+        color: $dark-grey;
+      }
+    }
+  }
+
+  .res-header-second {
+    .res-header-category-ul {
+      .res-header-nav-li {
+        padding: 8px 0px;
+
+        a {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
+  .res-header-third {
+    padding-top: 20px;
+
+    .res-header-question {
+      padding: 5px 0px;
+
+      span {
+        font-size: 15px;
+      }
+    }
+
+    .res-header-note {
+      padding: 5px 0px;
+
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .responsive-header-bottom {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: $background-color;
+    padding: 20px 30px 20px 30px;
+
+    .res-login-button {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 500;
+      color: $dark-grey;
+      display: flex;
+      justify-content: space-between;
+
+      .res-login-button-arrow {
+        top: 2px;
+      }
+    }
+  }
+}
+
+.modal-overlay-custom {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 101;
+  opacity: 1;
+
+  &.entering {
+    animation: opacity-in 250ms ease-in;
+  }
+
+  &.exiting {
+    animation: opacity-out 250ms ease-out;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    left: -65vw;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  to {
+    left: -65vw;
+    opacity: 0;
+  }
+}
+
+@keyframes opacity-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
