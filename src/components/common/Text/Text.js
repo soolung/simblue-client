@@ -5,6 +5,7 @@ const TextRef = ({
                    className,
                    onChange,
                    onKeyUp,
+  onFocus,
                    value,
                    name,
                    id,
@@ -17,6 +18,7 @@ const TextRef = ({
       className={`text ${className}`}
       type="text"
       onChange={onChange}
+      onFocus={onFocus}
       onKeyUp={onKeyUp}
       value={value}
       name={name}

@@ -1,19 +1,24 @@
 import "./Answer.scss"
 import Text from "../../common/Text/Text";
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Radio from "../../common/Radio/Radio";
 import Check from "../../common/Check/Check";
 
 export default function Answer({ type, answers, addAnswer, addNextAnswer, handleAnswer, deleteAnswer, questionIndex }) {
-  const answerRefs = useRef([]);
+  const answerRefs = React.useMemo(
+    () =>
+      answers.map(() => ({
+        current: null,
+      })),
+    [answers]
+  );
 
-  // useEffect(() => {
-  //   if (type === "RADIO" || type === "CHECKBOX") {
-  //     console.log(answerRefs)
-  //     answerRefs.current = answerRefs.current.slice(0, answers.length);
-  //     console.log(answerRefs.current.length)
-  //   }
-  // }, [answers, type]);
+  const [focusIndex, setFocusIndex] = useState(0);
+  useEffect(() => {
+    if (answerRefs && type === "RADIO" || type === "CHECKBOX") {
+      answerRefs[focusIndex]?.current.focus();
+    }
+  }, [focusIndex])
 
   if (type === "RADIO" || type === "CHECKBOX") {
     return (
@@ -28,7 +33,7 @@ export default function Answer({ type, answers, addAnswer, addNextAnswer, handle
                   <Check isChecked={false} className='answer-check' readOnly/>
               }
               <Text
-                ref={el => answerRefs.current[index] = el}
+                ref={answerRefs[index]}
                 placeholder='옵션'
                 className='answer-text'
                 value={a.answer}
@@ -36,21 +41,19 @@ export default function Answer({ type, answers, addAnswer, addNextAnswer, handle
                 onKeyUp={(e) => {
                   if (e.key === 'Enter') {
                     addNextAnswer(index, questionIndex);
-                    console.log(answerRefs)
-                    answerRefs.current[index + 1]?.focus();
-                  } else if (e.key === 'Backspace' && a.answer.length === 0) {
-                    if (index !== 0) {
-                      deleteAnswer(index, questionIndex);
-                      answerRefs.current[index - 1].focus();
-                    }
+                    setFocusIndex(index + 1);
+                  } else if (e.key === 'Backspace' && a.answer.length === 0 && index > 0) {
+                    deleteAnswer(index, questionIndex);
+                    setFocusIndex(index - 1);
                   } else if (e.key === 'ArrowDown' && index < answers.length) {
                     e.preventDefault();
-                    answerRefs.current[index + 1]?.focus();
+                    setFocusIndex(index + 1);
                   } else if (e.key === 'ArrowUp' && index > 0) {
                     e.preventDefault();
-                    answerRefs.current[index - 1]?.focus();
+                    setFocusIndex(index - 1);
                   }
                 }}
+                onFocus={(e) => e.target.select()}
               />
               <img src='/images/cancel.svg' className='cancel' alt='cancel'
                    onClick={() => deleteAnswer(index, questionIndex)}/>
