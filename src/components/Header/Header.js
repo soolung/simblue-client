@@ -43,20 +43,20 @@ export default function Header() {
             <ul className="header-category-ul">
               <li className="header-nav-li">
                 <Link to="/look">
-                  <a>둘러보기</a>
+                  둘러보기
                 </Link>
               </li>
               {user?.authority && (
                 <li className="header-nav-li">
                   <Link to="/record">
-                    <a>기록보기</a>
+                    기록보기
                   </Link>
                 </li>
               )}
               {user?.authority === "ROLE_TEACHER" ? (
                 <li className="header-nav-li">
                   <Link to="/create">
-                    <a>만들기</a>
+                    만들기
                   </Link>
                 </li>
               ) : (

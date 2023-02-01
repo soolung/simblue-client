@@ -32,7 +32,7 @@ export default function SideBar({ state, closeModal }) {
               <div>
                 <li className="side-bar-nav-li">
                   <Link to="/look">
-                    <a>둘러보기</a>
+                    둘러보기
                   </Link>
                 </li>
               </div>
@@ -40,7 +40,7 @@ export default function SideBar({ state, closeModal }) {
                 <div>
                   <li className="side-bar-nav-li">
                     <Link to="/record">
-                      <a>기록보기</a>
+                      기록보기
                     </Link>
                   </li>
                 </div>
@@ -49,7 +49,7 @@ export default function SideBar({ state, closeModal }) {
                 <div>
                   <li className="side-bar-nav-li">
                     <Link to="/create">
-                      <a>만들기</a>
+                      만들기
                     </Link>
                   </li>
                 </div>
