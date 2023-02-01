@@ -8,6 +8,7 @@
   padding: 50px 10px;
   transition: all 0.6s;
   -webkit-transition: all 0.6s;
+  word-break: keep-all;
 
   &.half {
     max-width: none;
@@ -15,7 +16,7 @@
   }
 
   .application-detail-application-header {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
 
     .application-detail-application-header-title {
@@ -26,7 +27,7 @@
 
     .application-detail-application-header-description {
       font-weight: 300;
-      font-size: 19px;
+      font-size: 20px;
     }
 
     .application-detail-application-header-time {
