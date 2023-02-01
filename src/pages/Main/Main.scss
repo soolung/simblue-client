@@ -1,14 +1,75 @@
-@import '../../styles/common.scss';
+@import "../../styles/common";
 
-.latest-application-list {
+.main {
+  overflow-x: hidden;
+
+  .latest-application-list {
     display: flex;
     width: 70vw;
     justify-content: space-between;
     padding-top: 25px;
     margin: 0 auto;
+    flex-wrap: wrap;
 
     .application {
-        width: 16.5vw;
-        height: 35vh;
+      width: 16.5vw;
+      height: 35vh;
     }
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .main {
+    .latest-application-list > a {
+      margin-top: 10px;
+      width: 49%;
+      height: 20vh;
+
+      .application {
+        width: 100%;
+        height: 100%;
+
+        .application-title {
+          font-size: 25px;
+          font-weight: 800;
+        }
+
+        .application-comment {
+          font-size: 14px;
+        }
+
+        .application-end-date {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    .latest-application-list > a {
+      margin-top: 10px;
+      width: 100%;
+      height: 20vh;
+
+      .application {
+        width: 100%;
+        height: 100%;
+
+        .application-title {
+          font-size: 6vw;
+          font-weight: 800;
+        }
+
+        .application-comment {
+          font-size: 20px;
+        }
+
+        .application-end-date {
+          font-size: 17px;
+        }
+      }
+    }
+  }
 }

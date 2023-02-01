@@ -1,5 +1,5 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-@import url('https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css');
+@import url("https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css");
 @import "styles/common";
 
 * {
@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   padding-top: 76px;
   color: black;
   height: 100vh;
@@ -31,11 +31,13 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: black;
+  display: inline-block;
 }
 
 button {
   cursor: pointer;
   border: none;
+  background-color: transparent;
 }
 
 .ReactModalPortal {
@@ -65,10 +67,6 @@ button {
   overflow: hidden;
 }
 
-.emoji {
-  font-family: Tossface, sans-serif;
-}
-
 .section-header {
   margin-bottom: 30px;
 
@@ -88,10 +86,6 @@ input[type="text"] {
   &:focus {
     outline: none;
   }
-}
-
-.hidden {
-  display: none;
 }
 
 #root {

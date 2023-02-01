@@ -1,0 +1,101 @@
+@import "../../styles/common";
+
+.login {
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+
+  .img-box {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    img {
+      width: 70%;
+    }
+    p {
+      font-weight: 600;
+      font-size: 1.8em;
+    }
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 4%;
+    width: 35%;
+    .login-title {
+      display: flex;
+      font-weight: 600;
+      font-size: 25px;
+      img {
+        width: 7%;
+        object-fit: contain;
+        margin-left: 4px;
+      }
+    }
+    .login-subtitle {
+      color: $dark-grey;
+      font-size: 14px;
+      font-weight: 400;
+      padding-top: 5px;
+      word-break: keep-all;
+    }
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+      .login-google-btn {
+        display: flex;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1px solid #c2c2c2;
+        border-radius: 2px;
+        column-gap: 5px;
+        img {
+          width: 6%;
+        }
+      }
+      .login-btn {
+        background-color: $main-red;
+        height: 45px;
+        color: white;
+        font-weight: 600;
+      }
+    }
+    .to-signup {
+      text-align: center;
+      color: $medium-grey;
+      font-size: 11px;
+      span {
+        word-break: keep-all;
+        color: $main-red;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .login > .login-form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .login {
+    .img-box {
+      display: none;
+    }
+    .login-form {
+      width: 75%;
+    }
+  }
+}

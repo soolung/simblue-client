@@ -1,119 +1,144 @@
-import './Header.scss';
-import LoginModal from '../Modal/Login/LoginModal';
-import {useState} from "react";
-import {Link} from "react-router-dom";
-import {useRecoilState} from "recoil";
-import {userState} from "../../utils/atom/user";
-import useModal from "../../hooks/useModal";
+import "./Header.scss";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../utils/atom/user";
+import ProfilePopover from "./ProfilePopover/ProfilePopover";
+import SideBar from "./SideBar/SideBar";
+import { Transition } from 'react-transition-group';
 
 export default function Header() {
-    const {openModal, closeModal} = useModal();
-    const [user, setUser] = useRecoilState(userState);
-    const [searchText, setSearchText] = useState("");
-    const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const user = useRecoilValue(userState);
+  const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
+  const [sideBarIsOpen, setSideBarOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
-    const toggleSearchTextOnFocus = e => {
-        setSearchTextOnFocus(!searchTextOnFocus)
-    }
+  useEffect(() => {
+    setSideBarOpen(false);
+  }, [pathname]);
 
-    const writeSearchText = e => {
-        setSearchText(e.target.value)
-    }
+  const toggleSearchTextOnFocus = (e) => {
+    setSearchTextOnFocus(!searchTextOnFocus);
+  };
 
-    const resetSearchText = e => {
-        setSearchText("");
-    }
+  const writeSearchText = (e) => {
+    setSearchText(e.target.value);
+  };
 
-    const logout = () => {
-        localStorage.clear();
-        setUser({
-            token: null,
-            authority: null,
-            name: null,
-        })
-    }
+  const resetSearchText = (e) => {
+    setSearchText("");
+  };
 
-    const openLoginModal = () => {
-        openModal(
-            <LoginModal
-                closeModal={closeModal}
+  return (
+    <>
+      <header>
+        <div className="header-inner desktop">
+          <Link to="/">
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+          </Link>
+          <div className="header-category-total">
+            <ul className="header-category-ul">
+              <li className="header-nav-li">
+                <Link to="/look">
+                  둘러보기
+                </Link>
+              </li>
+              {user?.authority && (
+                <li className="header-nav-li">
+                  <Link to="/record">
+                    기록보기
+                  </Link>
+                </li>
+              )}
+              {user?.authority === "ROLE_TEACHER" ? (
+                <li className="header-nav-li">
+                  <Link to="/create">
+                    만들기
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
+            </ul>
+          </div>
+
+          <div className="search-area">
+            <input
+              type="text"
+              placeholder="검색어를 입력해주세요."
+              value={searchText}
+              onChange={writeSearchText}
+              onFocus={toggleSearchTextOnFocus}
+              onBlur={toggleSearchTextOnFocus}
             />
-        )
-    }
-
-    return (
-        <>
-            <header>
-                <div className='header-inner'>
-                    <Link to="/">
-                        <div className='header_logo'>
-                            <img src='https://ifh.cc/g/cs0mAl.png' alt='logo'/>
-                            {/* {checkObjectIsEmpty(user) ? */}
-                            {/* <> */}
-                            <div className='logo-font'>
-                                <p className='logo-simblue'>심청이</p>
-                                <p className='logo-bssm'>부산소프트웨어마이스터고등학교</p>
-                            </div>
-                            {/* </>
-                            :
-                            <>
-                                <dd className='logo-simchung'>
-                                    심청이 Teacher
-                                </dd>
-                                <dt className='logo-bssm'>
-                                    부산소프트웨어마이스터고등학교
-                                </dt>
-                            </>
-                        } */}
-                        </div>
-                    </Link>
-                    <div className='header_list'>
-                        <div className='header_list--list'>
-                            {/* {checkObjectIsEmpty(user) ?
-                            <> */}
-                            <ul className='header-nav'>
-                                <li className='header-nav-li'><Link to="/look">둘러보기</Link></li>
-                                {user?.authority &&
-                                    <li className='header-nav-li'><Link to="/record">기록보기</Link></li>
-                                }
-                                {user?.authority === "ROLE_TEACHER" ?
-                                    <li className='header-nav-li'><Link to="/create">만들기</Link></li>
-                                    :
-                                    <></>
-                                }
-                                <li className='header-nav-li'><a href="https://soolung.notion.site/c351137b354147d6b54b9beabc745caa" target="_blank">도움말</a></li>
-                            </ul>
-                            {/* </>
-                            :
-                            <>
-                                <ul>
-                                    <li>둘러보기</li>
-                                    <li>기록보기</li>
-                                    <li>만들기</li>
-                                </ul>
-                            </>
-                        } */}
-                        </div>
-                    </div>
-
-                    <div className="search">
-                        <input type="text" placeholder="검색어를 입력해주세요." value={searchText} onChange={writeSearchText}
-                               onFocus={toggleSearchTextOnFocus} onBlur={toggleSearchTextOnFocus}/>
-                        <button
-                            className={"search-delete " + (searchText.length > 0 && searchTextOnFocus ? "search-delete-show" : "search-delete-no")}
-                            onClick={resetSearchText}/>
-                        <input type="image" className="search-go" src={"https://ifh.cc/g/nXpwoz.png"} alt="search-go"/>
-                    </div>
-                    <div className='header_login_button'>
-                        {
-                            user?.authority ?
-                                <button onClick={logout} className='login-button'>{user.name}</button>
-                                :
-                                <button onClick={openLoginModal} className='login-button'>로그인</button>
-                        }
-                    </div>
-                </div>
-            </header>
-        </>
-    )
+            <button
+              className={
+                "search-delete " +
+                (searchText.length > 0 && searchTextOnFocus
+                  ? "search-delete-show"
+                  : "search-delete-no")
+              }
+              onClick={resetSearchText}
+            />
+            <input
+              type="image"
+              className="search-go"
+              src="/images/search.svg"
+              alt="search-go"
+            />
+          </div>
+          <div className="header_login_button">
+            {user?.authority ? (
+              <>
+                <button
+                  onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
+                  className="login-button"
+                >
+                  {user.name}
+                </button>
+                <ProfilePopover
+                  isOpen={profilePopoverIsOpen}
+                  close={() => setProfilePopoverOpen(false)}
+                />
+              </>
+            ) : (
+              <button
+                onClick={() => navigate("/login")}
+                className="login-button"
+              >
+                로그인
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="header-inner mobile">
+          <button onClick={() => setSideBarOpen(true)}>
+            <img
+              src="/images/hamburger.svg"
+              className="button-image"
+              alt="menu"
+            />
+          </button>
+          <Link to="/">
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+          </Link>
+          <button onClick={() => console.log("search")}>
+            <img
+              src="/images/search.svg"
+              className="button-image"
+              alt="search"
+            />
+          </button>
+        </div>
+      </header>
+      <Transition unmountOnExit in={sideBarIsOpen} timeout={245}>
+        {(sideBarIsOpen) =>
+          <SideBar state={sideBarIsOpen} closeModal={() => setSideBarOpen(false)}/>
+        }
+      </Transition>
+    </>
+  );
 }

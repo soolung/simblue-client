@@ -1,9 +1,10 @@
 @import "../../styles/common";
 
 .record {
-  width: 70vw;
+  width: 80vw;
+  min-width: 350px;
   margin: 0 auto;
-  padding: 50px 10px;
+  padding: 80px 10px;
 
   .record-application-section {
     display: flex;
@@ -11,3 +12,31 @@
     gap: 12px;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .record {
+    .teacher-application {
+      .application-title {
+        width: 60%;
+
+        .application-title-icon {
+          font-size: 25px;
+        }
+
+        .application-title-title {
+          font-size: 20px;
+        }
+      }
+
+      .application-comment {
+        display: none;
+      }
+
+      .application-end-date {
+        width: 40%;
+        font-size: 15px;
+      }
+    }
+  }
+}
+

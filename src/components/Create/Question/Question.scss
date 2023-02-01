@@ -1,17 +1,16 @@
 @import '../../../styles/common';
 
-.question{
+.question {
   box-shadow: 0 16px 40px rgba(173, 173, 173, 0.2);
-  width: 45vw;
+  width: 50vw;
 
   background-color: white;
   border-radius: 20px;
-  padding: 20px;
+  padding: 30px 35px;
   margin-bottom: 30px;
 
   .question-header {
     width: 100%;
-    height: 50px;
 
     .question-header-question-type {
       border: 1px solid $medium-grey;
@@ -36,27 +35,40 @@
       padding: 10px 20px;
       background-color: $main-beige;
       border: none;
-      border-bottom: 1px solid $medium-grey;
+      border-bottom: 1px solid $grey;
 
       &::placeholder {
         color: $medium-grey;
       }
     }
 
+    .question-header-description {
+      padding: 10px 10px;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
   }
 
   .QuestionDiv-answer {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
-  .delete-question {
-    text-align: right;
-    margin-top: 20px;
+  .question-footer {
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
 
-    img {
-      width: 20px;
-      cursor: pointer;
+    .action-question-container {
+      display: flex;
+      gap: 5px;
+
+      .action-question {
+        display: inline-block;
+        width: 30px;
+        cursor: pointer;
+      }
     }
   }
 }

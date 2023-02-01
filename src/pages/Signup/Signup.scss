@@ -1,0 +1,107 @@
+@import "../../styles/common";
+
+.signup {
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+
+  .img-box {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    padding: 0 40px;
+
+    img {
+      width: 70%;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 1.8em;
+    }
+  }
+
+  .sign-right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    .sign-header {
+      display: inline-block;
+      width: 100%;
+
+      .sign-title {
+        display: flex;
+        font-weight: 600;
+        font-size: 25px;
+
+        img {
+          width: 7%;
+          object-fit: contain;
+          margin-left: 4px;
+        }
+      }
+
+      .sign-subtitle {
+        color: $dark-grey;
+        font-size: 14px;
+        font-weight: 400;
+        padding-top: 5px;
+        word-break: keep-all;
+      }
+    }
+
+    .sign-form {
+      width: 100%;
+
+      .input-box {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+
+        .information {
+          display: flex;
+          justify-content: space-between;
+
+          .sign-right-ment-num-student {
+            width: 49%;
+          }
+
+          .sign-right-ment-name-student {
+            width: 49%;
+          }
+        }
+      }
+    }
+
+    .sign-btn {
+      height: 45px;
+      font-weight: 600;
+      border-radius: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .signup > .sign-right {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .signup {
+    .img-box {
+      display: none;
+    }
+
+    .sign-right {
+      width: 75%;
+    }
+  }
+}

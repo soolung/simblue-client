@@ -1,0 +1,25 @@
+@import "../../../../styles/common";
+
+.field {
+  display: flex;
+  align-items: center;
+  padding-bottom: 35px;
+  width: 100%;
+
+  .name {
+    display: inline-block;
+    width: 50%;
+    color: $black;
+    font-size: 18px;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+
+  .setting {
+    display: inline-flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 11px 25px;
+    width: 50%;
+  }
+}

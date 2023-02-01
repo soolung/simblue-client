@@ -1,0 +1,19 @@
+@import "../../../styles/common";
+
+.advanced-setting-modal {
+  width: 30vw;
+  height: 60vh;
+  border-radius: 15px;
+  padding: 50px 40px;
+  background-color: $background-color;
+
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
+
+  .setting-content {
+    width: 100%;
+  }
+}
