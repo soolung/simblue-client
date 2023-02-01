@@ -9,6 +9,7 @@ const Question = ({
                     index,
                     deleteQuestion,
                     addAnswer,
+                    addNextAnswer,
                     handleAnswer,
                     deleteAnswer,
                     toggleIsRequired,
@@ -51,6 +52,7 @@ const Question = ({
           type={question?.type}
           answers={question?.answerList}
           addAnswer={() => addAnswer(index)}
+          addNextAnswer={addNextAnswer}
           handleAnswer={handleAnswer}
           deleteAnswer={deleteAnswer}
           questionIndex={index}

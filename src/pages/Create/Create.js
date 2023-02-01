@@ -98,6 +98,21 @@ const Create = () => {
     )
   }
 
+  const addNextAnswer = (answerIndex, index) => {
+    const newAnswerList = questionList[index].answerList;
+    if (newAnswerList.length - 1 === answerIndex) {
+      newAnswerList.push({ answer: "" });
+    } else {
+      newAnswerList.splice(answerIndex + 1, 0, {
+        answer: ""
+      });
+    }
+    setQuestionList(
+      [...questionList],
+      questionList[index].answerList = [...newAnswerList]
+    );
+  }
+
   const handleAnswer = (a, questionIndex, answerIndex) => {
     setQuestionList(
       [...questionList],
@@ -135,9 +150,9 @@ const Create = () => {
   }
 
   const copyQuestion = (index) => {
-    const newQuestionList = [...questionList]
-    newQuestionList.splice(index, 0, JSON.parse(JSON.stringify(questionList[index])))
-    setQuestionList(newQuestionList)
+    const newQuestionList = [...questionList];
+    newQuestionList.splice(index + 1, 0, JSON.parse(JSON.stringify(questionList[index])));
+    setQuestionList(newQuestionList);
   }
 
   return (
@@ -216,6 +231,7 @@ const Create = () => {
               key={index}
               index={index}
               addAnswer={addAnswer}
+              addNextAnswer={addNextAnswer}
               handleAnswer={handleAnswer}
               deleteAnswer={deleteAnswer}
               toggleIsRequired={toggleIsRequired}
