@@ -1,22 +1,16 @@
 import "./Answer.scss"
 import Text from "../../common/Text/Text";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Radio from "../../common/Radio/Radio";
 import Check from "../../common/Check/Check";
 
 export default function Answer({ type, answers, addAnswer, addNextAnswer, handleAnswer, deleteAnswer, questionIndex }) {
-  const answerRefs = React.useMemo(
-    () =>
-      answers.map(() => ({
-        current: null,
-      })),
-    [answers]
-  );
+  const answerRefs = useRef([]);
 
   const [focusIndex, setFocusIndex] = useState(0);
   useEffect(() => {
     if (answerRefs && type === "RADIO" || type === "CHECKBOX") {
-      answerRefs[focusIndex]?.current.focus();
+      answerRefs.current[focusIndex]?.focus();
     }
   }, [focusIndex])
 
@@ -33,12 +27,12 @@ export default function Answer({ type, answers, addAnswer, addNextAnswer, handle
                   <Check isChecked={false} className='answer-check' readOnly/>
               }
               <Text
-                ref={answerRefs[index]}
+                ref={el => answerRefs.current[index] = el}
                 placeholder='옵션'
                 className='answer-text'
                 value={a.answer}
                 onChange={(e) => handleAnswer(e.target.value, questionIndex, index)}
-                onKeyUp={(e) => {
+                onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     addNextAnswer(index, questionIndex);
                     setFocusIndex(index + 1);
@@ -53,7 +47,6 @@ export default function Answer({ type, answers, addAnswer, addNextAnswer, handle
                     setFocusIndex(index - 1);
                   }
                 }}
-                onFocus={(e) => e.target.select()}
               />
               <img src='/images/cancel.svg' className='cancel' alt='cancel'
                    onClick={() => deleteAnswer(index, questionIndex)}/>

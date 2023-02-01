@@ -4,8 +4,8 @@ import { forwardRef } from 'react';
 const TextRef = ({
                    className,
                    onChange,
-                   onKeyUp,
-  onFocus,
+                   onKeyDown,
+                   onFocus,
                    value,
                    name,
                    id,
@@ -19,7 +19,7 @@ const TextRef = ({
       type="text"
       onChange={onChange}
       onFocus={onFocus}
-      onKeyUp={onKeyUp}
+      onKeyDown={onKeyDown}
       value={value}
       name={name}
       id={id}
