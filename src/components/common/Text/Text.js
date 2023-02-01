@@ -1,16 +1,33 @@
 import "./Text.scss";
+import { forwardRef } from 'react';
 
-export default function Text(props) {
-    return (
-        <input
-            className={`text ${props.className}`}
-            type="text"
-            onChange={props.onChange}
-            value={props.value}
-            name={props.name}
-            id={props.id}
-            placeholder={props.placeholder}
-            readOnly={props.readOnly}
-        />
-    )
+const TextRef = ({
+                   className,
+                   onChange,
+                   onKeyDown,
+                   onFocus,
+                   value,
+                   name,
+                   id,
+                   placeholder,
+                   readOnly
+                 }, ref) => {
+  return (
+    <input
+      ref={ref}
+      className={`text ${className}`}
+      type="text"
+      onChange={onChange}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
+      value={value}
+      name={name}
+      id={id}
+      placeholder={placeholder}
+      readOnly={readOnly}
+    />
+  )
 }
+
+const Text = forwardRef(TextRef);
+export default Text;

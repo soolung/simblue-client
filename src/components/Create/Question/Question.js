@@ -9,9 +9,11 @@ const Question = ({
                     index,
                     deleteQuestion,
                     addAnswer,
+                    addNextAnswer,
                     handleAnswer,
                     deleteAnswer,
-                    toggleIsRequired
+                    toggleIsRequired,
+                    copyQuestion,
                   }) => {
 
   return (
@@ -50,6 +52,7 @@ const Question = ({
           type={question?.type}
           answers={question?.answerList}
           addAnswer={() => addAnswer(index)}
+          addNextAnswer={addNextAnswer}
           handleAnswer={handleAnswer}
           deleteAnswer={deleteAnswer}
           questionIndex={index}
@@ -66,7 +69,7 @@ const Question = ({
           <img className='action-question'
                alt='copy'
                src='/images/copy.svg'
-            // onClick={}
+               onClick={() => copyQuestion(index)}
           />
           <img className='action-question'
                alt='delete'

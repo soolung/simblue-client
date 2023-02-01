@@ -2,6 +2,7 @@
 
 .application-detail-application {
   position: relative;
+  width: 75vw;
   max-width: 750px;
   margin: 0 auto;
   padding: 50px 10px;
@@ -65,7 +66,7 @@
 @media screen and (max-width: 1160px) {
   .application-detail-application {
     width: 65vw;
-    
+
     &.half {
       width: 65vw;
       padding: 50px;
@@ -73,11 +74,12 @@
   }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 600px) {
   .application-detail-application {
     transition: none;
     -webkit-transition: none;
-    width: 100vw;
-    padding: 20px 35px;
+    width: 80vw;
+    margin: 0 auto;
+    padding: 50px 0;
   }
 }
