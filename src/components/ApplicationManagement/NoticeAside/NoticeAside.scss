@@ -16,7 +16,7 @@
   }
 
   width: 25vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: inline-flex;
   flex-direction: column;
   background-color: $light-grey;
