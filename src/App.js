@@ -29,38 +29,47 @@ const WithLogin = ({ authority = null, children }) => {
 };
 
 function App() {
+
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header/>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/look" element={<Look />} />
-          <Route path="/record" element={<WithLogin children={<Record />} />} />
+          <Route path="/" element={<Main/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/look" element={<Look/>}/>
+          <Route path="/record" element={<WithLogin children={<Record/>}/>}/>
           <Route
             path="/user/update/password"
-            element={<WithLogin children={<UpdatePassword />} />}
+            element={<WithLogin children={<UpdatePassword/>}/>}
           />
           <Route
             path="/create"
             element={
-              <WithLogin authority="ROLE_TEACHER" children={<Create />} />
+              <WithLogin authority="ROLE_TEACHER" children={<Create/>}/>
             }
           />
-          <Route path="/application/:id" element={<ApplicationDetail />} />
+          <Route path="/application/:id" element={<ApplicationDetail/>}/>
           <Route
             path="/application/:id/manage"
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
-                children={<ApplicationManagement />}
+                children={<ApplicationManagement/>}
               />
             }
           />
         </Routes>
-        <Footer />
+        <Footer/>
       </BrowserRouter>
     </div>
   );

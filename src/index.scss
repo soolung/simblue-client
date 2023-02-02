@@ -2,6 +2,10 @@
 @import url("https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css");
 @import "styles/common";
 
+:root {
+  --vh: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +19,8 @@ body {
   background-color: #fafafa;
   padding-top: 76px;
   color: black;
-  height: 100vh;
   width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 ul {
