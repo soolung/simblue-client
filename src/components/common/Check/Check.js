@@ -3,9 +3,9 @@ import './Check.scss';
 export default function Check(props) {
 
     return (
-        <label className={`check-label ${props.labelClassName}`}>
+        <label className={`check-label ${props.labelClassName ? props.labelClassName : ''}`}>
             <input
-                className={`check ${props.className}`}
+                className={`check ${props.className ? props.className : ''}`}
                 type="checkbox"
                 checked={props.isChecked}
                 onChange={props.onChange}

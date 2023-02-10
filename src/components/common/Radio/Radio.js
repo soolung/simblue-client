@@ -3,9 +3,9 @@ import './Radio.scss';
 export default function Radio(props) {
 
     return (
-        <label className={`radio-label ${props.labelClassName}`}>
+        <label className={`radio-label ${props.labelClassName ? props.labelClassName : ''}`}>
             <input
-                className={`radio ${props.className}`}
+                className={`radio ${props.className ? props.className : ''}`}
                 type="radio"
                 checked={props.isChecked}
                 onChange={props.onChange}
