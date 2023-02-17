@@ -44,7 +44,7 @@ export default function ApplicationDetail() {
 
   const handleResponse = (a, index) => {
     if (request[index]) {
-      setRequest([...request], (request[index].userResponseList = [...a]));
+      setRequest([...request], (request[index].replyDetailList = [...a]));
     }
   };
 
@@ -97,7 +97,7 @@ export default function ApplicationDetail() {
                 mutate({
                   request: {
                     applicationId: id,
-                    requestRequestList: [...request]
+                    replyList: [...request]
                   },
                 })
               }
