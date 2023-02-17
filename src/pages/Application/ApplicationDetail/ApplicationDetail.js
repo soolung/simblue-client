@@ -2,23 +2,21 @@ import "./ApplicationDetail.scss";
 import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
-import {
-  getApplicationDetail,
-  respondApplication,
-} from "../../../utils/api/application";
+import { getApplicationDetail, } from "../../../utils/api/application";
 import { useEffect, useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
+import { replyApplication } from '../../../utils/api/reply';
 
 export default function ApplicationDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const user = useRecoilValue(userState);
 
-  const { mutate } = useMutation(respondApplication, {
+  const { mutate } = useMutation(replyApplication, {
     onSuccess: () => {
       alert("성공!");
       navigate("/");
@@ -60,7 +58,7 @@ export default function ApplicationDetail() {
   return (
     <>
       {isLoading || isFetching ? (
-        <Loading />
+        <Loading/>
       ) : (
         <>
           <NoticeAside
@@ -97,8 +95,10 @@ export default function ApplicationDetail() {
               text={user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요"}
               action={() =>
                 mutate({
-                  id: id,
-                  request: { requestRequestList: [...request] },
+                  request: {
+                    applicationId: id,
+                    requestRequestList: [...request]
+                  },
                 })
               }
               className="application-detail-application-submit"

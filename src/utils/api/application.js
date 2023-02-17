@@ -6,7 +6,7 @@ export const getApplications = async (type) => {
 }
 
 export const getFourLatestApplications = async () => {
-    return (await server.get('/application/four')).data
+    return (await server.get('/application/paging')).data
 }
 
 export const getMyApplications = async () => {
@@ -18,13 +18,9 @@ export const getApplicationDetail = async (id) => {
 }
 
 export const getApplicationResult = async (id) => {
-    return (await server.get(`/application/${id}/request`, authorization())).data
+    return (await server.get(`/application/${id}/result`, authorization())).data
 }
 
 export const createApplication = async ({request}) => {
     return (await server.post('/application', request, authorization())).data
-}
-
-export const respondApplication = async ({id, request}) => {
-    return (await server.post(`/application/${id}/request`, request, authorization())).data
 }
