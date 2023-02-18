@@ -3,20 +3,20 @@ import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
 import { getApplicationDetail, } from "../../../utils/api/application";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
-import { replyApplication } from '../../../utils/api/reply';
+import { getReply, replyApplication } from '../../../utils/api/reply';
 
-export default function ApplicationDetail() {
+export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const user = useRecoilValue(userState);
 
-  const { mutate } = useMutation(replyApplication, {
+  const reply = useMutation(replyApplication, {
     onSuccess: () => {
       alert("성공!");
       navigate("/");
@@ -27,13 +27,17 @@ export default function ApplicationDetail() {
     },
   });
 
+  const [data, setData] = useState({});
   const [request, setRequest] = useState([{}]);
-  const { data, refetch, isLoading, isFetching } = useQuery(
+
+  const queryApplication = useQuery(
     "getApplicationDetail",
     () => getApplicationDetail(id),
     {
-      enabled: false,
+      enabled: mode === "reply",
+      refetchOnWindowFocus: false,
       onSuccess: (data) => {
+        setData({ ...data });
         setRequest([...data.questionList]);
       },
       onError: (err) => {
@@ -42,22 +46,32 @@ export default function ApplicationDetail() {
     }
   );
 
+  const queryReply = useQuery(
+    "queryReply",
+    () => getReply(id),
+    {
+      enabled: mode === "update",
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setData({ ...data });
+        setRequest([...data.questionList]);
+      },
+      onError: () => {}
+    }
+  )
+
   const handleResponse = (a, index) => {
     if (request[index]) {
       setRequest([...request], (request[index].replyDetailList = [...a]));
     }
   };
 
-  useEffect(() => {
-    refetch();
-  }, []);
-
   const [noticeIsOpened, setNoticeIsOpened] = useState(true);
   const [notice, setNotice] = useState("");
 
   return (
     <>
-      {isLoading || isFetching ? (
+      {queryApplication.isLoading || queryReply.isLoading ? (
         <Loading/>
       ) : (
         <>
@@ -94,7 +108,7 @@ export default function ApplicationDetail() {
             <Button
               text={user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요"}
               action={() =>
-                mutate({
+                reply.mutate({
                   request: {
                     applicationId: id,
                     replyList: [...request]
