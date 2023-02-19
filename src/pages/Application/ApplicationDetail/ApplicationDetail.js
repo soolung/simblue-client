@@ -9,7 +9,7 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
-import { getReply, replyApplication } from '../../../utils/api/reply';
+import { getReply, replyApplication, updateReply } from '../../../utils/api/reply';
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
@@ -26,6 +26,46 @@ export default function ApplicationDetail({ mode }) {
       alert(errMessage);
     },
   });
+
+  const update = useMutation(updateReply, {
+    onSuccess: () => {
+      alert("성공!");
+      navigate("/");
+    },
+  })
+
+  const onClick = () => {
+    if (mode === "reply") {
+      reply.mutate({
+        request: {
+          applicationId: id,
+          replyList: [...request]
+        },
+      })
+    } else if (mode === "update") {
+      update.mutate({
+        id: id,
+        request: {
+          applicationId: id,
+          replyList: [...request]
+        }
+      })
+    }
+  }
+
+  const button = () => {
+    if (mode === "reply") {
+      return {
+        text: user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
+        disabled: !user?.authority
+      }
+    } else if (mode === "update") {
+      return {
+        text: data?.allowsUpdatingReply ? "수정하기" : "수정할 수 없어요",
+        disabled: !data?.allowsUpdatingReply
+      }
+    }
+  }
 
   const [data, setData] = useState({});
   const [request, setRequest] = useState([{}]);
@@ -106,17 +146,10 @@ export default function ApplicationDetail({ mode }) {
               />
             </div>
             <Button
-              text={user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요"}
-              action={() =>
-                reply.mutate({
-                  request: {
-                    applicationId: id,
-                    replyList: [...request]
-                  },
-                })
-              }
+              text={button().text}
+              action={onClick}
               className="application-detail-application-submit"
-              disabled={!user?.authority}
+              disabled={button().disabled}
             />
           </section>
         </>

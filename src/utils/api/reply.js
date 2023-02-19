@@ -9,6 +9,10 @@ export const getReply = async (id) => {
   return (await server.get(`/reply/${id}`, authorization())).data
 }
 
+export const updateReply = async ({id, request}) => {
+  return (await server.put(`/reply/${id}`, request, authorization())).data;
+}
+
 export const cancelReply = async (id) => {
   return (await server.delete(`/reply/${id}`, authorization())).data
 }
