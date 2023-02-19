@@ -34,6 +34,7 @@ function App() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
+
   useEffect(() => {
     setScreenSize();
   });
@@ -58,7 +59,7 @@ function App() {
               <WithLogin authority="ROLE_TEACHER" children={<Create/>}/>
             }
           />
-          <Route path="/application/:id" element={<ApplicationDetail/>}/>
+          <Route path="/application/:id" element={<ApplicationDetail mode="reply"/>}/>
           <Route
             path="/application/:id/manage"
             element={
@@ -68,6 +69,10 @@ function App() {
               />
             }
           />
+          <Route
+            path="/reply/:id/update" element={
+            <WithLogin children={<ApplicationDetail mode="update"/>}/>
+          }/>
         </Routes>
         <Footer/>
       </BrowserRouter>

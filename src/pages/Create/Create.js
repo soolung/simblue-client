@@ -29,6 +29,7 @@ const Create = () => {
     title: '',
     description: '',
     allowsDuplication: false,
+    allowsUpdatingReply: false
   })
 
   const advancedSettingModalData = [
@@ -41,6 +42,20 @@ const Create = () => {
             setRequest({
               ...request,
               allowsDuplication: !request.allowsDuplication,
+            })
+          }}
+        />
+      )
+    },
+    {
+      name: "답변 수정 허용",
+      setting: (
+        <Toggle
+          value={request.allowsUpdatingReply}
+          onClick={() => {
+            setRequest({
+              ...request,
+              allowsUpdatingReply: !request.allowsUpdatingReply
             })
           }}
         />
