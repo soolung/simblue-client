@@ -61,7 +61,7 @@ export default function Main() {
               description={a.description}
               startDate={a.startDate}
               endDate={a.endDate}
-              isAlways={a.isAlways}
+              status={a.status}
               key={index}
             />
           ))}

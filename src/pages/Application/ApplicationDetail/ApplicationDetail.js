@@ -136,7 +136,7 @@ export default function ApplicationDetail({ mode }) {
                 {data?.description}
               </p>
               <p className="application-detail-application-header-time">
-                - {data?.isAlways ? "상시" : data?.endDate}
+                - {data?.status === "ALWAYS" ? "상시" : data?.endDate}
               </p>
             </div>
             <div className="application-detail-application-section">
