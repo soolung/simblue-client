@@ -43,7 +43,7 @@ const Create = ({ mode }) => {
 
   const queryApplicationForm = useQuery(
     "queryApplicationForm",
-    () => getApplicationForm(18),
+    () => getApplicationForm(id),
     {
       enabled: mode === "update",
       refetchOnWindowFocus: false,
@@ -249,6 +249,7 @@ const Create = ({ mode }) => {
 
   return (
     <>
+      {queryApplicationForm.isLoading && <div>잠시만 기다려 주세요</div>}
       <section className="create-section">
         <div className="create-header">
           <div className="create-header-top">
