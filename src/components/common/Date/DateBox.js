@@ -15,15 +15,14 @@ export default function DateBox({
   });
 
   useEffect(() => {
-    if (stateInitialize != undefined) {
-      const SaveDate = (stateInitialize || "").split("-");
-      setDate({
-        year: SaveDate[0],
-        month: SaveDate[1],
-        day: SaveDate[2],
-      });
-    }
+    const SaveDate = (stateInitialize || "").split("-");
+    setDate({
+      year: SaveDate[0],
+      month: SaveDate[1],
+      day: SaveDate[2],
+    });
   }, [stateInitialize]);
+
   const handleDateInput = (e) => {
     setDate({ ...date, [e.target.name]: e.target.value });
   };
@@ -31,22 +30,6 @@ export default function DateBox({
   const handleDateManually = (name, value) => {
     setDate({ ...date, [name]: value });
   };
-
-  useEffect(() => {
-    if (
-      date.day != undefined &&
-      date.month != undefined &&
-      date.year != undefined
-    ) {
-      handleDate(
-        date.year +
-          "-" +
-          date.month.toString().padStart(2, "0") +
-          "-" +
-          date.day.toString().padStart(2, "0")
-      );
-    }
-  }, [date]);
 
   const yearKeyEvent = (e) => {
     if (e.key === "ArrowDown") {
@@ -90,6 +73,16 @@ export default function DateBox({
     }
   };
 
+  const onBlur = () => {
+    handleDate(
+      date.year +
+        "-" +
+        date.month.toString().padStart(2, "0") +
+        "-" +
+        date.day.toString().padStart(2, "0")
+    );
+  };
+
   return (
     <div className={`date ${isAlways && "disabled"} ${className}`}>
       <TextBox
@@ -112,6 +105,7 @@ export default function DateBox({
         value={date?.month}
         onChange={handleDateInput}
         onKeyDown={monthKeyEvent}
+        onBlur={onBlur}
       />
       월
       <TextBox
@@ -123,6 +117,7 @@ export default function DateBox({
         value={date?.day}
         onChange={handleDateInput}
         onKeyDown={dayKeyEvent}
+        onBlur={onBlur}
       />
       일
     </div>

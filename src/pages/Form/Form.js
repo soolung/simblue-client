@@ -51,7 +51,6 @@ const Create = ({ mode }) => {
         setRequest({ ...data });
         setQuestionList([...data.questionList]);
       },
-      onError: () => {},
     }
   );
 
