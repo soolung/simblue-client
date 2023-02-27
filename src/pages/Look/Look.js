@@ -47,7 +47,7 @@ export default function Look() {
                   emoji={a.emoji}
                   description={a.description}
                   endDate={a.endDate}
-                  isAlways={a.isAlways}
+                  status={a.status}
                   key={index}
                 />
               ))
