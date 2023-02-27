@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Create.scss';
 import Question from '../../components/Create/Question/Question';
 import Text from "../../components/common/Text/Text";
-import Date from "../../components/common/Date/Date";
+import DateBox from "../../components/common/Date/DateBox";
 import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation } from "react-query";
@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from '../../components/Modal/AdvancedSetting/AdvancedSettingModal';
 import Toggle from '../../components/common/Toggle/Toggle';
-
 
 const Create = () => {
   const navigate = useNavigate()
@@ -207,7 +206,7 @@ const Create = () => {
               <div className='create-header-right-date'>
                 <div className='create-header-right-date-top'>
                   <span>기간</span>
-                  <Date
+                  <DateBox
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, startDate: d })}
                   />
@@ -221,7 +220,7 @@ const Create = () => {
                 </div>
                 <div className='create-header-right-date-bottom'>
                   <span>~</span>
-                  <Date
+                  <DateBox
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, endDate: d })}
                   />
