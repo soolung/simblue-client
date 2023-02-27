@@ -10,10 +10,12 @@ export default function DateBox({
 }) {
   console.log(stateInitialize);
 
+  const SaveDate = (stateInitialize || "").split("-");
+
   const [date, setDate] = useState({
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-    day: new Date().getDate(),
+    year: SaveDate[0] || new Date().getFullYear(),
+    month: SaveDate[1] || new Date().getMonth() + 1,
+    day: SaveDate[2] || new Date().getDate(),
   });
 
   const handleDateInput = (e) => {
