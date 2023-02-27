@@ -10,14 +10,22 @@ export default function DateBox({
 }) {
   console.log(stateInitialize);
 
-  const SaveDate = (stateInitialize || "").split("-");
-
   const [date, setDate] = useState({
-    year: SaveDate[0] || new Date().getFullYear(),
-    month: SaveDate[1] || new Date().getMonth() + 1,
-    day: SaveDate[2] || new Date().getDate(),
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
   });
 
+  useEffect(() => {
+    if (stateInitialize != undefined) {
+      const SaveDate = (stateInitialize || "").split("-");
+      setDate({
+        year: SaveDate[0],
+        month: SaveDate[1],
+        day: SaveDate[2],
+      });
+    }
+  }, [stateInitialize]);
   const handleDateInput = (e) => {
     setDate({ ...date, [e.target.name]: e.target.value });
   };
@@ -27,13 +35,19 @@ export default function DateBox({
   };
 
   useEffect(() => {
-    handleDate(
-      date.year +
-        "-" +
-        date.month.toString().padStart(2, "0") +
-        "-" +
-        date.day.toString().padStart(2, "0")
-    );
+    if (
+      date.day != undefined &&
+      date.month != undefined &&
+      date.year != undefined
+    ) {
+      handleDate(
+        date.year +
+          "-" +
+          date.month.toString().padStart(2, "0") +
+          "-" +
+          date.day.toString().padStart(2, "0")
+      );
+    }
   }, [date]);
 
   const yearKeyEvent = (e) => {
