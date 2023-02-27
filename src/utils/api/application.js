@@ -21,15 +21,15 @@ export const getApplicationResult = async (id) => {
   return (await server.get(`/application/${id}/result`, authorization())).data;
 };
 
-export const createApplication = async ({ request }) => {
+export const createApplicationForm = async ({ request }) => {
   return (await server.post("/application", request, authorization())).data;
 };
 
-export const updateApplication = async ({ request, id }) => {
+export const updateApplicationForm = async ({ request, id }) => {
   return (await server.put(`/application/${id}`, request, authorization()))
     .data;
 };
 
-export const getApplication = async (id) => {
+export const getApplicationForm = async (id) => {
   return (await server.get(`/application/${id}/form`)).data;
 };

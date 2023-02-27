@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Create.scss";
+import "./Form.scss";
 import Question from "../../components/Create/Question/Question";
 import Text from "../../components/common/Text/Text";
 import DateBox from "../../components/common/Date/DateBox";
@@ -7,9 +7,9 @@ import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
 import {
-  createApplication,
-  getApplication,
-  updateApplication,
+  createApplicationForm,
+  getApplicationForm,
+  updateApplicationForm,
 } from "../../utils/api/application";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
@@ -25,13 +25,13 @@ const Create = ({ mode }) => {
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
   const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] =
     useState(false);
-  const create = useMutation(createApplication, {
+  const create = useMutation(createApplicationForm, {
     onSuccess: () => {
       navigate("/");
     },
   });
 
-  const update = useMutation(updateApplication, {
+  const update = useMutation(updateApplicationForm, {
     onSuccess: () => {
       alert("성공!");
       navigate("/");
@@ -43,7 +43,7 @@ const Create = ({ mode }) => {
 
   const queryApplicationForm = useQuery(
     "queryApplicationForm",
-    () => getApplication(18),
+    () => getApplicationForm(18),
     {
       enabled: mode === "update",
       refetchOnWindowFocus: false,

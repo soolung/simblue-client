@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
 import Look from "./pages/Look/Look";
 import Record from "./pages/Record/Record";
-import Create from "./pages/Create/Create";
+import Form from "./pages/Form/Form";
 import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
 import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
@@ -57,7 +57,7 @@ function App() {
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
-                children={<Create mode="create" />}
+                children={<Form mode="create" />}
               />
             }
           />
@@ -66,7 +66,7 @@ function App() {
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
-                children={<Create mode="update" />}
+                children={<Form mode="update" />}
               />
             }
           />

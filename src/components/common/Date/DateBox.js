@@ -41,9 +41,9 @@ export default function DateBox({
       handleDate(
         date.year +
           "-" +
-          date.month?.toString().padStart(2, "0") +
+          date.month.toString().padStart(2, "0") +
           "-" +
-          date.day?.toString().padStart(2, "0")
+          date.day.toString().padStart(2, "0")
       );
     }
   }, [date]);
