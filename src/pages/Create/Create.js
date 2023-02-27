@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Create.scss";
 import Question from "../../components/Create/Question/Question";
 import Text from "../../components/common/Text/Text";
-import Date from "../../components/common/Date/Date";
+import DateBox from "../../components/common/Date/DateBox";
 import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
@@ -25,7 +25,6 @@ const Create = ({ mode }) => {
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
   const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] =
     useState(false);
-
   const create = useMutation(createApplication, {
     onSuccess: () => {
       navigate("/");
@@ -49,10 +48,10 @@ const Create = ({ mode }) => {
       enabled: mode === "update",
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
-        console.log(data);
-        console.log(data.endDate);
         setRequest({ ...data });
         setQuestionList([...data.questionList]);
+        console.log(request?.endDate, request?.startDate);
+        console.log(request);
       },
       onError: () => {},
     }
@@ -98,6 +97,8 @@ const Create = ({ mode }) => {
     description: "",
     allowsDuplication: false,
     allowsUpdatingReply: false,
+    startDate: "",
+    endDate: "",
   });
 
   const advancedSettingModalData = [
@@ -264,14 +265,12 @@ const Create = ({ mode }) => {
                   onClick={() => setEmojiPickerIsOpen(true)}
                   readOnly={true}
                 />
-                {emojiPickerIsOpen ? (
+                {emojiPickerIsOpen && (
                   <EmojiPicker
                     onEmojiClick={emojiChange}
                     emojiStyle={EmojiStyle.NATIVE}
                     width="30vw"
                   />
-                ) : (
-                  <></>
                 )}
               </div>
               <Text
@@ -286,7 +285,8 @@ const Create = ({ mode }) => {
               <div className="create-header-right-date">
                 <div className="create-header-right-date-top">
                   <span>기간</span>
-                  <Date
+                  <DateBox
+                    stateInitialize={request?.startDate}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, startDate: d })}
                   />
@@ -302,7 +302,8 @@ const Create = ({ mode }) => {
                 </div>
                 <div className="create-header-right-date-bottom">
                   <span>~</span>
-                  <Date
+                  <DateBox
+                    stateInitialize={request?.endDate}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, endDate: d })}
                   />

@@ -28,14 +28,14 @@ header {
 
     .header-category-ul {
       .header-nav-li {
-        padding: 0px 20px;
+        padding: 0 20px;
 
         a {
           -webkit-tap-highlight-color: transparent;
-          padding: 5px 5px;
+          padding: 6px 15px;
           font-size: 18px;
           font-weight: 500;
-          border-radius: 12px;
+          border-radius: 10px;
 
           &:hover {
             cursor: pointer;
