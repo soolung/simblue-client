@@ -50,8 +50,6 @@ const Create = ({ mode }) => {
       onSuccess: (data) => {
         setRequest({ ...data });
         setQuestionList([...data.questionList]);
-        console.log(request?.endDate, request?.startDate);
-        console.log(request);
       },
       onError: () => {},
     }
