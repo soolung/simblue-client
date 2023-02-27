@@ -25,8 +25,9 @@ export const createApplication = async ({ request }) => {
   return (await server.post("/application", request, authorization())).data;
 };
 
-export const updateApplication = async ({ request }) => {
-  return (await server.post("/application", request, authorization())).data;
+export const updateApplication = async ({ request, id }) => {
+  return (await server.put(`/application/${id}`, request, authorization()))
+    .data;
 };
 
 export const getApplication = async (id) => {

@@ -12,7 +12,7 @@ import {
   updateApplication,
 } from "../../utils/api/application";
 import { useRecoilValue } from "recoil";
-// import { userState } from "utils/atom/user";
+import { userState } from "../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";
@@ -21,7 +21,7 @@ import Toggle from "../../components/common/Toggle/Toggle";
 const Create = ({ mode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  // const user = useRecoilValue(userState);
+  const user = useRecoilValue(userState);
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
   const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] =
     useState(false);
@@ -37,7 +37,26 @@ const Create = ({ mode }) => {
       alert("성공!");
       navigate("/");
     },
+    onError: (err) => {
+      console.log(err);
+    },
   });
+
+  const queryApplicationForm = useQuery(
+    "queryApplicationForm",
+    () => getApplication(18),
+    {
+      enabled: mode === "update",
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        console.log(data);
+        console.log(data.endDate);
+        setRequest({ ...data });
+        setQuestionList([...data.questionList]);
+      },
+      onError: () => {},
+    }
+  );
 
   const onClick = () => {
     if (mode == "create") {
@@ -49,6 +68,7 @@ const Create = ({ mode }) => {
       });
     } else if (mode == "update") {
       update.mutate({
+        id: id,
         request: {
           ...request,
           questionList: [...questionList],
@@ -57,34 +77,19 @@ const Create = ({ mode }) => {
     }
   };
 
-  // const button = () => {
-  //   if (mode === "create") {
-  //     return {
-  //       text: "만들기",
-  //       disabled: !user?.authority,
-  //     };
-  //   } else if (mode === "update") {
-  //     return {
-  //       text: data?.allowsUpdatingReply ? "수정하기" : "수정할 수 없어요",
-  //       disabled: !data?.allowsUpdatingReply,
-  //     };
-  //   }
-  // };
-
-  const queryApplicationForm = useQuery(
-    "queryApplicationForm",
-    () => getApplication(18),
-    {
-      enabled: mode === "update",
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        console.log(data);
-        setRequest({ ...data });
-        setQuestionList([...data.questionList]);
-      },
-      onError: () => {},
+  const button = () => {
+    if (mode === "create") {
+      return {
+        text: "만들기",
+        disabled: !user?.authority,
+      };
+    } else if (mode === "update") {
+      return {
+        text: "수정하기",
+        disabled: !request?.allowsUpdatingReply,
+      };
     }
-  );
+  };
 
   const [request, setRequest] = useState({
     emoji: "😎",
@@ -339,7 +344,11 @@ const Create = ({ mode }) => {
             text="고급 설정"
             action={() => setAdvancedSettingModalOpen(true)}
           />
-          <Button className="create-button" text="만들기" action={onClick} />
+          <Button
+            className="create-button"
+            text={button().text}
+            action={onClick}
+          />
         </div>
       </section>
       <AdvancedSettingModal
