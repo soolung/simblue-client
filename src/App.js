@@ -29,7 +29,6 @@ const WithLogin = ({ authority = null, children }) => {
 };
 
 function App() {
-
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -42,39 +41,56 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<Main/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/look" element={<Look/>}/>
-          <Route path="/record" element={<WithLogin children={<Record/>}/>}/>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/look" element={<Look />} />
+          <Route path="/record" element={<WithLogin children={<Record />} />} />
           <Route
             path="/user/update/password"
-            element={<WithLogin children={<UpdatePassword/>}/>}
+            element={<WithLogin children={<UpdatePassword />} />}
           />
           <Route
             path="/create"
             element={
-              <WithLogin authority="ROLE_TEACHER" children={<Create/>}/>
+              <WithLogin
+                authority="ROLE_TEACHER"
+                children={<Create mode="create" />}
+              />
             }
           />
-          <Route path="/application/:id" element={<ApplicationDetail mode="reply"/>}/>
+          <Route
+            path="/update/:id"
+            element={
+              <WithLogin
+                authority="ROLE_TEACHER"
+                children={<Create mode="update" />}
+              />
+            }
+          />
+          <Route
+            path="/application/:id"
+            element={<ApplicationDetail mode="reply" />}
+          />
           <Route
             path="/application/:id/manage"
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
-                children={<ApplicationManagement/>}
+                children={<ApplicationManagement />}
               />
             }
           />
           <Route
-            path="/reply/:id/update" element={
-            <WithLogin children={<ApplicationDetail mode="update"/>}/>
-          }/>
+            path="/reply/:id/update"
+            element={
+              <WithLogin children={<ApplicationDetail mode="update" />} />
+            }
+          />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
