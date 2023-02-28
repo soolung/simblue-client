@@ -53,7 +53,7 @@ function App() {
             element={<WithLogin children={<UpdatePassword />} />}
           />
           <Route
-            path="/create"
+            path="/application/create"
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
