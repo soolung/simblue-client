@@ -8,7 +8,6 @@ export default function DateBox({
   handleDate,
   savedDate,
 }) {
-  console.log(new Date().getFullYear());
   const [date, setDate] = useState({
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
