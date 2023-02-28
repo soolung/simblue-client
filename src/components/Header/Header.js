@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
 import SideBar from "./SideBar/SideBar";
-import { Transition } from 'react-transition-group';
+import { Transition } from "react-transition-group";
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -37,27 +37,21 @@ export default function Header() {
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
               <li className="header-nav-li">
-                <Link to="/look">
-                  둘러보기
-                </Link>
+                <Link to="/look">둘러보기</Link>
               </li>
               {user?.authority && (
                 <li className="header-nav-li">
-                  <Link to="/record">
-                    기록보기
-                  </Link>
+                  <Link to="/record">기록보기</Link>
                 </li>
               )}
               {user?.authority === "ROLE_TEACHER" ? (
                 <li className="header-nav-li">
-                  <Link to="/create">
-                    만들기
-                  </Link>
+                  <Link to="/application/create">만들기</Link>
                 </li>
               ) : (
                 <></>
@@ -123,7 +117,7 @@ export default function Header() {
             />
           </button>
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
           </Link>
           <button onClick={() => console.log("search")}>
             <img
@@ -135,9 +129,12 @@ export default function Header() {
         </div>
       </header>
       <Transition unmountOnExit in={sideBarIsOpen} timeout={245}>
-        {(sideBarIsOpen) =>
-          <SideBar state={sideBarIsOpen} closeModal={() => setSideBarOpen(false)}/>
-        }
+        {(sideBarIsOpen) => (
+          <SideBar
+            state={sideBarIsOpen}
+            closeModal={() => setSideBarOpen(false)}
+          />
+        )}
       </Transition>
     </>
   );

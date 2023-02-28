@@ -2,14 +2,18 @@ import "./ApplicationDetail.scss";
 import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
-import { getApplicationDetail, } from "../../../utils/api/application";
+import { getApplicationDetail } from "../../../utils/api/application";
 import { useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
-import { getReply, replyApplication, updateReply } from '../../../utils/api/reply';
+import {
+  getReply,
+  replyApplication,
+  updateReply,
+} from "../../../utils/api/reply";
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
@@ -32,40 +36,40 @@ export default function ApplicationDetail({ mode }) {
       alert("성공!");
       navigate("/");
     },
-  })
+  });
 
   const onClick = () => {
     if (mode === "reply") {
       reply.mutate({
         request: {
           applicationId: id,
-          replyList: [...request]
+          replyList: [...request],
         },
-      })
+      });
     } else if (mode === "update") {
       update.mutate({
         id: id,
         request: {
           applicationId: id,
-          replyList: [...request]
-        }
-      })
+          replyList: [...request],
+        },
+      });
     }
-  }
+  };
 
   const button = () => {
     if (mode === "reply") {
       return {
         text: user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
-        disabled: !user?.authority
-      }
+        disabled: !user?.authority,
+      };
     } else if (mode === "update") {
       return {
         text: data?.allowsUpdatingReply ? "수정하기" : "수정할 수 없어요",
-        disabled: !data?.allowsUpdatingReply
-      }
+        disabled: !data?.allowsUpdatingReply,
+      };
     }
-  }
+  };
 
   const [data, setData] = useState({});
   const [request, setRequest] = useState([{}]);
@@ -86,19 +90,15 @@ export default function ApplicationDetail({ mode }) {
     }
   );
 
-  const queryReply = useQuery(
-    "queryReply",
-    () => getReply(id),
-    {
-      enabled: mode === "update",
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setData({ ...data });
-        setRequest([...data.questionList]);
-      },
-      onError: () => {}
-    }
-  )
+  const queryReply = useQuery("queryReply", () => getReply(id), {
+    enabled: mode === "update",
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setData({ ...data });
+      setRequest([...data.questionList]);
+    },
+    onError: () => {},
+  });
 
   const handleResponse = (a, index) => {
     if (request[index]) {
@@ -112,7 +112,7 @@ export default function ApplicationDetail({ mode }) {
   return (
     <>
       {queryApplication.isLoading || queryReply.isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <>
           <NoticeAside
@@ -125,7 +125,9 @@ export default function ApplicationDetail({ mode }) {
             id={id}
           />
           <section
-            className={`application-detail-application ${noticeIsOpened ? "half" : ""}`}
+            className={`application-detail-application ${
+              noticeIsOpened ? "half" : ""
+            }`}
           >
             <div className="application-detail-application-header">
               <p className="application-detail-application-header-title">
