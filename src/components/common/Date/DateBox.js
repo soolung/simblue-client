@@ -3,15 +3,15 @@ import TextBox from "../TextBox/TextBox";
 import { useEffect, useState } from "react";
 
 export default function DateBox({
-                                  className,
-                                  isAlways,
-                                  handleDate,
-                                  initialDate,
-                                }) {
+  className,
+  isAlways,
+  handleDate,
+  initialDate,
+}) {
   const [date, setDate] = useState({
-    year: null,
-    month: null,
-    day: null,
+    year: "",
+    month: "",
+    day: "",
   });
 
   useEffect(() => {
@@ -50,10 +50,10 @@ export default function DateBox({
   const onBlur = () => {
     handleDate(
       date.year +
-      "-" +
-      date.month.toString().padStart(2, "0") +
-      "-" +
-      date.day.toString().padStart(2, "0")
+        "-" +
+        date.month.toString().padStart(2, "0") +
+        "-" +
+        date.day.toString().padStart(2, "0")
     );
   };
 
@@ -67,7 +67,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.year}
         onChange={handleDateInput}
-        onKeyDown={e => dateKeyEvent(e, 2500)}
+        onKeyDown={(e) => dateKeyEvent(e, 2500)}
       />
       년
       <TextBox
@@ -78,7 +78,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.month}
         onChange={handleDateInput}
-        onKeyDown={e => dateKeyEvent(e, 12)}
+        onKeyDown={(e) => dateKeyEvent(e, 12)}
         onBlur={onBlur}
       />
       월
@@ -90,7 +90,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.day}
         onChange={handleDateInput}
-        onKeyDown={e => dateKeyEvent(e, 31)}
+        onKeyDown={(e) => dateKeyEvent(e, 31)}
         onBlur={onBlur}
       />
       일
