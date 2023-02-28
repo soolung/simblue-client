@@ -15,13 +15,13 @@ export default function DateBox({
   });
 
   useEffect(() => {
-    const SaveDate = (stateInitialize || "").split("-");
+    const splittedDate = (savedDate || "").split("-");
     setDate({
-      year: SaveDate[0],
-      month: SaveDate[1],
-      day: SaveDate[2],
+      year: splittedDate[0],
+      month: splittedDate[1],
+      day: splittedDate[2],
     });
-  }, [stateInitialize]);
+  }, [savedDate]);
 
   const handleDateInput = (e) => {
     setDate({ ...date, [e.target.name]: e.target.value });
