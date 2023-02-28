@@ -3,25 +3,25 @@ import TextBox from "../TextBox/TextBox";
 import { useEffect, useState } from "react";
 
 export default function DateBox({
-  className,
-  isAlways,
-  handleDate,
-  savedDate,
-}) {
+                                  className,
+                                  isAlways,
+                                  handleDate,
+                                  initialDate,
+                                }) {
   const [date, setDate] = useState({
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-    day: new Date().getDate(),
+    year: null,
+    month: null,
+    day: null,
   });
 
   useEffect(() => {
-    const splittedDate = (savedDate || "").split("-");
+    const splittedDate = initialDate.split("-");
     setDate({
       year: splittedDate[0],
       month: splittedDate[1],
       day: splittedDate[2],
     });
-  }, [savedDate]);
+  }, [initialDate]);
 
   const handleDateInput = (e) => {
     setDate({ ...date, [e.target.name]: e.target.value });
@@ -31,59 +31,29 @@ export default function DateBox({
     setDate({ ...date, [name]: value });
   };
 
-  const keyEvent = (e) => {
-    switch (e.target.name) {
-      case "year":
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          handleDateManually(e.target.name, +e.target.value - 1);
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          handleDateManually(e.target.name, +e.target.value + 1);
-        }
-        break;
-      case "month":
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          handleDateManually(
-            e.target.name,
-            e.target.value > 1 ? +e.target.value - 1 : 12
-          );
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          handleDateManually(
-            e.target.name,
-            e.target.value < 12 ? +e.target.value + 1 : 1
-          );
-        }
-        break;
-      case "day":
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          handleDateManually(
-            e.target.name,
-            e.target.value > 1 ? +e.target.value - 1 : 31
-          );
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          handleDateManually(
-            e.target.name,
-            e.target.value < 31 ? +e.target.value + 1 : 1
-          );
-        }
-        break;
-      default:
-        break;
+  const dateKeyEvent = (e, n) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      handleDateManually(
+        e.target.name,
+        e.target.value > 1 ? +e.target.value - 1 : n
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      handleDateManually(
+        e.target.name,
+        e.target.value < n ? +e.target.value + 1 : 1
+      );
     }
   };
 
   const onBlur = () => {
     handleDate(
       date.year +
-        "-" +
-        date.month.toString().padStart(2, "0") +
-        "-" +
-        date.day.toString().padStart(2, "0")
+      "-" +
+      date.month.toString().padStart(2, "0") +
+      "-" +
+      date.day.toString().padStart(2, "0")
     );
   };
 
@@ -97,7 +67,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.year}
         onChange={handleDateInput}
-        onKeyDown={keyEvent}
+        onKeyDown={e => dateKeyEvent(e, 2500)}
       />
       년
       <TextBox
@@ -108,7 +78,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.month}
         onChange={handleDateInput}
-        onKeyDown={keyEvent}
+        onKeyDown={e => dateKeyEvent(e, 12)}
         onBlur={onBlur}
       />
       월
@@ -120,7 +90,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.day}
         onChange={handleDateInput}
-        onKeyDown={keyEvent}
+        onKeyDown={e => dateKeyEvent(e, 31)}
         onBlur={onBlur}
       />
       일

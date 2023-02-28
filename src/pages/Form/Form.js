@@ -18,6 +18,7 @@ import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";
 import Toggle from "../../components/common/Toggle/Toggle";
 import Loading from "../../components/common/Loading/Loading";
+import { now } from '../../utils/etc/DateTimeFormatter';
 
 const Create = ({ mode }) => {
   const { id } = useParams();
@@ -56,14 +57,14 @@ const Create = ({ mode }) => {
   );
 
   const onClick = () => {
-    if (mode == "create") {
+    if (mode === "create") {
       create.mutate({
         request: {
           ...request,
           questionList: [...questionList],
         },
       });
-    } else if (mode == "update") {
+    } else if (mode === "update") {
       update.mutate({
         id: id,
         request: {
@@ -286,7 +287,7 @@ const Create = ({ mode }) => {
                 <div className="create-header-right-date-top">
                   <span>기간</span>
                   <DateBox
-                    savedDate={request?.startDate}
+                    savedDate={mode === "update" ? request?.startDate : now()}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, startDate: d })}
                   />
@@ -303,7 +304,7 @@ const Create = ({ mode }) => {
                 <div className="create-header-right-date-bottom">
                   <span>~</span>
                   <DateBox
-                    savedDate={request?.endDate}
+                    savedDate={mode === "update" ? request?.endDate : now()}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, endDate: d })}
                   />
