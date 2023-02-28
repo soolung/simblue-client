@@ -12,6 +12,7 @@ export default function TextBox({
   onKeyDown,
   onBlur,
 }) {
+  console.log(value, name);
   return (
     <input
       className={`text-box ${className}`}

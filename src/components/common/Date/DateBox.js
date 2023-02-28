@@ -8,6 +8,7 @@ export default function DateBox({
   handleDate,
   savedDate,
 }) {
+  console.log(new Date().getFullYear());
   const [date, setDate] = useState({
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
@@ -31,45 +32,49 @@ export default function DateBox({
     setDate({ ...date, [name]: value });
   };
 
-  const yearKeyEvent = (e) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      handleDateManually(e.target.name, +e.target.value - 1);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      handleDateManually(e.target.name, +e.target.value + 1);
-    }
-  };
-
-  const monthKeyEvent = (e) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      handleDateManually(
-        e.target.name,
-        e.target.value > 1 ? +e.target.value - 1 : 12
-      );
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      handleDateManually(
-        e.target.name,
-        e.target.value < 12 ? +e.target.value + 1 : 1
-      );
-    }
-  };
-
-  const dayKeyEvent = (e) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      handleDateManually(
-        e.target.name,
-        e.target.value > 1 ? +e.target.value - 1 : 31
-      );
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      handleDateManually(
-        e.target.name,
-        e.target.value < 31 ? +e.target.value + 1 : 1
-      );
+  const keyEvent = (e) => {
+    switch (e.target.name) {
+      case "year":
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          handleDateManually(e.target.name, +e.target.value - 1);
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          handleDateManually(e.target.name, +e.target.value + 1);
+        }
+        break;
+      case "month":
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          handleDateManually(
+            e.target.name,
+            e.target.value > 1 ? +e.target.value - 1 : 12
+          );
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          handleDateManually(
+            e.target.name,
+            e.target.value < 12 ? +e.target.value + 1 : 1
+          );
+        }
+        break;
+      case "day":
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          handleDateManually(
+            e.target.name,
+            e.target.value > 1 ? +e.target.value - 1 : 31
+          );
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          handleDateManually(
+            e.target.name,
+            e.target.value < 31 ? +e.target.value + 1 : 1
+          );
+        }
+        break;
+      default:
+        break;
     }
   };
 
@@ -93,7 +98,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.year}
         onChange={handleDateInput}
-        onKeyDown={yearKeyEvent}
+        onKeyDown={keyEvent}
       />
       년
       <TextBox
@@ -104,7 +109,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.month}
         onChange={handleDateInput}
-        onKeyDown={monthKeyEvent}
+        onKeyDown={keyEvent}
         onBlur={onBlur}
       />
       월
@@ -116,7 +121,7 @@ export default function DateBox({
         readOnly={isAlways}
         value={date?.day}
         onChange={handleDateInput}
-        onKeyDown={dayKeyEvent}
+        onKeyDown={keyEvent}
         onBlur={onBlur}
       />
       일

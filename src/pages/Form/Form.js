@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";
 import Toggle from "../../components/common/Toggle/Toggle";
+import Loading from "../../components/common/Loading/Loading";
 
 const Create = ({ mode }) => {
   const { id } = useParams();
@@ -77,12 +78,12 @@ const Create = ({ mode }) => {
     if (mode === "create") {
       return {
         text: "만들기",
-        disabled: !user?.authority,
+        disabled: !user?.authority == "ROLE_TEACHER",
       };
     } else if (mode === "update") {
       return {
         text: "수정하기",
-        disabled: !request?.allowsUpdatingReply,
+        disabled: !user?.authority == "ROLE_TEACHER",
       };
     }
   };
@@ -247,9 +248,10 @@ const Create = ({ mode }) => {
     setQuestionList(newQuestionList);
   };
 
-  return (
+  return queryApplicationForm.isLoading ? (
+    <Loading />
+  ) : (
     <>
-      {queryApplicationForm.isLoading && <div>잠시만 기다려 주세요</div>}
       <section className="create-section">
         <div className="create-header">
           <div className="create-header-top">
@@ -284,7 +286,7 @@ const Create = ({ mode }) => {
                 <div className="create-header-right-date-top">
                   <span>기간</span>
                   <DateBox
-                    stateInitialize={request?.startDate}
+                    savedDate={request?.startDate}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, startDate: d })}
                   />
@@ -301,7 +303,7 @@ const Create = ({ mode }) => {
                 <div className="create-header-right-date-bottom">
                   <span>~</span>
                   <DateBox
-                    stateInitialize={request?.endDate}
+                    savedDate={request?.endDate}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, endDate: d })}
                   />

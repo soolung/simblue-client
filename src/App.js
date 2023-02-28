@@ -62,7 +62,7 @@ function App() {
             }
           />
           <Route
-            path="/update/:id"
+            path="/application/:id/update"
             element={
               <WithLogin
                 authority="ROLE_TEACHER"
