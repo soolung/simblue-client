@@ -6,7 +6,7 @@ export default function DateBox({
   className,
   isAlways,
   handleDate,
-  stateInitialize,
+  savedDate,
 }) {
   const [date, setDate] = useState({
     year: new Date().getFullYear(),
