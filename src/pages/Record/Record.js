@@ -10,9 +10,11 @@ export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
-  const navigateManagement = (id) => {
+  const navigateByAuthority = (id, replyId) => {
     if (user?.authority === "ROLE_TEACHER") {
       navigate(`/application/${id}/manage`);
+    } else if (user?.authority === "ROLE_STUDENT") {
+      navigate(`/reply/${replyId}/update`);
     }
   };
 
@@ -23,14 +25,14 @@ export default function Record() {
           <p className="section-header-title">기록보기</p>
           <p className="section-header-description">
             {user?.authority === "ROLE_TEACHER" ? (
-              <p>내가 만든 신청~ 너를 위해 구웠지</p>
+              <>내가 만든 신청~ 너를 위해 구웠지</>
             ) : (
-              <p>본인이 신청한 심청</p>
+              <>본인이 신청한 심청</>
             )}
           </p>
         </div>
         <div className="record-application-section">
-          {data?.applicationList.map((a, index) => (
+          {data?.applicationList?.map((a, index) => (
             <TeacherApplication
               id={a.id}
               title={a.title}
@@ -38,7 +40,7 @@ export default function Record() {
               description={a.description}
               endDate={a.endDate}
               isAlways={a.isAlways}
-              navigateManagement={() => navigateManagement(a.id)}
+              navigateManagement={() => navigateByAuthority(a.id, a.replyId)}
               key={index}
             />
           ))}
