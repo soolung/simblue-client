@@ -15,5 +15,17 @@
 
   .setting-content {
     width: 100%;
+    height: 100%;
+    .application-delete-button{
+      width: 100%;
+      height: 45px;
+      border-radius: 8px;
+      background-color: white;
+      border: 1px solid $medium-grey;
+      span {
+        color: $medium-grey;
+        font-size: 23px;
+      }
+    }
   }
 }

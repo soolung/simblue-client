@@ -354,6 +354,8 @@ const Create = ({ mode }) => {
         </div>
       </section>
       <AdvancedSettingModal
+        id={id}
+        mode={mode}
         isOpen={advancedSettingModalIsOpen}
         data={advancedSettingModalData}
         closeModal={() => setAdvancedSettingModalOpen(false)}

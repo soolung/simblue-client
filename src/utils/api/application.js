@@ -33,3 +33,7 @@ export const updateApplicationForm = async ({ request, id }) => {
 export const getApplicationForm = async (id) => {
   return (await server.get(`/application/${id}/form`)).data;
 };
+
+export const deleteApplicationForm = async (id) => {
+  return (await server.delete(`/application/${id}`, authorization())).data;
+};
