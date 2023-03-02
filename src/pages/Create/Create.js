@@ -247,12 +247,12 @@ const Create = () => {
           <Button
             className="advanced-setting-button"
             text="고급 설정"
-            action={() => setAdvancedSettingModalOpen(true)}
+            onClick={() => setAdvancedSettingModalOpen(true)}
           />
           <Button
             className="create-button"
             text="만들기"
-            action={() => mutate({
+            onClick={() => mutate({
               request: {
                 ...request,
                 questionList: [...questionList]
