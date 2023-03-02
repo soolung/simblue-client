@@ -6,6 +6,7 @@ import { userState } from "../../utils/atom/user";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
 import SideBar from "./SideBar/SideBar";
 import { Transition } from "react-transition-group";
+import Search from '../common/Search/Search';
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -13,31 +14,19 @@ export default function Header() {
   const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
   const [sideBarIsOpen, setSideBarOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
   useEffect(() => {
     setSideBarOpen(false);
   }, [pathname]);
 
-  const toggleSearchTextOnFocus = (e) => {
-    setSearchTextOnFocus(!searchTextOnFocus);
-  };
 
-  const writeSearchText = (e) => {
-    setSearchText(e.target.value);
-  };
-
-  const resetSearchText = (e) => {
-    setSearchText("");
-  };
 
   return (
     <>
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
@@ -58,32 +47,10 @@ export default function Header() {
               )}
             </ul>
           </div>
-
-          <div className="search-area">
-            <input
-              type="text"
-              placeholder="검색어를 입력해주세요."
-              value={searchText}
-              onChange={writeSearchText}
-              onFocus={toggleSearchTextOnFocus}
-              onBlur={toggleSearchTextOnFocus}
-            />
-            <button
-              className={
-                "search-delete " +
-                (searchText.length > 0 && searchTextOnFocus
-                  ? "search-delete-show"
-                  : "search-delete-no")
-              }
-              onClick={resetSearchText}
-            />
-            <input
-              type="image"
-              className="search-go"
-              src="/images/search.svg"
-              alt="search-go"
-            />
-          </div>
+          <Search
+            className="search-area"
+            onSearch={() => alert('아직 검색 기능을 지원하지 않습니다 ㅜㅜ.')}
+          />
           <div className="header_login_button">
             {user?.authority ? (
               <>
@@ -117,7 +84,7 @@ export default function Header() {
             />
           </button>
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
           </Link>
           <button onClick={() => console.log("search")}>
             <img
