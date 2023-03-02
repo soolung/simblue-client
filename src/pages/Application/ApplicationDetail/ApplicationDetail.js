@@ -95,7 +95,7 @@ export default function ApplicationDetail() {
             </div>
             <Button
               text={user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요"}
-              action={() =>
+              onClick={() =>
                 mutate({
                   id: id,
                   request: { requestRequestList: [...request] },

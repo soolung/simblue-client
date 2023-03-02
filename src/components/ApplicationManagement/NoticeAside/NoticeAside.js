@@ -36,7 +36,7 @@ export default function NoticeAside({
             <Button
               className="notice-aside--notice-area-button"
               text={`공지\n하기`}
-              action={() =>
+              onClick={() =>
                 create.mutate({
                   notice: notice,
                   applicationId: id,

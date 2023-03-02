@@ -1,11 +1,11 @@
 import "./Button.scss";
 
-export default function Button({text, action, className, disabled = false}) {
+export default function Button({text, onClick, className, disabled = false}) {
     return (
         <>
             <button
                 className={`button ${disabled ? "disabled" : ""} ${className}`}
-                onClick={() => !disabled && action()}
+                onClick={() => !disabled && onClick()}
             >
                 <span>{text}</span>
             </button>
