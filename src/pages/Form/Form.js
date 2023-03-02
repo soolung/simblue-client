@@ -253,13 +253,13 @@ const Create = ({ mode }) => {
     <Loading />
   ) : (
     <>
-      <section className="create-section">
-        <div className="create-header">
-          <div className="create-header-top">
-            <div className="create-header-left">
-              <div className="create-header-left-emoji">
+      <section className="form-section">
+        <div className="form-header">
+          <div className="form-header-top">
+            <div className="form-header-left">
+              <div className="form-header-left-emoji">
                 <input
-                  className="create-header-left-emoji-input emoji"
+                  className="form-header-left-emoji-input emoji"
                   type="text"
                   name="emoji"
                   value={request?.emoji}
@@ -275,16 +275,16 @@ const Create = ({ mode }) => {
                 )}
               </div>
               <Text
-                className="create-header-left-title"
+                className="form-header-left-title"
                 placeholder="제목"
                 name="title"
                 value={request?.title}
                 onChange={handleChange}
               />
             </div>
-            <div className="create-header-right-date-wrapper">
-              <div className="create-header-right-date">
-                <div className="create-header-right-date-top">
+            <div className="form-header-right-date-wrapper">
+              <div className="form-header-right-date">
+                <div className="form-header-right-date-top">
                   <span>기간</span>
                   <DateBox
                     initialDate={request?.startDate}
@@ -301,7 +301,7 @@ const Create = ({ mode }) => {
                     }
                   />
                 </div>
-                <div className="create-header-right-date-bottom">
+                <div className="form-header-right-date-bottom">
                   <span>~</span>
                   <DateBox
                     initialDate={request?.endDate}
@@ -313,14 +313,14 @@ const Create = ({ mode }) => {
             </div>
           </div>
           <Text
-            className="create-header-description"
+            className="form-header-description"
             placeholder="설명"
             name="description"
             onChange={handleChange}
             value={request?.description}
           />
         </div>
-        <div className="create-question-section">
+        <div className="form-question-section">
           {questionList?.map((q, index) => (
             <Question
               question={q}
@@ -347,7 +347,7 @@ const Create = ({ mode }) => {
             action={() => setAdvancedSettingModalOpen(true)}
           />
           <Button
-            className="create-button"
+            className="form-button"
             text={button().text}
             action={onClick}
           />
