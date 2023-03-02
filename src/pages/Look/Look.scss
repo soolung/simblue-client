@@ -38,6 +38,12 @@
       }
     }
   }
+
+  .none {
+    color: $dark-grey;
+    text-align: center;
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -47,7 +53,11 @@
     .application {
       .application-title {
         .application-title-title {
-          font-size: 2.4vh;
+          font-size: 2vw;
+        }
+
+        .application-comment {
+          font-size: 15px;
         }
 
         .emoji {
@@ -61,12 +71,15 @@
 @media screen and (max-width: 700px) {
   .look {
     width: 80vw;
+
     .look-application-section > a {
       width: 48.7%;
 
       .application {
         .application-title {
-          font-size: 1vw;
+          .application-title-title {
+            font-size: 3.5vw;
+          }
         }
 
         .application-comment {

@@ -1,5 +1,5 @@
 import "./SideBar.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../utils/atom/user";
@@ -11,6 +11,15 @@ export default function SideBar({ state, closeModal }) {
   const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
 
+  useEffect(() => {
+    if (state === 'entered') {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    }
+  }, [state])
   return (
     <>
       <div className={`side-bar-overlay ${state}`}

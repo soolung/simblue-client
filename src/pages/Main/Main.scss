@@ -51,7 +51,7 @@
     .latest-application-list > a {
       margin-top: 10px;
       width: 100%;
-      height: 20vh;
+      height: 18vh;
 
       .application {
         width: 100%;
@@ -63,7 +63,7 @@
         }
 
         .application-comment {
-          font-size: 20px;
+          display: none;
         }
 
         .application-end-date {

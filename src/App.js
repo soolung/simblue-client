@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
 import Look from "./pages/Look/Look";
 import Record from "./pages/Record/Record";
-import Create from "./pages/Create/Create";
+import Form from "./pages/Form/Form";
 import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
 import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
@@ -29,6 +29,15 @@ const WithLogin = ({ authority = null, children }) => {
 };
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+
+  useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -44,12 +53,27 @@ function App() {
             element={<WithLogin children={<UpdatePassword />} />}
           />
           <Route
-            path="/create"
+            path="/application/create"
             element={
-              <WithLogin authority="ROLE_TEACHER" children={<Create />} />
+              <WithLogin
+                authority="ROLE_TEACHER"
+                children={<Form mode="create" />}
+              />
             }
           />
-          <Route path="/application/:id" element={<ApplicationDetail />} />
+          <Route
+            path="/application/:id/update"
+            element={
+              <WithLogin
+                authority="ROLE_TEACHER"
+                children={<Form mode="update" />}
+              />
+            }
+          />
+          <Route
+            path="/application/:id"
+            element={<ApplicationDetail mode="reply" />}
+          />
           <Route
             path="/application/:id/manage"
             element={
@@ -57,6 +81,12 @@ function App() {
                 authority="ROLE_TEACHER"
                 children={<ApplicationManagement />}
               />
+            }
+          />
+          <Route
+            path="/reply/:id/update"
+            element={
+              <WithLogin children={<ApplicationDetail mode="update" />} />
             }
           />
         </Routes>

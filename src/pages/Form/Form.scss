@@ -1,7 +1,7 @@
 @import '../../styles/common';
 
 .create-section {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 70vw;
   margin: 0 auto;
 

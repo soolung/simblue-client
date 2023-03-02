@@ -32,7 +32,7 @@ export default function Record() {
           </p>
         </div>
         <div className="record-application-section">
-          {data?.applicationList?.map((a, index) => (
+          {data?.applicationList.map((a, index) => (
             <TeacherApplication
               id={a.id}
               title={a.title}
