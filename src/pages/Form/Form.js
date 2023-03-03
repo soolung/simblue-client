@@ -252,7 +252,6 @@ const Form = ({ mode }) => {
   const [ownerIdSet, setOwnerIdSet] = useState(new Set([parseInt(user.roleId)]));
 
   const addOwner = ({ teacherId, name }) => {
-    console.log(ownerIdSet)
     if (!ownerIdSet.has(teacherId)) {
       setOwnerList(
         [...ownerList, {

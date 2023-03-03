@@ -41,7 +41,6 @@ export default function ResultSearch({ className, onSearch, onResultClick }) {
   }
 
   const onResultClickAndReset = ({teacherId, name}) => {
-    alert('god')
     onResultClick({
       teacherId: teacherId,
       name: name
