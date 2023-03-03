@@ -47,6 +47,8 @@ const Form = ({ mode }) => {
       onSuccess: (data) => {
         setRequest({ ...data });
         setQuestionList([...data.questionList]);
+        setOwnerList([...data.ownerList]);
+        setOwnerIdSet(new Set([...data.ownerList.map(d => d.teacherId), parseInt(user.roleId)]));
       },
     }
   );

@@ -78,6 +78,7 @@ export default function AdvancedSettingModal(
           <Owner
             name={user.name}
             onDelete={() => alert("본인은 지울 수 없습니다.")}
+            key={user.roleId}
           />
           {
             ownerList.map(o => (
