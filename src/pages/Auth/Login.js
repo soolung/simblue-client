@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
+import { ACCESS_TOKEN, AUTHORITY, NAME, REFRESH_TOKEN, ROLE_ID } from '../../utils/constant/user.constant';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -15,15 +16,17 @@ export const Login = () => {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("authority", data.authority);
-      localStorage.setItem("name", data.name);
+      localStorage.setItem(ACCESS_TOKEN, data.accessToken);
+      localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
+      localStorage.setItem(AUTHORITY, data.authority);
+      localStorage.setItem(NAME, data.name);
+      localStorage.setItem(ROLE_ID, data.roleId);
       setUser({
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
         authority: data.authority,
         name: data.name,
+        roleId: data.roleId
       });
 
       if (!data?.login) {
