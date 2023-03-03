@@ -4,18 +4,16 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { searchTeacher } from '../../../../utils/api/user';
 
-export default function ResultSearch({ className, onSearch }) {
+export default function ResultSearch({ className, onSearch, onResultClick }) {
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
   const { data, refetch } = useQuery('searchTeacher', () => searchTeacher(searchText), {
-    onSuccess: (data) => {
-      console.log(data)
-    },
+    onSuccess: (data) => {},
     enabled: false
   })
 
-  const toggleSearchTextOnFocus = (e) => {
+  const toggleSearchTextOnFocus = () => {
     setSearchTextOnFocus(!searchTextOnFocus);
   };
 
@@ -40,6 +38,16 @@ export default function ResultSearch({ className, onSearch }) {
     if (e.key === 'Enter') {
       onSearchAndReset();
     }
+  }
+
+  const onResultClickAndReset = ({teacherId, name}) => {
+    alert('god')
+    onResultClick({
+      teacherId: teacherId,
+      name: name
+    });
+
+    resetSearchText();
   }
 
   return (
@@ -75,8 +83,15 @@ export default function ResultSearch({ className, onSearch }) {
         (searchText.length > 0 && data?.length > 0 ?
             <div className="result">
               {
-                data.map(d => (
-                  <div className="result-teacher">
+                data.map((d, index) => (
+                  <div
+                    className="result-teacher"
+                    onMouseDown={() => onResultClickAndReset({
+                      teacherId: d.teacherId,
+                      name: d.name
+                    })}
+                    key={index}
+                  >
                     <img
                       alt="profile-image"
                       src="/images/basic-profile-image.svg"

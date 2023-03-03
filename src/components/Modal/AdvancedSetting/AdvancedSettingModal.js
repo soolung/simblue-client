@@ -17,6 +17,9 @@ export default function AdvancedSettingModal(
     data,
     id,
     mode,
+    ownerList,
+    addOwner,
+    deleteOwner,
   }) {
 
   const navigate = useNavigate();
@@ -69,12 +72,22 @@ export default function AdvancedSettingModal(
         <p className="sub-title">담당 선생님 지정</p>
         <ResultSearch
           className="search-owner"
+          onResultClick={addOwner}
         />
         <div className="owner-list">
           <Owner
             name={user.name}
             onDelete={() => alert("본인은 지울 수 없습니다.")}
           />
+          {
+            ownerList.map(o => (
+              <Owner
+                name={o.name}
+                onDelete={() => deleteOwner(o.teacherId)}
+                key={o.teacherId}
+              />
+            ))
+          }
         </div>
       </div>
     </Modal>

@@ -6,11 +6,7 @@ import DateBox from "../../components/common/Date/DateBox";
 import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
-import {
-  createApplicationForm,
-  getApplicationForm,
-  updateApplicationForm,
-} from "../../utils/api/application";
+import { createApplicationForm, getApplicationForm, updateApplicationForm, } from "../../utils/api/application";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,13 +16,12 @@ import Toggle from "../../components/common/Toggle/Toggle";
 import Loading from "../../components/common/Loading/Loading";
 import { now } from "../../utils/etc/DateTimeFormatter";
 
-const Create = ({ mode }) => {
+const Form = ({ mode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
-  const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] =
-    useState(false);
+  const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] = useState(false);
   const create = useMutation(createApplicationForm, {
     onSuccess: () => {
       navigate("/");
@@ -62,6 +57,7 @@ const Create = ({ mode }) => {
         request: {
           ...request,
           questionList: [...questionList],
+          ownerList: Array.from(ownerList)
         },
       });
     } else if (mode === "update") {
@@ -70,6 +66,7 @@ const Create = ({ mode }) => {
         request: {
           ...request,
           questionList: [...questionList],
+          ownerList: Array.from(ownerList)
         },
       });
     }
@@ -231,7 +228,7 @@ const Create = ({ mode }) => {
       [...questionList],
       (questionList[questionIndex].answerList = questionList[
         questionIndex
-      ].answerList.filter((a, index) => target !== index))
+        ].answerList.filter((a, index) => target !== index))
     );
   };
 
@@ -249,8 +246,31 @@ const Create = ({ mode }) => {
     setQuestionList(newQuestionList);
   };
 
+  const [ownerList, setOwnerList] = useState([]);
+  const [ownerIdSet, setOwnerIdSet] = useState(new Set([parseInt(user.roleId)]));
+
+  const addOwner = ({ teacherId, name }) => {
+    console.log(ownerIdSet)
+    if (!ownerIdSet.has(teacherId)) {
+      setOwnerList(
+        [...ownerList, {
+          teacherId: teacherId,
+          name: name
+        }])
+
+      ownerIdSet.add(teacherId);
+    }
+  }
+
+  const deleteOwner = (teacherId) => {
+    if (ownerIdSet.has(teacherId)) {
+      setOwnerList(ownerList.filter((o) => teacherId !== o.teacherId));
+      ownerIdSet.delete(teacherId);
+    }
+  }
+
   return queryApplicationForm.isLoading ? (
-    <Loading />
+    <Loading/>
   ) : (
     <>
       <section className="create-section">
@@ -360,9 +380,12 @@ const Create = ({ mode }) => {
         data={advancedSettingModalData}
         closeModal={() => setAdvancedSettingModalOpen(false)}
         request={request}
+        ownerList={ownerList}
+        addOwner={addOwner}
+        deleteOwner={deleteOwner}
       />
     </>
   );
 };
 
-export default Create;
+export default Form;
