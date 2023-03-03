@@ -5,7 +5,7 @@ import { getMyApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
-
+import ApplicationKanban from "../../components/Record/ApplicationKanban";
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
@@ -14,7 +14,7 @@ export default function Record() {
     if (user?.authority === "ROLE_TEACHER") {
       navigate(`/application/${id}/manage`);
     } else if (user?.authority === "ROLE_STUDENT") {
-      navigate(`/reply/${replyId}/update`)
+      navigate(`/reply/${replyId}/update`);
     }
   };
 
@@ -31,19 +31,11 @@ export default function Record() {
             )}
           </p>
         </div>
-        <div className="record-application-section">
-          {data?.applicationList.map((a, index) => (
-            <TeacherApplication
-              id={a.id}
-              title={a.title}
-              emoji={a.emoji}
-              description={a.description}
-              endDate={a.endDate}
-              isAlways={a.isAlways}
-              navigateManagement={() => navigateByAuthority(a.id, a.replyId)}
-              key={index}
-            />
-          ))}
+        <div className="record-body">
+          <ApplicationKanban emoji="📌" title="상시" data={data?.ALWAYS} />
+          <ApplicationKanban emoji="🌙" title="시작 전" data={data?.OPENED} />
+          <ApplicationKanban emoji="🌞" title="진행 중" data={data?.CLOSED} />
+          <ApplicationKanban emoji="🌚" title="완료됨" data={data?.DELETED} />
         </div>
       </section>
     </>

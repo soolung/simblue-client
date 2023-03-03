@@ -1,5 +1,7 @@
 @import "../../styles/common";
-
+body {
+  overflow-x: hidden;
+}
 .record {
   width: 80vw;
   min-width: 350px;
@@ -10,6 +12,10 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+  .record-body {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -39,4 +45,3 @@
     }
   }
 }
-
