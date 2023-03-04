@@ -1,8 +1,9 @@
 import server from "../axios/server";
+import { ACCESS_TOKEN } from '../constant/user.constant';
 
 export const accessTokenExpired = async () => {
   localStorage.setItem(
-    "accessToken",
+    ACCESS_TOKEN,
     (
       await server.put("/auth", null, {
         headers: {

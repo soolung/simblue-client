@@ -1,0 +1,36 @@
+@import "../../../../styles/common";
+
+.owner {
+  width: 100%;
+  background-color: $light-grey;
+  border-radius: 15px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  .profile-image {
+    width: 49px;
+    height: 49px;
+  }
+
+  .teacher {
+    flex: 1 1 0;
+    color: $black;
+    font-weight: 500;
+    font-size: 20px;
+
+    .light {
+      font-weight: 400;
+      font-size: 15px;
+      margin-left: 3px;
+    }
+  }
+
+  .delete {
+    width: 15px;
+    height: 15px;
+  }
+}
