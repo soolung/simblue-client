@@ -1,6 +1,4 @@
-import "./TeacherApplication.scss";
-
-export default function TeacherApplication(props) {
+export default function StudentApplication(props) {
   return (
     <>
       <div className="teacher-application" onClick={props.navigateManagement}>
