@@ -55,7 +55,7 @@ export default function Record() {
             />
           </div>
         ) : (
-          <div className="record-body">
+          <div className="student-record-body">
             {
               data?.applicationMap?.applicationList.map((a) => (
                 <StudentApplication
