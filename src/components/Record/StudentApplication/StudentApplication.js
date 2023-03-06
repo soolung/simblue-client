@@ -8,7 +8,9 @@ export default function StudentApplication(props) {
               <a>{props.emoji}</a>
               <a>{props.title}</a>
             </p>
-            <p></p>
+            <p>
+                {props.repliedAt} 에 신청함
+            </p>
           </p>
           <p></p>
         </div>
@@ -16,3 +18,4 @@ export default function StudentApplication(props) {
     </>
   );
 }
+

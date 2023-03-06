@@ -56,7 +56,17 @@ export default function Record() {
           </div>
         ) : (
           <div className="record-body">
-            <StudentApplication data={data?.applicationMap.applicationList} />
+            {
+              data?.applicationMap?.applicationList.map((a) => (
+                <StudentApplication
+                  emoji={a.emoji}
+                  title={a.title}
+                  repliedAt={a.repliedAt}
+                  status={a.status}
+                />
+              ))
+            }
+            <StudentApplication/>
           </div>
         )}
       </section>

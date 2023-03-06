@@ -2,7 +2,6 @@ import "./ApplicationBoard.scss";
 import { HiPencil } from "react-icons/hi";
 import { useState } from "react";
 function ApplicationBoard(props) {
-  console.log(props.emoji);
 
   var today = new Date();
   var dday = new Date(props.endDate);
