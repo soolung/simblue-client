@@ -13,11 +13,10 @@ export default function ApplicationKanban({ emoji, title, data }) {
             <ApplicationBoard
               emoji={k.emoji}
               title={k.title}
-              replyId={k.replyId}
-              description={k.description}
               endDate={k.endDate}
               starteDate={k.startDate}
               status={k.status}
+              numberOfReplies={k.numberOfReplies}
             />
           ))}
         </div>

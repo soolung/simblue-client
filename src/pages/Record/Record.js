@@ -40,17 +40,17 @@ export default function Record() {
           <ApplicationKanban
             emoji="🌙"
             title="시작 전"
-            data={data?.applicationMap.CLOSED}
+            data={data?.applicationMap.NOT_STARTED}
           />
           <ApplicationKanban
             emoji="🌞"
             title="진행 중"
-            data={data?.applicationMap.OPENED }
+            data={data?.applicationMap.IN_PROGRESS }
           />
           <ApplicationKanban
             emoji="🌚"
             title="완료됨"
-            data={data?.applicationMap.DELETED}
+            data={data?.applicationMap.DONE}
           />
         </div>
       </section>

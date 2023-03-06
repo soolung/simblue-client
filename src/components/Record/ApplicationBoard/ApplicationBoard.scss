@@ -5,21 +5,21 @@
     background-color: $background-color;
     border: 1px solid $grey;
     border-radius: 10px;
-    padding: 15px 10px 10px 10px;
+    padding: 13px 10px 3px 10px;
     .app-board-top {
       font-size: 23px;
       .app-board-top-emoji {
       }
       .app-board-top-title {
         font-weight: 600;
-        padding-left: 5px;
+        padding-left: 8px;
       }
     }
     .app-board-bottom {
-      padding-top: 10px;
+      padding-top: 20px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+
       .app-board-bottom-p {
         font-size: 13px;
         font-weight: 200;
