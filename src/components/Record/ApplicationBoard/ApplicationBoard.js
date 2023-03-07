@@ -4,6 +4,11 @@ import { useState } from "react";
 function ApplicationBoard(props) {
   console.log(props.emoji);
 
+  var today = new Date();
+  var dday = new Date(props.endDate);
+  var gap = dday.getTime() - today.getTime();
+  var result = Math.ceil(gap / (1000 * 60 * 60 * 24));
+
   return (
     <>
       <div className="AppBoard">
@@ -19,7 +24,7 @@ function ApplicationBoard(props) {
               ) : props.status === "NOT_STARTED" ? (
                 <a>시작 전</a>
               ) : props.status === "IN_PROGRESS" ? (
-                <a>일 남음</a>
+                <a>{result}일 남음</a>
               ) : (
                 <a>완료됨</a>
               )}
