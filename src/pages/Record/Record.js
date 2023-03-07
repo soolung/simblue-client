@@ -4,8 +4,8 @@ import { getMyApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
-import ApplicationKanban from "../../components/Record/ApplicationKanban";
-import StudentApplication from "../../components/Record/StudentApplication/StudentApplication";
+import RecordKanban from "../../components/Record/RecordKanban/RecordKanban";
+import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
@@ -33,22 +33,22 @@ export default function Record() {
         </div>
         {user?.authority === "ROLE_TEACHER" ? (
           <div className="record-body">
-            <ApplicationKanban
+            <RecordKanban
               emoji="📌"
               title="상시"
               data={data?.applicationMap.ALWAYS}
             />
-            <ApplicationKanban
+            <RecordKanban
               emoji="🌙"
               title="시작 전"
               data={data?.applicationMap.NOT_STARTED}
             />
-            <ApplicationKanban
+            <RecordKanban
               emoji="🌞"
               title="진행 중"
               data={data?.applicationMap.IN_PROGRESS}
             />
-            <ApplicationKanban
+            <RecordKanban
               emoji="🌚"
               title="완료됨"
               data={data?.applicationMap.DONE}
@@ -57,16 +57,16 @@ export default function Record() {
         ) : (
           <div className="student-record-body">
             {
-              data?.applicationMap?.applicationList.map((a) => (
-                <StudentApplication
+              data?.applicationMap?.applicationList.map((a, index) => (
+                <ReplyRecord
                   emoji={a.emoji}
                   title={a.title}
                   repliedAt={a.repliedAt}
                   status={a.status}
+                  key={index}
                 />
               ))
             }
-            <StudentApplication/>
           </div>
         )}
       </section>
