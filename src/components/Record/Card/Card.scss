@@ -1,41 +1,47 @@
 @import "../../../styles/common.scss";
-.app-board {
+
+.record-card {
+  cursor: default;
   padding-top: 8px;
-  .app-board-com {
-    background-color: $background-color;
+
+  .record-card-com {
+    background-color: white;
     border: 1px solid $grey;
     border-radius: 10px;
-    padding: 13px 10px 3px 10px;
-    .app-board-top {
+    padding: 13px 10px 7px 10px;
+
+    &:hover {
+      background-color: $light-grey;
+    }
+
+    .record-card-top {
       font-size: 23px;
-      .app-board-top-emoji {
-      }
-      .app-board-top-title {
+
+      .record-card-top-title {
         font-weight: 600;
         padding-left: 8px;
       }
     }
-    .app-board-bottom {
+
+    .record-card-bottom {
       padding-top: 20px;
       display: flex;
       justify-content: space-between;
 
-      .app-board-bottom-p {
+      .record-card-bottom-p {
         font-size: 13px;
         font-weight: 200;
-        a {
-        }
-        .app-board-bar {
-          padding: 0px 5px;
+
+        .record-card-bar {
+          padding: 0 5px;
           color: $medium-grey;
         }
       }
-      .app-board-bottom-pen {
+
+      .record-card-bottom-pen {
         color: $medium-grey;
         font-size: 18px;
-        &:hover{
-          cursor: pointer;
-        }
+        cursor: pointer;
       }
     }
   }

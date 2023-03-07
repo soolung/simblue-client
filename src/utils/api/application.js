@@ -31,5 +31,5 @@ export const updateApplicationForm = async ({ request, id }) => {
 };
 
 export const getApplicationForm = async (id) => {
-  return (await server.get(`/application/${id}/form`)).data;
+  return (await server.get(`/application/${id}/form`, authorization())).data;
 };
