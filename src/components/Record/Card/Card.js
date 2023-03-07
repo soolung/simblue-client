@@ -12,7 +12,9 @@ function Card({ applicationId, emoji, title, status, endDate, numberOfReplies })
 
   return (
     <>
-      <div className="record-card">
+      <div className="record-card"
+           onClick={() => navigate(`/application/${applicationId}/manage`)}
+      >
         <div className="record-card-com">
           <div className="record-card-top">
             <span className="record-card-top-emoji emoji">{emoji}</span>
