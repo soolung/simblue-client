@@ -17,7 +17,8 @@ export default function ReplyRecord({
     },
   });
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.preventDefault();
     mutate(replyId);
   };
 
