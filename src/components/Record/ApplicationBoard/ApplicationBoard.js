@@ -1,8 +1,6 @@
 import "./ApplicationBoard.scss";
 import { HiPencil } from "react-icons/hi";
-import { useState } from "react";
 function ApplicationBoard(props) {
-
   var today = new Date();
   var dday = new Date(props.endDate);
   var gap = dday.getTime() - today.getTime();
@@ -30,7 +28,10 @@ function ApplicationBoard(props) {
               <a className="app-board-bar">|</a>
               <a>{props.numberOfReplies}개의 신청</a>
             </p>
-            <p className="app-board-bottom-pen">
+            <p
+              className="app-board-bottom-pen"
+              onClick={props.navigateManagement}
+            >
               <HiPencil />
             </p>
           </div>

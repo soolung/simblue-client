@@ -10,9 +10,10 @@ export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
+
   const navigateByAuthority = (id, replyId) => {
     if (user?.authority === "ROLE_TEACHER") {
-      navigate(`/application/${id}/manage`);
+      navigate(`/application/${id}/update`);
     } else if (user?.authority === "ROLE_STUDENT") {
       navigate(`/reply/${replyId}/update`);
     }
@@ -56,17 +57,17 @@ export default function Record() {
           </div>
         ) : (
           <div className="student-record-body">
-            {
-              data?.applicationMap?.applicationList.map((a) => (
-                <StudentApplication
-                  emoji={a.emoji}
-                  title={a.title}
-                  repliedAt={a.repliedAt}
-                  status={a.status}
-                />
-              ))
-            }
-            <StudentApplication/>
+            {data?.applicationMap?.applicationList.map((a) => (
+              <StudentApplication
+                emoji={a.emoji}
+                title={a.title}
+                repliedAt={a.repliedAt}
+                status={a.status}
+                replyId={a.replyId}
+                navigateManagement={() => navigateByAuthority(a.id, a.replyId)}
+              />
+            ))}
+            <StudentApplication />
           </div>
         )}
       </section>

@@ -51,12 +51,17 @@
         font-size: 20px;
         color: $medium-grey;
         padding-left: 20px;
+        z-index: 100;
       }
       &:hover {
         .application-student-right-delete {
           display: block;
         }
       }
+    }
+    &:hover{
+        cursor: pointer;
+        background-color: $light-grey;
     }
   }
 }
