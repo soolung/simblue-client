@@ -10,11 +10,11 @@ function ApplicationBoard(props) {
 
   return (
     <>
-      <div className="AppBoard">
-        <div className="AppBoard-com">
-          <div className="AppBoard-top">
-            <p>{props.emoji}</p>
-            <p>{props.title}</p>
+      <div className="app-board">
+        <div className="app-board-com">
+          <div className="app-board-top">
+            <a className="app-board-top-emoji">{props.emoji}</a>
+            <a className="app-board-top-title">{props.title}</a>
           </div>
           <div className="app-board-bottom">
             <p className="app-board-bottom-p">
@@ -30,7 +30,7 @@ function ApplicationBoard(props) {
               <a className="app-board-bar">|</a>
               <a>{props.numberOfReplies}개의 신청</a>
             </p>
-            <p>
+            <p className="app-board-bottom-pen">
               <HiPencil />
             </p>
           </div>
@@ -39,3 +39,4 @@ function ApplicationBoard(props) {
     </>
   );
 }
+export default ApplicationBoard;

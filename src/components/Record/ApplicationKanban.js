@@ -1,15 +1,15 @@
 import ApplicationBoard from "./ApplicationBoard/ApplicationBoard";
 import "./ApplicationKanban.scss";
-export default function ApplicationKanban(props) {
+export default function ApplicationKanban({ emoji, title, data }) {
   return (
     <>
       <div className="AppKanban">
         <div className="AppKanban-top">
-          <a>{props.emoji}</a>
-          <a className="AppKanban-title">{props.title}</a>
+          <a>{emoji}</a>
+          <a className="AppKanban-title">{title}</a>
         </div>
         <div className="AppKanban-bottom">
-          {props?.data?.map((k) => (
+          {data?.map((k) => (
             <ApplicationBoard
               emoji={k.emoji}
               title={k.title}
