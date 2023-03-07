@@ -3,6 +3,8 @@ import { FaTrash } from "react-icons/fa";
 import { cancelReply } from "../../../utils/api/reply";
 import { useMutation, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ConfirmModal from "../../Modal/ConfirmModal/ConfirmModal";
 export default function ReplyRecord({
   emoji,
   title,
@@ -42,8 +44,13 @@ export default function ReplyRecord({
               ) : (
                 <p className="reply-record-done">마감</p>
               )}
-              <div className="reply-record-right-delete" onClick={onClick}>
+              <div className="reply-record-right-delete">
+                {/*onClick={onClick}*/}
                 <FaTrash />
+                <ConfirmModal 
+                  title="신청 취소"
+                  description="정말로 신청을 취소하시겠습니까?"
+                />
               </div>
             </div>
           </div>
