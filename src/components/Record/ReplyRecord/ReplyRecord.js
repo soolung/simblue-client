@@ -3,7 +3,6 @@ import { FaTrash } from "react-icons/fa";
 import { cancelReply } from "../../../utils/api/reply";
 import { useMutation, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 export default function ReplyRecord({
   emoji,
   title,
@@ -11,7 +10,6 @@ export default function ReplyRecord({
   status,
   replyId,
 }) {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { mutate } = useMutation(cancelReply, {
     onSuccess: () => {
@@ -26,8 +24,8 @@ export default function ReplyRecord({
   return (
     <>
       <div className="reply-record">
-          <div className="reply-record-a"
-          onClick={()=> navigate(`/reply/${replyId}/update`)}>
+        <Link className="reply-record-reply" to={`/reply/${replyId}/update`}>
+          <div className="reply-record-a">
             <div className="reply-record-left">
               <div className="reply-record-application">
                 <span className="reply-record-emoji emoji">{emoji}</span>
@@ -48,6 +46,7 @@ export default function ReplyRecord({
               </div>
             </div>
           </div>
+        </Link>
       </div>
     </>
   );

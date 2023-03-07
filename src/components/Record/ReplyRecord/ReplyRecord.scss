@@ -2,74 +2,78 @@
 
 .reply-record {
   padding-bottom: 20px;
+  .reply-record-reply {
+    display: block;
+    cursor: default;
 
-  .reply-record-a {
-    background-color: #ffffff;
-    border: 1px solid $grey;
-    padding: 20px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px;
-    .reply-record-left {
+    .reply-record-a {
+      background-color: #ffffff;
+      border: 1px solid $grey;
+      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 70%;
-
-      .reply-record-application {
+      border-radius: 8px;
+      .reply-record-left {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        font-size: 25px;
+        max-width: 70%;
 
-        .reply-record-title {
-          padding-left: 5px;
+        .reply-record-application {
+          align-items: center;
+          font-size: 25px;
+
+          .reply-record-title {
+            padding-left: 5px;
+          }
+        }
+
+        .reply-record-left-replied-at {
+          font-weight: 300;
+          font-size: 14px;
+          padding-left: 20px;
         }
       }
-
-      .reply-record-left-replied-at {
-        font-weight: 300;
-        font-size: 14px;
-        padding-left: 20px;
+      &:hover {
+        background-color: $light-grey;
       }
     }
-    &:hover {
-      background-color: $light-grey;
-    }
-  }
 
-  .reply-record-a-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .reply-record-a-right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .reply-record-ing {
-      color: #66bb6a;
-      border: 1px solid #66bb6a;
-      padding: 5px 10px;
-      border-radius: 30px;
-      font-size: 15px;
-    }
+      .reply-record-ing {
+        color: #66bb6a;
+        border: 1px solid #66bb6a;
+        padding: 5px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+      }
 
-    .reply-record-done {
-      color: $main-red;
-      border: 1px solid $main-red;
-      padding: 5px 10px;
-      border-radius: 30px;
-    }
+      .reply-record-done {
+        color: $main-red;
+        border: 1px solid $main-red;
+        padding: 5px 10px;
+        border-radius: 30px;
+      }
 
-    .reply-record-right-delete {
-      display: none;
-      padding-top: 5px;
-      font-size: 20px;
-      color: $medium-grey;
-      padding-left: 20px;
-    
-    }
-
-    &:hover {
       .reply-record-right-delete {
-        display: block;
-        cursor: pointer;
+        display: none;
+        padding-top: 5px;
+        font-size: 20px;
+        color: $medium-grey;
+        padding-left: 20px;
+        
+      }
+
+      &:hover {
+        .reply-record-right-delete {
+          display: block;
+          cursor: pointer;
+        }
       }
     }
   }
