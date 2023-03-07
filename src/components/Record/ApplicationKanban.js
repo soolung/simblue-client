@@ -9,13 +9,16 @@ export default function ApplicationKanban(props) {
           <a className="AppKanban-title">{props.title}</a>
         </div>
         <div className="AppKanban-bottom">
-          {props?.data?.map((k) => {
+          {props?.data?.map((k) => (
             <ApplicationBoard
               emoji={k.emoji}
               title={k.title}
-              replyId={k.replyId}
-            />;
-          })}
+              endDate={k.endDate}
+              starteDate={k.startDate}
+              status={k.status}
+              numberOfReplies={k.numberOfReplies}
+            />
+          ))}
         </div>
       </div>
     </>

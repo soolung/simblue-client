@@ -1,0 +1,39 @@
+@import "../../../styles/common.scss";
+.app-board {
+  padding-top: 8px;
+  .app-board-com {
+    background-color: $background-color;
+    border: 1px solid $grey;
+    border-radius: 10px;
+    padding: 13px 10px 3px 10px;
+    .app-board-top {
+      font-size: 23px;
+      .app-board-top-emoji {
+      }
+      .app-board-top-title {
+        font-weight: 600;
+        padding-left: 8px;
+      }
+    }
+    .app-board-bottom {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .app-board-bottom-p {
+        font-size: 13px;
+        font-weight: 200;
+        a {
+        }
+        .app-board-bar {
+          padding: 0px 5px;
+          color: $medium-grey;
+        }
+      }
+      .app-board-bottom-pen {
+        color: $medium-grey;
+        font-size: 18px;
+      }
+    }
+  }
+}

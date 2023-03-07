@@ -32,10 +32,26 @@ export default function Record() {
           </p>
         </div>
         <div className="record-body">
-          <ApplicationKanban emoji="📌" title="상시" data={data?.ALWAYS} />
-          <ApplicationKanban emoji="🌙" title="시작 전" data={data?.OPENED} />
-          <ApplicationKanban emoji="🌞" title="진행 중" data={data?.CLOSED} />
-          <ApplicationKanban emoji="🌚" title="완료됨" data={data?.DELETED} />
+          <ApplicationKanban
+            emoji="📌"
+            title="상시"
+            data={data?.applicationMap.ALWAYS}
+          />
+          <ApplicationKanban
+            emoji="🌙"
+            title="시작 전"
+            data={data?.applicationMap.NOT_STARTED}
+          />
+          <ApplicationKanban
+            emoji="🌞"
+            title="진행 중"
+            data={data?.applicationMap.IN_PROGRESS }
+          />
+          <ApplicationKanban
+            emoji="🌚"
+            title="완료됨"
+            data={data?.applicationMap.DONE}
+          />
         </div>
       </section>
     </>
