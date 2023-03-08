@@ -3,8 +3,8 @@ import { FaTrash } from "react-icons/fa";
 import { cancelReply } from "../../../utils/api/reply";
 import { useMutation, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import ConfirmModal from "../../Modal/ConfirmModal/ConfirmModal";
+import useModal from "../../../hooks/useModal";
 export default function ReplyRecord({
   emoji,
   title,
@@ -13,16 +13,12 @@ export default function ReplyRecord({
   replyId,
 }) {
   const queryClient = useQueryClient();
+  const { openModal } = useModal();
   const { mutate } = useMutation(cancelReply, {
     onSuccess: () => {
       queryClient.invalidateQueries("getMyApplications");
     },
   });
-
-  const onClick = (e) => {
-    e.preventDefault();
-    mutate(replyId);
-  };
 
   return (
     <>
@@ -46,10 +42,17 @@ export default function ReplyRecord({
               )}
               <div className="reply-record-right-delete">
                 {/*onClick={onClick}*/}
-                <FaTrash />
-                <ConfirmModal 
-                  title="신청 취소"
-                  description="정말로 신청을 취소하시겠습니까?"
+                <FaTrash
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openModal(
+                      <ConfirmModal
+                        title="신청 취소"
+                        description="정말로 신청을 취소하시겠습니까?"
+                        onConfirm={() => mutate(replyId)}
+                      />
+                    );
+                  }}
                 />
               </div>
             </div>

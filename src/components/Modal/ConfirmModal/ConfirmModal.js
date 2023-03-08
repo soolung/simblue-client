@@ -1,6 +1,14 @@
+import useModal from "../../../hooks/useModal";
 import "./ConfirmModal.scss";
 
-const Modal = ({ title, description }) => {
+const Modal = ({ title, description, onConfirm }) => {
+  const { closeModal } = useModal();
+
+  const onClick = () => {
+    onConfirm();
+    closeModal();
+  };
+
   return (
     <div className="confirm-modal">
       <div className="confirm-modal-confirm">
@@ -11,8 +19,15 @@ const Modal = ({ title, description }) => {
           </div>
           <div className="confirm-modal-wrap-buttonbox">
             <div className="confirm-modal-wrap-box">
-              <div className="confirm-modal-wrap-cancel">취소</div>
-              <div className="confirm-modal-wrap-change">확인</div>
+              <button
+                className="confirm-modal-wrap-cancel"
+                onClick={closeModal}
+              >
+                취소
+              </button>
+              <button className="confirm-modal-wrap-change" onClick={onClick}>
+                확인
+              </button>
             </div>
           </div>
         </div>

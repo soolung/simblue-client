@@ -43,24 +43,23 @@
       }
       .confirm-modal-wrap-buttonbox {
         .confirm-modal-wrap-box {
-            display: flex;
-            justify-content: space-between;
-            padding-left: 190px;
-          div {
+          display: flex;
+          justify-content: space-between;
+          padding-left: 190px;
+          button {
             font-size: 1rem;
             padding: 10px 15px;
             border-radius: 8px;
           }
-          .confirm-modal-wrap-cancel{
+          .confirm-modal-wrap-cancel {
             border: 1px solid $medium-grey;
             color: $medium-grey;
             background-color: $background-color;
           }
-          .confirm-modal-wrap-change{
+          .confirm-modal-wrap-change {
             border: 1px solid $main-red;
             background-color: $main-red;
             color: white;
-
           }
         }
       }
