@@ -68,6 +68,7 @@ export default function DateBox({
         value={date?.year}
         onChange={handleDateInput}
         onKeyDown={(e) => dateKeyEvent(e, 2500)}
+        onBlur={onBlur}
       />
       년
       <TextBox
