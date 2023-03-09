@@ -23,6 +23,7 @@ export default function ProfilePopover({ isOpen, close }) {
           refreshToken: null,
           authority: null,
           name: null,
+          roleId: null,
         })
         navigate('/')
       }
