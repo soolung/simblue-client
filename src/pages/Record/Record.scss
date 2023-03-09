@@ -1,7 +1,5 @@
 @import "../../styles/common";
-body {
-  overflow-x: hidden;
-}
+
 .record {
   width: 80vw;
   min-width: 350px;
@@ -23,7 +21,6 @@ body {
     text-align: center;
     padding-top: 120px;
   }
-  
 }
 
 @media screen and (max-width: 700px) {

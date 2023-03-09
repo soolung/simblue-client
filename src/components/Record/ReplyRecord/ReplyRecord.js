@@ -41,7 +41,6 @@ export default function ReplyRecord({
                 <p className="reply-record-done">마감</p>
               )}
               <div className="reply-record-right-delete">
-                {/*onClick={onClick}*/}
                 <FaTrash
                   onClick={(e) => {
                     e.preventDefault();
