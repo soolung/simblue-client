@@ -6,7 +6,7 @@ const server = axios.create({
   timeout: 10000,
 });
 
-server.interceptors.request.use(
+server.interceptors.request.use( 
   (config) => {
     return config;
   },
@@ -15,7 +15,7 @@ server.interceptors.request.use(
   }
 );
 
-server.interceptors.response.use(
+server.interceptors.response.use( 
   (response) => {
     return response;
   },

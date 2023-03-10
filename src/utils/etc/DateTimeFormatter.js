@@ -29,3 +29,12 @@ export const now = () => {
     "-" +
     now.getDate().toString().padStart(2, "0");
 }
+
+export const dDay = (endDate) => {
+
+  const today = new Date();
+  const dday = new Date(endDate);
+  const gap = dday.getTime() - today.getTime();
+  return Math.ceil(gap / (1000 * 60 * 60 * 24));
+
+}

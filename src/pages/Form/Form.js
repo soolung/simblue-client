@@ -308,7 +308,7 @@ const Form = ({ mode }) => {
                 <div className="form-header-right-date-top">
                   <span>기간</span>
                   <DateBox
-                    initialDate={request?.startDate}
+                    initialDate={request?.startDate ?? now()}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, startDate: d })}
                   />
@@ -325,7 +325,7 @@ const Form = ({ mode }) => {
                 <div className="form-header-right-date-bottom">
                   <span>~</span>
                   <DateBox
-                    initialDate={request?.endDate}
+                    initialDate={request?.endDate ?? now()}
                     isAlways={request?.isAlways}
                     handleDate={(d) => setRequest({ ...request, endDate: d })}
                   />
