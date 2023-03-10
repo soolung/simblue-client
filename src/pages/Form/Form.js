@@ -38,7 +38,7 @@ const Form = ({ mode }) => {
     },
   });
 
-  const queryApplicationForm = useQuery(
+  const form = useQuery(
     "queryApplicationForm",
     () => getApplicationForm(id),
     {
@@ -62,7 +62,7 @@ const Form = ({ mode }) => {
           ownerList: Array.from(ownerList)
         },
       });
-    } else if (mode === "update") {
+    } else if (mode === "update" && form.data?.canUpdate) {
       update.mutate({
         id: id,
         request: {
@@ -82,8 +82,8 @@ const Form = ({ mode }) => {
       };
     } else if (mode === "update") {
       return {
-        text: "수정하기",
-        disabled: !user?.authority === "ROLE_TEACHER",
+        text: form.data?.canUpdate ? "수정하기" : "수정할 수 없습니다",
+        disabled: !user?.authority === "ROLE_TEACHER" || !form.data?.canUpdate,
       };
     }
   };
@@ -270,7 +270,7 @@ const Form = ({ mode }) => {
     }
   }
 
-  return queryApplicationForm.isLoading ? (
+  return form.isLoading ? (
     <Loading/>
   ) : (
     <>
@@ -370,6 +370,7 @@ const Form = ({ mode }) => {
           <Button
             className="form-button"
             text={button().text}
+            disabled={button().disabled}
             action={onClick}
           />
         </div>
