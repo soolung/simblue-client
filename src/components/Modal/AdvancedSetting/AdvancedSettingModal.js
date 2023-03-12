@@ -62,7 +62,7 @@ export default function AdvancedSettingModal({
             <Button
               text="삭제하기"
               className="application-delete-button"
-              action={deleteConfirm}
+              onClick={deleteConfirm}
             />
           )}
         </div>

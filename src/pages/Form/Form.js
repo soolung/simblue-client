@@ -365,13 +365,13 @@ const Form = ({ mode }) => {
           <Button
             className="advanced-setting-button"
             text="고급 설정"
-            action={() => setAdvancedSettingModalOpen(true)}
+            onClick={() => setAdvancedSettingModalOpen(true)}
           />
           <Button
             className="form-button"
             text={button().text}
             disabled={button().disabled}
-            action={onClick}
+            onClick={onClick}
           />
         </div>
       </section>

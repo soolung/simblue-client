@@ -149,7 +149,7 @@ export default function ApplicationDetail({ mode }) {
             </div>
             <Button
               text={button().text}
-              action={onClick}
+              onClick={onClick}
               className="application-detail-application-submit"
               disabled={button().disabled}
             />
