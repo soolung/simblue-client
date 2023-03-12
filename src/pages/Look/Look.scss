@@ -38,6 +38,12 @@
       }
     }
   }
+
+  .none {
+    color: $dark-grey;
+    text-align: center;
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 1000px) {

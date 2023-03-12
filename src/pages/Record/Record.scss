@@ -11,6 +11,16 @@
     flex-direction: column;
     gap: 12px;
   }
+  .record-body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .none {
+    color: $dark-grey;
+    text-align: center;
+    padding-top: 120px;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -39,4 +49,3 @@
     }
   }
 }
-

@@ -1,0 +1,49 @@
+@import "../../../styles/common.scss";
+
+.record-card {
+  display: block;
+  cursor: default;
+  padding-top: 8px;
+
+  .record-card-com {
+    background-color: white;
+    border: 1px solid $grey;
+    border-radius: 10px;
+    padding: 13px 10px 7px 10px;
+
+    &:hover {
+      background-color: $light-grey;
+    }
+
+    .record-card-top {
+      font-size: 23px;
+
+      .record-card-top-title {
+        font-weight: 600;
+        padding-left: 8px;
+      }
+    }
+
+    .record-card-bottom {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .record-card-bottom-p {
+        font-size: 13px;
+        font-weight: 200;
+
+        .record-card-bar {
+          padding: 0 5px;
+          color: $medium-grey;
+        }
+      }
+
+      .record-card-bottom-pen {
+        color: $medium-grey;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+  }
+}

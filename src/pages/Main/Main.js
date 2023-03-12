@@ -11,6 +11,7 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
 import { getFourLatestApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
+import { ACCESS_TOKEN, AUTHORITY, NAME, REFRESH_TOKEN, ROLE_ID } from '../../utils/constant/user.constant';
 
 export default function Main() {
   const navigate = useNavigate();
@@ -21,15 +22,17 @@ export default function Main() {
   );
   const { mutate } = useMutation(getAccessTokenByGoogle, {
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("authority", data.authority);
-      localStorage.setItem("name", data.name);
+      localStorage.setItem(ACCESS_TOKEN, data.accessToken);
+      localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
+      localStorage.setItem(AUTHORITY, data.authority);
+      localStorage.setItem(NAME, data.name);
+      localStorage.setItem(ROLE_ID, data.roleId)
       setUser({
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
         authority: data.authority,
         name: data.name,
+        roleId: data.roleId
       });
 
       if (!data?.login) {
@@ -61,7 +64,7 @@ export default function Main() {
               description={a.description}
               startDate={a.startDate}
               endDate={a.endDate}
-              isAlways={a.isAlways}
+              status={a.status}
               key={index}
             />
           ))}

@@ -5,7 +5,8 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
 import SideBar from "./SideBar/SideBar";
-import { Transition } from 'react-transition-group';
+import { Transition } from "react-transition-group";
+import Search from '../common/Search/Search';
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -13,24 +14,12 @@ export default function Header() {
   const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
   const [sideBarIsOpen, setSideBarOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
   useEffect(() => {
     setSideBarOpen(false);
   }, [pathname]);
 
-  const toggleSearchTextOnFocus = (e) => {
-    setSearchTextOnFocus(!searchTextOnFocus);
-  };
 
-  const writeSearchText = (e) => {
-    setSearchText(e.target.value);
-  };
-
-  const resetSearchText = (e) => {
-    setSearchText("");
-  };
 
   return (
     <>
@@ -42,54 +31,26 @@ export default function Header() {
           <div className="header-category-total">
             <ul className="header-category-ul">
               <li className="header-nav-li">
-                <Link to="/look">
-                  둘러보기
-                </Link>
+                <Link to="/look">둘러보기</Link>
               </li>
               {user?.authority && (
                 <li className="header-nav-li">
-                  <Link to="/record">
-                    기록보기
-                  </Link>
+                  <Link to="/record">기록보기</Link>
                 </li>
               )}
               {user?.authority === "ROLE_TEACHER" ? (
                 <li className="header-nav-li">
-                  <Link to="/create">
-                    만들기
-                  </Link>
+                  <Link to="/application/create">만들기</Link>
                 </li>
               ) : (
                 <></>
               )}
             </ul>
           </div>
-
-          <div className="search-area">
-            <input
-              type="text"
-              placeholder="검색어를 입력해주세요."
-              value={searchText}
-              onChange={writeSearchText}
-              onFocus={toggleSearchTextOnFocus}
-              onBlur={toggleSearchTextOnFocus}
-            />
-            <button
-              className={
-                "search-delete " +
-                (searchText.length > 0 && searchTextOnFocus
-                  ? "search-delete-show"
-                  : "search-delete-no")
-              }
-              onClick={resetSearchText}
-            />
-            <input
-              type="image"
-              className="search-go"
-              src="/images/search.svg"
-              alt="search-go"
-            />
-          </div>
+          <Search
+            className="search-area"
+            onSearch={() => alert('아직 검색 기능을 지원하지 않습니다 ㅜㅜ.')}
+          />
           <div className="header_login_button">
             {user?.authority ? (
               <>
@@ -135,9 +96,12 @@ export default function Header() {
         </div>
       </header>
       <Transition unmountOnExit in={sideBarIsOpen} timeout={245}>
-        {(sideBarIsOpen) =>
-          <SideBar state={sideBarIsOpen} closeModal={() => setSideBarOpen(false)}/>
-        }
+        {(sideBarIsOpen) => (
+          <SideBar
+            state={sideBarIsOpen}
+            closeModal={() => setSideBarOpen(false)}
+          />
+        )}
       </Transition>
     </>
   );
