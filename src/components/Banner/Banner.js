@@ -6,8 +6,11 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/css/effect-fade";
 import {Link} from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../utils/atom/user';
 
 SwiperCore.use([Pagination, Autoplay, EffectFade])
+
 
 function Banner(props){
     return(
