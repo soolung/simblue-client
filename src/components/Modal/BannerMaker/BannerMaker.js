@@ -19,7 +19,9 @@ const BannerMaker = ({ title }) => {
       <div className="confirm-modal-wrap">
         <div className="confirm-modal-wrap-textbox">
           <p className="confirm-text-title">{title}</p>
-          <p className="confirm-text-content">ff</p>
+          <div className="confirm-text-image">
+          
+          </div>
         </div>
         <div className="confirm-modal-wrap-buttonbox">
           <div className="confirm-modal-wrap-box">
