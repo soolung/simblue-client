@@ -14,23 +14,27 @@
     padding: 10px 20px;
     .banner-card-text-top {
       align-items: center;
-      display: flex;
-      justify-content: space-between;
-      .close-icon {
+      display: inline-block;
+      .progress-icon {
+        float: left;
         color: #66bb6a;
         border: 1px solid #66bb6a;
         padding: 3px 8px;
         border-radius: 30px;
         font-size: 15px;
       }
-      .progress-icon {
+      .close-icon{
         color: $main-red;
+        float: left;
         border: 1px solid $main-red;
         padding: 3px 8px;
         border-radius: 30px;
       }
       .banner-end-date{
+        position: relative;
+        left: 10px;
         font-size: 20px;
+        display: inline-block;
       }
     }
     .banner-card-text-bottom {

@@ -15,7 +15,7 @@ export default function BannerManage() {
         <p className="section-header-title">배너 관리</p>
         <p className="section-header-description">내가 올린 배너를 관리해요.</p>
       </div>
-      <div>
+      <div className="banner-mange-create">
         <p
           onClick={(e) => {
             e.preventDefault();
