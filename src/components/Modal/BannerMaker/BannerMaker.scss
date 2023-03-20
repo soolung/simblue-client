@@ -1,9 +1,146 @@
-@import '../../../styles/common.scss';
-.banner-maker-modal{
-    width: 30vw;
-    height: 60vh;
-    border-radius: 15px;
-    padding: 50px 40px;
-    background-color: $background-color;
-  
+@import "../../../styles/common.scss";
+
+.bmaker-modal {
+  width: 700px;
+  height: 600px;
+  padding: 36px;
+  background: $background-color;
+  border-radius: 12px;
+
+  .bmaker-modal-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .bmaker-modal-wrap-textbox {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      .bmaker-modal-header {
+        display: flex;
+        justify-content: space-between;
+        .bmaker-text-title {
+          color: black;
+          font-weight: 600;
+          font-size: 1.5rem;
+          line-height: 140%;
+          letter-spacing: 0.15px;
+        }
+        .maker-modal-close{
+            font-size: 25px;
+        }
+      }
+      .bmaker-text-image {
+        .bamker-text-image-annae {
+          display: flex;
+          justify-content: space-between;
+        }
+        .bmaker-image-space {
+          background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='9' ry='9' stroke='%23C2C2C2FF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+          border-radius: 9px;
+          text-align: center;
+          overflow: hidden;
+          margin: 0 auto;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .signup-profileImg-label {
+            cursor: pointer;
+            height: 180px;
+            line-height: 180px;
+            font-size: 50px;
+            color: $medium-grey;
+          }
+
+          // input태그
+          .form-signup input[type="file"] {
+            display: none;
+          }
+        }
+      }
+      .banner-maker-endday {
+        padding-top: 10px;
+        .banner-maker-endday-text {
+          align-items: center;
+          width: 39%;
+          display: flex;
+          justify-content: space-between;
+        }
+        .banner-maker-endday-input {
+          padding-top: 5px;
+        }
+      }
+      .banner-maker-link {
+        padding-top: 5px;
+        .banner-maker-link-text {
+          align-items: center;
+          width: 34%;
+          display: flex;
+          justify-content: space-between;
+        }
+        .banner-maker-link-input {
+          padding-top: 5px;
+        }
+      }
+      .bmaker-modal-wrap-buttonbox {
+        .bmaker-modal-wrap-box {
+          display: flex;
+          justify-content: space-between;
+          padding-left: 190px;
+
+          button {
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+          }
+
+          .bmaker-modal-wrap-cancel {
+            border: 1px solid $medium-grey;
+            color: $medium-grey;
+            background-color: $background-color;
+          }
+
+          .bmaker-modal-wrap-change {
+            border: 1px solid $main-red;
+            background-color: $main-red;
+            color: white;
+          }
+        }
+      }
+    }
+    .bmaker-modal-wrap-buttonbox {
+      padding-top: 10px;
+      .bmaker-modal-wrap-change {
+        background-color: $main-red;
+        color: white;
+        width: 100%;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 11px 10px;
+      }
+    }
+  }
+}
+
+.bannker-maker-star {
+  color: red;
+}
+
+.banner-maker-input {
+  padding: 10px 15px;
+  width: 100%;
+  border: 1px solid $grey;
+  border-radius: 10px;
+  &::placeholder {
+    color: $medium-grey;
+  }
+}
+
+.banner-maker-explan {
+  color: $dark-grey;
+  font-size: 11px;
 }

@@ -7,13 +7,9 @@ import "swiper/scss/pagination";
 import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
 import { FaPen } from "react-icons/fa";
-import useModal from "../../hooks/useModal";
-import BannerMaker from "../Modal/BannerMaker/BannerMaker";
 SwiperCore.use([Pagination, Autoplay, EffectFade]);
 
 function Banner(props) {
-  const { openModal } = useModal();
-
   return (
     <div className="banner_tit">
       <Swiper
@@ -36,14 +32,11 @@ function Banner(props) {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="banner-maker-button">
-        <FaPen
-          onClick={(e) => {
-            e.preventDefault();
-            openModal(<BannerMaker title="배너 등록" />);
-          }}
-        />
-      </div>
+      <Link to="/bannermanage">
+        <div className="banner-maker-button">
+          <FaPen />
+        </div>
+      </Link>
     </div>
   );
 }

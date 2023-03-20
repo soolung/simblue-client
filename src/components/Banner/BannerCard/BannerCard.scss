@@ -1,0 +1,50 @@
+@import "../../../styles/common.scss";
+
+.banner-card {
+  width: 30vw;
+  border-radius: 20px;
+  background-color: white;
+  .banner-card-image {
+    background-color: green;
+    img {
+      width: 100%;
+    }
+  }
+  .banner-card-text {
+    padding: 10px 20px;
+    .banner-card-text-top {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      .close-icon {
+        color: #66bb6a;
+        border: 1px solid #66bb6a;
+        padding: 3px 8px;
+        border-radius: 30px;
+        font-size: 15px;
+      }
+      .progress-icon {
+        color: $main-red;
+        border: 1px solid $main-red;
+        padding: 3px 8px;
+        border-radius: 30px;
+      }
+      .banner-end-date{
+        font-size: 20px;
+      }
+    }
+    .banner-card-text-bottom {
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p{
+        color: $medium-grey;
+        font-size: 18px;
+      }
+      .banner-card-pen{
+        font-size: 20px;
+      }
+    }
+  }
+}
