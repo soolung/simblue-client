@@ -9,7 +9,7 @@ import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
-  console.log(data);
+
   return (
     <>
       <section className="record">
