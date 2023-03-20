@@ -19,7 +19,7 @@ export default function RecordKanban({ emoji, title, data }) {
               </div>
               <div className="record-kanban-bottom">
                 {data?.map((k, index) => (
-                  <Draggable key={index} draggableId={index} index={index}>
+                  <Draggable key={k.title} draggableId={k.title} index={index}>
                     {provided => (
                       <div
                         {...provided.draggableProps}
@@ -27,7 +27,6 @@ export default function RecordKanban({ emoji, title, data }) {
                         ref={provided.innerRef}
                       >
                         <Card
-                          applicationId={k.applicationId}
                           emoji={k.emoji}
                           title={k.title}
                           endDate={k.endDate}
@@ -39,6 +38,7 @@ export default function RecordKanban({ emoji, title, data }) {
                     )}
                   </Draggable>
                 ))}
+                {provided.placeholder}
               </div>
             </div>
           )}

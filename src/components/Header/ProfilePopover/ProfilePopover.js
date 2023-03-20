@@ -1,7 +1,7 @@
 import "./ProfilePopover.scss";
-import { useSetRecoilState } from 'recoil';
-import { userState } from '../../../utils/atom/user';
-import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from "recoil";
+import { userState } from "../../../utils/atom/user";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePopover({ isOpen, close }) {
   const setUser = useSetRecoilState(userState);
@@ -9,13 +9,13 @@ export default function ProfilePopover({ isOpen, close }) {
 
   const data = [
     {
-      text: '비밀번호 변경',
+      text: "비밀번호 변경",
       onClick: () => {
-        navigate('/user/update/password')
-      }
+        navigate("/user/update/password");
+      },
     },
     {
-      text: '로그아웃',
+      text: "로그아웃",
       onClick: () => {
         localStorage.clear();
         setUser({
@@ -24,19 +24,19 @@ export default function ProfilePopover({ isOpen, close }) {
           authority: null,
           name: null,
           roleId: null,
-        })
-        navigate('/')
-      }
-    }
-  ]
+        });
+        navigate("/");
+      },
+    },
+  ];
 
-  const closeAfter = (f) => {
+  const closeAfter = f => {
     f();
     close();
-  }
+  };
 
   return (
-    <div className={`profile-popover-container ${isOpen ? '' : 'disabled'}`}>
+    <div className={`profile-popover-container ${isOpen ? "" : "disabled"}`}>
       <ul className="profile-popover">
         {data.map((d, index) => (
           <li
@@ -46,10 +46,9 @@ export default function ProfilePopover({ isOpen, close }) {
           >
             {d.text}
           </li>
-        ))
-        }
+        ))}
       </ul>
-      <div className="profile-popover-ggoranji"/>
+      <div className="profile-popover-ggoranji" />
     </div>
-  )
+  );
 }
