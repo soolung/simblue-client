@@ -1,5 +1,4 @@
 import "./Main.scss";
-import BannerData from "./banner.json";
 import Banner from "../../components/Banner/Banner";
 import Application from "../../components/Application/Application";
 import "swiper/scss";
@@ -11,6 +10,7 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
 import { getFourLatestApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
+import { getBanner } from "../../utils/api/banner";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -19,6 +19,8 @@ export default function Main() {
     "getFourLatestApplication",
     getFourLatestApplications
   );
+  const { bannerdata } = useQuery("getBanner", getBanner);
+  console.log(bannerdata)
   const { mutate } = useMutation(getAccessTokenByGoogle, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
@@ -51,9 +53,9 @@ export default function Main() {
   return (
     <>
       <section className="main">
-        <Banner banner={BannerData.banners} />
+      <Banner banner={bannerdata?.bannerList} />
         <div className="latest-application-list">
-          {data?.applicationList?.map((a, index) => (
+        {data?.applicationList?.map((a, index) => (
             <Application
               id={a.id}
               emoji={a.emoji}

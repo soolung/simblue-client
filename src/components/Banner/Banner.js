@@ -24,10 +24,10 @@ function Banner(props) {
         autoplay={{ delay: 5000 }}
         watchOverflow={true}
       >
-        {props.banner.map((b, index) => (
+        {props?.banner?.map((b, index) => (
           <SwiperSlide key={index}>
-            <Link to="">
-              <img className="banner--image" src={b.img} alt="banner" />
+            <Link to={props.linkTo}>
+              <img className="banner--image" src={b.imageUri} alt="banner" />
             </Link>
           </SwiperSlide>
         ))}

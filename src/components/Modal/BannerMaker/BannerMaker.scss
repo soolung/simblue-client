@@ -47,16 +47,17 @@
             height: 100%;
             object-fit: cover;
           }
-          .signup-profileImg-label {
+          .banner-profileImg-label {
             cursor: pointer;
             height: 180px;
             line-height: 180px;
             font-size: 50px;
             color: $medium-grey;
           }
-
+          .banner-profileImg-input{
+          }
           // input태그
-          .form-signup input[type="file"] {
+          .form-banner input[type="file"] {
             display: none;
           }
         }

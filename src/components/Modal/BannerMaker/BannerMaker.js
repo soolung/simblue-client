@@ -51,12 +51,12 @@ const BannerMaker = ({ title }) => {
             </div>
             <div className="bmaker-image-space">
               <img src={imgFile ? imgFile : `/images/icon/user.png`} />
-              <form className="form-signup">
-                <label className="signup-profileImg-label" htmlFor="profileImg">
+              <form className="form-banner">
+                <label className="banner-profileImg-label" htmlFor="profileImg">
                   <TbUpload />
                 </label>
                 <input
-                  className="signup-profileImg-input"
+                  className="banner-profileImg-input"
                   type="file"
                   accept="image/*"
                   id="profileImg"

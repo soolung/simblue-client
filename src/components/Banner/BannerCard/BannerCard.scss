@@ -1,11 +1,12 @@
 @import "../../../styles/common.scss";
 
 .banner-card {
-  width: 30vw;
+  width: 38vw;
   border-radius: 20px;
   background-color: white;
+  position: relative;
+  overflow: hidden; // img div 안에
   .banner-card-image {
-    background-color: green;
     img {
       width: 100%;
     }
@@ -35,6 +36,9 @@
         left: 10px;
         font-size: 20px;
         display: inline-block;
+        a{
+          padding-right: 4px;
+        }
       }
     }
     .banner-card-text-bottom {
