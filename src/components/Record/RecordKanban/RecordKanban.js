@@ -15,7 +15,7 @@ export default function RecordKanban({ emoji, title, data }) {
   };
   return (
     <DragDropContext onDragEnd={handleChange}>
-      <Droppable droppableId="record-kanban">
+      <Droppable droppableId={title}>
         {provided => (
           <div
             className="record-kanban"
@@ -31,21 +31,23 @@ export default function RecordKanban({ emoji, title, data }) {
                 <Draggable key={k.title} draggableId={k.title} index={index}>
                   {(provided, snapshot) => (
                     <div
+                      ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      ref={provided.innerRef}
                       style={{
                         ...provided.draggableProps.style,
                         opacity: snapshot.isDragging ? "0.5" : "1",
                       }}
                     >
                       <Card
+                        applicationId={k.applicationId}
                         emoji={k.emoji}
                         title={k.title}
                         endDate={k.endDate}
                         starteDate={k.startDate}
                         status={k.status}
                         numberOfReplies={k.numberOfReplies}
+                        key={index}
                       />
                     </div>
                   )}
