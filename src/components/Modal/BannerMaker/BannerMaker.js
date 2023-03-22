@@ -4,24 +4,59 @@ import "./BannerMaker.scss";
 import { TbUpload } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
 import { useRef, useState } from "react";
+import { useMutation } from "react-query";
+import { createBanner } from "../../../utils/api/banner";
 
 const BannerMaker = ({ title }) => {
   const { closeModal } = useModal();
 
-  const onClick = () => {
-    closeModal();
+  const create = useMutation(createBanner, {
+    onSuccess: () => {
+      alert("성공");
+      closeModal();
+    },
+    onError: (err) => {
+      console.log(request);
+      alert("error");
+    },
+  });
+
+  const [request, setRequest] = useState({
+    endDate: "",
+    imageUri: "",
+    linkTo: "",
+  });
+
+  const handleChange = (e) => {
+    setRequest({
+      ...request,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const [imgFile, setImgFile] = useState("");
   const imgRef = useRef();
 
-  const saveImgFile = () => {
+  const saveImgFile = (e) => {
     const file = imgRef.current.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImgFile(reader.result);
     };
+    setRequest({
+      ...request,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
+
+  const submit = () => {
+    create.mutate({
+      request: {
+        ...request,
+      },
+    });
   };
 
   return (
@@ -51,16 +86,22 @@ const BannerMaker = ({ title }) => {
             </div>
             <div className="bmaker-image-space">
               <img src={imgFile ? imgFile : `/images/icon/user.png`} />
-              <form className="form-banner">
+              <form
+                className="form-banner"
+                name="photo"
+                encType="multipart/form-data"
+                // onSubmit={handleSubmit}
+              >
                 <label className="banner-profileImg-label" htmlFor="profileImg">
                   <TbUpload />
                 </label>
                 <input
                   className="banner-profileImg-input"
                   type="file"
-                  accept="image/*"
                   id="profileImg"
-                  onChange={saveImgFile}
+                  name="photo"
+                  accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
+                  // onChange={handleUpload}
                   ref={imgRef}
                 />
               </form>
@@ -81,6 +122,9 @@ const BannerMaker = ({ title }) => {
                 type="text"
                 className="banner-maker-input"
                 placeholder="yyyy-mm-dd"
+                onChange={handleChange}
+                name="endDate"
+                value={request?.endDate}
               />
             </div>
           </div>
@@ -96,12 +140,15 @@ const BannerMaker = ({ title }) => {
                 type="text"
                 className="banner-maker-input"
                 placeholder="https://example.com"
+                onChange={handleChange}
+                name="linkTo"
+                value={request?.linkTo}
               />
             </div>
           </div>
         </div>
         <div className="bmaker-modal-wrap-buttonbox">
-          <button className="bmaker-modal-wrap-change" onClick={onClick}>
+          <button className="bmaker-modal-wrap-change" onClick={submit}>
             등록하기
           </button>
         </div>

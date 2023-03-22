@@ -10,6 +10,7 @@ import { FaPen } from "react-icons/fa";
 SwiperCore.use([Pagination, Autoplay, EffectFade]);
 
 function Banner(props) {
+    console.log(props)
   return (
     <div className="banner_tit">
       <Swiper

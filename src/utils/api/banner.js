@@ -5,8 +5,8 @@ export const getMyBanner = async () => {
   return (await server.get(`/banner/my`, authorization())).data;
 };
 
-export const makeMyBanner = async () => {
-  return (await server.post("/banner", authorization())).data;
+export const createBanner = async ({request}) => {
+  return (await server.post("/banner",request, authorization())).data;
 };
 
 export const getBanner = async () => {

@@ -19,8 +19,8 @@ export default function Main() {
     "getFourLatestApplication",
     getFourLatestApplications
   );
-  const { bannerdata } = useQuery("getBanner", getBanner);
-  console.log(bannerdata)
+  const { banner } = useQuery("getBanner", getBanner);
+  console.log(banner?.bannerList);
   const { mutate } = useMutation(getAccessTokenByGoogle, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
@@ -53,9 +53,9 @@ export default function Main() {
   return (
     <>
       <section className="main">
-      <Banner banner={bannerdata?.bannerList} />
+        <Banner banner={banner?.bannerList} />
         <div className="latest-application-list">
-        {data?.applicationList?.map((a, index) => (
+          {data?.applicationList?.map((a, index) => (
             <Application
               id={a.id}
               emoji={a.emoji}
