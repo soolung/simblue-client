@@ -5,6 +5,8 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import RecordKanban from "../../components/Record/RecordKanban/RecordKanban";
 import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
+import { DragDropContext } from "react-beautiful-dnd";
+import { useState } from "react";
 
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
@@ -24,28 +26,30 @@ export default function Record() {
           </p>
         </div>
         {data?.authority === "ROLE_TEACHER" ? (
-          <div className="record-body">
-            <RecordKanban
-              emoji="📌"
-              title="상시"
-              data={data?.applicationMap.ALWAYS}
-            />
-            <RecordKanban
-              emoji="🌙"
-              title="시작 전"
-              data={data?.applicationMap.NOT_STARTED}
-            />
-            <RecordKanban
-              emoji="🌞"
-              title="진행 중"
-              data={data?.applicationMap.IN_PROGRESS}
-            />
-            <RecordKanban
-              emoji="🌚"
-              title="완료됨"
-              data={data?.applicationMap.DONE}
-            />
-          </div>
+          <DragDropContext>
+            <div className="record-body">
+              <RecordKanban
+                emoji="📌"
+                title="상시"
+                data={data?.applicationMap.ALWAYS}
+              />
+              <RecordKanban
+                emoji="🌙"
+                title="시작 전"
+                data={data?.applicationMap.NOT_STARTED}
+              />
+              <RecordKanban
+                emoji="🌞"
+                title="진행 중"
+                data={data?.applicationMap.IN_PROGRESS}
+              />
+              <RecordKanban
+                emoji="🌚"
+                title="완료됨"
+                data={data?.applicationMap.DONE}
+              />
+            </div>
+          </DragDropContext>
         ) : (
           <div className="student-record-body">
             {data?.applicationMap.applicationList.length > 0 ? (
@@ -72,3 +76,5 @@ export default function Record() {
     </>
   );
 }
+
+// _________________________________________________________________________

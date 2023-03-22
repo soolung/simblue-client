@@ -42,7 +42,7 @@ export default function ReplyRecord({
               )}
               <div className="reply-record-right-delete">
                 <FaTrash
-                  onClick={(e) => {
+                  onClick={e => {
                     e.preventDefault();
                     openModal(
                       <ConfirmModal
