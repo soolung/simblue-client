@@ -12,3 +12,7 @@ export const createBanner = async ({request}) => {
 export const getBanner = async () => {
   return (await server.get("/banner")).data;
 };
+
+export const createBannerImage = async () => {
+    return(await server.post("/banner/image",authorization())).data;
+}

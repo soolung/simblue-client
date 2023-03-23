@@ -6,10 +6,9 @@ import { IoMdClose } from "react-icons/io";
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { createBanner } from "../../../utils/api/banner";
-
+import { createBannerImage } from "../../../utils/api/banner";
 const BannerMaker = ({ title }) => {
   const { closeModal } = useModal();
-
   const create = useMutation(createBanner, {
     onSuccess: () => {
       alert("성공");
@@ -34,6 +33,7 @@ const BannerMaker = ({ title }) => {
     });
   };
 
+  //이미지 미리보기
   const [imgFile, setImgFile] = useState("");
   const imgRef = useRef();
 
@@ -49,12 +49,44 @@ const BannerMaker = ({ title }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  //이미지 넘기기
+
+  const [files, setFiles] = useState({
+    imageUri: "",
+  });
+
+  const postimage = useMutation(createBannerImage, {
+    onSuccess: () => {
+      alert("이미지 전달");
+    },
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", files.length && files[0].uploadedFile);
+    formData.append("comment", commentValue);
+    formData.append("content_id", classData.content_id);
   
+    setFiles([]);
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setFiles([...files, { uploadedFile: file }]);
+  };
 
   const submit = () => {
     create.mutate({
       request: {
         ...request,
+      },
+    });
+    postimage.mutate({
+      files: {
+        ...files,
       },
     });
   };
@@ -90,7 +122,7 @@ const BannerMaker = ({ title }) => {
                 className="form-banner"
                 name="photo"
                 encType="multipart/form-data"
-                // onSubmit={handleSubmit}
+                onSubmit={handleSubmit}
               >
                 <label className="banner-profileImg-label" htmlFor="profileImg">
                   <TbUpload />
@@ -101,7 +133,7 @@ const BannerMaker = ({ title }) => {
                   id="profileImg"
                   name="photo"
                   accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
-                  // onChange={handleUpload}
+                  onChange={handleUpload}
                   ref={imgRef}
                 />
               </form>
