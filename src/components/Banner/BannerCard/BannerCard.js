@@ -13,12 +13,12 @@ export default function BannerCard(props) {
           ) : (
             <p className="progress-icon">진행 중</p>
           )}
-          <p className="banner-end-date">
-            <a>{props.endDate.substr(0, 4)}년</a>
-            <a>{props.endDate.substr(5, 2)}월</a>
-            <a>{props.endDate.substr(8, 2)}일</a>
-            {props.status === "DONE" ? <a>종료됨</a> : <a>종료 예정</a>}
-          </p>
+          <div className="banner-end-date">
+            <p>{props.endDate.substr(0, 4)}년</p>
+            <p>{props.endDate.substr(5, 2)}월</p>
+            <p>{props.endDate.substr(8, 2)}일</p>
+            {props.status === "DONE" ? <p>종료됨</p> : <p>종료 예정</p>}
+          </div>
         </div>
         <div className="banner-card-text-bottom">
           {props?.linkTo?.length > 0 ? (

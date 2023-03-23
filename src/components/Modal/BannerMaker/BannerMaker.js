@@ -66,8 +66,8 @@ const BannerMaker = ({ title }) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("photo", files.length && files[0].uploadedFile);
-    formData.append("comment", commentValue);
-    formData.append("content_id", classData.content_id);
+    // formData.append("comment", commentValue);
+    // formData.append("content_id", classData.content_id);
   
     setFiles([]);
   };
@@ -107,11 +107,11 @@ const BannerMaker = ({ title }) => {
             </p>
           </div>
           <div className="bmaker-text-image">
-            <div className="bamker-text-image-annae">
-              <p>
-                <a>배너 이미지</a>
-                <a className="bannker-maker-star">*</a>
-              </p>
+            <div className="bmaker-text-image-annae">
+              <div className="bmaker-text-image-left">
+                <p>배너 이미지</p>
+                <p className="banner-maker-star">*</p>
+              </div>
               <p className="banner-maker-explan">
                 *배너 사이즈는 (1400 x 450)px
               </p>
@@ -141,10 +141,10 @@ const BannerMaker = ({ title }) => {
           </div>
           <div className="banner-maker-endday">
             <div className="banner-maker-endday-text">
-              <p>
-                <a>마감일</a>
-                <a className="bannker-maker-star">*</a>
-              </p>
+              <div className="banner-maker-endday-left">
+                <p>마감일</p>
+                <p className="banner-maker-star">*</p>
+              </div>
               <p className="banner-maker-explan">
                 해당 날짜가 지나면 자동으로 내려갑니다.
               </p>
