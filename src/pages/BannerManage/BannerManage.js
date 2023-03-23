@@ -1,6 +1,6 @@
 import "./BannerManage.scss";
 import useModal from "../../hooks/useModal";
-import BannerMaker from "../../components/Modal/BannerMaker/BannerMaker";
+import BannerMaker from "../../components/Modal/ManageBannerModal/ManageBannerModal";
 import BannerCard from "../../components/Banner/BannerCard/BannerCard";
 import { getMyBanner } from "../../utils/api/banner";
 import { useQuery } from "react-query";
@@ -16,14 +16,14 @@ export default function BannerManage() {
         <p className="section-header-description">내가 올린 배너를 관리해요.</p>
       </div>
       <div className="banner-mange-create">
-        <p
+        <button
           onClick={(e) => {
             e.preventDefault();
             openModal(<BannerMaker title="배너 등록" />);
           }}
         >
           + 배너 등록
-        </p>
+        </button>
       </div>
       <div className="banner-manage-card">
         {data?.bannerList.map((b) => (

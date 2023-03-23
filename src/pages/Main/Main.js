@@ -10,7 +10,6 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "../../utils/atom/user";
 import { getFourLatestApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
-import { getBanner } from "../../utils/api/banner";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -19,8 +18,6 @@ export default function Main() {
     "getFourLatestApplication",
     getFourLatestApplications
   );
-  const { banner } = useQuery("getBanner", getBanner);
-  console.log(banner?.bannerList);
   const { mutate } = useMutation(getAccessTokenByGoogle, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
@@ -53,7 +50,10 @@ export default function Main() {
   return (
     <>
       <section className="main">
-        <Banner banner={banner?.bannerList} />
+        <Banner />
+        <div>
+          
+        </div>
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
             <Application

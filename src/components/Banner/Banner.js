@@ -7,10 +7,17 @@ import "swiper/scss/pagination";
 import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
 import { FaPen } from "react-icons/fa";
+import { getBanner } from "../../utils/api/banner";
+import { useQuery } from "react-query";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../utils/atom/user";
+
 SwiperCore.use([Pagination, Autoplay, EffectFade]);
 
 function Banner(props) {
-    console.log(props)
+  const { data } = useQuery("getBanner", getBanner);
+  const user = useRecoilValue(userState);
+
   return (
     <div className="banner_tit">
       <Swiper
@@ -25,19 +32,27 @@ function Banner(props) {
         autoplay={{ delay: 5000 }}
         watchOverflow={true}
       >
-        {props?.banner?.map((b, index) => (
+        {data?.bannerList?.map((b, index) => (
           <SwiperSlide key={index}>
-            <Link to={props.linkTo}>
+            {b.linkTo ? (
+              <Link to={b?.linkTo}>
+                <img className="banner--image" src={b.imageUri} alt="banner" />
+              </Link>
+            ) : (
               <img className="banner--image" src={b.imageUri} alt="banner" />
-            </Link>
+            )}
           </SwiperSlide>
-        ))}
+        ))}{" "}
+        {user?.authority === "ROLE_TEACHER" ? (
+          <Link to="/bannermanage">
+            <div className="banner-maker-button">
+              <FaPen />
+            </div>
+          </Link>
+        ) : (
+          <></>
+        )}
       </Swiper>
-      <Link to="/bannermanage">
-        <div className="banner-maker-button">
-          <FaPen />
-        </div>
-      </Link>
     </div>
   );
 }

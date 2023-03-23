@@ -24,20 +24,20 @@
         border-radius: 30px;
         font-size: 15px;
       }
-      .close-icon{
+      .close-icon {
         color: $main-red;
         float: left;
         border: 1px solid $main-red;
         padding: 3px 8px;
         border-radius: 30px;
       }
-      .banner-end-date{
+      .banner-end-date {
         position: relative;
         left: 10px;
         font-size: 20px;
         display: inline-block;
-        
-        p{
+
+        p {
           float: left;
           padding-right: 4px;
         }
@@ -48,11 +48,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      p{
-        color: $medium-grey;
+      color: $medium-grey;
+      p {
         font-size: 18px;
       }
-      .banner-card-pen{
+      .banner-card-pen {
         font-size: 20px;
       }
     }

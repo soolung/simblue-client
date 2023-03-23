@@ -21,14 +21,14 @@ export default function BannerCard(props) {
           </div>
         </div>
         <div className="banner-card-text-bottom">
-          {props?.linkTo?.length > 0 ? (
+          {props?.linkTo?.length ? (
             <p>{props.linkTo}</p>
           ) : (
             <p>링크 이동 안 함</p>
           )}
-          <p className="banner-card-pen">
+          <div className="banner-card-pen">
             <HiPencil />
-          </p>
+          </div>
         </div>
       </div>
     </div>

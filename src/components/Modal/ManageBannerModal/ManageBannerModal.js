@@ -1,15 +1,15 @@
 import Modal from "react-modal";
 import useModal from "../../../hooks/useModal";
-import "./BannerMaker.scss";
+import "./ManageBannerModal.scss";
 import { TbUpload } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
-import { createBanner } from "../../../utils/api/banner";
+import { registerBanner } from "../../../utils/api/banner";
 import { createBannerImage } from "../../../utils/api/banner";
 const BannerMaker = ({ title }) => {
   const { closeModal } = useModal();
-  const create = useMutation(createBanner, {
+  const register = useMutation(registerBanner, {
     onSuccess: () => {
       alert("성공");
       closeModal();
@@ -79,7 +79,7 @@ const BannerMaker = ({ title }) => {
   };
 
   const submit = () => {
-    create.mutate({
+    register.mutate({
       request: {
         ...request,
       },
