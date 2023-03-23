@@ -4,9 +4,10 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useState } from "react";
 
 export default function RecordKanban({ emoji, title, data }) {
-  //page안에 있는 record-body가 칸반보드의 몸통인데 그 부분을 여기로 옮겨야 됨 그래야 dragdropcontext에서 onDragEnd하기 편함
+  const [state, setState] = useState();
+
   return (
-    <Droppable droppableId={`droppable-${title}`}>
+    <Droppable droppableId={title}>
       {provided => (
         <div
           className="record-kanban"

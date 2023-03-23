@@ -11,6 +11,22 @@ import { useState } from "react";
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
+  const onDragEnd = result => {
+    const { destination, source } = result;
+
+    const invalidColumns = ["상시", "시작 전", "진행 중"];
+    if (invalidColumns.includes(destination.droppableId)) {
+      // 옮길 수 없는 부분입니다.
+      if (destination.droppableId === source.droppableId) {
+        // destination과 source가 같은 경우
+        return;
+      }
+      alert(`${destination.droppableId}에 옮길 수 없는 부분입니다.`);
+      return;
+    }
+    // 상시가 아닌 다른 상태로 이동할 경우
+    // 기존 코드 수행
+  };
 
   return (
     <>
@@ -26,7 +42,7 @@ export default function Record() {
           </p>
         </div>
         {data?.authority === "ROLE_TEACHER" ? (
-          <DragDropContext>
+          <DragDropContext onDragEnd={onDragEnd}>
             <div className="record-body">
               <RecordKanban
                 emoji="📌"

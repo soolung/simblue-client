@@ -1,7 +1,14 @@
 import "./Application.scss";
 import { Link } from "react-router-dom";
 
-export default function Application({id, title, emoji, description, endDate, status}) {
+export default function Application({
+  id,
+  title,
+  emoji,
+  description,
+  endDate,
+  status,
+}) {
   return (
     <Link to={`/application/${id}`}>
       <div className="application">
