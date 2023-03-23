@@ -1,4 +1,5 @@
 .banner_tit {
+  position: relative;
   width: 100vw;
   .banner--image {
     min-height: 100px;
@@ -8,6 +9,23 @@
     object-fit: cover;
   }
 }
+.banner-register-button-div {
+  position: absolute;
+  right: 222px;
+  top: 260px;
+  z-index: 100;
+  .banner-register-button {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 10px 5px 10px;
+    border-radius: 15px;
+    font-size: 25px;
+    color: white;
+    &:hover{
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
 .banner .swiper-pagination-bullet {
   width: 6.5px;
   height: 6.5px;
@@ -15,8 +33,6 @@
   box-shadow: 0 1px 6px 0 black;
   margin: 0 2px !important;
 }
-
-
 
 @media screen and (max-width: 1020px) {
   .banner_tit {

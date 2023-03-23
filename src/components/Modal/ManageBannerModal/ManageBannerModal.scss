@@ -1,47 +1,49 @@
 @import "../../../styles/common.scss";
 
-.bmaker-modal {
+.bregister-modal {
   width: 700px;
   height: 600px;
   padding: 36px;
   background: $background-color;
   border-radius: 12px;
 
-  .bmaker-modal-wrap {
+  .bregister-modal-wrap {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .bmaker-modal-wrap-textbox {
+    .bregister-modal-wrap-textbox {
       display: flex;
       flex-direction: column;
       gap: 18px;
-      .bmaker-modal-header {
+      .bregister-modal-header {
         display: flex;
         justify-content: space-between;
-        .bmaker-text-title {
+        .bregister-text-title {
           color: black;
           font-weight: 600;
           font-size: 1.5rem;
           line-height: 140%;
           letter-spacing: 0.15px;
         }
-        .maker-modal-close{
-            font-size: 25px;
+        .register-modal-close {
+          font-size: 25px;
         }
       }
-      .bmaker-text-image {
-        .bmaker-text-image-annae {
-            align-items: center;
+      .bregister-text-image {
+        .bregister-text-image-annae {
+          align-items: center;
           display: flex;
           justify-content: space-between;
-          .bmaker-text-image-left{
-            p{float: left;}
+          .bregister-text-image-left {
+            p {
+              float: left;
+            }
           }
           padding-bottom: 5px;
         }
-        .bmaker-image-space {
+        .bregister-image-space {
           background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='9' ry='9' stroke='%23C2C2C2FF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
           border-radius: 9px;
           text-align: center;
@@ -59,7 +61,7 @@
             font-size: 50px;
             color: $medium-grey;
           }
-          .banner-profileImg-input{
+          .banner-profileImg-input {
           }
           // input태그
           .form-banner input[type="file"] {
@@ -67,37 +69,37 @@
           }
         }
       }
-      .banner-maker-endday {
+      .banner-register-endday {
         padding-top: 10px;
-        .banner-maker-endday-text {
+        .banner-register-endday-text {
           align-items: center;
           width: 39%;
           display: flex;
           justify-content: space-between;
-          .banner-maker-endday-left{
-            p{
-                float: left;
+          .banner-register-endday-left {
+            p {
+              float: left;
             }
           }
         }
-        .banner-maker-endday-input {
+        .banner-register-endday-input {
           padding-top: 5px;
         }
       }
-      .banner-maker-link {
+      .banner-register-link {
         padding-top: 5px;
-        .banner-maker-link-text {
+        .banner-register-link-text {
           align-items: center;
           width: 34%;
           display: flex;
           justify-content: space-between;
         }
-        .banner-maker-link-input {
+        .banner-register-link-input {
           padding-top: 5px;
         }
       }
-      .bmaker-modal-wrap-buttonbox {
-        .bmaker-modal-wrap-box {
+      .bregister-modal-wrap-buttonbox {
+        .bregister-modal-wrap-box {
           display: flex;
           justify-content: space-between;
           padding-left: 190px;
@@ -108,13 +110,13 @@
             border-radius: 8px;
           }
 
-          .bmaker-modal-wrap-cancel {
+          .bregister-modal-wrap-cancel {
             border: 1px solid $medium-grey;
             color: $medium-grey;
             background-color: $background-color;
           }
 
-          .bmaker-modal-wrap-change {
+          .bregister-modal-wrap-change {
             border: 1px solid $main-red;
             background-color: $main-red;
             color: white;
@@ -122,9 +124,9 @@
         }
       }
     }
-    .bmaker-modal-wrap-buttonbox {
+    .bregister-modal-wrap-buttonbox {
       padding-top: 10px;
-      .bmaker-modal-wrap-change {
+      .bregister-modal-wrap-change {
         background-color: $main-red;
         color: white;
         width: 100%;
@@ -137,11 +139,11 @@
   }
 }
 
-.banner-maker-star {
+.banner-register-star {
   color: red;
 }
 
-.banner-maker-input {
+.banner-register-input {
   padding: 10px 15px;
   width: 100%;
   border: 1px solid $grey;
@@ -151,7 +153,7 @@
   }
 }
 
-.banner-maker-explan {
+.banner-register-explan {
   color: $dark-grey;
   font-size: 11px;
 }

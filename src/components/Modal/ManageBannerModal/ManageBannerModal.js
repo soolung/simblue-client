@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { registerBanner } from "../../../utils/api/banner";
 import { createBannerImage } from "../../../utils/api/banner";
-const BannerMaker = ({ title }) => {
+const Bannerregister = ({ title }) => {
   const { closeModal } = useModal();
   const register = useMutation(registerBanner, {
     onSuccess: () => {
@@ -68,7 +68,7 @@ const BannerMaker = ({ title }) => {
     formData.append("photo", files.length && files[0].uploadedFile);
     // formData.append("comment", commentValue);
     // formData.append("content_id", classData.content_id);
-  
+
     setFiles([]);
   };
 
@@ -95,28 +95,28 @@ const BannerMaker = ({ title }) => {
     <Modal
       isOpen={true}
       onRequestClose={closeModal}
-      className="modal bmaker-modal"
+      className="modal bregister-modal"
       overlayClassName="modal-overlay"
     >
-      <div className="bmaker-modal-wrap">
-        <div className="bmaker-modal-wrap-textbox">
-          <div className="bmaker-modal-header">
-            <p className="bmaker-text-title">{title}</p>
-            <p onClick={closeModal} className="maker-modal-close">
+      <div className="bregister-modal-wrap">
+        <div className="bregister-modal-wrap-textbox">
+          <div className="bregister-modal-header">
+            <p className="bregister-text-title">{title}</p>
+            <p onClick={closeModal} className="register-modal-close">
               <IoMdClose />
             </p>
           </div>
-          <div className="bmaker-text-image">
-            <div className="bmaker-text-image-annae">
-              <div className="bmaker-text-image-left">
+          <div className="bregister-text-image">
+            <div className="bregister-text-image-annae">
+              <div className="bregister-text-image-left">
                 <p>배너 이미지</p>
-                <p className="banner-maker-star">*</p>
+                <p className="banner-register-star">*</p>
               </div>
-              <p className="banner-maker-explan">
+              <p className="banner-register-explan">
                 *배너 사이즈는 (1400 x 450)px
               </p>
             </div>
-            <div className="bmaker-image-space">
+            <div className="bregister-image-space">
               <img src={imgFile ? imgFile : `/images/icon/user.png`} />
               <form
                 className="form-banner"
@@ -139,20 +139,20 @@ const BannerMaker = ({ title }) => {
               </form>
             </div>
           </div>
-          <div className="banner-maker-endday">
-            <div className="banner-maker-endday-text">
-              <div className="banner-maker-endday-left">
+          <div className="banner-register-endday">
+            <div className="banner-register-endday-text">
+              <div className="banner-register-endday-left">
                 <p>마감일</p>
-                <p className="banner-maker-star">*</p>
+                <p className="banner-register-star">*</p>
               </div>
-              <p className="banner-maker-explan">
+              <p className="banner-register-explan">
                 해당 날짜가 지나면 자동으로 내려갑니다.
               </p>
             </div>
-            <div className="banner-maker-endday-input">
+            <div className="banner-register-endday-input">
               <input
                 type="text"
-                className="banner-maker-input"
+                className="banner-register-input"
                 placeholder="yyyy-mm-dd"
                 onChange={handleChange}
                 name="endDate"
@@ -160,17 +160,17 @@ const BannerMaker = ({ title }) => {
               />
             </div>
           </div>
-          <div className="banner-maker-link">
-            <div className="banner-maker-link-text">
+          <div className="banner-register-link">
+            <div className="banner-register-link-text">
               <p>링크</p>
-              <p className="banner-maker-explan">
+              <p className="banner-register-explan">
                 배너 클릭시 입력한 링크로 이동됩니다.
               </p>
             </div>
-            <div className="banner-maker-link-input">
+            <div className="banner-register-link-input">
               <input
                 type="text"
-                className="banner-maker-input"
+                className="banner-register-input"
                 placeholder="https://example.com"
                 onChange={handleChange}
                 name="linkTo"
@@ -179,8 +179,8 @@ const BannerMaker = ({ title }) => {
             </div>
           </div>
         </div>
-        <div className="bmaker-modal-wrap-buttonbox">
-          <button className="bmaker-modal-wrap-change" onClick={submit}>
+        <div className="bregister-modal-wrap-buttonbox">
+          <button className="bregister-modal-wrap-change" onClick={submit}>
             등록하기
           </button>
         </div>
@@ -189,4 +189,4 @@ const BannerMaker = ({ title }) => {
   );
 };
 
-export default BannerMaker;
+export default Bannerregister;

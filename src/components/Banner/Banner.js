@@ -6,7 +6,7 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
-import { FaPen } from "react-icons/fa";
+import { HiPencil } from "react-icons/hi";
 import { getBanner } from "../../utils/api/banner";
 import { useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
@@ -42,17 +42,19 @@ function Banner(props) {
               <img className="banner--image" src={b.imageUri} alt="banner" />
             )}
           </SwiperSlide>
-        ))}{" "}
+        ))}
+      </Swiper>{" "}
+      <div className="banner-register-button-div">
         {user?.authority === "ROLE_TEACHER" ? (
           <Link to="/bannermanage">
-            <div className="banner-maker-button">
-              <FaPen />
+            <div className="banner-register-button">
+              <HiPencil />
             </div>
           </Link>
         ) : (
           <></>
         )}
-      </Swiper>
+      </div>
     </div>
   );
 }
