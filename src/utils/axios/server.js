@@ -6,7 +6,7 @@ const server = axios.create({
   timeout: 10000,
 });
 
-server.interceptors.request.use( 
+server.interceptors.request.use(
   (config) => {
     return config;
   },
@@ -15,13 +15,13 @@ server.interceptors.request.use(
   }
 );
 
-server.interceptors.response.use( 
+server.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
     console.log(error.response.data.message);
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && error.response.data.code === "EXPIRED_TOKEN") {
       accessTokenExpired();
     }
     return Promise.reject(error);
