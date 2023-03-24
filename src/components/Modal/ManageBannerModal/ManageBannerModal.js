@@ -66,9 +66,7 @@ const Bannerregister = ({ title }) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("photo", files.length && files[0].uploadedFile);
-    // formData.append("comment", commentValue);
-    // formData.append("content_id", classData.content_id);
-
+    
     setFiles([]);
   };
 
