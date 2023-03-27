@@ -3,12 +3,14 @@ import useModal from "../../../hooks/useModal";
 import "./ManageBannerModal.scss";
 import { TbUpload } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useMutation } from "react-query";
-import { registerBanner } from "../../../utils/api/banner";
-import { createBannerImage } from "../../../utils/api/banner";
+import { registerBanner, uploadBannerImage } from "../../../utils/api/banner";
+
 const Bannerregister = ({ title }) => {
   const { closeModal } = useModal();
+  const [image, setImage] = useState(null);
+
   const register = useMutation(registerBanner, {
     onSuccess: () => {
       alert("성공");
@@ -17,6 +19,12 @@ const Bannerregister = ({ title }) => {
     onError: (err) => {
       console.log(request);
       alert("error");
+    },
+  });
+
+  const uploadImage = useMutation(uploadBannerImage, {
+    onSuccess: (data) => {
+      setImage(data.imageUri);
     },
   });
 
@@ -33,58 +41,20 @@ const Bannerregister = ({ title }) => {
     });
   };
 
-  //이미지 미리보기
-  const [imgFile, setImgFile] = useState("");
-  const imgRef = useRef();
-
-  const saveImgFile = (e) => {
-    const file = imgRef.current.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImgFile(reader.result);
-    };
-    setRequest({
-      ...request,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  //이미지 넘기기
-
-  const [files, setFiles] = useState({
-    imageUri: "",
-  });
-
-  const postimage = useMutation(createBannerImage, {
-    onSuccess: () => {
-      alert("이미지 전달");
-    },
-  });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("photo", files.length && files[0].uploadedFile);
-    
-    setFiles([]);
   };
 
   const handleUpload = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFiles([...files, { uploadedFile: file }]);
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    uploadImage.mutate(formData);
   };
 
   const submit = () => {
     register.mutate({
       request: {
         ...request,
-      },
-    });
-    postimage.mutate({
-      files: {
-        ...files,
       },
     });
   };
@@ -115,7 +85,7 @@ const Bannerregister = ({ title }) => {
               </p>
             </div>
             <div className="bregister-image-space">
-              <img src={imgFile ? imgFile : `/images/icon/user.png`} />
+              <img src={image ? image : `/images/icon/user.png`} />
               <form
                 className="form-banner"
                 name="photo"
@@ -130,9 +100,8 @@ const Bannerregister = ({ title }) => {
                   type="file"
                   id="profileImg"
                   name="photo"
-                  accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
+                  accept="image/*"
                   onChange={handleUpload}
-                  ref={imgRef}
                 />
               </form>
             </div>
