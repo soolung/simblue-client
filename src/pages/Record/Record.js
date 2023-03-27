@@ -5,28 +5,11 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../utils/atom/user";
 import RecordKanban from "../../components/Record/RecordKanban/RecordKanban";
 import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useState } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
-  const onDragEnd = result => {
-    const { destination, source } = result;
-
-    const invalidColumns = ["상시", "시작 전", "진행 중"];
-    if (invalidColumns.includes(destination.droppableId)) {
-      // 옮길 수 없는 부분입니다.
-      if (destination.droppableId === source.droppableId) {
-        // destination과 source가 같은 경우
-        return;
-      }
-      alert(`${destination.droppableId}에 옮길 수 없는 부분입니다.`);
-      return;
-    }
-    // 상시가 아닌 다른 상태로 이동할 경우
-    // 기존 코드 수행
-  };
 
   return (
     <>
@@ -42,28 +25,53 @@ export default function Record() {
           </p>
         </div>
         {data?.authority === "ROLE_TEACHER" ? (
-          <DragDropContext onDragEnd={onDragEnd}>
+          <DragDropContext>
             <div className="record-body">
-              <RecordKanban
-                emoji="📌"
-                title="상시"
-                data={data?.applicationMap.ALWAYS}
-              />
-              <RecordKanban
-                emoji="🌙"
-                title="시작 전"
-                data={data?.applicationMap.NOT_STARTED}
-              />
-              <RecordKanban
-                emoji="🌞"
-                title="진행 중"
-                data={data?.applicationMap.IN_PROGRESS}
-              />
-              <RecordKanban
-                emoji="🌚"
-                title="완료됨"
-                data={data?.applicationMap.DONE}
-              />
+              <Droppable droppableId="ALWAYS">
+                {provided => (
+                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <RecordKanban
+                      emoji="📌"
+                      title="상시"
+                      data={data?.applicationMap.ALWAYS}
+                    />
+                  </div>
+                )}
+              </Droppable>
+
+              <Droppable droppableId="NOT_STARTED">
+                {provided => (
+                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <RecordKanban
+                      emoji="🌙"
+                      title="시작 전"
+                      data={data?.applicationMap.NOT_STARTED}
+                    />
+                  </div>
+                )}
+              </Droppable>
+              <Droppable droppableId="IN_PROGRESS">
+                {provided => (
+                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <RecordKanban
+                      emoji="🌞"
+                      title="진행 중"
+                      data={data?.applicationMap.IN_PROGRESS}
+                    />
+                  </div>
+                )}
+              </Droppable>
+              <Droppable droppableId="DONE">
+                {provided => (
+                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <RecordKanban
+                      emoji="🌚"
+                      title="완료됨"
+                      data={data?.applicationMap.DONE}
+                    />
+                  </div>
+                )}
+              </Droppable>
             </div>
           </DragDropContext>
         ) : (
@@ -92,5 +100,3 @@ export default function Record() {
     </>
   );
 }
-
-// _________________________________________________________________________
