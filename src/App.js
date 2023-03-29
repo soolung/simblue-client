@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
-import BannerManage from "./pages/BannerManage/BannerManage";
+import BannerManage from "./pages/BannerManagement/BannerManagement";
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
   const actualAuthority = localStorage.getItem("authority");

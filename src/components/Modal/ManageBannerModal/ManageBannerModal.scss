@@ -49,7 +49,6 @@
           overflow: hidden;
           margin: 0 auto;
           position: relative;
-
           img {
             position: absolute;
             left: 0px;
@@ -57,17 +56,22 @@
             height: 100%;
             z-index: 2;
           }
-          .banner-profileImg-label {
-            cursor: pointer;
-            height: 180px;
-            line-height: 180px;
-            font-size: 50px;
-            color: $medium-grey;
-            position: relative;
-            z-index: 1;
-          }
-          .banner-profileImg-input {
-            border: none;
+          .form-banner {
+            border: 3px dashed $medium-grey;
+            border-radius: 9px;
+
+            .banner-profileImg-label {
+              cursor: pointer;
+              height: 180px;
+              line-height: 180px;
+              font-size: 50px;
+              color: $medium-grey;
+              position: relative;
+              z-index: 1;
+            }
+            .banner-profileImg-input {
+              border: none;
+            }
           }
           // input태그
           .form-banner input[type="file"] {
@@ -162,9 +166,4 @@
 .banner-register-explan {
   color: $dark-grey;
   font-size: 11px;
-}
- 
-.form-banner {
-  border: 3px dashed $medium-grey;
-  border-radius: 9px;
 }

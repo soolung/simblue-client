@@ -1,11 +1,11 @@
-import "./BannerManage.scss";
+import "./BannerManagement.scss";
 import useModal from "../../hooks/useModal";
 import BannerMaker from "../../components/Modal/ManageBannerModal/ManageBannerModal";
 import BannerCard from "../../components/Banner/BannerCard/BannerCard";
 import { getMyBanner } from "../../utils/api/banner";
 import { useQuery } from "react-query";
 
-export default function BannerManage() {
+export default function BannerManagement() {
   const { data } = useQuery("getMyBanner", getMyBanner);
   const { openModal } = useModal();
 
