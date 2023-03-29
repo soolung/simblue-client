@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
-import BannerManage from "./pages/BannerManagement/BannerManagement";
+import BannerManagement from "./pages/BannerManagement/BannerManagement";
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
   const actualAuthority = localStorage.getItem("authority");
@@ -48,7 +48,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
-          <Route path="/banner/manage" element={<BannerManage/>}/>
+          <Route path="/banner/manage" element={<BannerManagement/>}/>
           <Route
             path="/user/update/password"
             element={<WithLogin children={<UpdatePassword />} />}

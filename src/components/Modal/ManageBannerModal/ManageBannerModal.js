@@ -16,7 +16,7 @@ const ManageBannerModal = ({ title }) => {
       closeModal();
     },
     onError: (err) => {
-      console.log(request);
+      
       // alert("error");
     },
   });
