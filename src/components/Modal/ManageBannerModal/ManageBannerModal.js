@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { registerBanner, uploadBannerImage } from "../../../utils/api/banner";
 
-const Bannerregister = ({ title }) => {
+const ManageBannerModal = ({ title }) => {
   const { closeModal } = useModal();
   const [image, setImage] = useState(null);
   const register = useMutation(registerBanner, {
@@ -155,4 +155,4 @@ const Bannerregister = ({ title }) => {
   );
 };
 
-export default Bannerregister;
+export default ManageBannerModal;

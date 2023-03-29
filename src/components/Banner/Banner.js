@@ -46,7 +46,7 @@ function Banner(props) {
       </Swiper>{" "}
       <div className="banner-register-button-div">
         {user?.authority === "ROLE_TEACHER" ? (
-          <Link to="/bannermanage">
+          <Link to="/banner/manage">
             <div className="banner-register-button">
               <HiPencil />
             </div>
