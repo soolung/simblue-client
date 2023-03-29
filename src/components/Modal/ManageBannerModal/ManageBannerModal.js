@@ -10,7 +10,6 @@ import { registerBanner, uploadBannerImage } from "../../../utils/api/banner";
 const Bannerregister = ({ title }) => {
   const { closeModal } = useModal();
   const [image, setImage] = useState(null);
-
   const register = useMutation(registerBanner, {
     onSuccess: () => {
       alert("성공");
@@ -18,7 +17,7 @@ const Bannerregister = ({ title }) => {
     },
     onError: (err) => {
       console.log(request);
-      alert("error");
+      // alert("error");
     },
   });
 
@@ -49,6 +48,7 @@ const Bannerregister = ({ title }) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     uploadImage.mutate(formData);
+
   };
 
   const submit = () => {
@@ -85,7 +85,7 @@ const Bannerregister = ({ title }) => {
               </p>
             </div>
             <div className="bregister-image-space">
-              <img src={image ? image : `/images/icon/user.png`} />
+              {image && <img src={image} />}
               <form
                 className="form-banner"
                 name="photo"

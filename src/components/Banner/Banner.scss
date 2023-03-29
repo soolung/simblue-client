@@ -1,3 +1,4 @@
+@import '../../styles/common.scss';
 .banner_tit {
   position: relative;
   width: 100vw;
@@ -15,6 +16,7 @@
   top: 260px;
   z-index: 100;
   .banner-register-button {
+    border: 0.3px solid $light-grey;
     background: rgba(255, 255, 255, 0.1);
     padding: 10px 10px 5px 10px;
     border-radius: 15px;
