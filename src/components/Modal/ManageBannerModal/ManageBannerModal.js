@@ -29,7 +29,6 @@ const Bannerregister = ({ title }) => {
 
   const [request, setRequest] = useState({
     endDate: "",
-    imageUri: "",
     linkTo: "",
   });
 
@@ -48,12 +47,12 @@ const Bannerregister = ({ title }) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     uploadImage.mutate(formData);
-
   };
 
   const submit = () => {
     register.mutate({
       request: {
+        imageUri: image,
         ...request,
       },
     });
@@ -99,7 +98,7 @@ const Bannerregister = ({ title }) => {
                   className="banner-profileImg-input"
                   type="file"
                   id="profileImg"
-                  name="photo"
+                  name="imageUri"
                   accept="image/*"
                   onChange={handleUpload}
                 />
