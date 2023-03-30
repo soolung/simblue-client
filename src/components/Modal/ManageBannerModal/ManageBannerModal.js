@@ -9,21 +9,20 @@ import { registerBanner, uploadBannerImage } from "../../../utils/api/banner";
 
 const ManageBannerModal = ({ title }) => {
   const { closeModal } = useModal();
-  const [image, setImage] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
   const register = useMutation(registerBanner, {
     onSuccess: () => {
       alert("성공");
       closeModal();
     },
     onError: (err) => {
-      
       // alert("error");
     },
   });
 
   const uploadImage = useMutation(uploadBannerImage, {
     onSuccess: (data) => {
-      setImage(data.imageUri);
+      setImageUri(data.imageUri);
     },
   });
 
@@ -39,10 +38,6 @@ const ManageBannerModal = ({ title }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
-
   const handleUpload = (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
@@ -52,7 +47,7 @@ const ManageBannerModal = ({ title }) => {
   const submit = () => {
     register.mutate({
       request: {
-        imageUri: image,
+        imageUri: imageUri,
         ...request,
       },
     });
@@ -62,38 +57,36 @@ const ManageBannerModal = ({ title }) => {
     <Modal
       isOpen={true}
       onRequestClose={closeModal}
-      className="modal bregister-modal"
+      className="modal manage-banner-modal"
       overlayClassName="modal-overlay"
     >
-      <div className="bregister-modal-wrap">
-        <div className="bregister-modal-wrap-textbox">
-          <div className="bregister-modal-header">
-            <p className="bregister-text-title">{title}</p>
-            <p onClick={closeModal} className="register-modal-close">
+      <div className="manage-banner-modal-wrap">
+        <div className="manage-banner-modal-wrap-textbox">
+          <div className="manage-banner-modal-header">
+            <p className="manage-banner-text-title">{title}</p>
+            <button onClick={closeModal} className="register-modal-close">
               <IoMdClose />
-            </p>
+            </button>
           </div>
-          <div className="bregister-text-image">
-            <div className="bregister-text-image-annae">
-              <div className="bregister-text-image-left">
+          <div className="manage-banner-text-image">
+            <div className="manage-banner-text-image-annae">
+              <div className="manage-banner-text-image-left">
                 <p>배너 이미지</p>
                 <p className="banner-register-star">*</p>
               </div>
-              <p className="banner-register-explan">
+              <p className="banner-register-explain">
                 *배너 사이즈는 (1400 x 450)px
               </p>
             </div>
-            <div className="bregister-image-space">
-              {image && <img src={image} />}
-              <form
-                className="form-banner"
-                name="photo"
-                encType="multipart/form-data"
-                onSubmit={handleSubmit}
-              >
-                <label className="banner-profileImg-label" htmlFor="profileImg">
-                  <TbUpload />
-                </label>
+            <div className="manage-banner-image-space">
+              <label className="banner-profileImg-label" htmlFor="profileImg">
+                <div className={`form-banner ${imageUri ? '' : 'border'}`}>
+                  {imageUri ?
+                    <img src={imageUri} alt={"banner"} />
+                    :
+                    <TbUpload className="banner-upload-icon" size={50} />
+                  }
+                </div>
                 <input
                   className="banner-profileImg-input"
                   type="file"
@@ -102,7 +95,7 @@ const ManageBannerModal = ({ title }) => {
                   accept="image/*"
                   onChange={handleUpload}
                 />
-              </form>
+              </label>
             </div>
           </div>
           <div className="banner-register-endday">
@@ -111,7 +104,7 @@ const ManageBannerModal = ({ title }) => {
                 <p>마감일</p>
                 <p className="banner-register-star">*</p>
               </div>
-              <p className="banner-register-explan">
+              <p className="banner-register-explain">
                 해당 날짜가 지나면 자동으로 내려갑니다.
               </p>
             </div>
@@ -129,7 +122,7 @@ const ManageBannerModal = ({ title }) => {
           <div className="banner-register-link">
             <div className="banner-register-link-text">
               <p>링크</p>
-              <p className="banner-register-explan">
+              <p className="banner-register-explain">
                 배너 클릭시 입력한 링크로 이동됩니다.
               </p>
             </div>
@@ -145,8 +138,8 @@ const ManageBannerModal = ({ title }) => {
             </div>
           </div>
         </div>
-        <div className="bregister-modal-wrap-buttonbox">
-          <button className="bregister-modal-wrap-change" onClick={submit}>
+        <div className="manage-banner-modal-wrap-buttonbox">
+          <button className="manage-banner-modal-wrap-change" onClick={submit}>
             등록하기
           </button>
         </div>

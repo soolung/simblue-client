@@ -1,6 +1,11 @@
 import "./BannerCard.scss";
 import { HiPencil } from "react-icons/hi";
+import useModal from '../../../hooks/useModal';
+import ConfirmModal from '../../Modal/ConfirmModal/ConfirmModal';
+
 export default function BannerCard(props) {
+  const { openModal } = useModal();
+
   return (
     <div className="banner-card">
       <div className="banner-card-card">
@@ -27,9 +32,12 @@ export default function BannerCard(props) {
             ) : (
               <p>링크 이동 안 함</p>
             )}
-            <div className="banner-card-pen">
+            <button
+              className="banner-card-pen"
+              onClick={() => {}}
+            >
               <HiPencil />
-            </div>
+            </button>
           </div>
         </div>
       </div>
