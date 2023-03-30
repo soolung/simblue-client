@@ -18,7 +18,7 @@ export default function BannerManagement() {
       <div className="banner-mange-create">
         <button
           onClick={(e) => {
-            openModal(<ManageBannerModal title="배너 등록" />);
+            openModal(<ManageBannerModal mode="register" />);
           }}
         >
           + 배너 등록
@@ -31,6 +31,7 @@ export default function BannerManagement() {
             imageUri={b.imageUri}
             linkTo={b.linkTo}
             status={b.status}
+            id={b.id}
           />
         ))}
       </div>

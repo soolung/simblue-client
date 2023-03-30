@@ -3,30 +3,70 @@ import useModal from "../../../hooks/useModal";
 import "./ManageBannerModal.scss";
 import { TbUpload } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
-import { useMutation } from "react-query";
-import { registerBanner, uploadBannerImage } from "../../../utils/api/banner";
+import { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { deleteBanner, registerBanner, updateBanner, uploadBannerImage } from "../../../utils/api/banner";
+import Button from '../../Button/Button';
 
-const ManageBannerModal = ({ title }) => {
+const ManageBannerModal = ({ mode, data }) => {
+  const queryClient = useQueryClient();
+
+  const screen = {
+    update: {
+      title: "수정",
+      onSubmit: () => {
+        update.mutate({
+          id: data.id,
+          request: request
+        })
+      }
+    },
+    register: {
+      title: "등록",
+      onSubmit: () => {
+        register.mutate({
+          request: request
+        });
+      },
+    }
+  }
   const { closeModal } = useModal();
-  const [imageUri, setImageUri] = useState(null);
   const register = useMutation(registerBanner, {
     onSuccess: () => {
       alert("성공");
       closeModal();
+      queryClient.invalidateQueries("getMyBanner");
     },
-    onError: (err) => {
-      // alert("error");
-    },
+    onError: (err) => {},
   });
+
+  const update = useMutation(updateBanner, {
+    onSuccess: () => {
+      alert("성공");
+      closeModal();
+      queryClient.invalidateQueries("getMyBanner");
+    }
+  })
 
   const uploadImage = useMutation(uploadBannerImage, {
     onSuccess: (data) => {
-      setImageUri(data.imageUri);
+      setRequest({
+        ...request,
+        imageUri: data.imageUri
+      })
     },
   });
 
+  const _deleteBanner = useMutation(deleteBanner, {
+    onSuccess: () => {
+      alert("성공");
+      closeModal();
+      queryClient.invalidateQueries("getMyBanner");
+    }
+  })
+
   const [request, setRequest] = useState({
+    imageUri: "",
     endDate: "",
     linkTo: "",
   });
@@ -44,14 +84,11 @@ const ManageBannerModal = ({ title }) => {
     uploadImage.mutate(formData);
   };
 
-  const submit = () => {
-    register.mutate({
-      request: {
-        imageUri: imageUri,
-        ...request,
-      },
-    });
-  };
+  useEffect(() => {
+    if (mode === "update") {
+      setRequest({ ...data });
+    }
+  }, [])
 
   return (
     <Modal
@@ -63,7 +100,7 @@ const ManageBannerModal = ({ title }) => {
       <div className="manage-banner-modal-wrap">
         <div className="manage-banner-modal-wrap-textbox">
           <div className="manage-banner-modal-header">
-            <p className="manage-banner-text-title">{title}</p>
+            <p className="manage-banner-text-title">배너 {screen[mode].title}</p>
             <button onClick={closeModal} className="register-modal-close">
               <IoMdClose />
             </button>
@@ -72,7 +109,7 @@ const ManageBannerModal = ({ title }) => {
             <div className="manage-banner-text-image-annae">
               <div className="manage-banner-text-image-left">
                 <p>배너 이미지</p>
-                <p className="banner-register-star">*</p>
+                <p className="red">*</p>
               </div>
               <p className="banner-register-explain">
                 *배너 사이즈는 (1400 x 450)px
@@ -80,9 +117,9 @@ const ManageBannerModal = ({ title }) => {
             </div>
             <div className="manage-banner-image-space">
               <label className="banner-profileImg-label" htmlFor="profileImg">
-                <div className={`form-banner ${imageUri ? '' : 'border'}`}>
-                  {imageUri ?
-                    <img src={imageUri} alt={"banner"} />
+                <div className={`form-banner ${request.imageUri ? '' : 'border'}`}>
+                  {request.imageUri ?
+                    <img src={request.imageUri} alt={"banner"} />
                     :
                     <TbUpload className="banner-upload-icon" size={50} />
                   }
@@ -98,17 +135,17 @@ const ManageBannerModal = ({ title }) => {
               </label>
             </div>
           </div>
-          <div className="banner-register-endday">
-            <div className="banner-register-endday-text">
-              <div className="banner-register-endday-left">
+          <div className="banner-register-end-date">
+            <div className="banner-register-end-date-text">
+              <div className="banner-register-end-date-left">
                 <p>마감일</p>
-                <p className="banner-register-star">*</p>
+                <p className="red">*</p>
               </div>
               <p className="banner-register-explain">
                 해당 날짜가 지나면 자동으로 내려갑니다.
               </p>
             </div>
-            <div className="banner-register-endday-input">
+            <div className="banner-register-end-date-input">
               <input
                 type="text"
                 className="banner-register-input"
@@ -138,10 +175,12 @@ const ManageBannerModal = ({ title }) => {
             </div>
           </div>
         </div>
-        <div className="manage-banner-modal-wrap-buttonbox">
-          <button className="manage-banner-modal-wrap-change" onClick={submit}>
-            등록하기
-          </button>
+        <div className={`manage-banner-modal-wrap-buttonbox ${mode}`}>
+          {mode === "update" &&
+            <Button className="delete-button" text="삭제하기" onClick={() => _deleteBanner.mutate(data.id)} />
+          }
+          <Button text={`${screen[mode].title}하기`}
+                  onClick={screen[mode].onSubmit} />
         </div>
       </div>
     </Modal>

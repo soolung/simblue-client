@@ -1,7 +1,7 @@
 import "./BannerCard.scss";
 import { HiPencil } from "react-icons/hi";
 import useModal from '../../../hooks/useModal';
-import ConfirmModal from '../../Modal/ConfirmModal/ConfirmModal';
+import ManageBannerModal from '../../Modal/ManageBannerModal/ManageBannerModal';
 
 export default function BannerCard(props) {
   const { openModal } = useModal();
@@ -10,11 +10,11 @@ export default function BannerCard(props) {
     <div className="banner-card">
       <div className="banner-card-card">
         <div className="banner-card-image">
-          <img src={props.imageUri} />
+          <img src={props.imageUri} alt="배너 미리보기" />
         </div>
         <div className="banner-card-text">
           <div className="banner-card-text-top">
-            {props.stauts === "DONE" ? (
+            {props.status === "DONE" ? (
               <p className="close-icon">마감</p>
             ) : (
               <p className="progress-icon">진행 중</p>
@@ -34,7 +34,12 @@ export default function BannerCard(props) {
             )}
             <button
               className="banner-card-pen"
-              onClick={() => {}}
+              onClick={() => openModal(
+                <ManageBannerModal
+                  mode="update"
+                  data={props}
+                />
+              )}
             >
               <HiPencil />
             </button>
