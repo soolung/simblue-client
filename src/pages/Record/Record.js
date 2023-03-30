@@ -6,10 +6,62 @@ import { userState } from "../../utils/atom/user";
 import RecordKanban from "../../components/Record/RecordKanban/RecordKanban";
 import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useEffect, useState } from "react";
 
 export default function Record() {
   const { data } = useQuery("getMyApplications", getMyApplications);
+
   const user = useRecoilValue(userState);
+  const [state, setState] = useState(data);
+
+  const handleDragEnd = result => {
+    const { source, destination } = result;
+    if (!destination) {
+      return;
+    }
+
+    const sourceList = state?.applicationMap[source.droppableId];
+    const destList = state?.applicationMap[destination.droppableId];
+    const draggedCard = sourceList[source.index];
+
+    if (source.droppableId === destination.droppableId) {
+      const newList = Array.from(sourceList);
+      newList.splice(source.index, 1);
+      newList.splice(destination.index, 0, draggedCard);
+      const newMap = {
+        ...state?.applicationMap,
+        [source.droppableId]: newList,
+      };
+      // 변경된 맵 객체를 저장합니다.
+      setState({ ...state, applicationMap: newMap });
+    } else {
+      const sourceListCopy = Array.from(sourceList);
+      sourceListCopy.splice(source.index, 1);
+      const newSourceMap = {
+        ...state?.applicationMap,
+        [source.droppableId]: sourceListCopy,
+      };
+      const destListCopy = Array.from(destList);
+      destListCopy.splice(destination.index, 0, draggedCard);
+      const newDestMap = {
+        ...state?.applicationMap,
+        [destination.droppableId]: destListCopy,
+      };
+      // 변경된 출발지와 목적지 맵 객체를 저장합니다.
+      setState({
+        ...state,
+        applicationMap: {
+          ...newSourceMap,
+          ...newDestMap,
+        },
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!data) return;
+    setState(data);
+  }, [data]);
 
   return (
     <>
@@ -24,8 +76,8 @@ export default function Record() {
             )}
           </p>
         </div>
-        {data?.authority === "ROLE_TEACHER" ? (
-          <DragDropContext>
+        {state?.authority === "ROLE_TEACHER" ? (
+          <DragDropContext onDragEnd={handleDragEnd}>
             <div className="record-body">
               <Droppable droppableId="ALWAYS">
                 {provided => (
@@ -33,19 +85,18 @@ export default function Record() {
                     <RecordKanban
                       emoji="📌"
                       title="상시"
-                      data={data?.applicationMap.ALWAYS}
+                      data={state?.applicationMap?.ALWAYS}
                     />
                   </div>
                 )}
               </Droppable>
-
               <Droppable droppableId="NOT_STARTED">
                 {provided => (
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <RecordKanban
                       emoji="🌙"
                       title="시작 전"
-                      data={data?.applicationMap.NOT_STARTED}
+                      data={state?.applicationMap?.NOT_STARTED}
                     />
                   </div>
                 )}
@@ -56,7 +107,7 @@ export default function Record() {
                     <RecordKanban
                       emoji="🌞"
                       title="진행 중"
-                      data={data?.applicationMap.IN_PROGRESS}
+                      data={state?.applicationMap?.IN_PROGRESS}
                     />
                   </div>
                 )}
@@ -67,7 +118,7 @@ export default function Record() {
                     <RecordKanban
                       emoji="🌚"
                       title="완료됨"
-                      data={data?.applicationMap.DONE}
+                      data={state?.applicationMap?.DONE}
                     />
                   </div>
                 )}
@@ -76,9 +127,9 @@ export default function Record() {
           </DragDropContext>
         ) : (
           <div className="student-record-body">
-            {data?.applicationMap.applicationList.length > 0 ? (
+            {state?.applicationMap.applicationList.length > 0 ? (
               <>
-                {data?.applicationMap.applicationList.map((a, index) => (
+                {state?.applicationMap.applicationList.map((a, index) => (
                   <ReplyRecord
                     emoji={a.emoji}
                     title={a.title}

@@ -1,6 +1,7 @@
 import "./RecordKanban.scss";
 import Card from "../Card/Card";
 import { Draggable } from "react-beautiful-dnd";
+import { useEffect, useMemo } from "react";
 
 export default function RecordKanban({ emoji, title, data }) {
   return (
