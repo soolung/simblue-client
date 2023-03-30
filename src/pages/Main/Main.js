@@ -1,5 +1,4 @@
 import "./Main.scss";
-import BannerData from "./banner.json";
 import Banner from "../../components/Banner/Banner";
 import Application from "../../components/Application/Application";
 import "swiper/scss";
@@ -54,7 +53,10 @@ export default function Main() {
   return (
     <>
       <section className="main">
-        <Banner banner={BannerData.banners} />
+        <Banner />
+        <div>
+          
+        </div>
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
             <Application

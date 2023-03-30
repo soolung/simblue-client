@@ -1,0 +1,28 @@
+@import "../../styles/common.scss";
+
+.bannermanage {
+  width: 80vw;
+  min-width: 350px;
+  margin: 0 auto;
+  padding: 80px 10px;
+  .section-header {
+    margin-bottom: 15px;
+  }
+  .banner-mange-create {
+    text-align: right;
+    margin-bottom: 15px;
+    p {
+        display: inline-block;
+        color: $dark-grey;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+  }
+  .banner-manage-card {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // gap: 1.3vw 1.3%;
+  }
+}

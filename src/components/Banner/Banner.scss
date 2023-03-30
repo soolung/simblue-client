@@ -1,4 +1,6 @@
+@import '../../styles/common.scss';
 .banner_tit {
+  position: relative;
   width: 100vw;
   .banner--image {
     min-height: 100px;
@@ -8,6 +10,24 @@
     object-fit: cover;
   }
 }
+.banner-register-button-div {
+  position: absolute;
+  right: 222px;
+  top: 260px;
+  z-index: 100;
+  .banner-register-button {
+    border: 0.3px solid $light-grey;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 10px 5px 10px;
+    border-radius: 15px;
+    font-size: 25px;
+    color: white;
+    &:hover{
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
 .banner .swiper-pagination-bullet {
   width: 6.5px;
   height: 6.5px;
