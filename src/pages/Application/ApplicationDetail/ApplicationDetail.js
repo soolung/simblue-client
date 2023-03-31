@@ -5,8 +5,6 @@ import { useMutation, useQuery } from "react-query";
 import { getApplicationDetail } from "../../../utils/api/application";
 import { useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
 import {
@@ -14,11 +12,12 @@ import {
   replyApplication,
   updateReply,
 } from "../../../utils/api/reply";
+import { useUser } from '../../../hooks/useUser';
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
   const { id } = useParams();
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
 
   const reply = useMutation(replyApplication, {
     onSuccess: () => {
@@ -60,8 +59,8 @@ export default function ApplicationDetail({ mode }) {
   const button = () => {
     if (mode === "reply") {
       return {
-        text: user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
-        disabled: !user?.authority,
+        text: user.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
+        disabled: !user.authority,
       };
     } else if (mode === "update") {
       return {

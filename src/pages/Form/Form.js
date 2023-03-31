@@ -7,19 +7,18 @@ import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
 import { createApplicationForm, getApplicationForm, updateApplicationForm, } from "../../utils/api/application";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";
 import Toggle from "../../components/common/Toggle/Toggle";
 import Loading from "../../components/common/Loading/Loading";
 import { now } from "../../utils/etc/DateTimeFormatter";
+import { useUser } from '../../hooks/useUser';
 
 const Form = ({ mode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
   const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] = useState(false);
   const create = useMutation(createApplicationForm, {
@@ -78,12 +77,12 @@ const Form = ({ mode }) => {
     if (mode === "create") {
       return {
         text: "만들기",
-        disabled: !user?.authority === "ROLE_TEACHER",
+        disabled: !user.authority === "ROLE_TEACHER",
       };
     } else if (mode === "update") {
       return {
         text: form.data?.canUpdate ? "수정하기" : "수정할 수 없습니다",
-        disabled: !user?.authority === "ROLE_TEACHER" || !form.data?.canUpdate,
+        disabled: !user.authority === "ROLE_TEACHER" || !form.data?.canUpdate,
       };
     }
   };
@@ -271,7 +270,7 @@ const Form = ({ mode }) => {
   }
 
   return form.isLoading ? (
-    <Loading/>
+    <Loading />
   ) : (
     <>
       <section className="form-section">
