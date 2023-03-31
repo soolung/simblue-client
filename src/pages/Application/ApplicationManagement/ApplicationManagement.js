@@ -68,7 +68,7 @@ export default function ApplicationManagement() {
           </p>
           <p className="application-management-application-header-time">
             -{" "}
-            {data?.application?.isAlways ? "상시" : data?.application?.endDate}
+            {data?.application?.status === "ALWAYS" ? "상시" : data?.application?.endDate}
           </p>
           <img
             className="application-management--export"
