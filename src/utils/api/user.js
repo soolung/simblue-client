@@ -37,3 +37,7 @@ export const searchTeacher = async (q) => {
     authorization()
   )).data;
 }
+
+export const getUserInfo = async () => {
+  return (await server.get("/user", authorization())).data;
+};

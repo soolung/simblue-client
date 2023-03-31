@@ -12,10 +12,12 @@ import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
+import { useUser } from './hooks/useUser';
 
 const WithLogin = ({ authority = null, children }) => {
+  const { user } = useUser();
   const navigate = useNavigate();
-  const actualAuthority = localStorage.getItem("authority");
+  const actualAuthority = user.authority;
   useEffect(() => {
     if (
       !actualAuthority ||

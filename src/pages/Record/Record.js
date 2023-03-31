@@ -1,15 +1,15 @@
 import "./Record.scss";
 import { useQuery } from "react-query";
 import { getMyApplications } from "../../utils/api/application";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../utils/atom/user";
 import RecordKanban from "../../components/Record/RecordKanban/RecordKanban";
 import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
 import Loading from '../../components/common/Loading/Loading';
 
+import { useUser } from '../../hooks/useUser';
+
 export default function Record() {
   const { data, isLoading } = useQuery("getMyApplications", getMyApplications);
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function Record() {
         <div className="section-header">
           <p className="section-header-title">기록보기</p>
           <p className="section-header-description">
-            {user?.authority === "ROLE_TEACHER" ? (
+            {user.authority === "ROLE_TEACHER" ? (
               <>내가 만든 신청~ 너를 위해 구웠지</>
             ) : (
               <>본인이 신청한 심청</>

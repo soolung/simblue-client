@@ -1,18 +1,15 @@
 import "./Signup.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextBox from "../../components/common/TextBox/TextBox";
-import jwtDecode from "jwt-decode";
 import { useMutation } from "react-query";
 import { joinStudent, joinTeacher } from "../../utils/api/user";
-import { useRecoilState } from "recoil";
-import { userState } from "../../utils/atom/user";
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import { useUser } from '../../hooks/useUser';
 
 export const Signup = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useRecoilState(userState);
-  const [authority, setAuthority] = useState("");
+  const { user } = useUser();
   const [request, setRequest] = useState({});
 
   const student = useMutation(joinStudent, {
@@ -27,28 +24,17 @@ export const Signup = () => {
     }
   })
 
-  useEffect(() => {
-    setAuthority(user?.authority);
-    setRequest({
-      ...request, email: user.accessToken ? jwtDecode(user.accessToken).email : null
-    });
-  }, [user])
-
   const handleChange = e => {
     setRequest({
       ...request, [e.target.name]: e.target.value
     })
   }
 
-  const submit = () => {
+  const onSubmit = () => {
     if (request.password !== request.passwordCheck) alert('비밀번호가 다릅니다')
-    setUser({
-      ...user,
-      name: request.name
-    })
-    if (authority === "ROLE_STUDENT") {
+    if (user.authority === "ROLE_STUDENT") {
       student.mutate({
-        admissionYear: parseInt(request.email.substring(0, 4)),
+        admissionYear: parseInt(user.email.substring(0, 4)),
         name: request.name,
         password: request.password,
         studentNumber: request.studentNumber
@@ -65,25 +51,25 @@ export const Signup = () => {
     <>
       <section className="signup">
         <div className="img-box">
-          <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png"/>
+          <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png" />
           <p className="login-insa">환영합니다!</p>
         </div>
         <div className="sign-right">
           <div className="sign-header">
             <div className="sign-title">
               <span>회원가입</span>
-              <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png"/>
+              <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png" />
             </div>
             <div className="sign-subtitle">
-              <span>{authority === "ROLE_STUDENT" ? "학생" : "선생님"}으로 회원가입</span>
+              <span>{user.authority === "ROLE_STUDENT" ? "학생" : "선생님"}으로 회원가입</span>
             </div>
           </div>
           <div className="sign-form">
             <div className="input-box">
               <TextBox type='text' placeholder='이메일을 입력하세요.' onChange={handleChange}
                        className="input-element" name="emailAddress"
-                       value={request?.email}
-                       readOnly/>
+                       value={user.email}
+                       readOnly />
               <TextBox
                 className="input-element"
                 type='password'
@@ -98,7 +84,7 @@ export const Signup = () => {
                 onChange={handleChange}
                 name='passwordCheck'
               />
-              {authority === "ROLE_STUDENT" ?
+              {user.authority === "ROLE_STUDENT" ?
                 <>
                   <div className="information">
                     <TextBox
@@ -130,7 +116,7 @@ export const Signup = () => {
             </div>
           </div>
           <Button
-            onClick={submit}
+            onClick={onSubmit}
             className="sign-btn"
             text="회원가입"
           />
