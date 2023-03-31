@@ -37,7 +37,6 @@ const ManageBannerModal = ({ mode, data }) => {
       closeModal();
       queryClient.invalidateQueries("getMyBanner");
     },
-    onError: (err) => {},
   });
 
   const update = useMutation(updateBanner, {
