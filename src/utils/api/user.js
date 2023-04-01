@@ -1,13 +1,12 @@
 import server from "../axios/server";
 import { authorization } from "../config/authorization";
 
-export const joinStudent = async (
-  {
-    admissionYear,
-    name,
-    password,
-    studentNumber,
-  }) => {
+export const joinStudent = async ({
+  admissionYear,
+  name,
+  password,
+  studentNumber,
+}) => {
   return await server.post(
     "/user/student",
     {
@@ -32,8 +31,10 @@ export const joinTeacher = async ({ name, password }) => {
 };
 
 export const searchTeacher = async (q) => {
-  return (await server.get(
-    `/user/teacher/search?q=${q}`,
-    authorization()
-  )).data;
-}
+  return (await server.get(`/user/teacher/search?q=${q}`, authorization()))
+    .data;
+};
+
+export const getUserInfo = async () => {
+  return (await server.get("/user", authorization())).data;
+};

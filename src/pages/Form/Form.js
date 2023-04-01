@@ -6,22 +6,26 @@ import DateBox from "../../components/common/Date/DateBox";
 import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
-import { createApplicationForm, getApplicationForm, updateApplicationForm, } from "../../utils/api/application";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../utils/atom/user";
+import {
+  createApplicationForm,
+  getApplicationForm,
+  updateApplicationForm,
+} from "../../utils/api/application";
 import { useNavigate, useParams } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";
 import Toggle from "../../components/common/Toggle/Toggle";
 import Loading from "../../components/common/Loading/Loading";
 import { now } from "../../utils/etc/DateTimeFormatter";
+import { useUser } from "../../hooks/useUser";
 
 const Form = ({ mode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false);
-  const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] = useState(false);
+  const [advancedSettingModalIsOpen, setAdvancedSettingModalOpen] =
+    useState(false);
   const create = useMutation(createApplicationForm, {
     onSuccess: () => {
       navigate("/");
@@ -38,20 +42,21 @@ const Form = ({ mode }) => {
     },
   });
 
-  const form = useQuery(
-    "queryApplicationForm",
-    () => getApplicationForm(id),
-    {
-      enabled: mode === "update",
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setRequest({ ...data });
-        setQuestionList([...data.questionList]);
-        setOwnerList([...data.ownerList]);
-        setOwnerIdSet(new Set([...data.ownerList.map(d => d.teacherId), parseInt(user.roleId)]));
-      },
-    }
-  );
+  const form = useQuery("queryApplicationForm", () => getApplicationForm(id), {
+    enabled: mode === "update",
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setRequest({ ...data });
+      setQuestionList([...data.questionList]);
+      setOwnerList([...data.ownerList]);
+      setOwnerIdSet(
+        new Set([
+          ...data.ownerList.map((d) => d.teacherId),
+          parseInt(user.roleId),
+        ])
+      );
+    },
+  });
 
   const onClick = () => {
     if (mode === "create") {
@@ -59,7 +64,7 @@ const Form = ({ mode }) => {
         request: {
           ...request,
           questionList: [...questionList],
-          ownerList: Array.from(ownerList)
+          ownerList: Array.from(ownerList),
         },
       });
     } else if (mode === "update" && form.data?.canUpdate) {
@@ -68,7 +73,7 @@ const Form = ({ mode }) => {
         request: {
           ...request,
           questionList: [...questionList],
-          ownerList: Array.from(ownerList)
+          ownerList: Array.from(ownerList),
         },
       });
     }
@@ -78,12 +83,12 @@ const Form = ({ mode }) => {
     if (mode === "create") {
       return {
         text: "만들기",
-        disabled: !user?.authority === "ROLE_TEACHER",
+        disabled: !user.authority === "ROLE_TEACHER",
       };
     } else if (mode === "update") {
       return {
         text: form.data?.canUpdate ? "수정하기" : "수정할 수 없습니다",
-        disabled: !user?.authority === "ROLE_TEACHER" || !form.data?.canUpdate,
+        disabled: !user.authority === "ROLE_TEACHER" || !form.data?.canUpdate,
       };
     }
   };
@@ -230,7 +235,7 @@ const Form = ({ mode }) => {
       [...questionList],
       (questionList[questionIndex].answerList = questionList[
         questionIndex
-        ].answerList.filter((a, index) => target !== index))
+      ].answerList.filter((a, index) => target !== index))
     );
   };
 
@@ -249,29 +254,33 @@ const Form = ({ mode }) => {
   };
 
   const [ownerList, setOwnerList] = useState([]);
-  const [ownerIdSet, setOwnerIdSet] = useState(new Set([parseInt(user.roleId)]));
+  const [ownerIdSet, setOwnerIdSet] = useState(
+    new Set([parseInt(user.roleId)])
+  );
 
   const addOwner = ({ teacherId, name }) => {
     if (!ownerIdSet.has(teacherId)) {
-      setOwnerList(
-        [...ownerList, {
+      setOwnerList([
+        ...ownerList,
+        {
           teacherId: teacherId,
-          name: name
-        }])
+          name: name,
+        },
+      ]);
 
       ownerIdSet.add(teacherId);
     }
-  }
+  };
 
   const deleteOwner = (teacherId) => {
     if (ownerIdSet.has(teacherId)) {
       setOwnerList(ownerList.filter((o) => teacherId !== o.teacherId));
       ownerIdSet.delete(teacherId);
     }
-  }
+  };
 
   return form.isLoading ? (
-    <Loading/>
+    <Loading />
   ) : (
     <>
       <section className="form-section">

@@ -9,14 +9,13 @@ import { Link } from "react-router-dom";
 import { HiPencil } from "react-icons/hi";
 import { getBanner } from "../../utils/api/banner";
 import { useQuery } from "react-query";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../utils/atom/user";
+import { useUser } from "../../hooks/useUser";
 
 SwiperCore.use([Pagination, Autoplay, EffectFade]);
 
 function Banner(props) {
   const { data } = useQuery("getBanner", getBanner);
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
 
   return (
     <div className="banner_tit">
@@ -45,7 +44,7 @@ function Banner(props) {
         ))}
       </Swiper>{" "}
       <div className="banner-register-button-div">
-        {user?.authority === "ROLE_TEACHER" ? (
+        {user.authority === "ROLE_TEACHER" ? (
           <Link to="/banner/manage">
             <div className="banner-register-button">
               <HiPencil />

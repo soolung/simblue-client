@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
-import { useSetRecoilState } from "recoil";
-import { userState } from "../../utils/atom/user";
-import { ACCESS_TOKEN, AUTHORITY, NAME, REFRESH_TOKEN, ROLE_ID } from '../../utils/constant/user.constant';
+import {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+} from "../../utils/constant/user.constant";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const setUser = useSetRecoilState(userState);
   const { data } = useQuery("getGoogleAuthLink", getGoogleAuthLink);
   const [request, setRequest] = useState({});
 
@@ -18,17 +18,6 @@ export const Login = () => {
     onSuccess: (data) => {
       localStorage.setItem(ACCESS_TOKEN, data.accessToken);
       localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
-      localStorage.setItem(AUTHORITY, data.authority);
-      localStorage.setItem(NAME, data.name);
-      localStorage.setItem(ROLE_ID, data.roleId);
-      setUser({
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
-        authority: data.authority,
-        name: data.name,
-        roleId: data.roleId
-      });
-
       if (!data?.login) {
         navigate("/signup");
       } else {
