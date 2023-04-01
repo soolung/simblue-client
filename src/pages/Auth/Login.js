@@ -8,6 +8,7 @@ import {
   ACCESS_TOKEN,
   REFRESH_TOKEN,
 } from "../../utils/constant/user.constant";
+import { Storage } from "../../utils/storage/storage";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export const Login = () => {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
-      localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-      localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
+      Storage.setItem(ACCESS_TOKEN, data.accessToken);
+      Storage.setItem(REFRESH_TOKEN, data.refreshToken);
       if (!data?.login) {
         navigate("/signup");
       } else {

@@ -1,5 +1,7 @@
 import server from "../axios/server";
 import { authorization } from "../config/authorization";
+import { ACCESS_TOKEN } from "../constant/user.constant";
+import { Storage } from "../storage/storage";
 
 export const getMyBanner = async () => {
   return (await server.get(`/banner/my`, authorization())).data;
@@ -17,11 +19,9 @@ export const uploadBannerImage = async (form) => {
   return (
     await server.post("/banner/image", form, {
       headers: {
-        Authorization: `Bearer ${localStorage.accessToken}`,
+        Authorization: `Bearer ${Storage.getItem(ACCESS_TOKEN)}`,
         "Content-Type": "multipart/form-data",
       },
     })
   ).data;
 };
-
-

@@ -13,13 +13,15 @@ import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 import BannerManagement from "./pages/BannerManagement/BannerManagement";
+import { Storage } from "./utils/storage/storage";
+import { useUser } from "./hooks/useUser";
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
-  const actualAuthority = localStorage.getItem("authority");
+  const { user } = useUser();
   useEffect(() => {
     if (
-      !actualAuthority ||
-      (authority != null && authority !== actualAuthority)
+      !user.authority ||
+      (authority != null && authority !== user.authority)
     ) {
       navigate("/");
     }
@@ -48,7 +50,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
-          <Route path="/banner/manage" element={<BannerManagement/>}/>
+          <Route path="/banner/manage" element={<BannerManagement />} />
           <Route
             path="/user/update/password"
             element={<WithLogin children={<UpdatePassword />} />}
@@ -90,7 +92,6 @@ function App() {
               <WithLogin children={<ApplicationDetail mode="update" />} />
             }
           />
-
         </Routes>
         <Footer />
       </BrowserRouter>
