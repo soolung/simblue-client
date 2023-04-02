@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 
 export default function Record() {
   const { data, isLoading } = useQuery("getMyApplications", getMyApplications);
+
   const user = useRecoilValue(userState);
+
   const [state, setState] = useState(data);
 
   const handleDragEnd = result => {
@@ -34,29 +36,26 @@ export default function Record() {
       setState({ ...state, applicationMap: newMap });
     } else if (source.droppableId != destination.droppableId) {
       // 다른 컬럼으로 drag할 경우
-      const sourceListCopy = Array.from(sourceList); //내가 옮긴 곳의 원본위치
-      sourceListCopy.splice(source.index, 1); //내가 옮긴 객체를 삭제
-      console.log(sourceListCopy);
 
-      const newSourceMap = {
-        ...state?.applicationMap,
-        [source.droppableId]: sourceListCopy,
-      };
-      const destListCopy = Array.from(destList);
+      let sourceListCopy = Array.from(sourceList); //내가 옮긴 곳의 원본위치
+
+      // _____________________________________________
+      let destListCopy = Array.from(destList);
       destListCopy.splice(destination.index, 0, draggedCard);
-      const newDestMap = {
+      sourceListCopy.splice(source.index, 1);
+      let newDestMap = {
         ...state?.applicationMap,
         [destination.droppableId]: destListCopy,
+        [source.droppableId]: sourceListCopy,
       };
+
       setState({
         ...state,
         applicationMap: {
-          ...newSourceMap,
           ...newDestMap,
         },
       });
     }
-    console.log(state);
   };
 
   useEffect(() => {
