@@ -9,17 +9,15 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 
 export default function Record() {
-  const { data } = useQuery("getMyApplications", getMyApplications);
-
+  const { data, isLoading } = useQuery("getMyApplications", getMyApplications);
   const user = useRecoilValue(userState);
   const [state, setState] = useState(data);
 
   const handleDragEnd = result => {
     const { source, destination } = result;
-    if (!destination) {
+    if (!result.destination) {
       return;
     }
-
     const sourceList = state?.applicationMap[source.droppableId];
     const destList = state?.applicationMap[destination.droppableId];
     const draggedCard = sourceList[source.index];
@@ -34,9 +32,12 @@ export default function Record() {
       };
       // 변경된 맵 객체를 저장합니다.
       setState({ ...state, applicationMap: newMap });
-    } else {
-      const sourceListCopy = Array.from(sourceList);
-      sourceListCopy.splice(source.index, 1);
+    } else if (source.droppableId != destination.droppableId) {
+      // 다른 컬럼으로 drag할 경우
+      const sourceListCopy = Array.from(sourceList); //내가 옮긴 곳의 원본위치
+      sourceListCopy.splice(source.index, 1); //내가 옮긴 객체를 삭제
+      console.log(sourceListCopy);
+
       const newSourceMap = {
         ...state?.applicationMap,
         [source.droppableId]: sourceListCopy,
@@ -47,7 +48,6 @@ export default function Record() {
         ...state?.applicationMap,
         [destination.droppableId]: destListCopy,
       };
-      // 변경된 출발지와 목적지 맵 객체를 저장합니다.
       setState({
         ...state,
         applicationMap: {
@@ -56,6 +56,7 @@ export default function Record() {
         },
       });
     }
+    console.log(state);
   };
 
   useEffect(() => {
