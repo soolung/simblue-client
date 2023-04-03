@@ -20,10 +20,12 @@ export default function Record() {
     if (!result.destination) {
       return;
     }
+
     const sourceList = state?.applicationMap[source.droppableId];
     const destList = state?.applicationMap[destination.droppableId];
     const draggedCard = sourceList[source.index];
 
+    console.log("destination : ", destination.droppableId);
     if (source.droppableId === destination.droppableId) {
       const newList = Array.from(sourceList);
       newList.splice(source.index, 1);
@@ -34,12 +36,17 @@ export default function Record() {
       };
       // 변경된 맵 객체를 저장합니다.
       setState({ ...state, applicationMap: newMap });
-    } else if (source.droppableId != destination.droppableId) {
+    } else if (
+      source.droppableId !== destination.droppableId &&
+      (destination.droppableId === "ALWAYS" ||
+        destination.droppableId === "IN_PROGRESS" ||
+        destination.droppableId === "NOT_STARTED")
+    ) {
       // 다른 컬럼으로 drag할 경우
-
-      let sourceListCopy = Array.from(sourceList); //내가 옮긴 곳의 원본위치
-
-      // _____________________________________________
+      alert("경고: 해당 카드는 이동할 수 없습니다.");
+      return;
+    } else {
+      let sourceListCopy = Array.from(sourceList);
       let destListCopy = Array.from(destList);
       destListCopy.splice(destination.index, 0, draggedCard);
       sourceListCopy.splice(source.index, 1);
