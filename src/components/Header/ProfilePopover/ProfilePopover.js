@@ -19,7 +19,7 @@ export default function ProfilePopover({ isOpen, close }) {
       onClick: () => {
         localStorage.clear();
         setUser(userEmpty);
-        navigate("/");
+        window.location.href = "/";
       },
     },
   ];
