@@ -15,9 +15,13 @@ import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 import BannerManagement from "./pages/BannerManagement/BannerManagement";
 import { Storage } from "./utils/storage/storage";
 import { useUser } from "./hooks/useUser";
+
 const WithLogin = ({ authority = null, children }) => {
-  const navigate = useNavigate();
   const { user } = useUser();
+  const navigate = useNavigate();
+
+  const actualAuthority = user.authority;
+
   useEffect(() => {
     if (
       !user.authority ||

@@ -20,11 +20,6 @@ export const useUser = () => {
   }, [setUser, data, navigate]);
 
   return {
-    user: user || {
-      authority: "",
-      email: "",
-      name: "",
-      roleId: 0,
-    },
-  };
-};
+    user: user || emptyUser
+  }
+}

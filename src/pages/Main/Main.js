@@ -24,6 +24,7 @@ export default function Main() {
     onSuccess: (data) => {
       Storage.setItem(ACCESS_TOKEN, data.accessToken);
       Storage.setItem(REFRESH_TOKEN, data.refreshToken);
+
       if (!data?.login) {
         navigate("/signup");
       }

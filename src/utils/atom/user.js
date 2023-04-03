@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const userEmpty = {
+export const emptyUser = {
   authority: "",
   email: "",
   name: "",
@@ -9,5 +9,5 @@ export const userEmpty = {
 
 export const userState = atom({
   key: "user",
-  default: userEmpty,
+  default: emptyUser,
 });

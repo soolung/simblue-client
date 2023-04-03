@@ -14,6 +14,7 @@ import {
 } from "../../../utils/api/reply";
 import { useUser } from "../../../hooks/useUser";
 
+
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
   const { id } = useParams();

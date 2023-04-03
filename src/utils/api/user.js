@@ -31,9 +31,11 @@ export const joinTeacher = async ({ name, password }) => {
 };
 
 export const searchTeacher = async (q) => {
-  return (await server.get(`/user/teacher/search?q=${q}`, authorization()))
-    .data;
-};
+  return (await server.get(
+    `/user/teacher/search?q=${q}`,
+    authorization()
+  )).data;
+}
 
 export const getUserInfo = async () => {
   return (await server.get("/user", authorization())).data;
