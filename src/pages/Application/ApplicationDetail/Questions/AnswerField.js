@@ -5,8 +5,8 @@ import Radio from "../../../../components/common/Radio/Radio";
 import { useEffect, useState } from "react";
 
 export default function AnswerField({ q, questionIndex, handleResponse }) {
-  const [value, setValue] = useState(q.type !== "CHECKBOX" && q.replyDetailList ? q.replyDetailList : [""]);
-  const [check, setCheck] = useState(new Set(q.type === "CHECKBOX" && q.replyDetailList ? [...q.replyDetailList] : null));
+  const [value, setValue] = useState(q.type !== "CHECKBOX" && q.replyList ? q.replyList : [""]);
+  const [check, setCheck] = useState(new Set(q.type === "CHECKBOX" && q.replyList ? [...q.replyList] : null));
 
   const handleCheck = (answer) => {
     if (check.has(answer)) {
