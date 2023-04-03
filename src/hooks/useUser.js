@@ -1,17 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { emptyUser, userState } from '../utils/atom/user';
-import { useQuery } from 'react-query';
-import { useEffect } from 'react';
-import { getUserInfo } from '../utils/api/user';
-import { ACCESS_TOKEN } from '../utils/constant/user.constant';
+import { useEffect } from "react";
+import { useQuery } from "react-query";
+import { useRecoilState } from "recoil";
+import { getUserInfo } from "../utils/api/user";
+import { useNavigate } from "react-router-dom";
+import { ACCESS_TOKEN } from "../utils/constant/user.constant";
+import { userState, emptyUser } from "../utils/atom/user";
+import { Storage } from "../utils/storage/storage";
 
 export const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userState);
 
   const { data } = useQuery(["getUserInfo"], () => getUserInfo(), {
-    enabled: !!localStorage.getItem(ACCESS_TOKEN),
+    enabled: !!Storage.getItem(ACCESS_TOKEN),
   });
 
   useEffect(() => {
@@ -19,6 +20,6 @@ export const useUser = () => {
   }, [setUser, data, navigate]);
 
   return {
-    user: user || emptyUser
-  }
-}
+    user: user || emptyUser,
+  };
+};

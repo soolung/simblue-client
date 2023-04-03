@@ -4,8 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
 import SideBar from "./SideBar/SideBar";
 import { Transition } from "react-transition-group";
-import Search from '../common/Search/Search';
-import { useUser } from '../../hooks/useUser';
+import Search from "../common/Search/Search";
+import { useUser } from "../../hooks/useUser";
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -17,7 +17,6 @@ export default function Header() {
   useEffect(() => {
     setSideBarOpen(false);
   }, [pathname]);
-
 
   return (
     <>
@@ -47,7 +46,7 @@ export default function Header() {
           </div>
           <Search
             className="search-area"
-            onSearch={() => alert('아직 검색 기능을 지원하지 않습니다 ㅜㅜ.')}
+            onSearch={() => alert("아직 검색 기능을 지원하지 않습니다 ㅜㅜ.")}
           />
           <div className="header_login_button">
             {user.authority ? (

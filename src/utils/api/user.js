@@ -1,13 +1,12 @@
 import server from "../axios/server";
 import { authorization } from "../config/authorization";
 
-export const joinStudent = async (
-  {
-    admissionYear,
-    name,
-    password,
-    studentNumber,
-  }) => {
+export const joinStudent = async ({
+  admissionYear,
+  name,
+  password,
+  studentNumber,
+}) => {
   return await server.post(
     "/user/student",
     {

@@ -12,7 +12,8 @@ import {
   replyApplication,
   updateReply,
 } from "../../../utils/api/reply";
-import { useUser } from '../../../hooks/useUser';
+import { useUser } from "../../../hooks/useUser";
+
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();

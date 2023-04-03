@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useMutation, useQuery } from "react-query";
 import { getGoogleAuthLink, loginUser } from "../../utils/api/auth";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../utils/constant/user.constant';
+import {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+} from "../../utils/constant/user.constant";
+import { Storage } from "../../utils/storage/storage";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -13,8 +17,8 @@ export const Login = () => {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
-      localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-      localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
+      Storage.setItem(ACCESS_TOKEN, data.accessToken);
+      Storage.setItem(REFRESH_TOKEN, data.refreshToken);
 
       if (!data?.login) {
         navigate("/signup");

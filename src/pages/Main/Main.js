@@ -1,5 +1,4 @@
 import "./Main.scss";
-import BannerData from "./banner.json";
 import Banner from "../../components/Banner/Banner";
 import Application from "../../components/Application/Application";
 import "swiper/scss";
@@ -9,7 +8,11 @@ import { useEffect } from "react";
 import queryString from "query-string";
 import { getFourLatestApplications } from "../../utils/api/application";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../utils/constant/user.constant';
+import {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+} from "../../utils/constant/user.constant";
+import { Storage } from "../../utils/storage/storage";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -19,8 +22,8 @@ export default function Main() {
   );
   const { mutate } = useMutation(getAccessTokenByGoogle, {
     onSuccess: (data) => {
-      localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-      localStorage.setItem(REFRESH_TOKEN, data.refreshToken);
+      Storage.setItem(ACCESS_TOKEN, data.accessToken);
+      Storage.setItem(REFRESH_TOKEN, data.refreshToken);
 
       if (!data?.login) {
         navigate("/signup");
@@ -41,7 +44,8 @@ export default function Main() {
   return (
     <>
       <section className="main">
-        <Banner banner={BannerData.banners} />
+        <Banner />
+        <div></div>
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
             <Application
