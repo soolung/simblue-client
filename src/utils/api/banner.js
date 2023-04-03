@@ -9,6 +9,14 @@ export const registerBanner = async ({ request }) => {
   return (await server.post("/banner", request, authorization())).data;
 };
 
+export const updateBanner = async ({ id, request }) => {
+  return (await server.put(`/banner/${id}`, request, authorization())).data;
+};
+
+export const deleteBanner = async (id) => {
+  return (await server.delete(`/banner/${id}`, authorization())).data;
+};
+
 export const getBanner = async () => {
   return (await server.get("/banner")).data;
 };

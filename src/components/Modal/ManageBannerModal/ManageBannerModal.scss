@@ -1,156 +1,162 @@
 @import "../../../styles/common.scss";
 
-.bregister-modal {
+.manage-banner-modal {
   width: 700px;
   height: 600px;
   padding: 36px;
-  background: $background-color;
+  background-color: $background-color;
   border-radius: 12px;
 
-  .bregister-modal-wrap {
+  .manage-banner-modal-wrap {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .bregister-modal-wrap-textbox {
+    .manage-banner-modal-wrap-textbox {
       display: flex;
       flex-direction: column;
       gap: 18px;
-      .bregister-modal-header {
+
+      .manage-banner-modal-header {
         display: flex;
         justify-content: space-between;
-        .bregister-text-title {
+
+        .manage-banner-text-title {
           color: black;
           font-weight: 600;
           font-size: 1.5rem;
           line-height: 140%;
           letter-spacing: 0.15px;
         }
+
         .register-modal-close {
           font-size: 25px;
         }
       }
-      .bregister-text-image {
-        .bregister-text-image-annae {
+
+      .manage-banner-text-image {
+        .manage-banner-text-image-annae {
           align-items: center;
           display: flex;
           justify-content: space-between;
-          .bregister-text-image-left {
+
+          .manage-banner-text-image-left {
             p {
               float: left;
             }
           }
+
           padding-bottom: 5px;
         }
-        .bregister-image-space {
+
+        .manage-banner-image-space {
           border-radius: 9px;
-          text-align: center;
           overflow: hidden;
           margin: 0 auto;
-          position: relative;
-          img {
-            position: absolute;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-          }
-          .form-banner {
-            border: 3px dashed $medium-grey;
-            border-radius: 9px;
 
-            .banner-profileImg-label {
-              cursor: pointer;
+          .banner-profileImg-label {
+            cursor: pointer;
+            color: $medium-grey;
+
+            .form-banner {
               height: 180px;
-              line-height: 180px;
-              font-size: 50px;
-              color: $medium-grey;
-              position: relative;
-              z-index: 1;
-            }
-            .banner-profileImg-input {
-              border: none;
+              display: flex;
+              align-content: center;
+              justify-content: center;
+              flex-wrap: wrap;
+              border-radius: 9px;
+
+              &.border {
+                border: 3px dashed $medium-grey;
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+
+              .banner-upload-icon {
+              }
             }
           }
-          // input태그
-          .form-banner input[type="file"] {
+
+          .banner-profileImg-input {
+            border: none;
             display: none;
           }
         }
-      }
-      .banner-register-endday {
-        padding-top: 10px;
-        .banner-register-endday-text {
-          align-items: center;
-          width: 39%;
-          display: flex;
-          justify-content: space-between;
-          .banner-register-endday-left {
-            p {
-              float: left;
-            }
-          }
-        }
-        .banner-register-endday-input {
-          padding-top: 5px;
-        }
-      }
-      .banner-register-link {
-        padding-top: 5px;
-        .banner-register-link-text {
-          align-items: center;
-          width: 34%;
-          display: flex;
-          justify-content: space-between;
-        }
-        .banner-register-link-input {
-          padding-top: 5px;
-        }
-      }
-      .bregister-modal-wrap-buttonbox {
-        .bregister-modal-wrap-box {
-          display: flex;
-          justify-content: space-between;
-          padding-left: 190px;
 
-          button {
-            font-size: 1rem;
-            padding: 10px 15px;
-            border-radius: 8px;
-          }
-
-          .bregister-modal-wrap-cancel {
-            border: 1px solid $medium-grey;
-            color: $medium-grey;
-            background-color: $background-color;
-          }
-
-          .bregister-modal-wrap-change {
-            border: 1px solid $main-red;
-            background-color: $main-red;
-            color: white;
-          }
+        .form-banner input[type="file"] {
+          display: none;
         }
       }
     }
-    .bregister-modal-wrap-buttonbox {
+
+    .banner-register-end-date {
       padding-top: 10px;
-      .bregister-modal-wrap-change {
-        background-color: $main-red;
-        color: white;
-        width: 100%;
-        font-size: 15px;
-        font-weight: 500;
-        border-radius: 8px;
-        padding: 11px 10px;
+
+      .banner-register-end-date-text {
+        align-items: center;
+        width: 39%;
+        display: flex;
+        justify-content: space-between;
+
+        .banner-register-end-date-left {
+          p {
+            float: left;
+          }
+        }
+      }
+
+      .banner-register-end-date-input {
+        padding-top: 5px;
+      }
+    }
+
+    .banner-register-link {
+      padding-top: 5px;
+
+      .banner-register-link-text {
+        align-items: center;
+        width: 34%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .banner-register-link-input {
+        padding-top: 5px;
       }
     }
   }
-}
 
-.banner-register-star {
-  color: red;
+  .manage-banner-modal-wrap-buttonbox {
+    display: flex;
+    gap: 16px;
+    padding-top: 10px;
+
+    button {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 11px 10px;
+    }
+
+    &.update {
+      button {
+        width: 50%;
+      }
+
+      .delete-button {
+        background-color: white;
+        border: 1px solid $medium-grey;
+
+        span {
+          color: $dark-grey;
+        }
+      }
+    }
+  }
 }
 
 .banner-register-input {
@@ -158,12 +164,14 @@
   width: 100%;
   border: 1px solid $grey;
   border-radius: 10px;
+  background-color: white;
+
   &::placeholder {
     color: $medium-grey;
   }
 }
 
-.banner-register-explan {
+.banner-register-explain {
   color: $dark-grey;
   font-size: 11px;
 }
