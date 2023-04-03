@@ -1,6 +1,6 @@
 import "./ProfilePopover.scss";
 import { useSetRecoilState } from "recoil";
-import { userEmpty, userState } from "../../../utils/atom/user";
+import { userState, emptyUser } from "../../../utils/atom/user";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfilePopover({ isOpen, close }) {
@@ -18,7 +18,7 @@ export default function ProfilePopover({ isOpen, close }) {
       text: "로그아웃",
       onClick: () => {
         localStorage.clear();
-        setUser(userEmpty);
+        setUser(emptyUser);
         window.location.href = "/";
       },
     },

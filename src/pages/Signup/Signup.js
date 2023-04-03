@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import TextBox from "../../components/common/TextBox/TextBox";
 import { useMutation } from "react-query";
 import { joinStudent, joinTeacher } from "../../utils/api/user";
-import { useNavigate } from 'react-router-dom';
-import Button from '../../components/Button/Button';
-import { useUser } from '../../hooks/useUser';
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import { useUser } from "../../hooks/useUser";
 
 export const Signup = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const Signup = () => {
     },
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setRequest({
       ...request,
       [e.target.name]: e.target.value,
@@ -32,7 +32,8 @@ export const Signup = () => {
   };
 
   const onSubmit = () => {
-    if (request.password !== request.passwordCheck) alert('비밀번호가 다릅니다')
+    if (request.password !== request.passwordCheck)
+      alert("비밀번호가 다릅니다");
     if (user.authority === "ROLE_STUDENT") {
       student.mutate({
         admissionYear: parseInt(user.email.substring(0, 4)),
@@ -62,15 +63,23 @@ export const Signup = () => {
               <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png" />
             </div>
             <div className="sign-subtitle">
-              <span>{user.authority === "ROLE_STUDENT" ? "학생" : "선생님"}으로 회원가입</span>
+              <span>
+                {user.authority === "ROLE_STUDENT" ? "학생" : "선생님"}으로
+                회원가입
+              </span>
             </div>
           </div>
           <div className="sign-form">
             <div className="input-box">
-              <TextBox type='text' placeholder='이메일을 입력하세요.' onChange={handleChange}
-                       className="input-element" name="emailAddress"
-                       value={user.email}
-                       readOnly />
+              <TextBox
+                type="text"
+                placeholder="이메일을 입력하세요."
+                onChange={handleChange}
+                className="input-element"
+                name="emailAddress"
+                value={user.email}
+                readOnly
+              />
               <TextBox
                 className="input-element"
                 type="password"
@@ -85,7 +94,7 @@ export const Signup = () => {
                 onChange={handleChange}
                 name="passwordCheck"
               />
-              {user.authority === "ROLE_STUDENT" ?
+              {user.authority === "ROLE_STUDENT" ? (
                 <>
                   <div className="information">
                     <TextBox
@@ -115,11 +124,7 @@ export const Signup = () => {
               )}
             </div>
           </div>
-          <Button
-            onClick={onSubmit}
-            className="sign-btn"
-            text="회원가입"
-          />
+          <Button onClick={onSubmit} className="sign-btn" text="회원가입" />
         </div>
       </section>
     </>

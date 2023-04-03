@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { getUserInfo } from "../utils/api/user";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN } from "../utils/constant/user.constant";
-import { userState } from "../utils/atom/user";
+import { userState, emptyUser } from "../utils/atom/user";
 import { Storage } from "../utils/storage/storage";
 
 export const useUser = () => {
@@ -20,6 +20,6 @@ export const useUser = () => {
   }, [setUser, data, navigate]);
 
   return {
-    user: user || emptyUser
-  }
-}
+    user: user || emptyUser,
+  };
+};

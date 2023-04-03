@@ -6,8 +6,6 @@ import ReplyRecord from "../../components/Record/ReplyRecord/ReplyRecord";
 import Loading from "../../components/common/Loading/Loading";
 import { useUser } from "../../hooks/useUser";
 
-import { useUser } from '../../hooks/useUser';
-
 export default function Record() {
   const { data, isLoading } = useQuery("getMyApplications", getMyApplications);
   const { user } = useUser();
