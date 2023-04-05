@@ -3,17 +3,16 @@ export default function GroupCard(props) {
   console.log(props);
   return (
     <div className="group-card">
-
       <div className="group-card-card">
         <div className="group-card-top">
           {props.type === "YEAR" ? (
-            <p className="group-icon">👥</p>
+            <span className="emoji">👥</span>
           ) : props.type === "MAJOR" ? (
-            <p className="group-icon">🧑🏻‍💻</p>
+            <span className="emoji">🧑🏻‍💻</span>
           ) : props.type === "CLASS" ? (
-            <p className="group-icon">👩🏻‍🏫</p>
+            <span className="emoji">👩🏻‍🏫</span>
           ) : (
-            <p className="group-icon">🎸</p>
+            <span className="emoji">🎸</span>
           )}
 
           <p className="group-card-name">{props.name}</p>
