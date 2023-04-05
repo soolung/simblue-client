@@ -1,8 +1,13 @@
 import "./GroupManagement.scss";
 import data from "../../components/GroupCard/data.json";
 import GroupCard from "../../components/GroupCard/GroupCard";
+import useModal from "../../hooks/useModal";
+import GroupModal from "../../components/Modal/GroupModal/GroupModal";
 
 export default function GroupManagement() {
+  
+  const { openModal } = useModal();
+
   return (
     <section className="groupmanage">
       <div className="section-header">
@@ -11,10 +16,9 @@ export default function GroupManagement() {
       </div>
       <div className="group-mange-create">
         <button
-        //   onClick={(e) => {
-        //     e.preventDefault();
-        //     openModal(<BannerMaker title="배너 등록" />);
-        //   }}
+          onClick={(e) => {
+            openModal(<GroupModal title="그룹 추가" />);
+          }}
         >
           + 그룹추가
         </button>

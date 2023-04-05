@@ -15,10 +15,6 @@ const ManageBannerModal = ({ title }) => {
       alert("성공");
       closeModal();
     },
-    onError: (err) => {
-      
-      // alert("error");
-    },
   });
 
   const uploadImage = useMutation(uploadBannerImage, {
