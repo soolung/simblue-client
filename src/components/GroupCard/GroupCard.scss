@@ -1,0 +1,29 @@
+.group-card {
+  padding-bottom: 20px;
+
+  .group-card-card {
+    width: 18vw;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    .group-card-top {
+      p {
+        font-size: 25px;
+      }
+      .group-icon {
+        float: left;
+      }
+      .group-card-name {
+        padding-left: 35px;
+      }
+      padding-bottom: 70px;
+    }
+    .group-card-bottom {
+        text-align: right;
+    
+      .group-card-name {
+      }
+    }
+  }
+}

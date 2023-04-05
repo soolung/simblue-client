@@ -1,0 +1,43 @@
+{
+  "groupList": [
+    {
+      "id": 1,
+      "name": "1기",
+      "type": "CLASS",
+      "numberOfMember": 28
+    },
+    {
+      "id": 2,
+      "name": "2기",
+      "type": "ETC",
+      "numberOfMember": 24
+    },
+    {
+      "id": 0,
+      "name": "3기",
+      "type": "MAJOR",
+      "numberOfMember": 23
+    },
+    {
+      "id": 0,
+      "name": "4기",
+      "type": "YEAR",
+      "numberOfMember": 21
+    },{
+        "id":2,
+        "name":"2기",
+        "type":"ETC",
+        "numberOfMember":24
+    },{
+        "id":0,
+        "name":"3기",
+        "type":"MAJOR",
+        "numberOfMember":23
+    },{
+        "id":0,
+        "name":"4기",
+        "type":"YEAR",
+        "numberOfMember":21
+    }
+  ]
+}
