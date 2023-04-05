@@ -1,20 +1,18 @@
 import "./GroupCard.scss";
 export default function GroupCard(props) {
-  console.log(props);
+  
+  const types = {
+    YEAR: "👥",
+    MAJOR: "🧑🏻‍💻",
+    CLASS: "👩🏻‍🏫",
+    ETC: "🎸",
+  };
+
   return (
     <div className="group-card">
       <div className="group-card-card">
         <div className="group-card-top">
-          {props.type === "YEAR" ? (
-            <span className="emoji">👥</span>
-          ) : props.type === "MAJOR" ? (
-            <span className="emoji">🧑🏻‍💻</span>
-          ) : props.type === "CLASS" ? (
-            <span className="emoji">👩🏻‍🏫</span>
-          ) : (
-            <span className="emoji">🎸</span>
-          )}
-
+          <span className="emoji">{types[props.type]}</span>
           <p className="group-card-name">{props.name}</p>
         </div>
         <div className="group-card-bottom">
