@@ -14,6 +14,8 @@ import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 import BannerManagement from "./pages/BannerManagement/BannerManagement";
+import Group from "./pages/Group/Group";
+
 const WithLogin = ({ authority = null, children }) => {
   const navigate = useNavigate();
   const actualAuthority = localStorage.getItem("authority");
@@ -50,6 +52,7 @@ function App() {
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
           <Route path="/banner/manage" element={<BannerManagement/>}/>
+          <Route path="/group" element={<Group/>}/>
           <Route path="/group/manage" element={<GroupManagement/>}/>
           <Route
             path="/user/update/password"

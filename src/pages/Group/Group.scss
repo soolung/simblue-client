@@ -1,0 +1,35 @@
+@import "../../styles/common.scss";
+
+.group {
+  width: 80vw;
+  min-width: 350px;
+  margin: 0 auto;
+  padding: 80px 10px;
+  .section-header {
+    margin-bottom: 15px;
+    .section-header-group{
+        span{
+            font-size: 30px;
+            float: left;
+            padding-right: 10px;
+        }
+    }
+  }
+  .group-create {
+    text-align: right;
+    margin-bottom: 15px;
+    p {
+      display: inline-block;
+      color: $dark-grey;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .group-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vw 2.8%;
+    width: 100%;
+  }
+}
