@@ -53,7 +53,7 @@ export default function Main() {
   return (
     <>
       <section className="main">
-        <Banner />
+        <Banner/>
         <div>
           
         </div>
