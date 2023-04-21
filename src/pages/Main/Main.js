@@ -29,8 +29,8 @@ export default function Main() {
         navigate("/signup");
       }
     },
-    onError: () => {
-      alert("error");
+    onError: (err) => {
+      alert(err.response.data.message);
     },
   });
 
