@@ -20,6 +20,8 @@ export default function Callback() {
       if (!data?.login) {
         navigate("/signup");
         alert("회원가입을 해주세요");
+      } else {
+        window.location.href = "/";
       }
     },
     onError: (err) => {
