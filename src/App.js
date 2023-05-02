@@ -13,14 +13,12 @@ import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { UpdatePassword } from "./pages/UpdatePassword/UpdatePassword";
 import BannerManagement from "./pages/BannerManagement/BannerManagement";
-import { Storage } from "./utils/storage/storage";
 import { useUser } from "./hooks/useUser";
+import Callback from "./pages/Callback/Callback";
 
 const WithLogin = ({ authority = null, children }) => {
   const { user } = useUser();
   const navigate = useNavigate();
-
-  const actualAuthority = user.authority;
 
   useEffect(() => {
     if (
@@ -55,6 +53,7 @@ function App() {
           <Route path="/look" element={<Look />} />
           <Route path="/record" element={<WithLogin children={<Record />} />} />
           <Route path="/banner/manage" element={<BannerManagement />} />
+          <Route path="/callback/google" element={<Callback />} />
           <Route
             path="/user/update/password"
             element={<WithLogin children={<UpdatePassword />} />}
