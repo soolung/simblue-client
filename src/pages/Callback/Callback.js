@@ -9,7 +9,6 @@ import {
   REFRESH_TOKEN,
 } from "../../utils/constant/user.constant";
 import { Storage } from "../../utils/storage/storage";
-import "./style.scss";
 
 export default function Callback() {
   const navigate = useNavigate();
@@ -35,9 +34,5 @@ export default function Callback() {
     }
   }, []);
 
-  return (
-    <section className="callback">
-      <Loading />
-    </section>
-  );
+  return <Loading />;
 }
