@@ -3,7 +3,7 @@ import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
 import { getApplicationDetail } from "../../../utils/api/application";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
@@ -13,7 +13,6 @@ import {
   updateReply,
 } from "../../../utils/api/reply";
 import { useUser } from "../../../hooks/useUser";
-
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
@@ -108,6 +107,10 @@ export default function ApplicationDetail({ mode }) {
 
   const [noticeIsOpened, setNoticeIsOpened] = useState(true);
   const [notice, setNotice] = useState("");
+
+  useEffect(() => {
+    setNoticeIsOpened(window.screen.width > 600 ? true : false);
+  }, []);
 
   return (
     <>

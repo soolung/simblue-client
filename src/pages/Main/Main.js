@@ -2,44 +2,14 @@ import "./Main.scss";
 import Banner from "../../components/Banner/Banner";
 import Application from "../../components/Application/Application";
 import "swiper/scss";
-import { useMutation, useQuery } from "react-query";
-import { getAccessTokenByGoogle } from "../../utils/api/auth";
-import { useEffect } from "react";
-import queryString from "query-string";
+import { useQuery } from "react-query";
 import { getFourLatestApplications } from "../../utils/api/application";
-import { useNavigate } from "react-router-dom";
-import {
-  ACCESS_TOKEN,
-  REFRESH_TOKEN,
-} from "../../utils/constant/user.constant";
-import { Storage } from "../../utils/storage/storage";
 
 export default function Main() {
-  const navigate = useNavigate();
   const { data } = useQuery(
     "getFourLatestApplication",
     getFourLatestApplications
   );
-  const { mutate } = useMutation(getAccessTokenByGoogle, {
-    onSuccess: (data) => {
-      Storage.setItem(ACCESS_TOKEN, data.accessToken);
-      Storage.setItem(REFRESH_TOKEN, data.refreshToken);
-
-      if (!data?.login) {
-        navigate("/signup");
-      }
-    },
-    onError: (err) => {
-      alert(err.response.data.message);
-    },
-  });
-
-  useEffect(() => {
-    const q = queryString.parse(window.location.search);
-    if (q.code !== undefined && !localStorage.name) {
-      mutate(q.code);
-    }
-  }, []);
 
   return (
     <>

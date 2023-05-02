@@ -26,6 +26,9 @@ export const Login = () => {
         navigate("/");
       }
     },
+    onError: (error) => {
+      alert(error.response.data.message);
+    },
   });
 
   const handleChange = (e) => {
@@ -44,6 +47,7 @@ export const Login = () => {
       password: request.password,
     });
   };
+
   return (
     <section className="login">
       <div className="img-box">
@@ -84,7 +88,6 @@ export const Login = () => {
         <div className="to-signup">
           아직 회원이 아니신가요?
           <span onClick={() => window.location.replace(data)}>
-            {" "}
             구글 계정으로 회원가입
           </span>
         </div>
