@@ -1,0 +1,81 @@
+@import "../../../styles/common.scss";
+
+.group-modal {
+  width: 700px;
+  height: 400px;
+  padding: 36px;
+  background: $background-color;
+  border-radius: 12px;
+
+  .group-modal-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .group-modal-wrap-textbox {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      .group-modal-header {
+        display: flex;
+        justify-content: space-between;
+        .group-text-title {
+          color: black;
+          font-weight: 600;
+          font-size: 1.5rem;
+          line-height: 140%;
+          letter-spacing: 0.15px;
+        }
+        .register-modal-close {
+          font-size: 25px;
+        }
+      }
+      .group-text-name {
+        padding-top: 15px;
+        p {
+        }
+        .group-text-name-input {
+          padding-top: 5px;
+          input {
+            padding: 10px 15px;
+            width: 100%;
+            border: 1px solid $grey;
+            border-radius: 10px;
+            &::placeholder {
+              color: $medium-grey;
+            }
+          }
+        }
+      }
+      .group-text-type {
+        padding-top: 10px;
+        p {
+        }
+        .group-text-type-select {
+          padding-top: 5px;
+          select {
+            padding: 10px 15px;
+            width: 100%;
+            border: 1px solid $grey;
+            border-radius: 10px;
+            option {
+            }
+          }
+        }
+      }
+      .group-modal-wrap-buttonbox {
+        padding-top: 10px;
+        .group-modal-wrap-change {
+          background-color: $main-red;
+          color: white;
+          width: 100%;
+          font-size: 15px;
+          font-weight: 500;
+          border-radius: 8px;
+          padding: 11px 10px;
+        }
+      }
+    }
+  }
+}

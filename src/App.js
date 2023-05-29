@@ -8,6 +8,7 @@ import Form from "./pages/Form/Form";
 import ApplicationManagement from "./pages/Application/ApplicationManagement/ApplicationManagement";
 import Footer from "./components/Footer/Footer";
 import ApplicationDetail from "./pages/Application/ApplicationDetail/ApplicationDetail";
+import GroupManagement from "./pages/GroupManagement/GroupManagement";
 import { useEffect } from "react";
 import { Login } from "./pages/Auth/Login";
 import { Signup } from "./pages/Signup/Signup";

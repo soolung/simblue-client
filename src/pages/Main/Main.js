@@ -15,7 +15,6 @@ export default function Main() {
     <>
       <section className="main">
         <Banner />
-        <div></div>
         <div className="latest-application-list">
           {data?.applicationList?.map((a, index) => (
             <Application

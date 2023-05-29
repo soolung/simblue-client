@@ -1,17 +1,21 @@
 import "./ResultSearch.scss";
 import "../../../common/Search/Search.scss";
-import { useState } from 'react';
-import { useQuery } from 'react-query';
-import { searchTeacher } from '../../../../utils/api/user';
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { searchTeacher } from "../../../../utils/api/user";
 
 export default function ResultSearch({ className, onSearch, onResultClick }) {
   const [searchText, setSearchText] = useState("");
   const [searchTextOnFocus, setSearchTextOnFocus] = useState(false);
 
-  const { data, refetch } = useQuery('searchTeacher', () => searchTeacher(searchText), {
-    onSuccess: (data) => {},
-    enabled: false
-  })
+  const { data, refetch } = useQuery(
+    "searchTeacher",
+    () => searchTeacher(searchText),
+    {
+      onSuccess: (data) => {},
+      enabled: false,
+    }
+  );
 
   const toggleSearchTextOnFocus = () => {
     setSearchTextOnFocus(!searchTextOnFocus);
@@ -31,26 +35,30 @@ export default function ResultSearch({ className, onSearch, onResultClick }) {
 
   const onSearchAndReset = () => {
     onSearch();
-    resetSearchText()
-  }
+    resetSearchText();
+  };
 
   const onKeyUp = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onSearchAndReset();
     }
-  }
+  };
 
-  const onResultClickAndReset = ({teacherId, name}) => {
+  const onResultClickAndReset = ({ teacherId, name }) => {
     onResultClick({
       teacherId: teacherId,
-      name: name
+      name: name,
     });
 
     resetSearchText();
-  }
+  };
 
   return (
-    <div className={`result-search ${searchTextOnFocus ? 'focused' : ''} ${className ? className : ''}`}>
+    <div
+      className={`result-search ${searchTextOnFocus ? "focused" : ""} ${
+        className ? className : ""
+      }`}
+    >
       <div className="search">
         <input
           type="text"
@@ -79,32 +87,31 @@ export default function ResultSearch({ className, onSearch, onResultClick }) {
         />
       </div>
       {searchTextOnFocus &&
-        (searchText.length > 0 && data?.length > 0 ?
-            <div className="result">
-              {
-                data.map((d, index) => (
-                  <div
-                    className="result-teacher"
-                    onMouseDown={() => onResultClickAndReset({
-                      teacherId: d.teacherId,
-                      name: d.name
-                    })}
-                    key={index}
-                  >
-                    <img
-                      alt="profile-image"
-                      src="/images/basic-profile-image.svg"
-                      className="profile-image"
-                    />
-                    <span>{d.name}</span>
-                  </div>
-                ))}
-            </div>
-            :
-            <div className="result no-result">
-              결과가 없습니다.
-            </div>
-        )}
+        (searchText.length > 0 && data?.length > 0 ? (
+          <div className="result">
+            {data.map((d, index) => (
+              <div
+                className="result-teacher"
+                onMouseDown={() =>
+                  onResultClickAndReset({
+                    teacherId: d.teacherId,
+                    name: d.name,
+                  })
+                }
+                key={index}
+              >
+                <img
+                  alt="profile-image"
+                  src="/images/basic-profile-image.svg"
+                  className="profile-image"
+                />
+                <span>{d.name}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="result no-result">결과가 없습니다.</div>
+        ))}
     </div>
-  )
+  );
 }
