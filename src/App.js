@@ -17,6 +17,7 @@ import BannerManagement from "./pages/BannerManagement/BannerManagement";
 import { useUser } from "./hooks/useUser";
 import Callback from "./pages/Callback/Callback";
 import AppLayout from "./components/Layout";
+import Disabled from './pages/Utility/Disabled/Disabled';
 
 const WithLogin = ({ authority = null, children }) => {
   const { user } = useUser();
@@ -43,6 +44,19 @@ function App() {
   useEffect(() => {
     setScreenSize();
   });
+
+
+  if (process.env.REACT_APP_STATE === "DISABLED") {
+    return (
+      <div className="App-disabled">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Disabled />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    );
+  }
 
   return (
     <div className="App">

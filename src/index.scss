@@ -17,7 +17,6 @@
 
 body {
   background-color: #fafafa;
-  padding-top: 76px;
   color: black;
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
@@ -99,9 +98,21 @@ input[type="text"] {
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 76px;
 
     section {
       flex: 1;
     }
   }
+}
+
+.App-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: $background-color;
 }
