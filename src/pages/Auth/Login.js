@@ -51,13 +51,13 @@ export const Login = () => {
   return (
     <section className="login">
       <div className="img-box">
-        <img alt="simblue" src="https://ifh.cc/g/H0wG7w.png" />
+        <img alt="simblue" src="https://soolung.s3.ap-northeast-2.amazonaws.com/resources/girl.svg" />
         <p className="login-insa">환영합니다!</p>
       </div>
       <div className="login-form">
         <div className="login-title">
           <span>로그인</span>
-          <img alt="welcome" src="https://ifh.cc/g/VBj8B5.png" />
+          <img alt="welcome" src="https://soolung.s3.ap-northeast-2.amazonaws.com/resources/what.svg" />
         </div>
         <p className="login-subtitle">학교 계정으로 로그인</p>
         <div className="input-box">
@@ -81,7 +81,7 @@ export const Login = () => {
             className="login-google-btn"
             onClick={() => window.location.replace(data)}
           >
-            <img src="https://ifh.cc/g/nNDjB0.png" alt="google" />
+            <img src="https://soolung.s3.ap-northeast-2.amazonaws.com/resources/google.svg" alt="google" />
             <span>구글 계정으로 로그인</span>
           </button>
         </div>

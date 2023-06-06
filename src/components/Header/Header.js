@@ -23,7 +23,7 @@ export default function Header() {
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo" />
+            <img className="header-logo" src="https://soolung.s3.ap-northeast-2.amazonaws.com/resources/logo.svg" alt="logo" />
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
