@@ -1,44 +1,41 @@
 import "./Header.scss";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../utils/atom/user";
 import ProfilePopover from "./ProfilePopover/ProfilePopover";
 import SideBar from "./SideBar/SideBar";
 import { Transition } from "react-transition-group";
-import Search from '../common/Search/Search';
+import Search from "../common/Search/Search";
+import { useUser } from "../../hooks/useUser";
 
 export default function Header() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const user = useRecoilValue(userState);
   const [profilePopoverIsOpen, setProfilePopoverOpen] = useState(false);
   const [sideBarIsOpen, setSideBarOpen] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
     setSideBarOpen(false);
   }, [pathname]);
-
-
 
   return (
     <>
       <header>
         <div className="header-inner desktop">
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="https://soolung.s3.ap-northeast-2.amazonaws.com/resources/logo.svg" alt="logo" />
           </Link>
           <div className="header-category-total">
             <ul className="header-category-ul">
               <li className="header-nav-li">
                 <Link to="/look">둘러보기</Link>
               </li>
-              {user?.authority && (
+              {user.authority && (
                 <li className="header-nav-li">
                   <Link to="/record">기록보기</Link>
                 </li>
               )}
-              {user?.authority === "ROLE_TEACHER" ? (
+              {user.authority === "ROLE_TEACHER" ? (
                 <li className="header-nav-li">
                   <Link to="/application/create">만들기</Link>
                 </li>
@@ -49,10 +46,10 @@ export default function Header() {
           </div>
           <Search
             className="search-area"
-            onSearch={() => alert('아직 검색 기능을 지원하지 않습니다 ㅜㅜ.')}
+            onSearch={() => alert("아직 검색 기능을 지원하지 않습니다 ㅜㅜ.")}
           />
           <div className="header_login_button">
-            {user?.authority ? (
+            {user.authority ? (
               <>
                 <button
                   onClick={() => setProfilePopoverOpen(!profilePopoverIsOpen)}
@@ -84,7 +81,7 @@ export default function Header() {
             />
           </button>
           <Link to="/">
-            <img className="header-logo" src="/images/logo.svg" alt="logo"/>
+            <img className="header-logo" src="/images/logo.svg" alt="logo" />
           </Link>
           <button onClick={() => console.log("search")}>
             <img

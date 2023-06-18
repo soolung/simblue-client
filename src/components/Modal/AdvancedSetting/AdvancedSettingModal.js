@@ -6,9 +6,8 @@ import { useMutation, useQueryClient } from "react-query";
 import { deleteApplicationForm } from "../../../utils/api/application";
 import { useNavigate } from "react-router-dom";
 import Owner from "./Owner/Owner";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../../utils/atom/user";
 import ResultSearch from "./ResultSearch/ResultSearch";
+import { useUser } from "../../../hooks/useUser";
 
 export default function AdvancedSettingModal({
   isOpen,
@@ -22,7 +21,7 @@ export default function AdvancedSettingModal({
 }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
 
   const deleteConfirm = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {

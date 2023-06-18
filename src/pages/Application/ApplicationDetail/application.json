@@ -1,66 +1,63 @@
 {
-  "id": 2,
-  "title": "1학년 학과 신청",
-  "description": "소개과 vs 임베과",
-  "startDate": "2022-09-29",
-  "endDate": "2022-12-31",
-  "emoji": "🥹",
-  "isAlways": false,
-  "applicationQuestions": [
+  "id": 16,
+  "title": "우수경미안",
+  "description": "니주겟다한초콜릿내가먹었어",
+  "startDate": "2023-01-26",
+  "endDate": "2023-09-09",
+  "emoji": "☀️",
+  "allowsUpdatingReply": false,
+  "state": "OPENED",
+  "questionList": [
     {
-      "id": 1,
-      "question": "책 제목",
-      "type": "TEXT"
+      "id": 35,
+      "question": "심심한사과의말씀",
+      "description": null,
+      "isRequired": true,
+      "type": "TEXTAREA",
+      "answerList": null,
+      "replyList": [
+        "ㅊㅊ"
+      ]
     },
     {
-      "id": 6,
-      "question": "학과 선택",
+      "id": 36,
+      "question": "심심하다",
+      "description": null,
+      "isRequired": true,
       "type": "RADIO",
-      "applicationAnswers": [
+      "answerList": [
         {
-          "answer": "소프트웨어개발과"
+          "answer": "야너두?"
         },
         {
-          "answer": "임베디드소프트웨어과"
+          "answer": "야나두"
         }
+      ],
+      "replyList": [
+        "야너두?"
       ]
     },
     {
-      "id": 7,
-      "question": "저메추",
+      "id": 37,
+      "question": "어웅",
+      "description": null,
+      "isRequired": true,
       "type": "CHECKBOX",
-      "applicationAnswers": [
+      "answerList": [
         {
-          "answer": "돈까스"
+          "answer": "ㅋㅋ"
         },
         {
-          "answer": "피자"
+          "answer": "고양이?"
         },
         {
-          "answer": "라면"
-        },
-        {
-          "answer": "된장찌개"
-        },
-        {
-          "answer": "돈까스"
-        },
-        {
-          "answer": "피자"
-        },
-        {
-          "answer": "라면"
-        },
-        {
-          "answer": "된장찌개"
+          "answer": "는야옹"
         }
+      ],
+      "replyList": [
+        "ㅋㅋ"
       ]
-    },
-    {
-      "id": 8,
-      "question": "편지",
-      "type": "TEXTAREA"
     }
   ],
-  "applicationNotices": []
+  "noticeList": []
 }

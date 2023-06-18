@@ -1,0 +1,18 @@
+@import "../../../styles/common";
+
+.utility {
+
+  &.disabled {
+    background-color: white;
+    padding: 52px;
+    border-radius: 24px;
+
+    img {
+      padding-bottom: 24px;
+    }
+
+    p {
+      font-size: 30px;
+    }
+  }
+}

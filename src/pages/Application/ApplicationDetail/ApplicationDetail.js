@@ -3,10 +3,8 @@ import Button from "../../../components/Button/Button";
 import Questions from "./Questions/Questions";
 import { useMutation, useQuery } from "react-query";
 import { getApplicationDetail } from "../../../utils/api/application";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../../components/common/Loading/Loading";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../../utils/atom/user";
 import { useNavigate, useParams } from "react-router-dom";
 import NoticeAside from "../../../components/ApplicationManagement/NoticeAside/NoticeAside";
 import {
@@ -14,11 +12,12 @@ import {
   replyApplication,
   updateReply,
 } from "../../../utils/api/reply";
+import { useUser } from "../../../hooks/useUser";
 
 export default function ApplicationDetail({ mode }) {
   const navigate = useNavigate();
   const { id } = useParams();
-  const user = useRecoilValue(userState);
+  const { user } = useUser();
 
   const reply = useMutation(replyApplication, {
     onSuccess: () => {
@@ -60,8 +59,8 @@ export default function ApplicationDetail({ mode }) {
   const button = () => {
     if (mode === "reply") {
       return {
-        text: user?.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
-        disabled: !user?.authority,
+        text: user.authority ? "제출하기" : "로그인 후 응답할 수 있어요",
+        disabled: !user.authority,
       };
     } else if (mode === "update") {
       return {
@@ -109,6 +108,10 @@ export default function ApplicationDetail({ mode }) {
   const [noticeIsOpened, setNoticeIsOpened] = useState(true);
   const [notice, setNotice] = useState("");
 
+  useEffect(() => {
+    setNoticeIsOpened(window.screen.width > 600 ? true : false);
+  }, []);
+
   return (
     <>
       {queryApplication.isLoading || queryReply.isLoading ? (
@@ -138,7 +141,7 @@ export default function ApplicationDetail({ mode }) {
                 {data?.description}
               </p>
               <p className="application-detail-application-header-time">
-                - {data?.status === "ALWAYS" ? "상시" : data?.endDate}
+                - {data?.state === "ALWAYS" ? "상시" : data?.endDate}
               </p>
             </div>
             <div className="application-detail-application-section">
