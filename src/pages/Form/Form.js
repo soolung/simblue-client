@@ -6,11 +6,7 @@ import DateBox from "../../components/common/Date/DateBox";
 import Check from "../../components/common/Check/Check";
 import Button from "../../components/Button/Button";
 import { useMutation, useQuery } from "react-query";
-import {
-  createApplicationForm,
-  getApplicationForm,
-  updateApplicationForm,
-} from "../../utils/api/application";
+import { createApplicationForm, getApplicationForm, updateApplicationForm, } from "../../utils/api/application";
 import { useNavigate, useParams } from "react-router-dom";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import AdvancedSettingModal from "../../components/Modal/AdvancedSetting/AdvancedSettingModal";

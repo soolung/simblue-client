@@ -2,11 +2,19 @@ import server from "../axios/server";
 import { authorization } from "../config/authorization";
 
 export const getGoogleAuthLink = async () => {
-  return (await server.get("/auth/google")).data;
+  return (await server.get("/auth/google", {
+    params: {
+      type: "SIMBLUE"
+    }
+  })).data;
 };
 
 export const getAccessTokenByGoogle = async (code) => {
-  return (await server.post(`/auth/google/callback?code=${code}`)).data;
+  return (await server.post(`/auth/google/callback?code=${code}`, null, {
+    params: {
+      type: "SIMBLUE"
+    }
+  })).data;
 };
 
 export const loginUser = async ({ email, password }) => {
