@@ -18,6 +18,7 @@ import Toggle from "../../components/common/Toggle/Toggle";
 import Loading from "../../components/common/Loading/Loading";
 import { now } from "../../utils/etc/DateTimeFormatter";
 import { useUser } from "../../hooks/useUser";
+import TextBox from '../../components/common/TextBox/TextBox';
 
 const Form = ({ mode }) => {
   const { id } = useParams();
@@ -31,6 +32,7 @@ const Form = ({ mode }) => {
       navigate("/");
     },
   });
+  const [showMaxReplyCount, setShowMaxReplyCount] = useState(false);
 
   const update = useMutation(updateApplicationForm, {
     onSuccess: () => {
@@ -102,38 +104,84 @@ const Form = ({ mode }) => {
     allowsUpdatingReply: false,
     startDate: now(),
     endDate: now(),
+    maxReplyCount: null,
   });
 
   const advancedSettingModalData = [
     {
-      name: "중복 허용",
+      name: "인원수 제한",
       setting: (
         <Toggle
-          value={request.allowsDuplication}
+          value={showMaxReplyCount}
           onClick={() => {
+            if (showMaxReplyCount) {
+              setRequest({
+                ...request,
+                maxReplyCount: null,
+              })
+            } else {
+              setRequest({
+                ...request,
+                maxReplyCount: 10
+              })
+            }
+
+            setShowMaxReplyCount(!showMaxReplyCount);
+          }}
+        />
+      )
+    },
+    (showMaxReplyCount && {
+      name: "",
+      setting: (
+        <TextBox
+          type="number"
+          value={request.maxReplyCount}
+          onChange={(e) => {
             setRequest({
               ...request,
-              allowsDuplication: !request.allowsDuplication,
+              maxReplyCount: e.target.value
             });
           }}
         />
-      ),
-    },
+      )
+    }),
     {
-      name: "답변 수정 허용",
-      setting: (
-        <Toggle
-          value={request.allowsUpdatingReply}
-          onClick={() => {
-            setRequest({
-              ...request,
-              allowsUpdatingReply: !request.allowsUpdatingReply,
-            });
-          }}
-        />
-      ),
-    },
-  ];
+      name: "중복 허용",
+      setting
+:
+  (
+    <Toggle
+      value={request.allowsDuplication}
+      onClick={() => {
+        setRequest({
+          ...request,
+          allowsDuplication: !request.allowsDuplication,
+        });
+      }}
+    />
+  ),
+}
+,
+  {
+    name: "답변 수정 허용",
+      setting
+  :
+    (
+      <Toggle
+        value={request.allowsUpdatingReply}
+        onClick={() => {
+          setRequest({
+            ...request,
+            allowsUpdatingReply: !request.allowsUpdatingReply,
+          });
+        }}
+      />
+    ),
+  }
+,
+]
+  ;
 
   const [questionList, setQuestionList] = useState([
     {
@@ -235,7 +283,7 @@ const Form = ({ mode }) => {
       [...questionList],
       (questionList[questionIndex].answerList = questionList[
         questionIndex
-      ].answerList.filter((a, index) => target !== index))
+        ].answerList.filter((a, index) => target !== index))
     );
   };
 
