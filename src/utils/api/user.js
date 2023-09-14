@@ -30,10 +30,16 @@ export const joinTeacher = async ({ name, password }) => {
   );
 };
 
-export const searchTeacher = async (q) => {
+export const searchUser = async ({ q, authority }) => {
   return (await server.get(
-    `/user/teacher/search?q=${q}`,
-    authorization()
+    `/user/search`,
+    {
+      ...authorization(),
+      params: {
+        q: q,
+        authority: authority
+      }
+    }
   )).data;
 }
 

@@ -1,6 +1,12 @@
 import "./ResultTable.scss";
 
 export default function ResultTable({ data, tableRef }) {
+  const stateToKorean = {
+    REJECTED: '거절됨',
+    APPROVED: '수락됨',
+    WAITING: '대기중'
+  }
+
   return (
     <table className="application-management--result-table"
            ref={tableRef}
@@ -30,11 +36,18 @@ export default function ResultTable({ data, tableRef }) {
                       {
                         q.type === "LINK" ?
                           <a href={r.replyList[index].reply} target="_blank">
-                            <span className="application-management--result-table--link"/>
+                            <span className="application-management--result-table--link" />
                             <span className="hidden">{r.replyList[index].reply}</span>
                           </a>
                           :
-                          <span>{r.replyList[index].reply}</span>
+                          q.type === "APPROVAL" ?
+                            <span>
+                              {r.replyList[index].reply}
+                              /
+                              {stateToKorean[r.replyList[index].state]}
+                            </span>
+                            :
+                            <span>{r.replyList[index].reply}</span>
                       }
                     </td>
                   )
