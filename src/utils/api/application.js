@@ -18,7 +18,7 @@ export const getApplicationDetail = async (id) => {
 };
 
 export const getApplicationResult = async (id) => {
-  return (await server.get(`/application/${id}/result`, authorization())).data;
+  return (await server.post(`/application/${id}/result`, {}, authorization())).data;
 };
 
 export const createApplicationForm = async ({ request }) => {
