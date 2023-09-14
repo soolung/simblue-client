@@ -3,6 +3,7 @@ import TextArea from "../../../../components/common/TextArea/TextArea";
 import Check from "../../../../components/common/Check/Check";
 import Radio from "../../../../components/common/Radio/Radio";
 import { useEffect, useState } from "react";
+import Person from '../../../../components/common/Person/Person';
 
 export default function AnswerField({ q, questionIndex, handleResponse }) {
   const [value, setValue] = useState(q.type !== "CHECKBOX" && q.replyList ? q.replyList : [""]);
@@ -78,5 +79,12 @@ export default function AnswerField({ q, questionIndex, handleResponse }) {
         onChange={(e) => setValue([e.target.value])}
       />
     );
+  } else if (q.type === "APPROVAL") {
+    return (
+      <Person
+        value={value[0]}
+        onResultClick={(id) => setValue([id])}
+      />
+    )
   }
 }

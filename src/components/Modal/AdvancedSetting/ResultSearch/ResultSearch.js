@@ -66,7 +66,7 @@ export default function ResultSearch({ className, onResultClick }) {
                 className="result-teacher"
                 onMouseDown={() =>
                   onResultClickAndReset({
-                    teacherId: d.teacherId,
+                    teacherId: d.userId,
                     name: d.name,
                   })
                 }
