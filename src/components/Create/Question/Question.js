@@ -38,6 +38,7 @@ const Question = ({
           <option value='LINK'>링크</option>
           <option value='RADIO'>객관식 질문</option>
           <option value='CHECKBOX'>체크 박스</option>
+          <option value='APPROVAL'>담당 교사 승인</option>
         </select>
         <Text
           className='question-header-description'

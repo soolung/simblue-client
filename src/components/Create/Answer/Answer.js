@@ -5,14 +5,14 @@ import Radio from "../../common/Radio/Radio";
 import Check from "../../common/Check/Check";
 
 export default function Answer({
-  type,
-  answers,
-  addAnswer,
-  addNextAnswer,
-  handleAnswer,
-  deleteAnswer,
-  questionIndex,
-}) {
+                                 type,
+                                 answers,
+                                 addAnswer,
+                                 addNextAnswer,
+                                 handleAnswer,
+                                 deleteAnswer,
+                                 questionIndex,
+                               }) {
   const answerRefs = useRef([]);
 
   const [focusIndex, setFocusIndex] = useState(0);
@@ -85,8 +85,10 @@ export default function Answer({
     type === "TEXT"
       ? "주관식 답안(단답)"
       : type === "TEXTAREA"
-      ? "주관식 답안(장문)"
-      : "링크";
+        ? "주관식 답안(장문)"
+        : type === "APPROVAL"
+          ? "교사 승인"
+          : "링크";
 
   return <Text className="question-text" placeholder={placeholder} readOnly />;
 }
