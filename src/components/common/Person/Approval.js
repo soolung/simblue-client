@@ -4,14 +4,14 @@ import { searchUser } from '../../../utils/api/user';
 import useSearch from '../../../hooks/useSearch';
 import { useState } from 'react';
 
-const Person = ({
-                  className,
-                  value,
-                  onChange,
-                  type,
-                  onResultClick,
-                }) => {
-  const [name, setName] = useState('');
+const Approval = ({
+                    className,
+                    value,
+                    onChange,
+                    type,
+                    onResultClick,
+                  }) => {
+  const [name, setName] = useState(value);
   const { data, refetch } = useQuery(
     "search",
     () => searchUser({
@@ -117,4 +117,4 @@ const Person = ({
   )
 }
 
-export default Person;
+export default Approval;
